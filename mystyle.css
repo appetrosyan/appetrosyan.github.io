@@ -1,11 +1,11 @@
-p {
+p, li {
 	font-family: PlexLight;
 	padding-right: 5em;
 	padding-top: 1em;
 	font-size: 25px;
 }
 
-h4, h5, h6, li {
+h4, h5, h6 {
 	font-family: PlexSerifBold, monospace;
 }
 
