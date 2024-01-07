@@ -12,3 +12,11 @@ This is my personal space. It will contain links to, but will be distinct from m
 If you came to this place, you're probably here for my CV.
 
 This site also refers to a collage of projects; things that I've worked on over the years.
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
