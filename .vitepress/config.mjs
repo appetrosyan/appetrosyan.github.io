@@ -8,22 +8,45 @@ export default defineConfig({
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
-			{ text: 'Home', link: '/' },
-			{ text: 'Blog', link: '/rants/' }
+			{ text: 'About', link: '/' },
+			{ text: 'Blog', link: '/blog/index' },
+			// TODO: Add automatic CV generation from CI on my GitHub
+			{ text: 'Projects', link: 'https://github.com/appetrosyan?tab=repositories' },
+			{ text: 'Greybeard Consulting', link: 'http://greybeard.consulting/' },
+			{ text: 'Music', link: 'https://soundcloud.com/user-793734474'}
 		],
-
 		sidebar: [
 			{
 				text: 'Blog',
+				link: 'blog/index',
+				collapsed: false,
 				items: [
-					{ text: 'Jekyll', link: '/rants/jekyll' },
+					{
+						text: 'Rants',
+						link: 'blog/rants/index',
+						collapsed: true,
+						items: [
+							{ text: 'Jekyll', link: '/blog/rants/jekyll' },
+							{ text: 'Rust', link: '/blog/rants/rust' },
+							{ text: 'Vitepress', link: '/blog/rants/vitepress' },
+							{ text: 'Emacs', link: '/blog/rants/emacs' }
+						]
+					}
 				]
 			}
 		],
 
 		socialLinks: [
 			{ icon: 'github', link: 'https://github.com/appetrosyan' },
-			{ icon: 'git', link: 'https://gitlab.com/a-p-petrosyan' }
+			{ icon: 'discord', link: 'https://discordapp.com/users/411912361817931787' },
+			// TODO: add Orcid
+			// TODO: Add gitlab
+			// TODO: Add crates.io
+			{ icon: 'linkedin', link: 'https://www.linkedin.com/in/alexander-petrosyan' }
 		]
 	}
 })
+
+// Local Variables:
+// mode: js
+// End:
