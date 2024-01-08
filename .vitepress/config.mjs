@@ -9,7 +9,7 @@ export default defineConfig({
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: 'Blog', link: '/rants' }
+			{ text: 'Blog', link: '/rants/' }
 		],
 
 		sidebar: [
@@ -23,7 +23,7 @@ export default defineConfig({
 
 		socialLinks: [
 			{ icon: 'github', link: 'https://github.com/appetrosyan' },
-			{ icon: 'gitlab', link: 'https://gitlab.com/a-p-petrosyan' }
+			{ icon: 'git', link: 'https://gitlab.com/a-p-petrosyan' }
 		]
 	}
 })
