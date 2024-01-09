@@ -52,7 +52,7 @@
 
 @font-face {
 	font-family: ddin;
-	size-adjust: 150%;
+	size-adjust: 120%;
 	src: url("Fonts/d-din/D-DINCondensed.otf")
 }
 
@@ -63,6 +63,7 @@
 
 @font-face {
 	font-family: PlexLight;
+	size-adjust: 120%;
 	src: url("Fonts/IBM_Plex_Serif/IBMPlexSerif-ExtraLight.ttf");
 }
 
@@ -102,6 +103,13 @@
  * Component: Button
  * -------------------------------------------------------------------------- */
 
+h1,h2,h3,h4 {
+	font-family: "PlexLight";
+	background: -webkit-linear-gradient(120deg, #fff100, #00cfff 95%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 :root {
   --vp-button-brand-border: transparent;
   --vp-button-brand-text: var(--vp-c-white);
@@ -122,8 +130,8 @@
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
-	  #aaa100 30%,
-      #00afff
+      #00afff,
+	  #aaa100
   );
 
   --vp-home-hero-image-background-image: linear-gradient(

@@ -1,3 +1,12 @@
+---
+prev:
+  text: "Blog"
+  link: "/blog/index"
+next:
+  text: "Jekyll"
+  link: "/blog/rants/jekyll"
+---
+
 # Rants
 
 This is probably the most extensive, least objective and most opinionated infodump.
@@ -18,7 +27,7 @@ The fact that it's opinionated is not a blanked cover-my-arse statement.  Just a
 
 These principles are applied in order. So for example, if I can justify that the idea is stupid, point 4 overrides point 5.
 
-As for pretending to be apolitical... I disagree with the modern framework of political discourse; if you call me "left wing" or "right wing**, I will add you to the naughty list.  Healthy disagreement is fine, though. 
+As for pretending to be apolitical... I disagree with the modern framework of political discourse; if you call me "left wing" or "right wing**, I will add you to the naughty list.  Healthy disagreement is fine, though.
 
 Another point is that I'm a _Caucasian_ male, I live near Caucasus, and I harbour practices which are familiar enough to Europeans.  That does not make me an accessory to the slave trade that built up the Brittish colonies.  My ancestors were very likely participating in the Greek, Roman, Byzantine, Arabic, Persian, Turkic, Mamelukic, Mongolian, and then Ottoman slave trade, most likely **as slaves**, so I will pre-empt my relationship as sympathetic, but reasonable. Do with the _male_ part what you will, but don't weaponise it against the point.
 

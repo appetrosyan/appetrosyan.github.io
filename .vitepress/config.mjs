@@ -24,14 +24,14 @@ export default defineConfig({
 				items: [
 					{
 						text: 'Rants',
-						link: 'blog/rants/index',
 						collapsed: true,
 						items: [
 							{ text: 'Jekyll', link: '/blog/rants/jekyll' },
 							{ text: 'Rust', link: '/blog/rants/rust' },
 							{ text: 'Vitepress', link: '/blog/rants/vitepress' },
 							{ text: 'Emacs', link: '/blog/rants/emacs' }
-						]
+						],
+						link: 'blog/rants/index',
 					}
 				]
 			}
