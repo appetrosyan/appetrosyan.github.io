@@ -44,8 +44,16 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-	--vp-font-family-base: "PlexSerifBold";
+	/* --vp-font-family-base: "PlexSerifBold"; */
+	/* --vp-font-family-base: PlexLight; */
+	--vp-font-family-base: ddin;
 	--vp-font-family-mono: "VicMono";
+}
+
+@font-face {
+	font-family: ddin;
+	size-adjust: 150%;
+	src: url("Fonts/d-din/D-DINCondensed.otf")
 }
 
 @font-face {
@@ -60,7 +68,7 @@
 
 @font-face {
 	font-family: VicMono;
-	src: url("Fonts/Victor_Mono/VictorMono-ExtraLight.ttf");
+	src: url("Fonts/Victor_Mono/VictorMono.ttf");
 }
 
  :root {
