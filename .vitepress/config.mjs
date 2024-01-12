@@ -26,10 +26,7 @@ export default defineConfig({
 						text: 'Rants',
 						collapsed: true,
 						items: [
-							{ text: 'Jekyll', link: '/blog/rants/jekyll' },
-							{ text: 'Rust', link: '/blog/rants/rust' },
-							{ text: 'Vitepress', link: '/blog/rants/vitepress' },
-							{ text: 'Emacs', link: '/blog/rants/emacs' }
+							{ text: 'Jekyll', link: '/blog/rants/jekyll' }
 						],
 						link: 'blog/rants/index',
 					}
