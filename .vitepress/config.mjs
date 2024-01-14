@@ -13,7 +13,7 @@ export default defineConfig({
 			// TODO: Add automatic CV generation from CI on my GitHub
 			{ text: 'Projects', link: 'https://github.com/appetrosyan?tab=repositories' },
 			{ text: 'Greybeard Consulting', link: 'http://greybeard.consulting/' },
-			// { text: 'Sirius memes', link: 'localhost:8080'}, 
+			// { text: 'Sirius memes', link: 'localhost:8080'},
 			{ text: 'Music', link: 'https://soundcloud.com/user-793734474'}
 		],
 		sidebar: [
@@ -26,7 +26,8 @@ export default defineConfig({
 						text: 'Rants',
 						collapsed: true,
 						items: [
-							{ text: 'Jekyll', link: '/blog/rants/jekyll' }
+							{ text: 'Jekyll', link: '/blog/rants/jekyll' },
+							{ text: 'emacs', link: '/blog/rants/emacs' }
 						],
 						link: 'blog/rants/index',
 					}
