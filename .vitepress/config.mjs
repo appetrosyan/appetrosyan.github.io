@@ -29,7 +29,15 @@ export default defineConfig({
 							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
 							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' }
 						],
-						link: 'blog/rants/index',
+						link: '/blog/rants/index',
+					},
+					{
+						text: 'Guides',
+						collapsed: false,
+						items: [
+							{ text: 'Setting up KeepassXC as SSH agent', link: '/blog/guides/ssh-agent' }
+						],
+						link: '/blog/guides/index'
 					}
 				]
 			}
