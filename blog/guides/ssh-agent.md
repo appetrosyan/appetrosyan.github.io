@@ -81,3 +81,24 @@ then we're good
 ::: tip
 We are largely going to closely follow the [upstream documentation](https://github.com/keepassxreboot/keepassxc/blob/develop/docs/topics/SSHAgent.adoc): if the two documents differ, I'd recommend you more closely follow the upstream document rather than the steps outlined here.
 :::
+
+
+## Pinentry
+
+This is probably something that could be left for another post, but I'm adding it here for posterity.
+Firstly, there's an asymmetry between the pinentry programs. 
+`pinentry-qt` is, as always, an afterthought.
+`pinentry-gnome3` has integration with the secret services, meaning that you could enable KeepassXC's secret service integration, and be done with it.
+
+The easiest way to achieve it, is by setting the following in `.gnupg/gpg-agent.conf`
+
+```conf
+pinentry-program /usr/bin/pinentry-gnome3
+```
+This program, at the time of writing will not start, you need to also install `gcr` of the third version.
+
+
+At this point, you might want to disable the KDE wallet subsystem, so that it's not exactly competing with KeePassXC, and enable the service with KeePassXC.
+
+The best thing to do is to now test things!
+
