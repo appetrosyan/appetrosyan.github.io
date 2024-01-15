@@ -26,8 +26,8 @@ export default defineConfig({
 						text: 'Rants',
 						collapsed: true,
 						items: [
-							{ text: 'Jekyll', link: '/blog/rants/jekyll' },
-							{ text: 'emacs', link: '/blog/rants/emacs' }
+							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
+							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' }
 						],
 						link: 'blog/rants/index',
 					}
