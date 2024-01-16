@@ -24,6 +24,16 @@ So, without further ado,
 pkexec pacman -S keepassxc
 ```
 
+::: tip
+I'm using `pkexec` for a few reasons.
+Probably the most important one is that it offers me a graphical interface to enter the password.
+Another is that it actually provides feedback on the entered password.
+It is also more often than not pre-installed and runs on the TTY as well as in the graphical system (though you should be careful to have D-Bus running).
+While `sudo` may have had good reasons for not showing any of that, I don't think that it is necessarily smart.
+Finally, I have found on so many occasions that a long lasting build failed to catch my eye and timed out when using `paru`, when using `sudo`.
+Using `pkexec` has one minor drawback when used in `paru`, that it requests your password more than once during a single install, but I think if that annoys you, you should consider creating a rule for that (article coming soon).
+:::
+
 The next step is to create a database.
 I'd recommend that you consider making your database portable; there's advantages to having multiple databases, and advantages to securing your database with something more reliable than just a password.
 However, I personally find that the value that it offers is marginal.
@@ -52,7 +62,7 @@ I myself am experimenting with using a YubiKey as the only factor in authenticat
 
 ## Creating SSH keys
 
-The command we want is interactive: 
+The command we want is interactive:
 ```sh
 ssh-keygen -t ed25519
 ```
@@ -67,7 +77,7 @@ The rest of this article is dedicated to making the tedium more manageable, so I
 :::
 
 ::: details An aside on our chosen method
-We are going to go with the defaults.
+We are going to go with the [defaults](https://www.ssh.com/academy/ssh/keygen).
 This is somewhat dangerous, because it assumes that people developing `ssh` know what they're doing, and as I asserted earlier, user experience blunders seem to cast doubt on that.
 Still, I've worked in cryptography, and I should say that `ed25519` is a relatively safe bet.
 What isn't safe is relying on the same key for a long time.
