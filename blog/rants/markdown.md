@@ -16,6 +16,18 @@ So what is the problem, then with there being no grammar to refer to? Well, the 
 
 I'd say perhaps that the reason why this is bad has less to do with the language itself, but with the approach that people take to it. We assume that we could just do things the right way and it would work. That right way happens to be up to the interpreter, and now your way of doing things correctly is contingent on knowing, for lack of a better word, which features does `shit-encrusted` markdown have. (incidentally, this project does not and will not exist, primarily because its sheer existence would imply that all other markdown is **not** `shit-encrusted`).
 
+TODO Latex \usep{}, 
+
+TODO EMMET
+
+TODO Roff
+
+TODO Extensions break markup
+
+TODO domain modelling
+
+TODO logic doesn't allow for one thing to be both italic and bold, but to be bolditalic
+
 One common advantage of thinking in terms of grammars is that it makes the design of the markup language easier, not only to make, but also to understand. Case in point; in Markdown the `#` symbol delineates a heading, inheriting the somewhat outdated semantics of HTML's `<h1>`. It makes natural sense to assume that `##` is equivalent to `h2` and beyond. This _is_ good and something that Markdown does well. At the same time, things like links to headings follow rules which I, as a programmer with 15+ years of experience, having dealt with a whole zoo of programming languages, both functional and esoteric, second-guess myself when doing cross referencing. It would have been simpler to have a `\label**-like method for most if not all interactions, but for that to have been possible, there ought to have been some foresight.
 
 Org is slightly better in this regard, because while it comes with most of the markup already defined, it allows definition of custom markup, and in principle, a label-like reference system. This is also one of a few places where ReST will feature in a positive light.
