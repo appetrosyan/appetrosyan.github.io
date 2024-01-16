@@ -13,7 +13,7 @@ The problem is however that I have some long-standing pain points that I hope ca
 
 Fortunately to the faithful of the church of St. Ignucius, this is not going to change what environment I will daily drive.
 I shall not switch away from Emacs, that's kinda the point.
-But in this document I shall attempt to ilucidate why I chose to use it, why it's a somewhat unhappy marriage, and what I'd like to change to the extent of my ability.
+But in this document I shall attempt to elucidate why I chose to use it, why it's a somewhat unhappy marriage, and what I'd like to change to the extent of my ability.
 
 So without further ado.
 
@@ -24,12 +24,12 @@ So without further ado.
 So what is this mysterious editor? Or should I say operating system!
 
 Well, to be quite honest, I would probably disagree with both assessments.
-Hell, I have some notes on calling it an emacs lisp interpreter, especially on the `nativecomp` branch.
+Hell, I have some notes on calling it an Emacs lisp interpreter, especially on the `nativecomp` branch.
 
 I should perhaps qualify what Emacs *is* first, though.
-Emacs is swiss army knife.
-It's main purpose is acting as a text editor, hence the name: Editor MACroS. But it has other functions, which are, in true swiss army knife fashion, there if you need them, but actually not at all great.
-One would think that this makes the swiss army knife quite situational, but it can make for one particularly minimalistic set-up capable of doing a lot in properly skilled hands.
+Emacs is Swiss army knife.
+It's main purpose is acting as a text editor, hence the name: Editor Macros. But it has other functions, which are, in true Swiss army knife fashion, there if you need them, but actually not at all great.
+One would think that this makes the Swiss army knife quite situational, but it can make for one particularly minimalist set-up capable of doing a lot in properly skilled hands.
 Most of Emacs' prowess stems from the fact that it is a relic of a wholly different epoch of computing, which has not eschewed and in fact, welcomed the modern day, a microcosm of Unix-like operating systems.
 
 What is particularly important in understanding why most people would deny that Emacs is a text editor.
@@ -58,7 +58,7 @@ Emacs allows programmers to solve text editing problems in a familiar fashion to
 
 Emacs, allowed programmers to go beyond simple text editing.
 But how does Emacs managed to capture the eyes of those looking for an integrated experience?
-IDEs after all, are both able to support plugins, and designed to provide users with a more feature-full experience of interacting with their prorgramming environment. The answer is relatively simple.
+IDEs after all, are both able to support plugins, and designed to provide users with a more feature-full experience of interacting with their programming environment. The answer is relatively simple.
 
 Most programming is done in a relatively straightforward fashion: one has a plain-text file with a funny extension.
 While it's possible to write your C++ code in a `txt` file it is not exactly encouraged, nor a good idea.
@@ -92,19 +92,19 @@ NeoVim has perhaps the most appeal to me, and could confer *some* advantages.
 But here's where I find it not to be compelling option yet.
 
 Emacs' greatest strength stems from being a graphical program.
-In principle, though sadly not in practice, this would mean that more things than just plain text entries with monospaced fonts can be utilised in the creation of graphical interfaces.
+In principle, though sadly not in practice, this would mean that more things than just plain text entries with mono-spaced fonts can be utilised in the creation of graphical interfaces.
 Indeed this had been somewhat remarkably demonstrated by the eponymous [Nicholas P. Rougier](https://github.com/rougier), who has toiled relentlessly to create a visually appealing version of a text editor that looks decidedly outdated by default.
 This means that hopefully, some time later, it should be possible to do a WYSIWYG style of editing effortlessly in Emacs.
 Indeed, this is possible already in principle using some trickery and `org` mode, but far from seamless.
 
-Unfortunately, I don't see this happening with Neovim anytime soon.
-It is relatively easy to add this functionality to Neovim, but this is liable to lead to a further fragmentation.
-Certainly there could be plugins that are specific to specific front-ends, but architecturally, NeoVim is decidedly a terminal-based application and it will remain that way for the foreseable future.
+Unfortunately, I don't see this happening with NeoVim anytime soon.
+It is relatively easy to add this functionality to NeoVim, but this is liable to lead to a further fragmentation.
+Certainly there could be plugins that are specific to specific front-ends, but architecturally, NeoVim is decidedly a terminal-based application and it will remain that way for the foreseeable future.
 
-Aside from that, NeoVim has not a lot to offer that Emacs doesn't already do within maring of relevance.
-For example, Neovim might have a slightly better implementation of intellisense than Emacs, but it doesn't matter to me, because my workflow is to prompt the program for completion actively, and not wait for a menu passively, and here NeoVim has no equivalent of `embark-act`.
-Similarly, while *e.g.* the Neovim project has a list of official front-ends, they are in no way equivalent.
-Neovide is an interesting take, with some flashy animations.
+Aside from that, NeoVim has not a lot to offer that Emacs doesn't already do within margin of relevance.
+For example, NeoVim might have a slightly better implementation of intellisense than Emacs, but it doesn't matter to me, because my workflow is to prompt the program for completion actively, and not wait for a menu passively, and here NeoVim has no equivalent of `embark-act`.
+Similarly, while *e.g.* the NeoVim project has a list of official front-ends, they are in no way equivalent.
+NeoVide is an interesting take, with some flashy animations.
 Due to architectural restrictions that's the extent of it.
 
 There's a case that goes both ways for the configuration language.
@@ -114,7 +114,7 @@ However, there the advantages of `lua` are exhausted, and the appearance of a ne
 Make no mistake, programming in Emacs lisp is challenging, doubly so because of the decision to not provide some information at the necessary level.
 The sheer fact that I cannot be sure that a Lisp file is error free until I evaluate it, and that simultaneously, if it is not, I get next to no useful information in the error message, makes me wish I had access to `lua` or `Python` for configuration.
 Still, those problems are in the minority, and once fixed &#x2013; a distant sour aftertaste, rather than a deal-breaker.
-The fact that there'd be more `lua` code per configuration is a problem though, one that has to be fixed in one way or another.
+The fact that there would be more `lua` code per configuration is a problem though, one that has to be fixed in one way or another.
 
 Everything else, including modal editing, can be replicated in Emacs.
 Though I must say that not having to worry about which mode I am in, has made me a better editor, though perhaps not a faster typist.
@@ -132,7 +132,7 @@ So the `vi`-family is out.
 
 This point is not clear cut as one might think.
 
-I'm a vocal opponent of the usage of this program, but I don't think that most of this is well-justified and well-intentioned.
+I'm a vocal opponent of the usage of this program, but I don't think that most of this is well-justified and well-intention'd.
 
 The reasons I hadn't touched `code` up until now and for some time in the future potentially are as follows:
 - I really liked Atom, and I don't like the idea of it being embrace-extend-extinguish-ed.
@@ -179,10 +179,10 @@ One problem I _used_ to have with Kakoune, was the assumption that the program w
 This has thankfully been addressed and there's a heap of plugins for Kakoune.
 No curated list as of yet, but this might change in the future.
 
-All else being equal, it is a direct upgrade to `neovim` in many ways except one: it still falls into the trap of using a customized language called `kakounescript`. It is a strong contender, and definitely something that I will be using, if not full time, then at least in some capacity.
+All else being equal, it is a direct upgrade to `neovim` in many ways except one: it still falls into the trap of using a customised language called `kakounescript`. It is a strong contender, and definitely something that I will be using, if not full time, then at least in some capacity.
 
 ::: info helix
-Helix is a direct downgrade to kakoune in many ways.
+Helix is a direct downgrade to Kakoune in many ways.
 The only saving grace is that they chose to "rewrite it in Rust", but that is only a positive in some cases.
 :::
 
@@ -203,7 +203,7 @@ I respect that; markdown doesn't exactly _need_ highlighting.
 But there's also limited highlighting for files that should not be considered esoteric; this site is (at present, at least), built using [vitepress](https://vitepress.dev/).
 The config file is a file called `config.mjs`.
 Not only do I not have automatic error checking as I do with Emacs, not only do I not have the convenience of being able to just run compilation and jump to the error; I don't even have the decency of having some syntax highlighting.
-JavaScript? Yes sure, but not MJS.
+JavaScript? Yes sure, but not M-JS.
 So it's not as complete as one would like, but you can also see that changing once the editor gains some traction.
 
 ::: info
@@ -217,7 +217,7 @@ A lot of its success can be attributed to Jai, despite Jonathan Blow having not 
 But what do I make of the rest of the editor.
 I'm less productive.
 Unlike editors written in Rust or C++, the ways in which a Jai program can misbehave are not yet well-known and sometimes not the fault of the programmer.
-I miss being able to trime whitespace in one command. I'd love to see the function be introduced at some point, but I don't personally have the time to create a pull request and hope that it gets merged.
+I miss being able to trim white space in one command. I'd love to see the function be introduced at some point, but I don't personally have the time to create a pull request and hope that it gets merged.
 I'd like to eventually have LSP support.
 It's much harder to implement that, on account of the fact that Jai doesn't have much code written in it yet, to compare how one would connect to a server and respond to its feedback.
 It is hard to even consider things like Copilot integration, or more advanced features.
@@ -241,12 +241,12 @@ Firstly, the editor out of the box, covers most of what I would need from a code
 It highlights markdown and org out of the box, it has LSP and DAP integration, and actually does them well: I don't need to install a package and _hope_ that it will work, it happens to come in a working state.
 Considering that Kate is a KDE project I find this to be a fascinating achievement, most of their other projects... ahem... KDevelop... ahem... are nowhere near as stable.
 This is quite exciting because for the life of me I couldn't figure out why `company` pretends to not have any completion candidates half the time, and is dog slow the other half.
-Kate by contrast has a similar function to Emacs' `dabbrev`, though the implementation is decidedly more akin to modern solutions, losing some of the charm/luster.
+Kate by contrast has a similar function to Emacs' `dabbrev`, though the implementation is decidedly more akin to modern solutions, losing some of the charm/lustre.
 Kate has syntax highlighting for esoteric things, like for example StandardML.
 It didn't a while ago, back when that would have been helpful.
 It is fast, on account of using a highly optimised native toolkit, and has a healthy ecosystem of libraries and packages; it's a KDE program after all.
 
-The debugging is good, and sidesteps new fads (such as displaying values of variables next to them, rather than in a neat table), and it crucially has support for sequential keybinds.
+The debugging is good, and sidesteps new fads (such as displaying values of variables next to them, rather than in a neat table), and it crucially has support for sequential key binds.
 I can attach `Ctrl-x Ctrl-s` to save, and it will save.
 It can work with a mouse, I can drag blocks of code around, set breakpoints, and fold headings.
 I have an inordinate amount of visual feedback whenever I do something as simple as enter a delimited block.
@@ -257,7 +257,7 @@ It can show a sane diff, and can resolve conflicts without you having to use the
 Its built in git client isn't as good as `magit`, but there's no reason why it can't be made better.
 It has somewhat of a similar idea to the IntelliJ offerings in terms of how you'd do a compile/build/deploy, but that is not a problem, because you can just hit `F4` and get a terminal.
 If you get feedback in terms of diagnostics, they're categorised, and navigable, just like in Emacs.
-Unlike Emacs, they're navigable even if you don't use the `flycheck`/`flymake` packages and/or explicitly use a `compile` commmand whose output may or may not parse correctly.
+Unlike Emacs, they're navigable even if you don't use the `flycheck`/`flymake` packages and/or explicitly use a `compile` command whose output may or may not parse correctly.
 It defaults to soft tabs.
 So what else do you want?
 
@@ -265,16 +265,16 @@ Well, frankly, not much, but those things will make life unbearable when they co
 Firstly, I intend to write a lot of Jai code.
 In Emacs, it is trivial to knock out a major mode for a language that has some similarities to the C-style languages, one of a few places where inheritance is a good thing.
 In Emacs, due to manifold exploration opportunities, I've experimented with different code highlighting/typesetting systems.
-What this lets me do is do some crazy things which are not that crazy when you think about them: having the height of heeadings be bigger, instead of just being a different colour, allows me to use colour in an orthogonal fashion.
+What this lets me do is do some crazy things which are not that crazy when you think about them: having the height of headings be bigger, instead of just being a different colour, allows me to use colour in an orthogonal fashion.
 I can highlight text with a different typeface: set things in `sans` and `serif` when I need to.
 I can also use the information that is already gleaned from the parser to do other things, like contextual commands.
 Emacs' `embark` command is perhaps one of the best examples of this.
 Vim might not have this, but in Kate, something like this would be prohibitively difficult to implement.
 
 Another thing which I'm missing in Kate is the modularity of Emacs.
-Most emacs packages are self-contained, and they integrate only with Emacs.
+Most Emacs packages are self-contained, and they integrate only with Emacs.
 In Kate everything is tightly woven, even though technically it shouldn't be.
-Even the Kate pacakges that are considered to be plugins do not exist in separate repositories.
+Even the Kate packages that are considered to be plugins do not exist in separate repositories.
 This might change in the future and make my life a bit easier, but unlike with Focus, where the potential is obvious and immense, with Kate, this is likely to happen at a glacial pace.
 
 I want to be able to embed a Qt application as a window into the editor, and have it _just work_.
@@ -286,21 +286,21 @@ But it doesn't allow the editor to be your canvas, and experiment and tailor you
 ## Lem
 
 Lem is probably the final contender of which I don't know what to make of.
-It is an editor that, if accomplished, has the potential to be a direct upgrade to Emacs, and to make this probem go away.
+It is an editor that, if accomplished, has the potential to be a direct upgrade to Emacs, and to make this problem go away.
 But it is also somewhat esoteric.
 
 Hear me out.
 One of the key advantages of `lem` is the fact that Emacs is only configured in a lisp, but `lem` is written in its entirety _as_ a lisp program.
-So, as something that is both of the Emacs heritage, and simultaneously free from its technical debt, lem can do things better.
+So, as something that is both of the Emacs heritage, and simultaneously free from its technical debt, Lem can do things better.
 An Emacs user feels at home, knowing that _e.g._ `C-a` jumps them back to the beginning of the line, and `C-e` to the end of it.
 There are ways of configuring it to feel like my Emacs config, assuming I can port over the functionality that's missing.
 
-In principle `lem` is an opportunity to fix Emacs' long standing issues, without also making the users of the old emacs unhappy.
+In principle `lem` is an opportunity to fix Emacs' long standing issues, without also making the users of the old Emacs unhappy.
 It is the `vim` of the Emacs world.
 And given that similarly to how `nvim` fixed VimScript, `lem` can rely on Common Lisp to provide most of the advantages and none of the drawbacks of Emacs lisp, it makes sense to consider it.
 
 Unfortunately, `lem` makes some crucial mistakes, early on.
-They have the potential to completely nullify the advantage that lem might have over Emacs.
+They have the potential to completely nullify the advantage that Lem might have over Emacs.
 
 First and foremost, it's designed around a terminal UI.
 It doesn't and didn't commit to a GUI-only approach that Emacs did, which is perhaps the biggest blunder of the program's designers.
@@ -309,10 +309,10 @@ If you want to target the official `lem`, you are going to target the terminal v
 Which means that none of the GUI stuff gets done, not now, not later, not eventually.
 This is painful.
 One thing that has to be done in a hacky way on Emacs, are the GUI elements in things like `customize-apropos`, instead of having an actual text-box, you are given an approximation of what a DOS-era text box would look like, except less useful and more shitty.
-The reason for this is the separation of the GUI toolkit of Emacs -- GTK and the run-time nature of interpreting Elisp, even if it's compiled to a dynamic library in native binary.
+The reason for this is the separation of the GUI toolkit of Emacs -- GTK and the run-time nature of interpreting E-lisp, even if it's compiled to a dynamic library in native binary.
 It was decided to go function over form, which later ended up just choosing not to have decent-looking controls.
 In Lem, given it uses SDL, not only can those controls be done better from scratch, most of the technical limitations which would prevent one from using this stuff correctly are also gone.
-But, in a typical "you had one job fashion", because the main target is a terminal implementation, people targetting lem, will almost never support the GUI features...
+But, in a typical "you had one job fashion", because the main target is a terminal implementation, people targeting Lem, will almost never support the GUI features...
 
 ::: warning
 TELETYPES ARE FUCKING DEAD; GROW THE FUCK UP!!
@@ -324,7 +324,7 @@ If you don't know how to do it, leave room for someone who does.
 
 Minor annoyances abound, though not in and of themselves deal-breakers.
 All the functions that I'm missing can be ported, and ported easily I must add, because the languages are fundamentally compatible.
-The bigger question is: "would it be harder to adjust emacs to what I'd like it to be" as opposed to adding what's missing to `lem`?
+The bigger question is: "would it be harder to adjust Emacs to what I'd like it to be" as opposed to adding what's missing to `lem`?
 And I frankly don't know.
 It might go either way.
 
@@ -343,7 +343,7 @@ It has a chance, much more than `helix` does, but it needs something more than j
 ## Lite
 
 I frankly never used it before.
-It is probably what Neovim would do for me, if it were any good, but it comes with some creature comforts that I like quite a bit.
+It is probably what NeoVim would do for me, if it were any good, but it comes with some creature comforts that I like quite a bit.
 To me Lite does what a text editor should do.
 I quite like `lite-xl` and might use it if I get the chance.
 It is definitely not as well-supported as Emacs, and definitely not as widespread as `neovim`.
@@ -352,7 +352,7 @@ Still it has a chance, so I'll give it one.
 As a purely text editor, it does well.
 It doesn't come with LSP support, and while I appreciate the ability to configure the editor using a GUI, that is also something that Kate can do, and in my opinion much better at that.#
 
-Still I know poeple that use it, and today I found out why.
+Still I know people that use it, and today I found out why.
 
 ## Not even bad
 
@@ -393,15 +393,15 @@ But in my opinion, it's not particularly great.
 It had years of development, and is decidedly behind things like `neovim` and Emacs.
 Fewer functions, an ageing cross-platform toolkit that is not great, but not nearly as bad as electron.
 If Kate didn't exist, Sublime would have been something I would consider, but unfortunately, a team more concerned with providing a basic text editor did a better job making sure that the LSP worked, than Sublime did.
-And they have no excute.
+And they have no execute.
 If you ever worked on a KDE project, you know that the code-bases are often extremely difficult to navigate and operate on.
 With Sublime having a much smaller code-base and having funding to warrant the development of the project, I have zero confidence in the project.
 It is a one-trick pony.
-That trick is now a basic requirement for comamnd-line editors like `kakoune` and `helix`.
+That trick is now a basic requirement for command-line editors like `kakoune` and `helix`.
 
 ## VSChrappium (also known as VSCodium)
 
-The epitome of the naivetee of us humans.
+The epitome of the naivete of us humans.
 This is probably the best example I can point to, when I say that pussy licenses are dumb, that the Open Source software development model is broken beyond repair, and that we should emphasise whether software is Free as in Freedom, or just open source.
 
 Suppose I were a free software in everything evangelist.
@@ -409,7 +409,7 @@ What problems does VSChrappium address that I would have?
 For one, let's suppose that I have an ideological problem with Microsoft pushing its proprietary editor.
 By using the open source counterpart, I'm still helping it _extend_ the open source with their ideological approach (of "just use VSCode").
 I'm cutting out the telemetry, true, but I'm also given the impression that the proprietary extensions make this an incomplete package.
-Nobody mentions the VSCrhappium, they mention VSChrap support.
+Nobody mentions the VSChrappium, they mention VSChrap support.
 And the greatest thing about it, is that the licensing terms mean that if you contribute code to the project, they can take it and add my code (that was contributed to VSChrappium) and it to the proprietary counter-part.
 
 If you care about free software, and like to use VSChrap, then
@@ -423,7 +423,7 @@ AND SHUT THE FUCK UP ABOUT IT BEING OPEN SOURCE!
 :::
 
 ::: error
-If I'm commiting the crime of using a Microsoft product and allowing it to establish yet another monopoly, I might as well take away the thing that lets me engage in intellectual dishonesty.
+If I'm committing the crime of using a Microsoft product and allowing it to establish yet another monopoly, I might as well take away the thing that lets me engage in intellectual dishonesty.
 :::
 
 ## Acme
@@ -437,13 +437,13 @@ I assure you, there are plenty of commentaries on the original package, but give
 Not a huge fan of how things turned out, because I was ready to go on a long tirade about how utterly misguided the entirety of plan9 was, but fortunately for plan9, their software doesn't even run.
 
 ::: warning
-You suckless buffoons should consider making your programs ACTUALLY SUCK LESS, INSTEAD OF WRITING ABOUT IT!
+You suck-less buffoons should consider making your programs ACTUALLY SUCK LESS, INSTEAD OF WRITING ABOUT IT!
 
 IF YOU HAVE TO **SAY** that your programs SUCK LESS, then you're probably part of the problem.
 :::
 
 # Appendix: In the beginning
-Why did I end up on emacs?
+Why did I end up on Emacs?
 
 Peer pressure mostly.
 
@@ -463,9 +463,9 @@ At that time I started dabbling in GNU Linux, but not in a serious capacity.
 The most I did was install some games through wine (back when that was a true challenge), and perhaps installing Arch was what gave me some challenge. I learned to use `nano`, but also to despise it with a passion.
 On the other hand, in Windows, there was Skyrim and I started modding it using&#x2026; ahem&#x2026; NotePad++. And I liked it quite a bit. It's definitely something that in retrospect wasn't terribly advanced, but I didn't exactly need something advanced. The sheer fact that I took an entire month to write prose pretty much continuously was what I did, and it wasn't exactly a problem.
 
-But at some point the elitist Arch-bro had to be born, so I had to learn the advanced editor. So I did&#x2026; Vi was that. And I didn't switch for the longest time. `vim` was *an* improvement, but Bram Moolenaar (god rest his soul) didn't make it *the definitive improvement* over Vi. And besides, I didn't really write prorgams all that often, mostly config files, so `vi` was frequently only used to write config files on a bog-standard GNU+Linux system. And at around 2015, when I finally stopped distro and desktop hopping (and nuked my final install of Windows), I compeltely settled on using `vim`.
+But at some point the elitist Arch-bro had to be born, so I had to learn the advanced editor. So I did&#x2026; Vi was that. And I didn't switch for the longest time. `vim` was *an* improvement, but Bram Moolenaar (god rest his soul) didn't make it *the definitive improvement* over Vi. And besides, I didn't really write programs all that often, mostly config files, so `vi` was frequently only used to write config files on a bog-standard GNU+Linux system. And at around 2015, when I finally stopped distro and desktop hopping (and nuked my final install of Windows), I completely settled on using `vim`.
 
-At this key moment, I often had used other graphical text editors, but the sheer beauty of `vi` was its omnipresence. Almost all unix systems shipped with it, even if only select few even had `vim` in the repositories. I had used `vi` for most of my early days in Cambridge, but that's when I started to feel some pressure to conform to what I've been taught.
+At this key moment, I often had used other graphical text editors, but the sheer beauty of `vi` was its omnipresence. Almost all UNIX systems shipped with it, even if only select few even had `vim` in the repositories. I had used `vi` for most of my early days in Cambridge, but that's when I started to feel some pressure to conform to what I've been taught.
 
 So like in previous years, I had picked an IDE, at first it was eclipse. At some point later it was IntelliJ.
 Later on, though, I got an email that read roughly like this
@@ -476,12 +476,12 @@ Later on, though, I got an email that read roughly like this
 >
 > <Re:Re:1> That's certainly a choice.
 
-Of course this wasn't Emacs on GNU+Linux, but rather on a mac (back when macs were good). Plus, I found an irrational human being that had also aliased their `vi` to `emacs`, used `emacs` in the terminal, and what I think was perhaps the worst part of all, had a trollface mode.
-Fun memories, given that we had a proper hackathon (portwine and funny jokes included).
+Of course this wasn't Emacs on GNU+Linux, but rather on a mac (back when macs were good). Plus, I found an irrational human being that had also aliased their `vi` to `emacs`, used `emacs` in the terminal, and what I think was perhaps the worst part of all, had a troll face mode.
+Fun memories, given that we had a proper hackathon (port wine and funny jokes included).
 
 This was when I made the best decision of my life and completely ignored the advice, instead opting for IntelliJ idea, and doing my work in an environment that didn't require me to learn a third language (plus you have to keep in mind, that as a student that took a Computer Science option, I was completely reliant on the desktop computers which then provided either Windows, or a version of Ubuntu Linux)[^3]. Finally, the year that I caved in was when I decided that it would be a great idea to try Emacs on my main machine. Out of sheer peer pressure, I must add.
 
-Of the proffessors I've studied under, almost everyone praised Emacs. It was a mark of cleverness in their eyes. And there were some things that I found to be &#x2026; for lack of a better word&#x2026; problematic. For one, there was an air of superiority about the usage of a particular tool. I, for the first time, heard someone say something negative about Eclipse (the IDE).
+Of the professors I've studied under, almost everyone praised Emacs. It was a mark of cleverness in their eyes. And there were some things that I found to be &#x2026; for lack of a better word&#x2026; problematic. For one, there was an air of superiority about the usage of a particular tool. I, for the first time, heard someone say something negative about Eclipse (the IDE).
 I had also been party to a silent understanding that while Vi-likes were the tool of choice for engineers, then "real computer scientists used Emacs"[^4].
 Secondly, while it was a program that people used quite often to cite the power of programming, I struggled to find a way in which it *could* be better than say `vi`. The ergonomics of modal editing plus the reliance on the Unix philosophy made for compelling arguments.
 Usage of yet another language to configure something didn't exactly sound like a compelling argument to me.
