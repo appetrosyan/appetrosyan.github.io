@@ -26,6 +26,7 @@ export default defineConfig({
 						text: 'Rants',
 						collapsed: true,
 						items: [
+							{ text: 'I don\'t like Vitepress either', link: '/blog/rants/vitepress' }, 
 							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
 							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' }
 						],
