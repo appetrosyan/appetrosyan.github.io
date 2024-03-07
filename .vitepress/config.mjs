@@ -41,6 +41,16 @@ export default defineConfig({
 						link: '/blog/guides/index'
 					}
 				]
+			},
+			{
+				text: 'Documentation',
+				collapsed: false,
+				items: [
+					{
+						text: 'supernest',
+						link: 'https://appetrosyan.github.io/supernest',
+					}
+				]
 			}
 		],
 

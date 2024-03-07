@@ -228,3 +228,24 @@ Secondly, I believe that more attention should be given to education. We need a 
 Thirdly, there's a good reason to try and create a more responsive UI for Emacs. The main mistake architecturally speaking is that the Emacs lisp interpreter is bundled with a horrendous mess of GTK. Emacs deserves its own toolkit. This is far from unfixable. 
 
 Indeed while it would be perhaps too cumbersome to try and decouple the code for the time being, I'll contend myself with writing a Neovide-like front end, and making it connect to an existing emacs daemon. This shouldn't be insurmountable, and in fact is probably easier than writing one's own text editor. It should also allow Emacs to slowly wean itself off of the GTK front-end. Here the slow release cycle of Emacs is a benefit, because I can target a stable API and ABI. All I'd need to do is begin the hard part that can break only when there had been a large non-maintenance release. Finally, the code and the copyright is to be signed off to the GNU foundation. That way this work can be upstreamed, and Emacs can finally shake off the burden of being a text-only editor with _no form_ and _all function_.  
+
+
+## Useful ideas
+
+Ergonomic keybinds. `hjkl` for navigation is perfect. 
+
+Editing functions exposed to the user and written by the user. The editor by itself doesn't come with any configurations.
+
+Plugins are libraries. 
+
+Exiting to `normal` mode has action (cleans up whitespace).
+
+instead of motions, define a highlighting method. Build it in, because any of the EasyMotion and others actually modify the buffer.
+
+Modal navigation. Most people don't use the `]` and `}` when using Vim. 
+
+Transients are useful.
+
+When writing the easymotion I could add ways of defining the motion to specific objects: `$` at the end, `w` at the end of the word, overlay it graphically. 
+
+Rely on the WM to provide tabbing and windows. Only open new ones, never tabs.
