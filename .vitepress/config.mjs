@@ -30,7 +30,8 @@ export default defineConfig({
 							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
 							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' },
 							{ text: 'Cat-v', link: '/blog/rants/cat-v-harmful' },
-							{ text: 'neovim', link: '/blog/rants/neovim' }
+							{ text: 'neovim', link: '/blog/rants/neovim' },
+							{ text: 'Language Elitism', link: '/blog/rants/language_elitism' }
 						],
 						link: '/blog/rants/index',
 					},
