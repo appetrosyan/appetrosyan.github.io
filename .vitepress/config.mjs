@@ -29,7 +29,7 @@ export default defineConfig({
 							{ text: 'I don\'t like Vitepress either', link: '/blog/rants/vitepress' }, 
 							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
 							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' },
-							{ text: 'Cat-v', link: '/blog/rans/cat-v-harmful' }
+							{ text: 'Cat-v', link: '/blog/rants/cat-v-harmful' }
 						],
 						link: '/blog/rants/index',
 					},
