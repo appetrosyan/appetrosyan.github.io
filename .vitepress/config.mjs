@@ -28,7 +28,8 @@ export default defineConfig({
 						items: [
 							{ text: 'I don\'t like Vitepress either', link: '/blog/rants/vitepress' }, 
 							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
-							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' }
+							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' },
+							{ text: 'Cat-v', link: '/blog/rans/cat-v-harmful' }
 						],
 						link: '/blog/rants/index',
 					},
