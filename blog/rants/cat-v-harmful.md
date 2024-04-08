@@ -341,9 +341,9 @@ Abandon All Hope, Ye Who Enter Here
 This is undoubtedly the most ugly program in the distribution. It was one of the first "serious" programs ported, and still has a lot of historical baggage. Ideally, there would be a general tty widget and then vt102 and tek4014 subwidgets so that they could be used in other programs. We are trying to clean things up as we go, but there is still a lot of work to do.
 :::
 
-Need I go into details.  Despite this program being dead simple and not really needing maintenance, it somehow surprised me in that it doesn't have the most basic creature comfort of being able to control scrollback, or launching the system shell.
+Need I go into details.  Despite this program being dead simple and not really needing maintenance, it somehow surprised me in that it doesn't have the most basic creature comfort of being able to control scrollback, or launching something other than the system shell.
 
-I don't know if it'd be useful to go into those here, but it is in my opinion the only usable program on the list.  At the very least it is the program with the smallest number of self-imposed deficiencies, because it is also a simple program.
+Despite this, I should make it clear that `st` is very much the most usable of the programs on this list.  It used to be my go-to terminal emulator for years...  or rather after I got what it lacked into the source code, you know, the ability to see more than just the last screenful of text, and launch `fish` instead of `bash`.  It's fine, but giving it a bit more LOC would not have made it worse.  And this is an illustrative example: the program is simple, because what it does is fundamentallly simple.  
 
 ## Surf
 
