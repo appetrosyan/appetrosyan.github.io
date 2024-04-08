@@ -1,6 +1,7 @@
 ---
 title: A case against "Cat-v considered harmful"
 ---
+# A case against "Cat-v considered harmful"
 ## Introduction
 
 This is a rant that's a long time coming, and it is a lukewarm shot at a community that I have a love-hate relationship with.  Sure, `cat-v` and by extension the good-old-unix hacker groups are quite interesting, and quite enticing to join, but I'm a little concerned with people who might take it more seriously than that deserves.
