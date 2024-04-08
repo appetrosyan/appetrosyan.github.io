@@ -1,7 +1,7 @@
 ---
 - title: Neovim challenge, two weeks later
 ---
-# ${{ title }}
+# The Neovim challenge, one month later
 
 This is quite an interesting experience.
 
@@ -215,7 +215,7 @@ The reason why that might be the case comes down to the following three things t
 
 Vim has a loud community of people. Despite the fact that it is trivial to replicate `vim` inside Emacs, @ThePrimagean would insist on making jokes about skill issues, and how `vim` is better. Indeed, if all you do and all you'll ever do, is edit C-like curly braced code, `vim` has a certain appeal, and a few advantages. I've conceded those when I started this article. **AND I REALLY SHOULDN'T HAVE**.
 
-# Takeways
+## Takeways
 
 I fully left the door open to switching sides and using this new tool for a long time, until mine reaches a level of maturity. I don't think that's correct.
 

@@ -1,8 +1,7 @@
 ---
-title: A case against Cat-v
+title: A case against "Cat-v considered harmful"
 ---
-
-# Introduction
+## Introduction
 
 This is a rant that's a long time coming, and it is a lukewarm shot at a community that I have a love-hate relationship with.  Sure, `cat-v` and by extension the good-old-unix hacker groups are quite interesting, and quite enticing to join, but I'm a little concerned with people who might take it more seriously than that deserves.
 
@@ -16,7 +15,7 @@ They levy quite well-deserved critique against software of particular kinds, and
 
 So I would very much like to address some of the comments.
 
-# "Considered harmful" considered harmful
+## "Considered harmful" considered harmful
 
 This is a well-worn trope. I would not deny that this particular expression was a good idea for the draft of this very page. However, one must note that Edsger Dijkstra (the author of the original piece), had a much more nuanced and balanced way of expressing their frustrations with `goto`. It was the (now late) Niklaus Wirth that decided to put the question of goto into acute focus.
 
@@ -26,7 +25,7 @@ So why not `cat-v considered harmful considered harmful`? Indeed, that was the d
 
 On that note, I'd like to start this off by critiquing plain text.
 
-## Plain text is limiting how we think
+### Plain text is limiting how we think
 
 It is blasphemy to tell someone who has a computer science background that plain text is a terrible standard. But not because plain text is good. The limitations of that format, much like the limitations of the terminal and before then the teletype, have become so ingrained in programmers minds that even to consider anything other than that would be just plain stupid.
 
@@ -105,7 +104,7 @@ So just don't have standard formats.  Define a DSL.  So either this advice can b
 
 This isn't just faulty advice.  It's not advice at all.
 
-## Go is average
+### Go is average
 
 The go programming lagnuage is a common recommendation throughout the blog and Unix circles in general.  I find this recommendation to be baffling.  I do not harbour an irrational hatred of the language and I can see it having its uses, but I would hesitate in comparing it favourably to `Python`, `Java`, `D` and `C++`, with the possible concession of agreeing that it might be better than `Ruby` or `Vala`, based on the fact that I have little exposure to those languages, and I cannot comment any which way.
 
@@ -137,7 +136,7 @@ So vague gestures in the direction of FAMOUS PERSON X irrationally hated languag
 
 I would say that Limbo is a decent language to try, but I would not regard Cat-v as an authority on what a programmer should and should not do.  Their text doesn't encourage _thinking_, but assumes thinking and can lead to a great many problems, if that assumption is misplaced.  Engaing with the medium, media literacy, is a waning skill.  Without media literacy, people might assume that the Cat-V rants are serious advice.  And I'm here to explicate why in the case of programming languages their advice is plain wrong.
 
-## Miscellanea
+### Miscellanea
 
 It is perhaps hard to argue against their assessments of some technologies: Perl being a particularly well-known technology that had been used beyond its merit, but others are more questionable.  PCRE is a controversial point where instead of arguing that it's actually good, I'll argue that they have yet to present any definitive evidence that it is bad.
 
@@ -147,7 +146,7 @@ They recommend `dash` in preference to `bash`.  What I'm a bit concerned about i
 
 I don't quite see why they wouldn't recommend `fish`, but I suppose they seem to believe that any user-friendly tool that is written in a language other than C is a bad thing...  And I suppose they can also argue that `fish` is not POSIX compliant, which basically means that it doesn't run scripts that were written for POSIX shells.  So I suppose Python is also bad, because it's not a POSIX compliant shell?
 
-## Gnuisance
+### Gnuisance
 
 The document overall has an axe to grind against the GNU toolset.  I don't know if we can rationally rebuke a fundamentally irrational argument.  The one place where they **do** provide a counter argument relates is the following masterpiece.
 
@@ -222,13 +221,13 @@ And they are in their right to do so.  I just don't think that they do so very w
 
 Another example is `musl`.  It is a standard C library whose chief advantage is being different to `glibc` and thus having fewer _known_ bugs.  Its allocator is slower, its integration with most software means that programs that typically link against `glibc` cannot link against it, and while the opposite should be true, the sacrifice that must be made to ensure that software can link against both is just...  for lack of a better word not worth it.  I have repeatedly in my software engineering career had situaitons in which `musl` was genuinely an improvement, where I had to roll it back, precisely because of a bug that _could_ be caused by `musl` not being tested as much as `glibc`.  Can `musl` get better if it's used more widely? Sure.  It'd probably become just as bloated as `glibc` and probably be just as bad, for the unvoiced reasons as to why it should be "good".  In my experience, usage of `musl` only confers an advantage in the very few small niches where it is already the default.  It is not an alternative to `glibc` it is a better tool for the job in _some_ cases.
 
-## GUI toolkits
+### GUI toolkits
 
 I'll be the devils advocate on this one, and argue that they may have a point.  The reasons why we don't see that many GUI programs being written as we have textual interfaces has to do with the fact that the toolkits that produce GUI programs are a moving target with an ever changing appearance, while the textual interface is still, 30 years after it was necessary, cosplaying as a teletype.
 
 I will say, however, that their alternatives aren't alternatives.  TK is a mess.  It must be mentioned TK has one advantage of being a small code base.  This advantage is nullified by the fact that one has to go out of their way to learn a new programming language.  At the time, `tcl` was the most sane way of writing GUI programs...  in 1990's and for X11.  The point of GTK is that it offers few abstractions and most of the work can be done via FFI, thus freeing the programmer to choose their programming language.  The point of Qt is that it is a batteries-included set of abstractions that can make producing GUI programs faster and more efficient without sacrificing the ability to call the non-GUI backend logic via FFI.  TCL confers neither of these advantages.
 
-## Editors
+### Editors
 
 I wish I had more to say about this but I do not.
 
@@ -244,7 +243,7 @@ However, the usage of `ed` as that editor, is not warranted.  It is impractical.
 
 I'd say: use whatever you like.  Yes, including VScode.  It's not a bad program by any means, and my opposition to its proliferation is on the grounds of other programs being more beneficial long-term, not it inherently being harmful.  Like plaintext, this is what was already done, and in the proverbial _thinking outside the box_ paradigm, represent the box.  I would recommend that people try something practical.  And by that I mean, something that can be reasonably installed on a modern computer.  So think Emacs, not teco.
 
-## Protocols
+### Protocols
 
 There is not much to say.  They recommend that you
 > or best of all: don't use HTTP.
@@ -257,7 +256,7 @@ In all seriousness, there is no reasoning provided for these recommendations.
 
 They have a similar recommendation about IMAP vs SMAP.  OK.  Great! Do you know how hard it is to convince people to just use IMAP, and not a shitty version of Exchange or GMail?  I assume Cat-v assumes that it is possible to force people to use a technology just because you like it!  On that note, IRC is considered better than XMPP.  In what way?  For what reason?  I will say that IRC is in far better health than XMPP, on account of the fact that almost nobody hosts their own servers for anything anymore.  But yes.  IRC is a good technology, use it.
 
-## Postscript everywhere
+### Postscript everywhere
 
 ::: info
 It shall become important later, but remember that PostScript was a proprietary language developed by Adobe in order to make sure that the printers worked.
@@ -273,13 +272,13 @@ Often, when one uses vector graphics, the intermediate solution is something cal
 
 What would be a good idea, is keeping the source for the document, and having a reliable stable format for that source.  Namely, keep something that has minimal markup like _org_ and...  I can't believe I'm saying this, Markdown.  With LaTeX, it's a similar story; but it has some quirks.  Some documents can only be compiled with a specific program: `pdflatex` is the standard, despite there being significant advantages to using `xelatex` and a new fledgling re-implementation in Rust called `tectonic`.  Unfortunately, not all valid LaTeX compiles with all of these compilers.  I particularly found that frustrating when submitting a rendered `pdf` to MDPI.  I honestly think that we should agree upon a standard, and stop using rendered documents as the medium of exchange.  That is an exceptionally difficult task, given the amount of effort that went into HTML and them still not being able to guarantee cross-browser accurate rendering.  Org **would** have been a good native format, if it weren't for the fact that it is fundamentally not rendered in and of itself, but rather converted to the correct rendering format with an ungodly amount of Lisp.
 
-## DJVU
+### DJVU
 
 DJVU is a format that I wish were more widely used, but I see no explanation as to why, so I'll have to pretend that there is one and agree with it.
 
 DJVU confers smaller sizes to documents, that are both in text and scanned.  By virtue of the encoding scheme in DJVU, in fact, DJVU files are nearly as compact as OCR'd documents in PDF.  Unlike those, any smudges, misprints that could look suspicious, do look suspicious, and are never confused with another letter.  So no `rabbit` universal donors for you.  (TODO: link to joke).
 
-## Tooling versus domain-specific programs
+### Tooling versus domain-specific programs
 
 This is a slightly controversial point, so I may need to elaborate.  The existence of the `head` and `tail` programs had always baffled me, and using a universal tool for getting the `n`-th to `m`-th line of a particular plaintext file seems like a logical choice.  Not doing so is a failure of education.
 
@@ -290,7 +289,7 @@ As with most UNIX-philosophical discussions it doesn't take long until a catastr
 
 Cat-v is named after Rob Pike's famous essay that `cat` should not have the `-v` flag.  And it is the sheer fact that more likely than not, your `cat` **does** have this flag _right now_ on the very Unix-like machine that you are reading this from (and to Windows users, most of this is just foreign I'd wager).  Simply put, their advice had been practically proven wrong on too many occasions to be considered worthwhile.
 
-# Conclusion
+## Conclusion
 
 A lot of Cat-v philosophy is a cargo cult of some projects made by Unix alumni.  They avert any critique, by positing that
 
@@ -309,13 +308,13 @@ So where does this leave us?  We have armchair philosophers with a clear bias to
 
 But a lot of the programs that they promote are genuinely good, so why should we be wary of the philosophy that had been strapped to them after the fact and bears no correlation with what they critique?
 
-# Case study suckless software
+## Case study suckless software
 
 There is a group that is misguided in more than one way, but particularly for our purposes in applying the philosophy of less is more and minimalism to the extreme, without exercising judgement.
 
 The result are a few programs that I'd like to talk about.
 
-## Dynamic Window Manager
+### Dynamic Window Manager
 
 When asked about the memosation procedure being called dynamic programming, as an anecdote, Dijkstra mentioned that it was the word _dynamic_ that would garner positivity.  It is perhaps by this moniker, that the world's most hacky window manager was named dynamic.
 
@@ -334,7 +333,7 @@ Another thing that `bspwm` does really well, is modularise its bar.  Because of 
 
 As a consequence, we get a good experience and a genuinely simple program in `bspwm`.  Obviously this completely ignores the technical pitfalls of `dwm`, for example, not fully supporting full-screen windows, not being fully compatible with floating windows, and a few other major pitfalls.
 
-## St
+### St
 ::: info Excerpt from Suckless
 Abandon All Hope, Ye Who Enter Here
 
@@ -345,7 +344,7 @@ Need I go into details.  Despite this program being dead simple and not really n
 
 Despite this, I should make it clear that `st` is very much the most usable of the programs on this list.  It used to be my go-to terminal emulator for years...  or rather after I got what it lacked into the source code, you know, the ability to see more than just the last screenful of text, and launch `fish` instead of `bash`.  It's fine, but giving it a bit more LOC would not have made it worse.  And this is an illustrative example: the program is simple, because what it does is fundamentallly simple.  
 
-## Surf
+### Surf
 
 It is a web browser that on paper I should have liked quite a bit.  I don't find the presence of many of the UI elements on many browsers to be a benefit.  If at all possible, I'd have liked having the ability to put more than just browser tabs into tabs, having process isolation in more than name, and to perhaps, have some ability to use the tiling facilities of `dwm` to my advantage when opening two web pages (_e.g._ my notes in hackmd and some other article that I'm writing about).
 
@@ -354,7 +353,7 @@ And indeed, it is a program that has some neat interactions with _e.g._ `dmenu` 
 Sometimes the software sucks not just because of the end program, but because of the enshittification of society.  I'm happy that I can use a semi-open operating system, like GNU Linux.
 
 
-## Dmenu
+### Dmenu
 
 Perhaps the most utilitarian program of the bunch, and also one that is somewhat useful, but highlights the need for a better organisation of operating systems in general.
 
