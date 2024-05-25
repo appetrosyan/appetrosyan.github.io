@@ -39,7 +39,9 @@ export default defineConfig({
 						text: 'Guides',
 						collapsed: false,
 						items: [
-							{ text: 'Setting up KeepassXC as SSH agent', link: '/blog/guides/ssh-agent' }
+							{ text: 'Setting up KeepassXC as SSH agent', link: '/blog/guides/ssh-agent' },
+							{ text: 'Setting up Magit forge', link: '/blog/guides/magit-forge' },
+							{ text: 'Logging into Slack', link: '/blog/guides/slack-login' }
 						],
 						link: '/blog/guides/index'
 					}
