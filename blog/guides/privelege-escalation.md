@@ -30,7 +30,8 @@ attack surface.  If you can avoid it, please do.
 
 One thing I should mention is that `sudo` comes with `sudoedit`, which
 is a program that would have been nice when editors couldn't privelege
-escalate on their own, given that now they can, there's few reasons to.
+escalate on their own.  Most editos are either used as `sudo vim` or
+can do privelege escalation internally, such as `kate` and `emacs`.
 
 `sudo -E` is an important case where the environment must be
 preserved, for example, when you're doing something that the original
@@ -67,12 +68,13 @@ ability to do so.
 
 ### Polkit
 
+
 This is what I use.  This program is likely to come pre-installed.  It
 is what `systemd` falls back on, if you try to perform an action that
-needs root priveleges, but you forgot to use `sudo`.  It's main
+needs root priveleges, but you forgot to use `sudo`.  Its main
 advantage is that it lives in the modern day and age.  It is a program
 that integrates with your desktop environment, and you can make WMs
-work just as well.  You can make rules in ....  ewww...  JavaScript.
+work just as well.  You can make rules in .... ewww... JavaScript.
 But other than that, the program is fairly straightforward.
 
 Ideally, it doesn't require any input.  Any operation that must
