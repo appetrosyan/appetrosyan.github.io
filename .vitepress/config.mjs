@@ -26,7 +26,7 @@ export default defineConfig({
 						text: 'Rants',
 						collapsed: true,
 						items: [
-							{ text: 'I don\'t like Vitepress either', link: '/blog/rants/vitepress' }, 
+							{ text: 'I don\'t like Vitepress either', link: '/blog/rants/vitepress' },
 							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
 							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' },
 							{ text: 'Cat-v', link: '/blog/rants/cat-v-harmful' },
@@ -42,7 +42,7 @@ export default defineConfig({
 							{ text: 'Setting up KeepassXC as SSH agent', link: '/blog/guides/ssh-agent' },
 							{ text: 'Setting up Magit forge', link: '/blog/guides/magit-forge' },
 							{ text: 'Logging into Slack', link: '/blog/guides/slack-login' },
-							{ text: 'Privelege Escalation', link '/blog/guides/privelege-escalation' }
+							{ text: 'Privelege Escalation', link: '/blog/guides/privelege-escalation' }
 						],
 						link: '/blog/guides/index'
 					}
