@@ -1,4 +1,4 @@
-# Prelude
+# How to set up KeepassXC
 
 SSH has some of the dumbest ideas in UX.
 
