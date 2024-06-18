@@ -28,11 +28,11 @@ I shall address the points quoting them in-context:
 
 There are multiple exceptions to this.  John Carmack was a good C programmer that successfully transitioned into the best C++ programmer.  That would also involve the C standards committee, that in the latest revisions of C, introduced many features that were previously only seen in C++.  The reason why Drew seems to believe this, is because there are few practical reasons not to write procedural C++ if you know both C and C++.  The only programmers that are C-exclusive programmers, are those with a distaste for C++, but I will assure you, a good C++ programmer, can live happily in C and produce good code.  That is what coined the term C/C++.
 
-Aside from that, I'd appeal to the following, C and C++ share a common subset that is almost the size of C.  This in turn means that a procedural style (which is the only one supported in C) is also implementable in C++.   As a good example of this approach, consider the `compiz` compositor.  So there is a non-zero overlap between programmers that will primarily utilise the procedural templated subset of C++, and programmers that choose to use C.  More to the point, libraries written in one language can be easily used in the other.
+Aside from that, I'd appeal to the following, C and C++ share a common subset that is almost the size of C.  This in turn means that a procedural style (which is the only one supported in C) is also implementable in C++.  As a good example of this approach, consider the `compiz` compositor.  So there is a non-zero overlap between programmers that will primarily utilise the procedural templated subset of C++, and programmers that choose to use C.  More to the point, libraries written in one language can be easily used in the other.
 
 I saved the best for last: the statement that programmers in Language X have incompatible values with prorgrammers of language Y is the epitome of stupid.
 
-So, can then values of good programmers in one area be incompatible with the other?  Well, perhaps in context that the trade-offs that are sensible in one area are not universally sensible, one could argue that yes.  I would argue that these are not _values_ but **goals**.  The difference is subtle, but significant: different projects have different goals.  There are situations where the facilities of C are adequate, but they can be implemented as a subset of C++.  There are clear advantages in terms of compilation time and compatibility to use C in that case, but there are no reasons why that code couldn't be written in C++.  It would not be possible if the values were wholly incompatible; the languages are more similar than different, demonstrating that the designers of both languages shared many of the values.  But the goals were different, the languages were meant to cover different grounds.
+So, can then values of good programmers in one area be incompatible with the other?  Well, perhaps in context that the trade-offs that are sensible in one area are not universally sensible, one could argue that yes.  These are not _values_ but **goals**.  The difference is subtle, but significant: different projects have different goals.  There are situations where the facilities of C are adequate, but they can be implemented as a subset of C++.  There are clear advantages in terms of compilation time and compatibility to use C in that case, but there are no reasons why that code couldn't be written in C++.  It would not be possible if the values were wholly incompatible; the languages are more similar than different, demonstrating that the designers of both languages shared many of the values.  But the goals were different, the languages were meant to cover different grounds.
 
 More generally, the values of _all_ programmers are _correctness_, _performance_, _efficiency_ and _maintainability_.  A _good programmer_ must know many ways of trading one value for another and a _good software engineer_ knows precisely which trade-offs are suitable for which program.  For example, if you're building a supercomputer, it is reasonable to trade maintainability for performance and correctness.  For a game it is reasonable to trade correctness for performance.  It is not reasonable to trade efficiency for performance in a small battery powered device.  The **goals** of one brand of programmer may be different, but they very much strive to find the correct balance for each problem.  So maybe, values of bad programmers can differ, but the problem space forces good programmers to recognise that one solution does not fill all problems at once.
 
@@ -42,7 +42,7 @@ The following assertions are mostly correct up to the point where Drew discusses
 
 I suppose one could make the argument that C++ is by definition a not-quite-superset of C, and thus _must necessarily_ have more features.  You don't need wikipedia to argue that, because people understand how sets work.  If you wanted to calculate it using external resources, you could use langauge documentation: this would give you a more accurate representation of the languages, and would perhaps put Rust below C++, where it belongs, seeing as Rust deliberately eschews the full grandeur of trying to support every programming paradigm in existence.  By his estimation, a language that is both younger, and deliberately smaller than C++ has more features?
 
-But suppose his figures are correct.  They do not cover with sufficient detail the numbers of times that these langauges have undergone an almost complete transformation, which I would argue is a better metric.
+Suppose his figures are correct.  They do not cover with sufficient detail the numbers of times that these langauges have undergone an almost complete transformation, which is a better metric.
 
 Rust and Go have gone through _one_ major revision each, that is, cases where programs had to be rewritten to compile on the new latest standard.  With Rust it is perfectly reasonable to compile older edition code on the latest compiler.  The later versions of Go do not compile older versions of programs.
 
@@ -86,39 +86,42 @@ I suppose.  The shiny might not appeal to Drew, but I would make the case that R
 
 Also note the usage of "Systems programmers" as a proverbial "true scotsman".  This will become important later.
 
-> That really cool feature $other_language has? Not interested. It’ll be more trouble than it’s worth.
+> That really cool feature $other_language has?  Not interested.  It’ll be more trouble than it’s worth.
 
 And here is later.  You see, us systems programmers are not prejudiced folk.  People who design databases generally find RAII a good idea, or would you argue that they're not systems programmers.  People who work on operating system kernels find reduced reliance on allocation a useful property, or I suppose you'd argue that Linus Torvalds is not a systems programmer either.  Driver maintainers find reduced amount of boilerplate to be good, or would you argue that the team that reverse-engineered the M1 GPU driver, are not systems programmers.  Or are the people who are writing browsers not systems programmers, because as far as I'm aware, they invented Rust.
 
 I don't think that generalising it to all systems programmers was a good idea.  Perhaps Drew could have said Unix hackers, to specifically exclude GNU Linux engineers.  Systems programmers at large, tend to design their own languaes for specific purposes.  In fact, Drew himself started Hare.  So I don't see how this argument goes anywhere.
 
-> C is the most portable programming language. Rust actually has a pretty admirable selection of supported targets for a new language (thanks mostly to LLVM), but it pales in comparison to C, which runs on almost everything.
+> C is the most portable programming language.  Rust actually has a pretty admirable selection of supported targets for a new language (thanks mostly to LLVM), but it pales in comparison to C, which runs on almost everything.
 
 Zig is.  C is good, but not the best, though more portable than Rust.
 
 > C is the most portable programming language.
 
-I'm afraid the whole reason why Zig manages to overtake C in terms of coverage has to do with C's lack of portability.   Case in point, `printf` is a function that is not portable.  I'm sure as an expert systems programmer Drew is aware of that.
+I'm afraid the whole reason why Zig manages to overtake C in terms of coverage has to do with C's lack of portability.  Case in point, `printf` is a function that is not portable.  I'm sure, as an expert systems programmer, Drew is aware of that.
 
-> Rust actually has a pretty admirable selection of supported targets for a new language (thanks mostly to LLVM), but it pales in comparison to C, which runs on almost everything. A new CPU architecture or operating system can barely be considered to exist until it has a C compiler. And once it does, it unlocks access to a vast repository of software written in C.
+> Rust actually has a pretty admirable selection of supported targets for a new language (thanks mostly to LLVM), but it pales in comparison to C, which runs on almost everything.  A new CPU architecture or operating system can barely be considered to exist until it has a C compiler.  And once it does, it unlocks access to a vast repository of software written in C.
 
 As stated previously, most code written in C is not portable.  This is due to the fact that this code relies on dynamical linking, is tied to CPU architecture tightly and relies on a standard C library to be present.  The same C program might not run on different versions of the same Linux distribution, due to incompatibility in the `libc` implementation.  Rust and Go sidestep those issues by being statically linked.
 
-> C has a spec. No spec means there’s nothing keeping rustc honest. Any behavior it exhibits could change tomorrow.
+> C has a spec.  No spec means there’s nothing keeping rustc honest.  Any behavior it exhibits could change tomorrow.
 
-Lack of bureaucratic definitions is not equivalent to a lack of rules.  If a society doesn't have an explicit ban on public defecation doesn't mean that said defecation is considered acceptable by said society.  There is a standard, and there is an alternative implementation.  Much like the early days of C, it takes time.
+Lack of bureaucratic definitions is not equivalent to a lack of rules.  For example, lack of an _explicit_ ban on public defecation doesn't preclude repercussions.  There is a standard, and there is an alternative implementation.  Much like the early days of C, it takes time.
 
-> Some weird thing it (the compiler) does could be a feature or a bug. There’s no way to know until your code breaks.
+> Some weird thing it (the compiler) does could be a feature or a bug.  There’s no way to know until your code breaks.
 
-Applies to every language in existence.  Including C.  Especially to early C.  Weirdly, GCC is infamous for producing terrible floating point instructions in integer-only operations on some platforms.  The LLVM-based Rust eschews those problems.
+Applies to every language in existence.  Including C.  Especially to early C.  I wonder if Drew has had the pleasure if trying to figure out how precisely is the code broken in a C code base compiled with GCC?  If he were, he would appreciate Rust, given that it, despite the potential for bugs, which he just assumes to be worse on Rust, is actually quite a sound compiler.  Sure there are compiler bugs, which allow things that subtly break the type system, but that isn't exactly the same kind of breakage that is implied in this sentence.
 
 > That they can’t slow down to pin down exactly what defines Rust is also indicative of an immature language.
 
-It also applies to C++ and Go.   C was originally developed in 1972 (according to Wikipedia).  K&R published in 1978 was the first _informal_ specification of the language, the same way as "the Rust book" can be considered an informal spec for Rust.  The C programming language, which is significantly less complex was only standardised in 1989.  So the argument is only technically fair, but only to the extent to which C was an immature language in 1980.
+All languages were immature at some point or another.  The argument that someone is a bad tennis player because they're too young will age like milk, and it should be blindingly obvious to anyone that has more than a couple of brain cells.
 
+It also applies to C++ and Go.  C was originally developed in 1972 (according to Wikipedia).  K&R published in 1978 was the first _informal_ specification of the language, the same way as "the Rust book" can be considered an informal spec for Rust.  The C programming language, which is significantly less complex was only standardised in 1989.  So the argument is only technically fair, but only to the extent to which C was an immature language in 1980.
+
+-------
 Drew then states that Rust should have more than one compiler, namely more than just `rustc`.  I agree with this, not least of which, because I like the `gcc` family of compilers, due to their connection to the early development of GNU.
 
-> C has a consistent & stable ABI. The System-V ABI is supported on a wide variety of systems and has been mostly agreed upon by now.
+> C has a consistent & stable ABI.  The System-V ABI is supported on a wide variety of systems and has been mostly agreed upon by now.
 
 This is correct, but again only technically fair, given that C had only been stabilised in 1989, that is 17 years into its existence.  For Rust to be behind C in this regard it'd have to not have a stable ABI for 9 years from now.  Additionally, not having a stable ABI, provided a stable ABI is mostly already agreed upon (and is the "C" ABI), was a conscious choice.  This was motivated by some problems due to irrational adherence to outdated ABIs in C++.  This allows Rust to interface both in a stable fashion (by having `repr(C)`) but also to reserve the right to use the instability of the ABI to its advantage.  If your code needs a stable ABI, by all means use `repr(C)`.  Don't rely much on Rust's safety guarantees at the boundaries, and you should be fine.
 
@@ -138,21 +141,23 @@ Unsafe is perfectly idiomatic.  It is not idiomatic Rust to rely on dynamic link
 
 I suppose Windows has WSL, so some systems programmers do.  But I don't think that generalising to systems programmers is a good strategy.
 
-I also find it interesting that Drew doesn't mention Go in a negative light here.   Go is far more hostile to foreign ABI dynamic linkage than Rust, and until C-Go there was no way to do it at all.  Certainly it would be intellectually dishonest to later praise Go, despite it having many of the same drawbacks as Rust.
+I also find it interesting that Drew doesn't mention Go in a negative light here.  Go is far more hostile to foreign ABI dynamic linkage than Rust, and until C-Go there was no way to do it at all.  Certainly it would be intellectually dishonest to later praise Go, despite it having many of the same drawbacks as Rust.
 
-> Cargo is mandatory. On a similar line of thought, Rust’s compiler flags are not stable. Attempts to integrate it with other build systems have been met with hostility from the Rust & Cargo teams.
+> Cargo is mandatory.  On a similar line of thought, Rust’s compiler flags are not stable.  Attempts to integrate it with other build systems have been met with hostility from the Rust & Cargo teams.
 
-This statement is correct.  The sentiment that is expressed with it is misguided.  As a systems programmer I _don't_ want to fuck around with your snowflake build system, that can wipe my system when I want it to compile something.  With Qt, I don't want to play whack-a-mole and port build systems if some of my transitive deps use `cmake`, others use `make`, some use `ninja` and some are weird libraries that use `qmake` that doesn't even exist anymore.
+This statement is correct.  The sentiment that is expressed with it is not.  As a systems programmer I _don't_ want to fuck around with your snowflake build system, that can do anything at all: it can wipe my system when I want it to compile something.  With Qt, I don't want to play whack-a-mole and port build systems if some of my transitive deps use `cmake`, others use `make`, some use `ninja` and some are weird libraries that use `qmake` that doesn't even exist anymore.
 
-The fact that Rust imposes one build system, allows for some uniformity.  This uniformity allows one to use `make` in a Rust code base in a predictable fashion.
+Whenever I venture outside the ecosystems of langauges where there is supposed to be one only build system, I have the instinctive desire to track down the programmers behind every other build system, kindap them, and publicly execute them by smashing their head with an IBM model F.  Anyone who advocates for alternative build system, should be given a relatively moderate punishment of being killed with a Space Cadet keyboard, including Drew.
 
-And again, Go has the same problem.
+The fact that Rust imposes one build system, allows for some uniformity.  This uniformity allows one to use `make` in a Rust code base in a predictable fashion.  The same goes for projects that are not meant to be re-used as part of other projects.
+
+And again, Go has the same "problem".
 
 > The outside world exists, and us systems programmers spend a lot of our time integrating things.
 
 I suppose it would be hypocritical, if Drew also [complained](https://github.com/ankitects/anki/issues/1378#issuecomment-1229168663) about the usage of a build system on a different project.
 
-The fewer build systems exist the better.  They are a tower of babel.  Let the best one win.  And `cargo` is a strong contender.
+The fewer build systems exist the better.  They are a tower of babel.  Let the best one win.  The rest must die.  One build system per language is the most I'm willing to tolerate.
 
 > Concurrency is generally a bad thing.
 
@@ -160,27 +165,32 @@ I believe what Drew _actually_ meant, is that if a program has a performance pro
 
 > Serial programs have X problems, and parallel programs have XY problems, where Y is the amount of parallelism you introduce.
 
-I would argue that this is only true in the case of shared mutable state.  This is an important insight from Rust, that Drew might yet see in a positive light.
+Only true in the case of shared mutable state.  The impetus behind the Rust borrow checker was that the only problematic type of state is that kind, unshared or immutable state is perfectly fine.  Hell, shared mutable state isn't inherently problematic either, you use locks to synchronise modifications either as part of a mutual exclusion and/or atomic operations.
+
+It is largely a gnarly bit of programming that poeple increasingly need to consider in high performance applications.  Some programs can afford to be serial, and I'd be happier if most of Drew's work stayed within that niche.  He doesn't though, so his statement about concurrency is either hypocritical, and/or should not be taken seriously.
 
 > Parallelism in C is a pain in the ass for sure, and this is one reason I find Go much more suitable to those cases.
 
 I agree.  And I will say that Rust borrowed heavily from Go, by opting for a co-routine style rather than threaded-style of parallelism, despite that significantly ramping up the complexity of the language, given its type system.
 
-> However, nearly all programs needn’t be parallel. A program which uses poll effectively is going to be simpler, reasonably performant, and have orders of magnitude fewer bugs.
+> However, nearly all programs needn’t be parallel.  A program which uses poll effectively is going to be simpler, reasonably performant, and have orders of magnitude fewer bugs.
 
-Objection. Relevance.
+Objection.  Relevance.
 
 > “Fearless concurrency” allows you to fearlessly employ bad software design 9 times out of 10.
 
-You do realise that in Rust, you are still required to expend effort to write a concurrent program.
+You do realise that in Rust, you are still required to expend effort to write a concurrent program.  I will say, it's much less effort, because Rust will simply not let you write a program with a particular kind of bug, but you are not magically protected against deadlocks, and you can easily hang yourself with the amount of rope that `unsafe` gives you.  The big difference is that now the reviewer knows where to look for undefined behaviour.
 
 On that note, I don't think that Drew differentiates here between concurrency and parallelism.  The interchangeable use of those terms is probably why he happens to believe that the majority of software, that is games, servers, GUI applications, databases, browsers, compilers and kernels are better off locking up each time they do something remotely demanding.
 
 Also, wasn't Go _meant_ to make concurrency easier compared to C, as you have just conceded in the previous sentence?
 
-> Safety. Yes, Rust is more safe. I don’t really care.
+> Safety.  Yes, Rust is more safe.  I don’t really care.
 
-As a potential downstream user of programs written by you, I find this statement quite concerning.
+As a potential downstream user of programs written by you, I find this statement quite concerning.  A better phrasing would be "Yes, Rust is safer, but I can achieve the same level of safety without it", which I would accept, had he not also demonstrated a fundamental misunderstanding of Rust's value proposition.
+
+To be fair, the difference that quality makes is minor.  If your library is a godawful spaghetti, and segfaults every other minute, the barrier to filing an issue, and asking you to fix it upstream is too high for me to actually do anything.  That is, because calling you, the upstream developer of an open source project that I have to use, because it exists, and claims to do what my engineering manager needs, an idiot, because it falls short, is not usually an option.  I can choose to use a better library, which is the main reason why you, Drew, "don't care".  But if you did, I'd argue you'd benefit.
+
 
 > In light of all of these problems, I’ll take my segfaults and buffer overflows.
 
@@ -198,11 +208,11 @@ The replacement for C in _niches_ where C is king today, is going to be a langua
 
 > Consider Go, which has had a lot of success in supplanting C for many problems. It does this by specializing on certain classes of programs and addressing them with the simplest solution possible. It hasn’t completely replaced C, but it has made a substantial dent in its problem space -- which is more than what I can say for Rust
 
-Go has many of the same problems as Rust.   Go has many problems that are unique to Go, that make it unsuitable for supplanting C in places where C is still used.  While rewriting an entire operating system in Rust, might be sub-optimal; writing an operating system in Go, would be untenable.
+Go has many of the same problems as Rust.  Go has many problems that are unique to Go, that make it unsuitable for supplanting C in places where C is still used.  While rewriting an entire operating system in Rust, might be sub-optimal; writing an operating system in Go, would be untenable.
 
 I don't hate Go.  I think it has uses, but I will say that Drew is somewhat using the wrong point of comparison.  Go has a problem space where it is absolutely the right tool for the job.  This problem space is much more modest than the problem space of either C, C++ or Rust, but it is so by design.  It is a wonderful tool when it fits, and very clearly telegraphs situations where it is a bad choice.  This is a great quality, but it will confine Go to a niche.  In 10 problems that are most effectively solved by C, Go can be an improvement in 2.  Rust might not be as great of an improvement in those 2 cases, but it can cover 6-7.  Zig, by comparison outshines C in every category, including simplicity.  Not choosing Zig is a missed opportunity.
 
-In fact, Zig would track through this very well: it can integrate with any build system, since the compiler is the build system, it safer, but not intrinsically more limited, it doesn't encourage mindless concurrency, has a consistent, stable and small specification and ABI.  Zig is also far more portable than C, owing to the fact that the functions on different operating systems are compiled in precisely the same way.  Better than that, like C, it comes with no runtime, no garbage collection and strong guarantees about performance, often being the fastest language available.  Namedropping Go in this context simply appeals to the suckless tribalism, as otherwise, Go is perhaps the worst possible point of comparison for modern C replacements, if one chooses the axes of comparison as Drew did.
+In fact, Zig would track through this very well: it can integrate with any build system, since the compiler is the build system, it safer, but not intrinsically more limited, it doesn't encourage mindless concurrency, has a consistent, stable and small specification and ABI.  Zig is also far more portable than C, owing to the fact, that the functions on different operating systems are compiled in precisely the same way.  Better than that, like C, it comes with no runtime, no garbage collection and strong guarantees about performance, often being the fastest language available.  Namedropping Go in this context simply appeals to the suckless tribalism, as otherwise, Go is perhaps the worst possible point of comparison for modern C replacements, if one chooses the axes of comparison as Drew did.
 
 To make Rust look terrible, Drew did not take care not to open fire at Go, or perhaps decided that omitting the language from the comparison would prevernt one from doing so.
 
@@ -257,9 +267,9 @@ An additional problem is that for pieces of art, originality is considered a net
 
 ## Don't learn Rust just because.
 
-Some ATMs still run Windows XP.   Some banks still use Cobol.  My masters thesis relied on `polychord` which is written in FORTRAN.  Hell, publishers in scientific journals accept things like LaTeX, which have decades of technical debt; they have to be transpiled to PASCAL to then transpile to a modern system.
+Some ATMs still run Windows XP.  Some banks still use Cobol.  My masters thesis relied on `polychord` which is written in FORTRAN.  Hell, publishers in scientific journals accept things like LaTeX, which have decades of technical debt; they have to be transpiled to PASCAL to then transpile to a modern system.
 
-Legacy software exists.   It takes conscious effort and often age related flexibility to be able to alter how you think, and with Rust, one has to change their prorgamming style quite a bit.  This often implies that while the feature in lanugage X _will indeed solve many problems with the current design_, the outside observer often underestimates the degree of coupling, and thus the amount of work needed to implement said language X.  It might be a revolutionary feature, but it might need an arm and a leg to implement.
+Legacy software exists.  It takes conscious effort and often age related flexibility to be able to alter how you think, and with Rust, one has to change their prorgamming style quite a bit.  This often implies that while the feature in lanugage X _will indeed solve many problems with the current design_, the outside observer often underestimates the degree of coupling, and thus the amount of work needed to implement said language X.  It might be a revolutionary feature, but it might need an arm and a leg to implement.
 Plus, more often than not, it is a good idea to consider wholesale replacements as replacements; instead of rewriting the GNU core utilities in Rust, consider writing a new set of POSIX compliant core utilities that are different and in some ways better.  Consider the example of Apple M1 open source graphics drivers written in Rust.
 
 Additionally, if one's design is bad, throwing more concurrency/parallelism at the problem might not improve your situation by much.  Remember, your CPU with hyperthreading/SMT enabled most likely can expect at best an order of magnitude improvement.  If your game engine is slow, maybe lack of concurrency isn't the only reason for that.
