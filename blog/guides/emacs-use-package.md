@@ -554,7 +554,7 @@ to install a package manually, that is downloading the lisp files and
 extracting them to a place and then `require`-ing them, I've missed
 out on quite a bit of organic learning.  When I started writing my own
 Elisp, I found that I had not had the right exposure to the right
-concepts, and thus had trouble.  In fact `use-pacakge`'s kwywords are
+concepts, and thus had trouble.  In fact `use-pacakge`'s keywords are
 the main reason why I had no idea that `global-set-key` was deprecated
 in favour of `keymap-global-set`.  This seems small, but in hindsight
 it really does result in a large amount of re-learning that could have
