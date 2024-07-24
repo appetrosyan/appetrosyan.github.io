@@ -42,7 +42,8 @@ export default defineConfig({
 							{ text: 'Setting up KeepassXC as SSH agent', link: '/blog/guides/ssh-agent' },
 							{ text: 'Setting up Magit forge', link: '/blog/guides/magit-forge' },
 							{ text: 'Logging into Slack', link: '/blog/guides/slack-login' },
-							{ text: 'Privelege Escalation', link: '/blog/guides/privelege-escalation' }
+							{ text: 'Privelege Escalation', link: '/blog/guides/privelege-escalation' },
+							{ text: 'Emacs: use-package', link: '/blog/guides/emacs-use-package' }
 						],
 						link: '/blog/guides/index'
 					}
