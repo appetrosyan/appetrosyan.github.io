@@ -43,7 +43,9 @@ export default defineConfig({
 							{ text: 'Setting up `Magit` forge', link: '/blog/guides/magit-forge' },
 							{ text: 'Logging into Slack', link: '/blog/guides/slack-login' },
 							{ text: 'Privilege Escalation', link: '/blog/guides/privelege-escalation' },
-							{ text: 'Emacs: use-package', link: '/blog/guides/emacs-use-package' }
+							{ text: 'Emacs: use-package', link: '/blog/guides/emacs-use-package' },
+							{ text: 'Advice to young programmers', link: '/blog/guides/young-programmers-advice'}
+
 						],
 						link: '/blog/guides/index'
 					}
