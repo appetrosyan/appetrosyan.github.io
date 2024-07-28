@@ -44,7 +44,8 @@ export default defineConfig({
 							{ text: 'Logging into Slack', link: '/blog/guides/slack-login' },
 							{ text: 'Privilege Escalation', link: '/blog/guides/privelege-escalation' },
 							{ text: 'Emacs: use-package', link: '/blog/guides/emacs-use-package' },
-							{ text: 'Advice to young programmers', link: '/blog/guides/young-programmers-advice'}
+							{ text: 'Advice to young programmers', link: '/blog/guides/young-programmers-advice'},
+							{ text: 'Emacs: keeping speedy', link: '/blog/guides/emacs-quick' }
 
 						],
 						link: '/blog/guides/index'
