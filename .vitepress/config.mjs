@@ -45,8 +45,8 @@ export default defineConfig({
 							{ text: 'Privilege Escalation', link: '/blog/guides/privelege-escalation' },
 							{ text: 'Emacs: use-package', link: '/blog/guides/emacs-use-package' },
 							{ text: 'Advice to young programmers', link: '/blog/guides/young-programmers-advice'},
-							{ text: 'Emacs: keeping speedy', link: '/blog/guides/emacs-quick' }
-
+							{ text: 'Emacs: keeping speedy', link: '/blog/guides/emacs-quick' },
+							{ text: 'Getting comfortable with Rejection and Failure', link: '/blog/guides/failure' }
 						],
 						link: '/blog/guides/index'
 					}
