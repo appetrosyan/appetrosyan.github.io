@@ -46,7 +46,8 @@ export default defineConfig({
 							{ text: 'Emacs: use-package', link: '/blog/guides/emacs-use-package' },
 							{ text: 'Advice to young programmers', link: '/blog/guides/young-programmers-advice'},
 							{ text: 'Emacs: keeping speedy', link: '/blog/guides/emacs-quick' },
-							{ text: 'Getting comfortable with Rejection and Failure', link: '/blog/guides/failure' }
+							{ text: 'Getting comfortable with Rejection and Failure', link: '/blog/guides/failure' },
+							{ text: 'Emacs: Language servers', link: '/blog/guides/emacs-lsp' }
 						],
 						link: '/blog/guides/index'
 					}
