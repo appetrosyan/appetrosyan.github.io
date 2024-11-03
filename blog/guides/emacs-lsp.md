@@ -46,4 +46,108 @@ The main problem is that the lisp machine that is Emacs has a different programm
 
 On a similar note, one usually has to deal with a rather outdated simple garbage collector.  Make no mistake, these are intentional architectural decisions which were made early on with the intention of creating a sane computational platform, and without being able to anticipate where the hardware was going.  If we kept on doubling the clock frequency as we thought we would up until the late 2000s, none of these decisions would even be a blip on the radar.  The GC being simple would be praised, as it would keep the Emacs program itself eminently reliable and free of memory errors.  And being synchronous would be praised because it would prevent a whole class of bugs, that I'm sure anyone who has done `async` Rust or `asyncio` in Python will attest to, are not fun to debug.
 
+This is particularly important because of one thing: the LSP communication requires a lot of Emacs lisp to run.  This produces much garbage that in turn needs to be collected.  Unfortunately, setting the collection thresholds higher can only stave off the symptoms momentarily.  This is something that used to be recommended, but also something which can result in your system being prone to lockups at the worst conceivable times, _e.g._ when writing code.  Setting lower thresholds results in shorter delays but more frequent freezes, which given that almost every operation that involves LSP deals with a large amount of data being communicated both ways, one can't help but notice frequent hitching.
 
+This is not normally a problem, but if I have a dramatic slowdown, disabling the LSP is the first thing that I do.  It doesn't always help, and it isn't always LSP's fault, but one cannot help but feel a force of habit.  Moreover, this is one of the main reasons why some (arguably) sensible features get left out of packages such as `eglot`.  Recall that the language server specification actually allows the server to [handle syntax highlighting](https://github.com/joaotavora/eglot/issues/615).  This is a rather sensible thing to do, if one assumes that processing JSON happens faster than parsing the file itself.  The main problem is that in Emacs, due to the fact that you can't simply `eval` the result and produce a lot of memory allocations that need to be freed subsequently, `eglot` would slow the user down quite significantly.
+
+Obviously these technological challenges are largely addressable.  They hold back some developments for a time, but eventually most technological developments make it into Emacs.
+
+## LSP-mode
+
+The `lsp-mode` is the package that with a few tweaks could have been the new built-in.  It is a different and in my opinion much more complex approach to LSP.  The upshot is that it replicates the look and feel of mainstream code editors such as the Jet-Brains family, the Electron code editors, sublime text and something to which `neovim` also gravitates.
+
+Simply put, `lsp-mode` has abundant documentation, it is well regarded in developer circles, it offers a wider feature coverage, and often results in a more streamlined experience for the user.  It is also, as of writing the only one-click route to code lenses and being able to run a unit test from the comfort of your text editor.
+
+It comes with in-line diagnostics if you enable `lsp-ui`.  It comes with debug adapter protocol, which is supremely useful in some areas.  It comes with a wider coverage of protocol extensions, such as the ability to expand Rust macros without any further packages needing installation.
+
+From a purely on-paper perspective, `lsp-mode` is a direct upgrade to `eglot`.  For some that is true, but I find myself in the unenviable position of not liking it all that much.
+
+My first point is that while `lsp-mode` _attempts_ to bring Emacs to the standards of the modern editors, a lot of the design decisions in Emacs provide better alternatives with a higher skill ceiling.  Specifically, I quite like that we do not have pervasive tabs and file-system trees.  Emacs allows you to create those UI elements, but opts you out of them by default, because one does not need them.  If I want to switch to a file that is already open in Emacs, I do `C-x b`, and that gives me indexed search.  If I want to open another file, I use `C-x C-f`, which even with built-ins like `fido-mode` offers enough detail to be just as effective as a tree.
+
+The same is true of diagnostics provided by the LSP, `eglot` sensibly assumes that you either have the built-in `flymake` that forces you to write `;;; init.el ends here` for every elisp file you created, or `flycheck` that for a time offered a better coverage of diagnostics without the language server protocol.  By contrast, `lsp-mode` assumes that you would want some things to be handled hassle-free and don't like the built-ins; it will opt you into `company`, `yasnippet` (which is incidentally maintained by Joao) among a few others.
+
+Much of my coding relies on `dabbrev`.  A lot of the time, I can complete an entire identifier in one or two keystrokes and not have to worry about typos.  Company usually interferes with that.  The few times I actually need the `lsp-mode` plugin to do the work, and list the contents of a namespace, be it a Rust or Python module, a C++ namespace, or any some such, `company` fails to produce anything.  This is not an attack on `company` specifically, by the way, `corfu` a package that offers similar functionality, while different is still something I don't typically use.  The built-in `C-M-i` handles the few cases where I need to use the LSP to traverse a namespace and import a function or method or structure.  And the fact that it offers the _entire_ list as a separate buffer, quite neatly dovetails into how the rest of Emacs works.
+
+It is not, however, completely without advantage.  I do keep it in my `packages.el`, and there are good reasons for that.  Firstly, `lsp-mode` is much more configurable, and actively developed.  This means that occasionally you will find features that are either exclusive, or much easier to work with in `lsp-mode` and not in `eglot`.  Things  like `inlay-hints` that are providing the type annotations are more granular in `lsp-mode`.  The same applies to completions, and while I have made it sound like it opting you into `company` is a huge deal, I found it easy enough to disable and it simply contributes to the bulk of the configuration file, not necessarily mucking it up.
+
+Another important aspect of `lsp-mode` is its support for debuggers.  I am primarily programming in Rust.  Due to the way in which this programming language is designed, debuggers are both harder to properly set up, and add significantly less value.  Most of their added value can be obtained through judicious use of logging, types and unit tests.  The fact that you are _not able_ to drop into `gdb` and step through your program, means that you will leave those diagnostics in, and that your program, if it fails in production, will be much easier to reason about.  In effect, using a debugger in Rust-based network programming is a disadvantage.  I also write a considerable amount of C++ and there being able to `gdb` into your program is a godsend.  If your tests fail, being able to understand what's going on is useful too.  While it is definitely possible to expand macros with `eglot-x` for Rust, I find it quite easier to do the same in `lsp-mode`.
+
+Another nice-to-have is the integrations that `lsp-mode` provides.  Simply put, there are quite a lot more of them, despite the fact that the API is more "downstream".  For example, `lsp-treemacs` solves a problem that on `eglot` I find a bit daunting: the fact that if you make a change in one file, what is broken might be in several other files all across your project.  With `lsp-treemacs`, I simply have a persistent buffer that does things to make it easier for me to find bugs.  It's not like I don't have options outside of it, but I do have a considerable amount of difficulty navigating without it.
+
+## NoLSP
+
+This is the point where one would normally get into a conclusion-like section stating that the two approaches have their own strengths and weaknesses and that you should self-identify and figure out what you want to be using.
+
+I find that this is a rather limiting perspective.  Firstly, you can have both installed.  Secondly, despite Microsoft's insistence that their tool does the best job, I found that to be rather untrue.
+
+The language servers, while a useful tool, are not always the best tool for the job, and one should not overly rely on them.  So in this section I shall try to elaborate, and explain what I do for tasks to which you would normally delegate to the LSP.
+
+### Go to definition
+
+This is perhaps the single largest reason to use an LSP plugin.  It is also one that I tend to go around.  Simply put, `rust-analyzer` is not at all good at finding definitions.  Sometimes, it gets out of sync with your editor, and you have to restart the server and re-index in order to find the definition for a function.  I simply found that catching the error and delegating to `dumb-jump` in a language without function overloading does the job really well.  Often I don't even bother with restarting the server or using `M-.` to use the `xref` built-ins, but rather use `git-grep` which with the help of `vertico` can give me even more insight.
+
+The only place I have found the `lsp-mode` based jump to be more accurate is also a case which is handled particularly well with tags.  In fact, I found tags to be the preferred path for languages that support them well (not Rust, but `dumb-jump` is accurate-enough, so not a problem).  The reason is simple: `rust-analyzer` doesn't persist the tag information to disk, and needs to re-index every time you start the server.  Until the initialisation process is complete, at least on Emacs, I have no option but to wait.  With tags, the process is almost instantaneous.
+
+### Rename
+
+This may be a controversial topic, but how LSP handles renaming is not quite what is needed.  I often found that if a project is well-documented, you don't just want to rename the one place in the source code that it is mentioned.  The `projectile` package offers a neat way to update all names at once, and given that it is regular-expression based and not sub-string based as most code editors, the number one problem of renaming that way: the fact that you can accidentally rename a sub-string of an unrelated entity, is handled gracefully.  Note, that if you _do_ want to change the name of the sub-string as well, you _can_.
+
+I also found that `lsp-rename` and `eglot-rename` are often inaccurate.  They may refuse to rename an entity citing that there is `no identifier at point`, which you can clearly see is untrue.  Restarting the server entails more work, that can simply be avoided if you are comfortable with `projectile`.  And you should be.
+
+As a final note, the fact that renaming an entity is a bit more involved than just calling `lsp-rename` tends to ward off frivolous renaming.  If you open a pull (merge) request, there are going to be multiple one-line changes for renaming a single entity.  These can easily be confused with using the same instance of an overloaded function.  It can cause unnecessary fatigue on the reader.  If something is poorly named, renaming is potentially an ABI and API breaking change.
+
+
+### Extract function
+
+I will say this once and say this in a way that tries to offend as many people as it needs to.  You should extract functions manually.  If the only reason that you are extracting a function is because your linter is complaining about the thing being hard to read, there are alternatives to extracting a function with a meaningless name that are preferred in my opinion.
+
+There had been a long post by John Carmack that specifically addressed the question of factoring a large state change into smaller functions, is not worth it in most instances.  The dis-aggregation (longer post on this in the works), does not necessarily have to happen at the function level.  Compound scoped modifications are largely supported by modern languages, and are often _just as_, if not _more_ effective at dis-aggregating a complex set of state transitions in imperative languages.  The few cases where they are not, patterns such as type-state offer a bigger benefit.
+
+The problem with refactoring in general is that it is largely done for the benefit of other programmers.  With the exception of large language models, no automatic method of refactoring I found particularly useful.  In most cases complex state transitions should remain complex, and warn the user that there is a large chunk of work that needs to be done quickly and sequentially.  Hiding this information does not lead to a better understanding of the code, but to a tough-to-break illusion of simplicity.
+
+### Generic refactoring
+
+On the note of LLMs, while I do not necessarily find them all that useful for generating code, I do think that they are surprisingly good at rewriting it.  My personal set up does not involve either Co-pilot, or ChatGPT.  For my benefit, I have a 7900xt that with a properly patched `ollama` is capable of running things like `codestral` quite effectively and with reasonable speeds.  Its code almost always has to be double-checked, because when you ask it to generate _e.g._ an `impl` block for a particular structure, it might actually re-define it, or maybe add a `derive` on top.  You might think that `rust-analyzer` offers a vastly superior experience; that it would never generate code that wouldn't compile, or that it can't possibly mess up another section of the code that has no relation to what you asked it to do, or that indeed, at least it would do it much more quickly.  I suppose you should be able to infer the capabilities of LSP as opposed to LLM.
+
+
+### Snippets
+
+One thing to keep in mind is that if you are doing a common task that needs to be syntax-aware, and you cannot afford to waste time with LLMs, you could make use of `yasnippet` to do just the same.  I have found it to be useful for generating `mod test` blocks, and `#[test] fn test_case()` functions.  It can be made to adhere to specific variables, and if need be, compiled down to a function that is then made available.  Furthermore, with the introduction of `tree-sitter`, I have found that it is possible to extend the native Emacs capabilities with scope-awareness.  For the time being, these are prototypes and largely for just one programming language: Rust.  But I can foresee that proper extensions to major modes, even as separate packages that make use of the wonderful capabilities that Emacs offers can be _just as_ if not _significantly more_ effective than LSP plugins.
+
+Simply put the amount of work that it would take me to write a few lines of Elisp is nothing in comparison to the amount of work and reviewing that I would have to do for a small change to be added to an LSP such as `rust-analyzer`.
+
+### Inlay hints
+
+This is a controversial point, because I don't exactly have a direct analogue to inlay hints.  And I must also admit that there are cases where they are genuinely irreplaceable.
+
+
+What I do propose is a different approach to finding out the type of something.  As I alluded to earlier, there is a capability in Emacs to be able to read the entire buffer.  This is a sketch of a function, that in reality is way too ugly to be published, and not used all that often, but could in principle do just as much as the built-in LSP.
+
+In _e.g._ Rust, there must be a declaration of a type in order for it to be used.  That means that I must look into a limited number of places, nothing is implicitly imported, no variable in a function can be other than an upper-case constant, a lower-case `let` binding or a function argument.  There are subtleties related to pattern matching as well, but for the time being, let us consider them part of the argument family.  I can simply find the binding, automatically or otherwise, and go to its definition.  In most cases if something is bound from a function call in a `match` the type is already shown in the prefix.  If something is bound in `let`, it's a similar story.  As a final resort, if your code relies a lot on you knowing what type something is, you can always rely on explicit type annotations.
+
+What is eminently more clear if you have done a bit of Rust programming, is that many of the commonly used type names are not well-thought-out.  Conisder how many times you had to `use library::Error`.  The inlay hints, definitely those provided by `eglot`, and those that `lsp-mode` provides by default, more often than not, only provide you with the final segment of the fully qualified name.  In case of `Error` this provides you next to no useful information.
+
+The limitations are of course, in relation to stream operations and chained method calls much more common in Rust than in any other C-like curly braced language, with the possible exception of Java.
+
+### Diagnostics
+
+This is a rather touchy subject.  This is  applicable to Rust, but I can foresee how it would be a problem for another language.  Simply put `M-x compile` with `cargo check --workspace` provides you with a lot more freedom than any LSP can dream of.  You get a buffer that enumerates all of the problems, easy keyboard navigation that is often extremely accurate.  You do not need, _anything_ else.  If a diagnostic tool reports their errors the same way `rustc` does, (and it should), one can have a lot of instrumentation.  For lints, for example one can add tooling to check for the explanation as to why that lint even exists, when it was added, and how to deal with it.  It might not show up as a suggestion in `rustc`, which would also enable you to fix it with `cargo <command> --fix`, but it would, at least in principle, provide you with a more holistic understanding of the diagnostic at point.
+
+While I have found that `flymake` with `eglot` works well for single file projects and causes a bit of headache when a project is larger, and remedied most of the problems of tracking down every single thing that is wrong with using `lsp-treemacs` for the diagnostics, the question of having a good explanation remains open.  Most language servers do not provide much of an explanation other than a few lines of code.  Rust, due to the borrow checker being rather complex had to provide good error messages for everything.  Most tools and most language servers did not have that problem, and often in languages like `go`, a simple error is good-enough.
+
+However, I often fall back to using `cargo check` and `python main.py` for checking for errors.  It's often also the case that a complex set of SFINAE diagnostics can only be parsed in the form in which it is generated by _e.g._ `gcc`.  Frustrating, but we do not have a good way of either reporting diagnostics via LSP, nor a good way of presenting them in the editor.
+
+### Specialised extensions
+
+In some situations in _e.g._ Rust, it is quite convenient to be able to tell what code is being generated by which macro.  Macros and `derive` statements are a wonderful way of obscuring what is happening, and I often found myself wishing increasingly grotesque and amusing fates to the authors of implementations generated by declarative macros.  As a consequence, I have found it to be sublimely effective to make use of `cargo expand`.  Usage of such tools is nothing new, but the main issue with it, just like with every major package produced by Mr Tolnay, is that the user experience can be classified as complete dog faeces.
+
+Being able to place one's point at a pesky `impl_<trait_x>!` and see what it expands to is one area where I think the benefits of LSP outweigh the drawbacks.
+
+
+## Conclusion
+
+Simply put the language servers are just another tool.  They have a large benefit in terms of developments happening to language servers being transferable across editors.  This is a benefit that largely is irrelevant for Emacs.  It is almost never the case that some fancy new, freely available tool is made for another text editor and Emacs is permanently left in the dust.  It is quite the opposite, I have found, because writing a few lines of Elisp for a new language to get most things working is much easier than designing a language server.
+
+The quality of language servers is another matter entirely, something I chose not to touch, and largely focus on one language whose language server I know well.  This is because while I have pointed out a few problems with `rust-analyzer` it is largely a complete program that implements the desired behaviour accurately and completely.  I do not wish to tarnish the conclusion of this article by being negative with respect to other language servers.
+
+This is not a guide as to how to use a language server, that will come in a later article.  It is merely an opinion and critical piece on the two major implementations of the language server protocol.  
