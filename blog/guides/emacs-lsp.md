@@ -144,10 +144,44 @@ In some situations in _e.g._ Rust, it is quite convenient to be able to tell wha
 Being able to place one's point at a pesky `impl_<trait_x>!` and see what it expands to is one area where I think the benefits of LSP outweigh the drawbacks.
 
 
+## Honourable mention: Lisps
+
+The situation with lisps is radically different than that of other languages.  I am not a lisp programmer.  For this comparison, made by popular request, I had to start my own adventure with lisps other than the one built into Emacs, and I must say that this is probably the best counter-point to language servers.
+
+Simply put, `sly`, `slime` and the built-in Emacs Lisp support is outstanding compared to what you have in the form of LSP.
+
+Emacs lisp will force you to use the right tools, it will complain about not having lexical binding, warn you about the fact that your variables might not be bound, so you might think that it'd work, but it might not always.  It knows about the subtlety of language, it will complain about the fact that you are describing a function as if it were an object, and tell you to "use the imperative mood, you silly".  Outside of nitpicking, the built-in completion works well.  You have a REPL at your fingertips: there's always `M-x` for interactive functions, but I find myself leaning onto `M-:` more and more these days.
+
+The amount of stuff that LSP can't do, when put head to head with the most well-worn path in Emacs is astounding.  True, Emacs lisp is a bit old-fashioned, and not nearly as friendly for concurrency as one might hope, but the sheer fact that people using one obscure single editor managed to pull off a gargantuan project like `org-mode` within Emacs lisp is a good indicator of a full integrated development experience.
+
+<details>
+<summary>Me and Lisps</summary>
+Put simply, developing in Elisp within Emacs is a joy.  The amount of insight that Emacs can provide is astounding, and I'll be honest, the main reason that I'm not as proficient in any other lisp, is that I'd rather have this out-of-the-box, well-integrated experience, than have a potentially better language with tooling that I'd have to set up.
+
+Besides, I'm not lucky enough to a job in lisp.  Most of what I do is good old-fashioned Python and Rust, (the joke is intentional, Lisp is one of the oldest families of high-level languages second only to FORTRAN).  I do not write lisp for a living and as much as I'd like to, finding a job like that will entail a significant pay-cut.
+</details>
+
+With Emacs lisp, one other convenience that is often overlooked, is the minimal amount of garbage that is being produced by all of this.  True, some of this might be addressed by the new garbage collection proposal, _if_ it is merged into upstream Emacs.  However, one should take note of the fact that the LSP standard was not something that is in principle, unique.
+
+One could, if one were to so choose, extend the protocol by allowing alternative communication methods.  For example, if the client-server architecture were retained, but instead of sending JSON, the communication were to be done in _symbolic expressions_, the amount of garbage, and thus responsiveness of Emacs under these circumstances would be improved.  
+
+## Faster LSP
+
+Another avenue that has been explored, is building an [`lsp-bridge`](https://github.com/manateelazycat/lsp-bridge).  The idea, that is available as a standalone package, is to have a separate sub-process that isn't Emacs, that translates without much garbage the thing received from the LSP, into something that Emacs can grok.
+
+Unfortunately, the doing almost nothing fast is not a compelling package.  The main issue I found with using `lsp-bridge` is that it is a separate editor built on top of Emacs.  It has the dreaded JSON file as a configuration, requires you to have another Python subprocess to run, and if anything, cuts you off from `capf`, almost every function in `lsp-bridge` is a custom function that does not integrate with any other package, much less anything built-in.
+
+I already find the improvement to the UX of Emacs from LSP to be minimal.  Would I trade a slightly faster response time for a significantly worse experience?
+
+What I find frustrating about this approach is that it solves a problem that is better solved upstream.  Instead of simply creating an ad-hoc solution to "JSON generates a lot of garbage" problem, or better yet, use a native binding mode that does not rely on JSON as an intermediary, Emacs could have a simple library that could parse a lot of this and make Emacs suitable to be run as a regular web server (or rather _more_ suitable than it already is).
+
+Unfortunately (or fortunately, depending on your perspective), this project is nothing if not hard to obtain and hard to work with.  It is not present on MELPA.  It exists, it's there and the link to it in this article is as much of an endorsement I'm going to give it.
+
+
 ## Conclusion
 
 Simply put the language servers are just another tool.  They have a large benefit in terms of developments happening to language servers being transferable across editors.  This is a benefit that largely is irrelevant for Emacs.  It is almost never the case that some fancy new, freely available tool is made for another text editor and Emacs is permanently left in the dust.  It is quite the opposite, I have found, because writing a few lines of Elisp for a new language to get most things working is much easier than designing a language server.
 
 The quality of language servers is another matter entirely, something I chose not to touch, and largely focus on one language whose language server I know well.  This is because while I have pointed out a few problems with `rust-analyzer` it is largely a complete program that implements the desired behaviour accurately and completely.  I do not wish to tarnish the conclusion of this article by being negative with respect to other language servers.
 
-This is not a guide as to how to use a language server, that will come in a later article.  It is merely an opinion and critical piece on the two major implementations of the language server protocol.  
+This is not a guide as to how to use a language server, that will come in a later article.  It is merely an opinion and critical piece on the two major implementations of the language server protocol.
