@@ -128,6 +128,29 @@ If you did not notice a note of sarcasm in the above statement, you could use so
 
 Blockchains are not without flaws.  But with most blockchains, one at least has the certainty, that whatever happens is likely the outcome of a program behaving in unintended ways.  Is it better to solve software problems than to persecute criminals?  At least bugs don't bribe programmers to not get fixed, and thus affect more people, so I'd say that this is a worthwhile trade-off in the long run.
 
+Before we continue, I must address the question that will most assuredly come up; it has come up with Drew DeVault.
+
+<quote>
+What about the scams in blockchains.
+</quote>
+
+Well, if one simply looks at the zeitgeist, and recalls that there have been multiple cases of large crackdowns on blockchain trading firms one would certainly believe that Ethereum and Solana are the easiest way to lose one's money.  So-called meme-coins seem to be tied with the world's foremost scams.
+
+Indeed, I shall not deny the issues with FTX and Alameda Research; I shall merely point out, that these problems are neither new, nor disproportionately represented in blockchains.  One can lose all of their money by losing their debit card.  Sometimes, one can lose more, because it could be a credit card.  Somehow, despite a rather long track record of less-than-optimal operation from the world's banking system, with a consistent demonstration that the human element was the biggest contributor, we still find that it is easier to claim that blockchains are the lairs of scum and villainy.
+
+<details>
+<summary>UK Bank scandals and fines </summary>
+A thorough encyclopaedic exploration can be found here. https://moneytransfercomparison.com/uk-bank-scandals-fines/
+
+[RBS being bad](https://www.dailymail.co.uk/news/article-2858418/RBS-asks-staff-help-DIY-branches.html) for its workers is another good place to go.
+
+Tesco has a [defence system](https://www.fca.org.uk/news/press-releases/fca-fines-tesco-bank-failures-2016-cyber-attack) comparable to swiss cheese.
+</details>
+
+One has to be rather careful here.  Self-proclaimed intellectuals lacking in critical thinking skills can easily fall into the trap of comparing the severity of issues by the severity of the reporting around it.
+
+It is much better and in my opinion far more intellectually honest to simply accept that systems are not perfect either way, and that the technologically newer systems are less likely to have gone through the processes that harden and polish these systems to an acceptable level.  This statement is unlikely to induce a moral panic.  This claim is also likely to eliminate any good will towards Drew in his tantrums; being as mercilessly uncharitable towards people that have maybe made his work harder, but not intentionally so, would have been justified had the objects of his attack ---  the crypto "bros" --- were actually as malicious as he claims.  Given this, I cannot blame Drew for not stating things as they are.  While I would have preferred that he had stayed silent (shoutout to many people that have), I would simply like to correct the ideas that many may misunderstand.  I have no axe to grind; I would have kept silent about him, had he not been loud enough to be taken seriously by the uninitiated.
+
 ## Democracy
 
 Blockchains are inherently attempting to approximate democracy.  Much like real democracies they tend to end up as oligopolies.  This has its own benefits and drawbacks.  Most people both under- and over-estimate the importance of this distinction.
@@ -148,6 +171,31 @@ Most advocates of blockchains would call it a day at this point, but I should me
 
 The elephant in the room is that blockchains can be used to circumvent financial sanctions.  Or rather, that authorities that can issue financial sanctions have less voting power in the blockchain arena, though they still have some.  This is a dilemma.  On the one hand, there is the paradox of tolerance, wherein a policy of tolerance when being tolerant of intolerance would result in that intolerant policy overtaking the tolerant one.  Thus blockchains in their commitment to a democratic system, cannot differentiate on the basis of tolerance, and cannot be part of the suppression mechanism.
 
-On the other hand, sadly, the financial system has been and shall be used against individuals that are culpable of no sin other than disagreeing with their government.  There is a profound asymmetry: the government can enforce its will with great tools that have only become possible because of the technological progress; tools that even the IngSoc would envy.  We have LLMs and omnipresent surveillance, we have phones which are more accurately described as spying devices in addition to easily searchable indexed lists.  Some countries require one to disclose their social media accounts, most, if you intend to travel, have a complex in-person song and dance to be approved for a visa.  Worse yet, it is nowadays assumed that most people would have a bank account of some shape or form.  One can no longer pay for most things in cash, not just because of some positive restriction, but simply put, because it is no longer considered practical.  And that is _before_ we consider any _apparently already implemented_ minix 
+On the other hand, sadly, the financial system has been and shall be used against individuals that are culpable of no sin other than disagreeing with their government.  There is a profound asymmetry: the government can enforce its will with great tools that have only become possible because of the technological progress; tools that even the IngSoc would envy.  We have LLMs and omnipresent surveillance, we have phones which are more accurately described as spying devices in addition to easily searchable indexed lists.  Some countries require one to disclose their social media accounts, most, if you intend to travel, have a complex in-person song and dance to be approved for a visa.  Worse yet, it is nowadays assumed that most people would have a bank account of some shape or form.  One can no longer pay for most things in cash, not just because of some positive restriction, but simply put, because it is no longer considered practical.  And that is _before_ we consider any _apparently already implemented_ minix
 
-Blockchains threaten to provide an alternative to a system that can be unilaterally asked to sell out their customers.  It is not generally untrue that blockchains can also, when issued with a subpoena have to provide some data, but the data itself might not be accessible without brute force.  The blockchains are actively designed to limit the possibility of government intervention.  
+Blockchains threaten to provide an alternative to a system that can be unilaterally asked to sell out their customers.  It is not generally untrue that blockchains can also, when issued with a subpoena have to provide some data, but the data itself might not be accessible without brute force.  The blockchains are actively designed to limit the possibility of government intervention.  There is a political spectrum and my opinions are my own.  However, these opinions have been echoed in the works of many philosophers, like Dworkin, Hegel and Saint Augustine.  To drive that latter point, consider what _mercy_ and _moral example_ would constitute in the financial sphere.
+
+## Pseudonymity
+
+One of the key problems with Blockchains is their perceived anonymity.  This misconception stems from one key problem.  As it was originally intended, BitCoin was a money alternative.  Just like bills representing a set amount of gold held at a bank, the idea was to improve upon the existing financial system.  One key consideration was that banks knowing much about their customers was instrumental in prevention of money laundering.
+
+Indeed, BitCoin is not only not anonymous, every transaction can be traced back to its origin through every step along the way.  The intention was that if the entire world switched to BitCoin, then one could not bribe a politician with plausible deniability.  The bribe would show up, and if a more advanced cryptocurrency were used, it would also be possible to trace the intention, so the money didn't happen to go from an interested party to another party, it was deliberately shoved.  This would also allow large exchanges of money to be traceable, in cases wherein a _deal_ was struck.  If a BitCoin at some point was used by some criminal, that coin would carry the mark permanently, and would allow for intervention on a grander scale.
+
+Because the eponymous _Satoshi Nakamoto_, a pseudonym to be sure, never intended BitCoin to be the final word in the blockchain world, but rather a first step demonstrating that it is indeed possible to do so, the network did not require _any_ form of authentication other than generating a private key.  As such, while every wallet was in no way anonymous, because one could have as many as they like, and furthermore none were tied to any real identifying pieces of documentation, the wallets are pseudonymous.  You would be able to identify the wallets used by criminals, but you wouldn't be able to tell whom they belong to.
+
+This is not a fundamental issue, to make sure that people were aware of cryptocurrency one needed to lower the barrier of entry, and BitCoin was meant as a technical demonstration, not the final product.  With that said, it did not stop actual criminals from using BitCoin.  This is not necessarily an unfixable problem, at worst BitCoin becomes comparable to cash, at worst, a better cryptocurrency is introduced, that cannot have a regular person generate a private key.  As a consequence, one can hold a private key, do what they want, but there is a central authority that can map wallets to humans and that's the end of the story.  If the newer blockchain were also similar to BitCoin in the _modus operandi_ this would actually be far better than a bank's ability to trace funds.
+
+Still, because criminals _did_ use BitCoin and sometimes preferred it, cryptocurrency is now known as the criminals' best friend.
+
+Other cryptocurrencies are less pseudonymous, and much more anonymous: specifically: Monero.  As a consequence of being truly _anonymous_ it can _still_ be used by criminals but without any of the good properties that BitCoin would have for law enforcement.  While it would be tempting to view the evolution of cryptocurrencies in that direction as a monumental failure, I cannot help but blame the lack of adoption of cryptocurrencies for the evolution.  Most governments treat cryptocurrencies as if they were used _exclusively_ by criminals and traders, and as such, cryptocurrencies adapted to have better properties for that niche.
+
+
+# Conclusion
+
+This is a rather long discussion of blockchains.  I feel that I have gone into too much detail for some, while being not nearly as detailed for others.
+
+The Blockchains are not the be-all-end-all solution to humanity's woes.  It is a potential next step in the evolution of money.  There is a considerable amount of misinformation about blockchains, a stigma attached to working on them as well as a profound sense that the "intellectual elite" are firmly against it as an idea even in principle.  I have not provided better arguments, I have simply poked holes in the existing ones.  I believe that it is in everyone's interest to engage in this debate seriously and deliberately.  As such, consider this a starter towards a longer series on blockchains.
+
+# Epilogue
+
+This is probably the last serious article in the year.  Definitely the last article that I will publish on the `vitepress` GitHub pages.  I intend to turn this blog into a proper blog.  I also intend to set up a proper presence on `medium` as well.  There are many technical topics that I _should_ write about.
