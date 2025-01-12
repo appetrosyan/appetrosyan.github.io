@@ -2,14 +2,14 @@
 
 This is a blog post dedicated to the configuration language of my favourite editor: Emacs.
 
-It is true that Emacs owes its flexibility and configurability to this wonderful and awful language.  It is both its greatest strength and weakness.  It is simply the brick wall that is responsible for the learning curve.
+It is true that Emacs owes its flexibility and very configurable nature  to this wonderful and awful language.  It is both its greatest strength and weakness.  It is simply the brick wall that is responsible for the learning curve.
 
 It is also the major source of the reasons why Emacs can't be made either asynchronous or multi-threaded.  Or at least, not in the usual sense.
 
 So why keep it around?  Why was I one of the few people that was defending Elisp as the configuration language despite Emacs GUILE making a compelling case that it would indeed be better.  Why am I writing this blog post?
 
 ::: info
-Shoutout to Bhagat Singh who prompted me to answer this question.
+Shout-out to Bhagat Singh who prompted me to answer this question.
 :::
 
 # Overview
@@ -23,9 +23,9 @@ I did not learn Lisp until I was already a man
 :::
 
 
-My background is in Pascal, C++ then C, then some Python and finally Rust.  Along the way I had a brief academic brush with StandardML and self-taught Haskell, but nothing to the extent which would be considered professional.  I am proficient in mathematics however, and seriously studied computer science as a second major for as long as I was allowed to at Cambridge.  My current work revolves around hard-core computer science and compiler construction.  I eventually intend to implement a small systems programming language with a different approach to types, and as such, understanding why people are so resistant to Lisp, and Emacs lisp specifically is a good guide.
+My background is in Pascal, C++ then C, then some Python and finally Rust.  Along the way I had a brief academic brush with Standard-ML and self-taught Haskell, but nothing to the extent which would be considered professional.  I am proficient in mathematics however, and seriously studied computer science as a second major for as long as I was allowed to at Cambridge.  My current work revolves around hard-core computer science and compiler construction.  I eventually intend to implement a small systems programming language with a different approach to types, and as such, understanding why people are so resistant to Lisp, and Emacs lisp specifically is a good guide.
 
-So what does someone who learned Lisp for the first time in their twenties think of it?  In the following few sections I will outline the initial learning experience, the challenges, the advantages, and outline a potential roadmap to adjust the initial experience so that people are less fazed by it.
+So what does someone who learned Lisp for the first time in their twenties think of it?  In the following few sections I will outline the initial learning experience, the challenges, the advantages, and outline a potential road-map to adjust the initial experience so that people are less fazed by it.
 
 # First boot
 
@@ -33,7 +33,7 @@ Emacs is a graphical program with weird conventions.  It shows you a poorly-laid
 
 
 ::: warning
-Of course, one could have started with Mastering Emacs by Jeremy Friesen.  I've only recently read through the book.  I like it a lot, but it is not particularly accessible.  It costs money.  Money that I did not have at the time I was learning my way around Emacs.
+Of course, one could have started with Mastering Emacs by Mickey Petersen.  I've only recently read through the book.  I like it a lot, but it is not particularly accessible.  It costs money.  Money that I did not have at the time I was learning my way around Emacs.
 :::
 
 At some point, the user discovers that there is a graphical user interface to both install packages, as well as customize the ones already loaded into the editor.  They will not do so quickly, however.
@@ -148,9 +148,9 @@ Here we have the following concepts in Lisp at work:
 - Your emacs will likely complain about `lexical-scope` not being added, so you will add it to a comment that seems to be acting not at all like a comment.
 - Lists and function calls are not differentiated in syntax.  So accidentally omitting the quote when setting `tool-bar-mode` is going to silently succeed.
 - Lisp uses reverse-polish, so setting `zoom-size` will look something like `'(100 .  24)`.
-- Some lists have strictly two values, and are signled out via `.` between the values.  But they don't have to be.
+- Some lists have strictly two values, and are singled out via `.` between the values.  But they don't have to be.
 - Parentheses are piled at the end of the last piece of the S-expression.  This runs counter to the convention of C.
-- There is truthyness: `nil`, `-1` are equivalent in some contexts.  `t` and `1` are too.  For some reason `f` doesn't exist.  For some reason `t` is not quoted.  I guess it's for the same reason why `nil` isn't quoted either.
+- There is truthiness: `nil`, `-1` are equivalent in some contexts.  `t` and `1` are too.  For some reason `f` doesn't exist.  For some reason `t` is not quoted.  I guess it's for the same reason why `nil` isn't quoted either.
 - Because functions and operators are all prefix and parenthesised, `-` between identifiers is part of an identifier join.  Hence kebab case.
 
 Compare this to an equivalent conceptual load to someone that used a Python dictionary as a configuration variable.
@@ -208,13 +208,13 @@ Python, a programming language which was designed at the proximal time, is consi
 
 This whole begs the question, is it even worth learning in this day and age?  For me it does, as it covers too many problems which would be otherwise harder to solve.  The are far too many packages which already do what I need, what I do not consider myself a good lisp programmer, I feel that I could if I were compelled to solve a new problem that I could write it in Lisp.
 
-But it would not ascribe as much of the success to the fact that it (Emacs) is using as an esoteric language from the seventies.  I firmly believe that it is more of the architecture of the editor itself that results in such a mix of such a flexibility and package variety.  Simply put all of what makes lisp great, has been added to other programming languages, and what doesn't work has been compensated for very well.   The new editor which gave you the same kinds of flexibility, but offered much more of an approachable programming languages as a configuration medium would easily overtake Emacs.  And indeed so has done VSCode.  It is a modern day successor, though it offers less flexibility and javascript is considered a far worse language, it has all the building blocks that made Emacs great at the time.
+But it would not ascribe as much of the success to the fact that it (Emacs) is using as an esoteric language from the seventies.  I firmly believe that it is more of the architecture of the editor itself that results in such a mix of such a flexibility and package variety.  Simply put all of what makes lisp great, has been added to other programming languages, and what doesn't work has been compensated for very well.   The new editor which gave you the same kinds of flexibility, but offered much more of an approachable programming languages as a configuration medium would easily overtake Emacs.  And indeed so has done VSCode.  It is a modern day successor, though it offers less flexibility and JavaScript is considered a far worse language, it has all the building blocks that made Emacs great at the time.
 
 What resulted in its meteoric rise was not so much the fact that it was better, as it is far too under-developed to be in any way better, but the fact that most programmers felt at home in its configuration.  Hacking on VSCode is just as easy as doing web development.  Though one may rightfully argue that developing for the web is not in any way easy, and that there are many subtleties, these are all problems that had been solved elsewhere, leaving VSCode to reap the benefits.  Emacs, on the other hand had to fight for every minute optimisation.  Every package that was built for it, was built _specifically for it_.
 
 Emacs lisp still has a place in this world, if and when we at least admit that there is a problem.  We can start by admitting that the documentation Emacs provides is good, but it could be much better.  To give you an example, consider the package `helpful`.  What it does, is it tries to cram as much information about a specific function as it can into a single buffer.  You asked for knowledge, and you received a relatively good explanation.  But there are flaws.  The formatting is a bit all over the place.  There have been major strides in this area, given that the old way of doing things: a plain-text buffer with no markup is no longer the default.  Still a way to go.  The same is doubly true of the official [Emacs lisp reference](https://www.gnu.org/software/emacs/manual/html_node/elisp/Conditionals.html); I will not argue that it is ugly, but I will argue that it is a bit dry.
 
-Then there's the question of there not really being good Emacs lisp books.  Sure, there is Jeremy Friesen's book on how to master the Emacs program, but not a place where the wisdom about Emacs lisp programs is assembled.  There is no primer on writing themes either, and while the basic graphical UI that is built into Emacs allows for a ton of customisation, converting it into a theme package is one area where we have much to improve upon.
+Then there's the question of there not really being good Emacs lisp books.  Sure, there is Mickey Petersen's book on how to master the Emacs program, but not a place where the wisdom about Emacs lisp programs is assembled.  There is no primer on writing themes either, and while the basic graphical UI that is built into Emacs allows for a ton of customisation, converting it into a theme package is one area where we have much to improve upon.
 
 What do I mean by a book?  Suppose that I wanted to write a program and I needed the equivalent of the `switch` statement  of C in Emacs lisp.  I would have to  comb through many symbols that do not look like what I need.  At the same time, the correct symbol: `cond` has a name that you wouldn't necessarily even know to consider (the same is true of `setq`, `set` and `setf`, which the person has no idea how to use).
 
@@ -231,3 +231,29 @@ Secondly, and perhaps more importantly there should be more examples.  For me, t
   (t (message "This is true, but won't be evaluated")))
 ```
 Best practices are also an important aspect.  Because of the fact that Lisp is a different beast, what is good in it, is bad in other languages, as such the documentation should fill in the gaps and define a style.  The editor is quite keen on insisting on some style, so why not give the same treatment to the rest of the packages.
+
+## The Emacs lisp manual
+
+Around six authors, including the GNU project's initiator, Richard Stallmann have authored a book that I am torn on.  I would be lying if I said that the book is easy to read, I found mathematical textbooks to be easier to read due to rigour and precise language; more lay-person oriented books focus on conveying the ideas as simply as possible and ignore details that are not pertinent to being proficient.  This book, despite my sympathy towards its authors is neither; it somehow managed to find a sweet-spot of being neither particularly useful for people who are already well-versed in Lisp, nor to those that would find Emacs particularly challenging.  This book simply _is_, and can supplement one's knowledge.  It can be used to find imprecise and outdated answers to questions that are much easier to phrase as search queries.
+
+To add insult to injury, rather than making the book as concise as possible, the main reason behind the formal style; the book is enormous, and looking through the contents, I already envisioned pages that I would be skipping.  The book is god-awful, and is a telling reminder that despite Prof.  Stallmann being an avid linguistic enthusiast, his communication skills are sorely lacking.  I do not claim to presume to be much better at this, but this blog is largely a run-up towards improving the writing to a point to which I could be writing a book.  I have one in the works, and I will do my best to at least have a human readable introduction.
+
+The main problem as I see it, is that this book does not in any way address the problematic aspects.  Most people are not well-versed in Lisp.  The documentation must acknowledge this, and explain things with many examples.  The reason why this is important, is the precise reason why _any_ mathematical book worth its price, will come with exercises, proofs and explanations.  For each concept there must be an example, and a counter-example.  Again, don't mean to self-advertise, but this is what I was trying to do in my book on Rust.
+
+# So why is there so much Elisp
+
+This begs the question: why is there _any_ Emacs lisp.  After all all throughout this article I have been providing scathing reviews of everything that is related to the lisp.  Why do veterans still prefer to create their packages for this venerable editor as opposed to anything else new?
+
+Tough question, I should say.  And I do have an answer, that I find less satisfying than I'd like.  But nonetheless an answer.
+
+First of all, one must remember the abhorrent state of graphical programs on GNU + Linux, or as I call it now, lip-service to freedom.  If I wanted to create a program for KDE specifically, there's a good chance that some user of Gnome will want to use it (because nobody else created an analogue for Gnome), complain about it, and create an aura of negativity.  KDE programs, do not prevent themselves from being run on other desktops, but also do little to bridge the gap.  The programmer, thus, has to bridge the differences themselves.
+
+Case in point, I have an idea for a voice transcription program.  I know exactly how to create the business logic, and I have some experience in using UI toolkits.  If I wanted to target Mac OS, I have but one realistic choice: write it in Swift and use the system libraries.  If I wanted to do the same with Windows, there's a bit more choice, but if I want to have the broadest compatibility, there is a native toolkit that looks decent for utilitarian programs, metro if I wanted to make it as shiny and messy as possible, and Qt to make my life less painful.  On Linux, I do not have a choice that is guaranteed to satisfy everyone.  Qt has more features and is generally more powerful.  GTK is more ubiquitous, but perhaps has too many residents of an insane asylum at the helm.  TK is so old as to be irrelevant and in some ways too slow.  Plus, many things such as access to the keyboard, to the network stack, and to the system tray, come down to a broad spectrum of traps posing as choices.
+
+Instead of having one program that covers all the needs of a specific niche, you have hundreds of programs that each individually cover 50% of the territory, can't coexist, and therefore cannot give you complete coverage.  The few exceptions to this, are `systemD`, `emacs` the browsers, `ffmpeg`, `vlc`, and  `blender`.  As you can probably tell, the fact that these are also the most prolific libraries and platforms is no coincidence.
+
+Simply put, the energy one would have to put into writing a `systemd` unit, is less than a more "theoretically sound" process supervision suite such as `s6`, not to mention that there is at least some documentation that is somewhat useful for the former, and next to none for the latter.  Similarly, despite its many shortcomings in terms of rendering fidelity, `vlc`, offers a unified package that can handle all of multimedia.  It is not _a player_, it is something that can plug all multimedia-sized holes in your life.  I did not like it, I still do not, but I have had to use it, because in some situations having this Swiss-army-knife of a tool is extremely handy.  It might suck as pliers, or scissors and be a bad knife, but if the number of tools that you can bring with you is limited, you practically have no choice.
+
+Emacs, is kind of an interesting counter-example.  It is by far closer to Blender and FFMpeg, in that it does offer a platform, but aside from a few kinks in the main executable, is actually fairly sound.  You have robust text processing and a robust, well-tested concept of a buffer.  You have packages that can clearly interact with each other and can be made both compatible and in-compatible.  It offers you a quick and dirty way to create a menu, which would otherwise be much harder.  It offers even some rudimentary graphical programming capabilities, not enough to build a fully-functional browser, but enough to browse text-only HTML sites.  Emacs can plug all your plain-text-sized holes, it is supremely good at writing prose, it integrates well with LSPs, and offers two different approaches to that.  Emacs gives you networking that is guaranteed to work on all platforms, which is quite a bit more than what Qt can say.
+
+It is easy to extrapolate that all of the problems that programmers have to deal with in Elisp are preventing serious programmers from working on serious projects, but quite the opposite is true.  A veteran such as Minad, or Prot, or any one of the Emacs core contributors for that matter, finds the problems just part of the job.  Elisp is just like any other Turing-complete programming language, do enough work in it, and you will stop noticing its quirks.  Do a bit more, and they cease to be problems, but more opportunities.  The fact that everything is a textual buffer is a great help when you're building a program such as `magit`.
