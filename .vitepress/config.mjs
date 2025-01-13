@@ -31,7 +31,8 @@ export default defineConfig({
 							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' },
 							{ text: 'Cat-v', link: '/blog/rants/cat-v-harmful' },
 							{ text: 'neovim', link: '/blog/rants/neovim' },
-							{ text: 'Language Elitism', link: '/blog/rants/language_elitism' }
+							{ text: 'Language Elitism', link: '/blog/rants/language_elitism' },
+							{ text:  'Emacs Lisp', link: '/blog/rants/emacs-lisp' }
 						],
 						link: '/blog/rants/index',
 					},

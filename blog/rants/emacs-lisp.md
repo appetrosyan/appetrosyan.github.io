@@ -9,7 +9,7 @@ It is also the major source of the reasons why Emacs can't be made either asynch
 So why keep it around?  Why was I one of the few people that was defending Elisp as the configuration language despite Emacs GUILE making a compelling case that it would indeed be better.  Why am I writing this blog post?
 
 ::: info
-Shout-out to Bhagat Singh who prompted me to answer this question.
+Shout-out to `tusharhero` who prompted me to answer this question.
 :::
 
 # Overview
