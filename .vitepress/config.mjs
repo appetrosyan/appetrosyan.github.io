@@ -28,11 +28,9 @@ export default defineConfig({
 						items: [
 							{ text: 'I don\'t like Vitepress either', link: '/blog/rants/vitepress' },
 							{ text: 'I don\'t get Jekyll', link: '/blog/rants/jekyll' },
-							{ text: 'Emacs -- the editor that I am trapped with', link: '/blog/rants/emacs' },
 							{ text: 'Cat-v', link: '/blog/rants/cat-v-harmful' },
 							{ text: 'neovim', link: '/blog/rants/neovim' },
 							{ text: 'Language Elitism', link: '/blog/rants/language_elitism' },
-							{ text:  'Emacs Lisp', link: '/blog/rants/emacs-lisp' }
 						],
 						link: '/blog/rants/index',
 					},
@@ -44,13 +42,23 @@ export default defineConfig({
 							{ text: 'Setting up `Magit` forge', link: '/blog/guides/magit-forge' },
 							{ text: 'Logging into Slack', link: '/blog/guides/slack-login' },
 							{ text: 'Privilege Escalation', link: '/blog/guides/privelege-escalation' },
-							{ text: 'Emacs: use-package', link: '/blog/guides/emacs-use-package' },
 							{ text: 'Advice to young programmers', link: '/blog/guides/young-programmers-advice'},
-							{ text: 'Emacs: keeping speedy', link: '/blog/guides/emacs-quick' },
 							{ text: 'Getting comfortable with Rejection and Failure', link: '/blog/guides/failure' },
-							{ text: 'Emacs: Language servers', link: '/blog/guides/emacs-lsp' }
 						],
 						link: '/blog/guides/index'
+					},
+					{
+						text: 'Emacs',
+						collapsed: false,
+						items: [
+							{ text: 'The editor that I am trapped with', link: '/blog/rants/emacs' },
+							{ text: 'Setting up `Magit` forge', link: '/blog/guides/magit-forge' },
+							{ text: 'use-package', link: 'blog/guides/emacs-use-package'},
+							{ text: 'Keeping speedy', link: '/blog/guides/emacs-quick' },
+							{ text: 'Language servers', link: '/blog/guides/emacs-lsp' },
+							{ text: 'Emacs Lisp', link: '/blog/rants/emacs-lisp' },
+							{ text: 'Org is not special', link: '/blog/rants/org' }
+						]
 					}
 				]
 			},
@@ -61,7 +69,7 @@ export default defineConfig({
 					{
 						text: 'supernest',
 						link: 'https://appetrosyan.github.io/supernest',
-					}
+					},
 				]
 			}
 		],
