@@ -1,3 +1,11 @@
+---
+category:
+  - Emacs
+  - Work
+  - Tooling
+date:
+  - 2024-07-24
+---
 # Declarative configuration in Emacs
 
 In Emacs, it is often easiest to install a package in one's

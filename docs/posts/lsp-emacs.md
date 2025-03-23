@@ -1,3 +1,11 @@
+---
+category:
+  - Emacs
+  - Work
+  - Tooling
+date:
+  - 2024-07-28
+---
 # How to set up LSP in Emacs
 
 This is a semi-rant, but I believe a worthwhile use of my time.  There

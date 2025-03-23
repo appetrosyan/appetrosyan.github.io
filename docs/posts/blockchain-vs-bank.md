@@ -1,13 +1,12 @@
 ---
-date: 2022-01-10
+date: 2024-12-21
 category:
   - Blockchains
   - Banks
   - Finance
-tag:
-  - tag C
-  - tag D
+  - Rants
 ---
+# Of Blockchains and Banks
 # Preface
 
 This is an interesting discussion with many people that have in one way or another echoed the point of view that cryptocurrencies in general are a blight on society.  While a wiser man than I cautioned against accepting the premise of the bully, in this case doing so is instrumental in dismantling the arguments.

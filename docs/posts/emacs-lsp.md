@@ -1,3 +1,11 @@
+---
+category:
+  - Emacs
+  - Work
+  - Tooling
+date:
+  - 2024-11-03
+---
 # Language servers in Emacs
 
 In this post I will try to summarise my experience with all things LSP (language server protocol).  I will talk primarily about the two most important implementations of LSP for Emacs: `eglot` that is built into Emacs, and `lsp-mode` that seems to be much more feature complete.

@@ -1,3 +1,11 @@
+---
+category:
+  - Motivation
+  - Work
+  - Life
+date:
+  - 2024-10-26
+---
 # Getting comfortable with rejection and failure
 
 This is a rather long-winded piece of wisdom that I have picked up from multiple sources.  It is meant largely for a few people in my immediate audience, whom I know and love and have every intention of helping along the way.

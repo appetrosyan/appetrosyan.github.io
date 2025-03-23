@@ -1,3 +1,11 @@
+---
+category:
+  - Emacs
+  - Work
+  - Tooling
+date:
+  - 2024-01-16
+---
 # How to set up Magit forge
 
 Magit is an excellent package with incredible depth.

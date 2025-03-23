@@ -1,3 +1,11 @@
+---
+category:
+  - Emacs
+  - Work
+  - Tooling
+date:
+  - 2024-07-28
+---
 # Keeping your emacs speedy
 
 This is a topic that came up because of three things.  The two Emacs blogs that came up on the Planet Emacs RSS feed talked about retaining a minimal configuration and keeping it minimal, providing good advice.  I don't wish to dismantle those blog entries, but merely point out that minimalism can be useful for things other than aesthetic minimalism.

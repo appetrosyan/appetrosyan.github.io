@@ -1,6 +1,13 @@
+---
+category:
+  - Emacs
+  - Work
+  - Tooling
+date:
+  - 2024-06-16
+---
 # Emacs in 2024
 
-## Overview
 
 I'm a major user of Emacs.  But I'm not, for lack of a better term, an
 Emacs zealot.  If you ask me what editor should you use, the answer

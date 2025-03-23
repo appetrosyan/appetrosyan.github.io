@@ -1,3 +1,10 @@
+---
+category:
+  - Guide
+  - Systems Administration
+  - Privacy
+date: 2024-01-15
+---
 # How to set up KeepassXC
 
 SSH has some of the dumbest ideas in UX.

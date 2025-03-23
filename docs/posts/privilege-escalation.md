@@ -1,3 +1,9 @@
+---
+category:
+  - Guide
+  - Systems Administration
+date: 2024-06-12
+---
 # A zeroth-order guide to privelege escalation
 
 This is not meant to be a detailed comparison, just a
