@@ -1,3 +1,9 @@
+---
+date: 2024-04-07
+category:
+  - Suckless
+  - Rants
+---
 # Language elitism
 
 ::: info

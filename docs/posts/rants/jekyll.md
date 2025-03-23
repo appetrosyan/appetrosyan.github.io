@@ -1,3 +1,9 @@
+---
+date: 2024-01-08
+category:
+  - Blog
+  - Markup Languages
+---
 # What I don't like about Jekyll
 
 This is perhaps a fitting beginning to the first blog post on my home page.

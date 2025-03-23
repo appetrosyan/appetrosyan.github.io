@@ -1,3 +1,9 @@
+---
+date: 2024-01-11
+category:
+  - Blog
+  - Markup Languages
+---
 # Markdown considered harmful
 
 I've had complaints about Markdown for years. I don't like it. Is it better than e.g. writing your code in ReST, I'd argue marginally, and only if you assume that ReST was meant to be used in the same circumstances as Markdown, which it does not.

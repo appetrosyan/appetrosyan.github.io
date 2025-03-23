@@ -1,5 +1,9 @@
 ---
 title: A case against "Cat-v considered harmful"
+category:
+  - Suckless
+date:
+  - 2024-04-07
 ---
 # A case against "Cat-v considered harmful"
 ## Introduction
@@ -343,7 +347,7 @@ This is undoubtedly the most ugly program in the distribution. It was one of the
 
 Need I go into details.  Despite this program being dead simple and not really needing maintenance, it somehow surprised me in that it doesn't have the most basic creature comfort of being able to control scrollback, or launching something other than the system shell.
 
-Despite this, I should make it clear that `st` is very much the most usable of the programs on this list.  It used to be my go-to terminal emulator for years...  or rather after I got what it lacked into the source code, you know, the ability to see more than just the last screenful of text, and launch `fish` instead of `bash`.  It's fine, but giving it a bit more LOC would not have made it worse.  And this is an illustrative example: the program is simple, because what it does is fundamentallly simple.  
+Despite this, I should make it clear that `st` is very much the most usable of the programs on this list.  It used to be my go-to terminal emulator for years...  or rather after I got what it lacked into the source code, you know, the ability to see more than just the last screenful of text, and launch `fish` instead of `bash`.  It's fine, but giving it a bit more LOC would not have made it worse.  And this is an illustrative example: the program is simple, because what it does is fundamentallly simple.
 
 ### Surf
 

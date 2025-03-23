@@ -1,3 +1,12 @@
+---
+date: 2025-01-05
+category:
+  - Emacs
+  - Work
+  - Tooling
+  - Rants
+  - Programming Languages
+---
 # Emacs lisp
 
 This is a blog post dedicated to the configuration language of my favourite editor: Emacs.

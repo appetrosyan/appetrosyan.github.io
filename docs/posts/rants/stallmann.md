@@ -1,3 +1,8 @@
+---
+date: 2024-12-21
+category:
+  - FSF
+---
 # The Stallmangate
 
 This is the unofficial name that was given to the controversy that involved a blatant violation of the GitHub terms of service, and instigated a personal attack on the founder of Free Software Foundation, Richard Matthew Stallamann.

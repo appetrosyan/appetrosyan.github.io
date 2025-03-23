@@ -1,3 +1,9 @@
+---
+category:
+  - Gaming
+  - Art
+date: 2024-04-18
+---
 # Remasters should not exist
 
 This is a very controversial topic and perhaps one that will land me a lot of enemies.  I nonetheless believe that it is imperative to understand the point: the existence of game remasters is a symptom of a larger problem, that will soon become all-encompassing.  It is my firm belief that we as a species have blundered our way to this problem unknowingly, and that we can still fix it... albeit with a lot of effort, specifically pertaining to unlearning some of the bad habits that we have accumulated.

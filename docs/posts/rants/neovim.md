@@ -1,5 +1,8 @@
 ---
-- title: Neovim challenge, two weeks later
+date: 2024-02-17
+category:
+  - Work
+  - Tooling
 ---
 # The Neovim challenge, one month later
 
