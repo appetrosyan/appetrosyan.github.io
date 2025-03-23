@@ -2,3 +2,4 @@
 /.vitepress/dist/
 /node_modules/
 /docs/.vuepress/.temp/
+/docs/.vuepress/.cache/
