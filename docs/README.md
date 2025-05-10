@@ -1,31 +1,27 @@
 ---
 home: true
 title: Home
-heroImage: https://vuejs.press/images/hero.png
+heroImage: https://avatars.githubusercontent.com/u/15856657?v=4
 actions:
-  - text: Get Started
-    link: /getting-started.html
+  - text: Articles by Category
+    link: /category/
     type: primary
 
-  - text: Introduction
-    link: https://vuejs.press/guide/introduction.html
+  - text: Grebyeard Consulting
+    link: https://greybeard.consulting
     type: secondary
 
 features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-  - title: Themes
-    details: Providing a default theme out of the box. You can also choose a community theme or create your own one.
-  - title: Plugins
-    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site.
-  - title: Bundlers
-    details: Default bundler is Vite, while Webpack is also supported. Choose the one you like!
+  - title: Eclipse Laboratories/Performance Research
+    details: I'm currently leading the Eclipse laboratories' performance research branch.  I co-wrote the Eclipse performance thesis, and currently creating a new Solana validator.
+  - title: Soramitsu/Iroha v2
+    details: I led the development of Hyperledger Iroha v2.  I authored the triggers system and many other improvements to the protocol.  I drafted the original release roadmap and conducted the CSD/RTGS Proof-of-Concept with the Asian Development Bank.
+  - title: Supernest
+    details: In a previous life I was a scientist.  I spent some time creating a new method of Nested Sampling, as well as writing a new theory of non-equilibrium phenomena.  I can tell you why I don't do this over a tumbler, but I do try to continue work in that direction.
+  - title: Emacs
+    details: I try to maintain a small number of Emacs packages that I personally use and share with the rest of the world.
 
-footer: Creative Commons CC-BY-ND-NC | Copyright © 2025 Aleksandr Petrosyan
+footer: All rights reserved | Copyright © 2025 Aleksandr Petrosyan
 ---
 
 [default-theme-home]: https://vuejs.press/reference/default-theme/frontmatter.html#home-page
