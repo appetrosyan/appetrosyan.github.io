@@ -1,0 +1,22 @@
+#+TITLE: Hugo is nice
+#+DATE: 2025-05-12
+#+TAGS: Markup Languages
+#+TOC: true
+
+I quite like hugo.  It lets me do much more than either Vitepress or Vuepress let me do and I got a fully functional website in a fraction of the time that it would take me to create a Vuepress site.
+
+Are there limitations?  Yes.  Unfortunately there are various things that I do not know what they get rendered to:
+#+BEGIN_EXAMPLE
+This example, for example
+#+END_EXAMPLE
+
+I do believe that it is much more prominent.
+
+I quite like the way that it works[fn:1].  I quite like the way that other things work.  Maybe bibliography will work out of the box[fn:2], but maybe not.
+
+* Footnotes
+[fn:1]This is quite fun, footnotes took a lot of effort to be added to vuepress.  But their display is a bit odd to say the least.
+
+[fn:2]I hadn't tested it yet. 
+
+
