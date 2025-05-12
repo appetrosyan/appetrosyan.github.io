@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Aleksandr Petrosyan</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 26 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mental Hygiene</title>
+      <link>http://localhost:1313/posts/writers-block-2/</link>
+      <pubDate>Sat, 10 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/writers-block-2/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m writing this at a very awkward moment in my life.&lt;/p&gt;&#xA;&lt;p&gt;On the one hand a great many things have tuned out better than one could have hoped.  I have a stable job, where I got promoted quite recently.  I do stuff that is quite interesting, and I learn.&lt;/p&gt;&#xA;&lt;p&gt;At the same time, the last few weeks have been harrowing.&lt;/p&gt;&#xA;&lt;p&gt;I have a lot of friends, people that would normally be well-off in deep trouble.  While I stand by that AI will not affect one&amp;rsquo;s ability to feed themselves (at least not negatively), other &amp;ldquo;natural&amp;rdquo; intelligence do their best to do so.  I have a brilliant Hungarian that is deeply depressed.  I can act as if it&amp;rsquo;s easy to fix, but it is not.  I barely manage to hide the symptoms most of the time, much less know of a cure.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Emacs widget toolkit</title>
       <link>http://localhost:1313/posts/emacs-widget/</link>
@@ -98,6 +105,13 @@
       <pubDate>Wed, 12 Jun 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/privilege-escalation/</guid>
       <description>&lt;p&gt;This is not meant to be a detailed comparison, just a&#xA;back-of-the-envelope guide explaining why you should or shouldn&amp;rsquo;t use&#xA;a particular program in particular circumstances.&lt;/p&gt;&#xA;&lt;h3 id=&#34;sudo&#34;&gt;&#xA;  &lt;code&gt;sudo&lt;/code&gt;&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#sudo&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;This program is sadly, considered the default on most GNU+Linux&#xA;distributions.  It is a rather complex beast, despite the fact that it&#xA;is, for lack of a better term, the original &lt;code&gt;systemd&lt;/code&gt;, an ugly piece&#xA;of code that almost everyone hates, but still runs for some reason.&#xA;Not to say that &lt;code&gt;systemd&lt;/code&gt; is bad, these days it&amp;rsquo;s perhaps what it was&#xA;meant to be all along, but &lt;code&gt;sudo&lt;/code&gt; is something that you likely need to&#xA;know about, but also something that you should avoid if possible on&#xA;your own machines.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Writers block and how to deal with it</title>
+      <link>http://localhost:1313/posts/writers-block/</link>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/writers-block/</guid>
+      <description>&lt;h2 id=&#34;writers-block-and-how-to-deal-with-it&#34;&gt;&#xA;  Writers block and how to deal with it&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#writers-block-and-how-to-deal-with-it&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;It&amp;rsquo;s rough analogue is brain constipation.  It causes you to have either too many or too few thoughts; the one that occurred to me, resulted in around 15 articles half-started, going in a direction which made me rather uncomfortable publishing.  Consequently, despite having written a significant amount, I&amp;rsquo;ve not published much.&lt;/p&gt;&#xA;&lt;p&gt;So how do you deal with this?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Remasters should not exist</title>

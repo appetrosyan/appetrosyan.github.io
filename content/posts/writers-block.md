@@ -1,4 +1,9 @@
-# Writers block and how to deal with it
+---
+title: Writers block and how to deal with it
+date: 2024-05-20
+tags:
+  - Motivation
+---
 
 ## Writers block and how to deal with it
 
@@ -55,4 +60,4 @@ It is important to strike a balance, the dose makes the poison.  Some people cri
 
 4) Having done all of that, fix some of it.  I recommend making a deliberate effort of either finding a reason not to implement the nitpicks, or reconsider their positioning.
 
-At the end of the day, writer's block is a problem, with an ever-present psychological component.  Seeking out help and adopting  external advice is not a sign of weakness.  
+At the end of the day, writer's block is a problem, with an ever-present psychological component.  Seeking out help and adopting  external advice is not a sign of weakness.

@@ -1,12 +1,11 @@
 ---
-category:
+tags:
   - Motivation
   - Work
   - Life
-date:
-  - 2025-05-10
+date: 2025-05-10
+title: Mental Hygiene
 ---
-# Mental Hygiene
 
 I'm writing this at a very awkward moment in my life.
 
