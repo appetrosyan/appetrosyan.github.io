@@ -1,0 +1,7 @@
+#+TITLE: About me
+
+I am a the CEO of Greybeard consulting.  I have written much content in our blog.  We have consulted a few companies mostly in the Web3 space.  This list is intentionally sparse, as I'd prefer that you visit [[https://greybeard.consulting/][our site.]]
+
+I'm currently leading the performance engineering team at [[https://www.eclipse.xyz/][Eclipse Laboratories Inc]].  I've previously led the development of [[https://iroha.tech/][Hyperledger Iroha v2]].  Before then, I had been a moderately successful Physicist, and I occasionally do try to keep up on that.
+
+I'm an avid supporter of Free Software and was previously an associate member of the FSF.  The current political climate and recent witch hunts led me to decide that I can work on free software more directly.  Specifically I contribute to GNU Emacs, and am the author of some packages.  More on that in the projects page.

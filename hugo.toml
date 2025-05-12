@@ -70,12 +70,16 @@ style = "github-dark"
 
 # Menu links
 [[menu.main]]
-  name = "Blog"
-  weight = 1
+  name = "Blog Posts"
+  weight = 2
   url  = "posts/"
 [[menu.main]]
+  name = "Tags"
+  weight = 3
+  url = "tags/"
+[[menu.main]]
   name = "About"
-  weight = 2
+  weight = 1
   url = "about/"
 
 [markup.goldmark]
