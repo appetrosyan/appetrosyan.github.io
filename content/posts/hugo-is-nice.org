@@ -17,6 +17,4 @@ I quite like the way that it works[fn:1].  I quite like the way that other thing
 * Footnotes
 [fn:1]This is quite fun, footnotes took a lot of effort to be added to vuepress.  But their display is a bit odd to say the least.
 
-[fn:2]I hadn't tested it yet. 
-
-
+[fn:2]I hadn't tested it yet.
