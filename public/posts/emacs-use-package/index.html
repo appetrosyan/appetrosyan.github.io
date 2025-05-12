@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Declarative configuration in Emacs · Aleksandr Petrosyan
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Aleksandr Petrosyan">
+<meta name="description" content="
+  Declarative configuration in Emacs
+  
+    
+    Link to heading
+  
+
+In Emacs, it is often easiest to install a package in one&rsquo;s
+initialising configuration file; also known as init.el, usually
+located at ~/config/emacs/init.el, but also historically at
+~/.emacs.d/init.el as under a different name .emacs.
+This file is responsible for reading your persistent configuration and
+is often written to by your resident Emacs binary, on first launch and
+after you&rsquo;ve made some customisations.  It is configured in Lisp,
+which is both a data representation format (Symbolic expressions), and
+a programming language.">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Declarative configuration in Emacs">
+  <meta name="twitter:description" content="Declarative configuration in Emacs Link to heading In Emacs, it is often easiest to install a package in one’s initialising configuration file; also known as init.el, usually located at ~/config/emacs/init.el, but also historically at ~/.emacs.d/init.el as under a different name .emacs.
+This file is responsible for reading your persistent configuration and is often written to by your resident Emacs binary, on first launch and after you’ve made some customisations. It is configured in Lisp, which is both a data representation format (Symbolic expressions), and a programming language.">
+
+<meta property="og:url" content="http://localhost:1313/posts/emacs-use-package/">
+  <meta property="og:site_name" content="Aleksandr Petrosyan">
+  <meta property="og:title" content="Declarative configuration in Emacs">
+  <meta property="og:description" content="Declarative configuration in Emacs Link to heading In Emacs, it is often easiest to install a package in one’s initialising configuration file; also known as init.el, usually located at ~/config/emacs/init.el, but also historically at ~/.emacs.d/init.el as under a different name .emacs.
+This file is responsible for reading your persistent configuration and is often written to by your resident Emacs binary, on first launch and after you’ve made some customisations. It is configured in Lisp, which is both a data representation format (Symbolic expressions), and a programming language.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-24T00:00:00+00:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/emacs-use-package/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Aleksandr Petrosyan
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/emacs-use-package/">
+              Declarative configuration in Emacs
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-07-24T00:00:00Z">
+                July 24, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              20-minute read
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="declarative-configuration-in-emacs">
+  Declarative configuration in Emacs
+  <a class="heading-link" href="#declarative-configuration-in-emacs">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>In Emacs, it is often easiest to install a package in one&rsquo;s
+initialising configuration file; also known as <code>init.el</code>, usually
+located at <code>~/config/emacs/init.el</code>, but also historically at
+<code>~/.emacs.d/init.el</code> as under a different name <code>.emacs</code>.</p>
+<p>This file is responsible for reading your persistent configuration and
+is often written to by your resident Emacs binary, on first launch and
+after you&rsquo;ve made some customisations.  It is configured in Lisp,
+which is both a data representation format (Symbolic expressions), and
+a programming language.</p>
+<p>Some of the customisations pertain to the Emacs built-in
+functionality, and when we come to <code>eglot</code> we&rsquo;ll see how that goes,
+but some packages, specifically, <code>lsp-mode</code> are not included in the
+somewhat large binary that <em>is</em> Emacs these days, so they need to be
+installed externally.  That is basically what <code>use-package</code> is doing.</p>
+<p>It is not a package manager, but more of a method to keep your
+configuration file tidy.  It allows you to declare configuration that
+is local to a specific package, so that you could, in theory at least,
+remove the entire form and have a clean and working configuration
+file.</p>
+<p><code>use-package</code> for <code>vim</code> users is like both <code>lazy</code> and a weird
+package-specific configuration template syntax.  It is quite weird by
+Emacs standards as well, and not <a href="https://protesilaos.com/codelog/2022-12-19-re-questions-use-package-emacs/"  class="external-link" target="_blank" rel="noopener">universally
+well-regarded</a>.
+My personal thoughts are that it is standard enough, that people
+should default to it, and only under some circumstances opt for
+something else.  Unlike <code>vim</code>&rsquo;s audience which is split down the
+middle on vimscript versus lua, and then fragmented further into
+specific package managers, with <code>lazy</code> being my personal favourite,
+Emacs is remarkably centralised.  This has benefits, you can usually
+grab code directly from the README and it would work.</p>
+<p>The main drawback is that you do need some baseline proficiency in
+Emacs.  I will try to be as newcomer friendly as possible, targeting
+the level of knowledge that I developed when I was determined to use
+Emacs full time, but before obtaining any major skills.</p>
+<h2 id="basic-installation">
+  Basic installation
+  <a class="heading-link" href="#basic-installation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Suppose you found this neat little package X on the web.  And it says
+in installation that you can install it from GNU ELPA.  Well, now you
+have a classic case for using <code>use-package</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">X</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>)
+</span></span></code></pre></div><p>is all you need.  You can write this anywhere in Emacs, yes even in
+your current Rust code project, and hit <code>C-x C-e</code> when you&rsquo;re at the
+closing parenthesis (or <code>C-M-x</code> if you&rsquo;re inside the form.  What will
+happen, is that Emacs will show that it contacted some internet
+resources, with the intention of downloading the package.  At some
+point it will have installed and you&rsquo;re golden.</p>
+<p>Now obviously, you may want to know what <code>:ensure t</code> means.  It is the
+rough equivalent of <code>&quot;ensure&quot;: true</code> in a Python dictionary, or JSON.
+<code>t</code> is the conventional value for <code>true</code>.  Though others as we shall
+see, are acceptable values for that form, using them is usually a bad
+idea, unless you know precisely what it does.  The reason is that Lisp
+is loosely typed.  You can have polymorphic values like <code>t</code>, or a
+list, or a structure, or many  other things.</p>
+<p>Now, <code>ensure</code> in this case should be read is &ldquo;if it&rsquo;s not installed
+already, install it&rdquo;.  As you can expect, this will install the latest
+version that is available in the package archives.  This does not
+usually result in upgraded packages, and it&rsquo;s highly recommended to
+keep them up to date manually.</p>
+<p>So what packages can you install that way?  See for yourself, <code>M-x list-packages</code>.  All the known package archives are scraped, indexed
+and all the available packages are listed.  From this interface you
+can install the packages that you want, but if you do it <strong>that</strong> way,
+your configuration will become messy.  Nothing wrong with it, but most
+people prefer to do it the other way.</p>
+<h2 id="expanding-the-scope-of-available-packages">
+  Expanding the scope of available packages
+  <a class="heading-link" href="#expanding-the-scope-of-available-packages">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>There are two major ways to extend the scope of packages available for
+installation on Emacs.  The first and up until very recently the main
+way is to enable the MELPA and NON-GNU ELPA (Emacs Lisp Package Archive).</p>
+<p>The way to do it that works in my configuration file is</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(require <span style="color:#a5d6ff">&#39;package</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">;; Any add to list for package-archives (to add marmalade or melpa) goes here</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#79c0ff">add-to-list</span> <span style="color:#a5d6ff">&#39;package-archives</span>
+</span></span><span style="display:flex;"><span>			 <span style="color:#ff7b72;font-weight:bold">&#39;</span>(<span style="color:#a5d6ff">&#34;MELPA&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span>
+</span></span><span style="display:flex;"><span>			   <span style="color:#a5d6ff">&#34;http://melpa.org/packages/&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#79c0ff">package-initialize</span>)
+</span></span></code></pre></div><p>This is normally enough for 99% of the packages that you would want to
+install.  I try to post mine to MELPA as soon as they&rsquo;re ready.
+Another good reason to stop at this is because MELPA packages go
+through a thorough vetting process and will not get accepted if they
+have major problems such as gathering user data, doing something
+nefarious with one&rsquo;s machine, misuse the Emacs APIs or just contain
+plain low-quality code with poor naming conventions.  I&rsquo;ve gone
+through this process more than once, and I trust most of my
+<code>use-package</code> forms a lot more because of it.</p>
+<p>I will say that this is not the only form that I have.  To test my own
+packages, I often use the <code>:vc</code> keyword, which is fairly
+straightforward.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">disposable-key</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :vc
+</span></span><span style="display:flex;"><span>  (:url <span style="color:#a5d6ff">&#34;https://github.com/Greybeard-Entertainment/disposable-key.git&#34;</span>
+</span></span><span style="display:flex;"><span>		:branch <span style="color:#a5d6ff">&#34;barba&#34;</span>))
+</span></span></code></pre></div><p>The <code>:vc</code> lisp form is equivalent to</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#a5d6ff">&#34;vc&#34;</span><span style="color:#f85149">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;url&#34;</span>: <span style="color:#a5d6ff">&#34;https://github.com/Greybeard-Entertainment/disposable-key.git&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#7ee787">&#34;branch&#34;</span>: <span style="color:#a5d6ff">&#34;barba&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>which as you can already tell is quite easy to grasp.  Most modern
+languages differentiate between elements in a list <code>[ ... ]</code> and
+fields in a structure <code>{ ...  }</code>, while Lisp uses parentheses for
+both.  Sometimes, you will see an odd square bracket, but that&rsquo;s a
+rough equivalent of a list, it&rsquo;s just stored differently.  So for any
+package that you fancy, including your own code, you can simply
+install it from a <code>github</code> repo, same as with <code>vim</code>.  The major
+upside, being that MELPA offers a high standard of baseline quality.</p>
+<h2 id="recommended-zero-configuration-packages">
+  Recommended zero configuration packages
+  <a class="heading-link" href="#recommended-zero-configuration-packages">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This is a curated list of packages which in my opinion do not require
+any configuration beyond the basics.</p>
+<h3 id="rmsbolt">
+  <code>rmsbolt</code>
+  <a class="heading-link" href="#rmsbolt">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Most packages are incredibly easy to install, and here are some
+examples.  <code>rmsbolt</code> adds a function that you can call with <code>M-x</code> that
+gives you the local disassembly of the binary program that you&rsquo;re
+viewing.  It&rsquo;s not as sophisticated as the compiler explorer, but if
+you know how to read assembly, you get most of the benefit, without
+also having to strip your project down to compile in the window.  That
+is, it can be used for production code, and not some examples.  This
+is quite an important distinction, because I often have to argue about
+compiler optimisations for things which are specifically exposed to
+the compiler.</p>
+<h3 id="key-quiz">
+  <code>key-quiz</code>
+  <a class="heading-link" href="#key-quiz">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Quite a useful package.  It is not as impressive as the others, but
+you will start feeling its presence if you get into the habit of doing
+a drill or two a day.  I did not have it, when I got started with
+Emacs, and I wish packages like it were considered more early in
+development.  Obviously the Emacs tutorial and books such as Mastering
+Emacs are great at giving you a more holistic understanding of the
+core essentials, but I also have many packages which provide far too
+many functions to list.</p>
+<h3 id="vundo">
+  <code>vundo</code>
+  <a class="heading-link" href="#vundo">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Just a powerful reminder of the difference between Emacs and other
+editors.  This package provides a command <code>vundo</code>, which would let you
+traverse the various states that your current file is in, based on the
+<code>undo</code> history.  In situations where something like a version control
+system <em>e.g.</em> <code>git</code> are not reasonable, this package helps quite a
+bit.</p>
+<h3 id="simple-httpd">
+  <code>simple-httpd</code>
+  <a class="heading-link" href="#simple-httpd">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This is not as useful if you plan to use <code>python</code>, and probably a lot
+less documented.  But I like it.</p>
+<h3 id="diminish">
+  <code>diminish</code>
+  <a class="heading-link" href="#diminish">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>It is not useful on its own and it doesn&rsquo;t provide a function that you
+can call with <code>M-x</code> but instead it is a package that will be useful
+for the rest of this tutorial.</p>
+<p>It removes a small notification at the bottom panel of Emacs, known as
+the mode line.  These are initially very useful, but you will soon
+find that many packages, including mine, don&rsquo;t provide a meaningful
+interaction with the mode-line &ldquo;lighter&rdquo;, though some do.  To
+differentiate between those modes that provide a lighter by
+convention, I will add the <code>:diminish</code> keyword in the <code>use-package</code>
+forms.</p>
+<h2 id="configuration-basics">
+  Configuration basics
+  <a class="heading-link" href="#configuration-basics">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The only other two keywords from <code>use-package</code> that you <strong>need</strong> are
+<code>:config</code> and <code>:init</code>.  There is a subtle difference, but for the time
+being, consider them as universal keywords that state that everything
+after them, is to be executed verbatim, when the package is loaded.</p>
+<p>There are a few typical cases for how this is supposed to be operated.
+There are some packages that need to be enabled in addition to being
+installed to take effect.  A good example of this is <code>dirvish</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">dirvish</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :config
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">dirvish-override-dired-mode</span>))
+</span></span></code></pre></div><p>We already know that <code>:ensure</code> installs the package if it&rsquo;s not
+installed, and for the package to take effect, you call
+<code>dirvish-override-dired-mode</code>.  By convention, functions that end in
+<code>-mode</code> toggle the behaviour if called without any arguments.  To have
+more certainty, you could modify the call to look like
+<code>(dirvish-override-dired-mode +1)</code>.  This, conventionally modifies the
+mode to be enabled if not already, and to stay enabled.  Similarly,
+<code>(dirvish-override-dired-mode -1)</code> would unconditionally disable that
+mode.</p>
+<p>Quite useful I must add.</p>
+<p>Almost everything that you would want to do with <code>use-package</code> you can
+accomplish with the <code>:config</code> keyword, though obviously using the
+purpose built keywords has its advantages, one key benefit that is not
+replicated in any other editor, is that you can evaluate the forms
+written in <code>:config</code> regardless of the surrounding context and they
+will still work as intended.  Specifically, you can put the cursor
+after <code>(dirvish-override-dired-mode)</code> but before the overall closing
+parenthesis (again Lisp convention), and hit <code>C-x C-e</code>.  This will,
+show you messages in the <code>*minibuffer*</code> about the mode being enabled,
+then disabled, then enabled again, depending on how many times you
+evaluate it.</p>
+<p>One key benefit of not writing this code outside the <code>use-pacakge</code>
+forms, is that if you add <code>:disable</code> keyword to it, that code will not
+be evaluated.  This allows you to keep historical configurations for
+older packages, without them necessarily slowing the startup time of
+your Emacs (which is probably symptomatic of an XY problem, but we&rsquo;ll
+talk about optimal usage later).</p>
+<p>Now in some cases, you might want to have a few variables set within
+the configuration, for example</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">cape</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :init
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">add-to-list</span> <span style="color:#a5d6ff">&#39;completion-at-point-functions</span> <span style="color:#d2a8ff;font-weight:bold">#&#39;</span><span style="color:#79c0ff">cape-file</span>))
+</span></span></code></pre></div><p>For the package <code>cape</code> to work, which is a completion package, you
+need to add <code>cape-file</code> to the list of
+<code>completion-at-point-functions</code>, <em>i.e.</em> functions that get called to
+get completion candidates for the current cursor (point) position.
+But, that doesn&rsquo;t mean that you cannot, for example.</p>
+<p>A similar form is for <code>dumb-jump</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">dumb-jump</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :config
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">add-hook</span> <span style="color:#a5d6ff">&#39;xref-backend-functions</span> <span style="color:#d2a8ff;font-weight:bold">#&#39;</span><span style="color:#79c0ff">dumb-jump-xref-activate</span>))
+</span></span></code></pre></div><p>This adds a package-provided function to another list, list of
+functions that get executed once the <code>xref</code> built-in mode is activated
+and loaded.</p>
+<p>In fact, <code>-hook</code> lists are quite common and quite useful, used
+extensively enough to have their own keyword that we shall talk about
+later.</p>
+<p>Incidentally, what this does is also important to understand.
+<code>dumb-jump</code> is a very basic provider for the <code>jump-to-definition</code>
+facilities that Emacs comes with.  Instead of providing its own
+<code>dumb-jump</code> to definition, it instead relies on the fact that you will
+use <code>xref-find-definitions</code> and other related functions and all that
+this package, <code>dumb-jump</code> provides is a way to obtain the information
+in cases where you might have no other source, for example, if you use
+a very esoteric language.  I found it very useful for dealing with
+Rust projects, because the heuristic needed to jump to definitions
+locally is actually quite simple thanks to the language design.</p>
+<h3 id="the-hook-keyword">
+  The <code>:hook</code> keyword
+  <a class="heading-link" href="#the-hook-keyword">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This is a very easy to understand keyword.  Suppose you want some
+function to be executed right after a mode is enabled.  For example,
+you want to enable an auto-format-on-save package that is extremely
+fast, called <code>apheleia</code>.  You know that you are mostly going to work
+with Rust, C, C++, Emacs lisp and don&rsquo;t know if there are good
+autoformatters for other languages, so even though you could
+<strong>theoretically</strong> autoformat Python, you&rsquo;d rather do it manually.</p>
+<p>Well, this is the right job for the <code>hook</code> keyword.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">apheleia</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :delight
+</span></span><span style="display:flex;"><span>  :hook
+</span></span><span style="display:flex;"><span>  ((<span style="color:#79c0ff">rust-mode</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">apheleia-mode</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">emacs-lisp-mode</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">apheleia-mode</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">c-mode</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">apheleia-mode</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">cc-mode</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">apheleia-mode</span>)))
+</span></span></code></pre></div><p>Now can lisp go five minutes without introducing weird syntax?
+Unfortunately no.  But mostly for good reasons.  Remember I told you
+that <code>:ensure t</code> can be considered the rough equivalent of <code>&quot;ensure&quot;: true</code>?  While I didn&rsquo;t exactly lie, that <em>roughly</em> is doing a lot of
+work.  Lisp is largely unlike any other language, while some features
+were eventually adopted into other languages, most were not.</p>
+<p>The thing that goes after <code>:hook</code> in this case is a list of lists.
+The lists are all two element wide, and the first element is the hook,
+the second element is the function that is to be called when that hook
+is triggered.  So, specifically, we run the same mode, <code>apheleia-mode</code>
+for each of the <code>rust-mode</code> <code>emacs-lisp-mode</code> and so on.</p>
+<p>Now, we&rsquo;ve seen how to <code>add-hook</code> in the <code>:config</code> form, and it&rsquo;s
+quite different, but why is that?  <code>use-package</code> is a macro.  It takes
+things that look like code and converts them into actual code.  It
+just so happens that the code that you would write in order to install
+a package if it&rsquo;s not already installed is always the same, so it
+makes sense to hide it inside a macro.  So does it make sense to hide
+the common boilerplate for the actual invocation of adding a function
+to a list of hooks.</p>
+<p>However, this is a teachable moment.  Notice that when we called
+<code>add-hook</code> we called it for <code>xref-backend-functions</code>.  If we tried to
+use the <code>:hook</code> keyword in <code>use-package</code>, because of an annoying
+architectural decision, you would get an error.  The <code>use-package</code>
+macro, by default, assumes that when you say</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>:hook (<span style="color:#79c0ff">x-mode</span> <span style="color:#ff7b72;font-weight:bold">.</span>  <span style="color:#79c0ff">y-function</span>)
+</span></span></code></pre></div><p>that you mean to attach a hook to <code>x-mode-hook</code>,</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(<span style="color:#79c0ff">add-hook</span> <span style="color:#a5d6ff">&#39;x-mode-hook</span> <span style="color:#a5d6ff">&#39;y-function</span>)
+</span></span></code></pre></div><p>because that is the convention.  Well, sometimes, the convention is
+not followed, so you kinda have to use <code>:config</code>.  Obviously this
+behaviour can be disabled by configuring <code>use-package</code> itself, but I
+think that <em>that</em> is an <strong>even worse</strong> architectural decision:
+<code>use-pacakge</code> forms must universally mean the same thing.</p>
+<p>Now, you probably know that each major mode, conventionally provides a
+<code>hook</code> to be called once the major mode is fully loaded, but there are
+other useful hooks.</p>
+<p><code>after-init-hook</code> is useful when you want to run a function after
+Emacs is instantiated.  This is useful when you don&rsquo;t want to block
+the startup with an expensive function.  <code>suspend-hook</code> is useful
+because it runs the function before Emacs is suspended, when you want
+Emacs to suspend.  <code>kill-emacs-hook</code> is useful because it runs the
+function before Emacs is exited, when it is exited gracefully.  Do
+with that information what you will, but I will caution against using
+these hooks extensively, without testing.</p>
+<h3 id="the-bind-keyword">
+  The <code>:bind</code> keyword
+  <a class="heading-link" href="#the-bind-keyword">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Suppose your package provides a function that is used far too
+frequently and randomly to be called from <code>M-x</code>.  This is quite
+common.  You can bind these functions to keys, using the <code>:bind</code> keyword.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">avy</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :bind
+</span></span><span style="display:flex;"><span>  (<span style="color:#a5d6ff">&#34;C-l&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">avy-goto-word-0</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a5d6ff">&#34;M-l&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">avy-goto-char</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a5d6ff">&#34;M-g c&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">avy-goto-char</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a5d6ff">&#34;M-g M-g&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">avy-goto-line</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a5d6ff">&#34;M-g m&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">avy-pop-mark</span>))
+</span></span></code></pre></div><p>This is a bit different from the previous keyword.  Well, not quite,
+this kind of syntax without the overarching parenthesis is still
+accepted by the <code>use-package</code> macro.  The main difference is that now,
+each line is evaluated sequentially, and added to a list of lists,
+just as before.  Except now this list of lists is explicit.  If you
+ever saw a documentation string that mentioned the dreadful <code>&amp;REST</code>
+this is what that looks like on the calling end.</p>
+<p>The fun thing is that this is easy to understand and read, much more
+so than the <code>:config</code> form would be.  Specifically,</p>
+<pre tabindex="0"><code>(global-set-key (kbd &#34;C-l&#34;) &#39;avy-goto-word-0)
+</code></pre><p>Notice, that it sets the key in the global key-map.  This can be a
+problem, if the function that you&rsquo;re binding is dependent on a mode
+being activated.</p>
+<p><code>avy</code> is a package that by all accounts should replace keyboard
+navigation.  It has for me.  It can operate in situations where no
+minor mode is enabled, and the function <code>avy-goto-word-0</code> is simply
+loaded, if and when the key combination <code>C-l</code> is invoked.  Remember I
+told you that I think <code>use-package</code> is far superior to <code>lazy</code>, that&rsquo;s
+why.  But sometimes, there must be other setup that needs to happen
+before a function can be invoked.  The relationships are quite
+complicated, so it is usually a good idea to make use of another
+convention:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">lsp-treemacs</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :bind
+</span></span><span style="display:flex;"><span>  (:map <span style="color:#79c0ff">lsp-mode-map</span>
+</span></span><span style="display:flex;"><span>		(<span style="color:#a5d6ff">&#34;C-`&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">lsp-treemacs-errors-list</span>)))
+</span></span></code></pre></div><p>This is equivalent to</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(<span style="color:#d2a8ff;font-weight:bold">define-key</span> <span style="color:#79c0ff">lsp-mode-map</span> (<span style="color:#79c0ff">kbd</span> <span style="color:#a5d6ff">&#34;C-\`&#34;</span> <span style="color:#a5d6ff">&#39;lsp-treemacs-errors-list</span>))
+</span></span></code></pre></div><p>And this key binding is only valid, for as long as the <code>lsp-mode-map</code>
+is active.  Meaning that if <code>lsp-mode</code> is disabled, this binding has
+no effect.  The key combination does what other bindings specify and
+only overridden if and when <code>lsp-mode-map</code> is activated.</p>
+<p>Incidentally, this form allows me to hit that convenient key to list
+all errors as reported by the resident Language server.  This is quite
+equivalent to running <code>compile</code>, a built-in function but we will cover
+that in a separate topic.</p>
+<p>I will assume that you know how to write key bindings, but just in
+case, if you need a complex key combination, angle brackets are your
+friend.  If you end up adding a rogue space somewhere, <code>C-q</code> allows
+you to enter the character regardless of what it is bound to, and I
+<strong>strongly</strong> suggest never rebinding this key under any circumstances.</p>
+<h3 id="the-custom-keyword">
+  The <code>:custom</code> keyword
+  <a class="heading-link" href="#the-custom-keyword">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This is probably as advanced as you may need to go, anything more
+in-depth is probably best suited to a time when you&rsquo;re simply
+comfortable reading the README from the official GitHub.  This piece
+of information can save you hours of debugging, so I recommend that
+you don&rsquo;t skip over it.</p>
+<p>The final special case that is handled by its own keyword and for good
+reason is the <code>:custom</code> keyword and it interacts with the Emacs'
+customisation user interface.</p>
+<p>Long ago, it was envisioned that Emacs was a graphical text editor.
+Indeed, it still has many of the advantages of one, particularly when
+it comes to rendering multiple typefaces of different sizes and
+proportions, having graphical dialog windows, handling the <code>clipboard</code>
+in a civilised fashion, and many other things.</p>
+<p>Before the GTK version became the predominant version of Emacs to be
+shipped, there was an attempt at creating a Graphical user interface
+with only Emacs Lisp and the text editing facilities.  This gaves rise
+to many packages, some good, <em>e.g.</em> tetris, some bad, <em>e.g.</em> &ldquo;simple
+calculator&rdquo; and some which are just plain ugly, and unbecoming of a
+text editor with the legendary status that Emacs has achieved.</p>
+<p>The <code>customize</code> interface is one such package, which sadly, became
+standard in Emacs.  To invoke this, simply call <code>M-x customize</code> and it
+will present to you what looks like a sensible GUI, that is until you
+try to type text into what appears to be a text box.  The only reason
+to ever touch it, is to find what customisable variables exist withing
+certain packages.  But what constitutes a <code>customizable</code> variable.  To
+put it simply, when you call <code>setq</code> on a variable, the only thing that
+can happen is the change in state of that particular variable.  The
+changes propagate up until the functions that are invoked later that
+read that variable.  In their infinite wisdom, the people designing
+Emacs, have decided that it is a great idea to institute another way
+to set those same variables, that will trigger other code to execute.
+The <code>customize</code> interface, will conveniently place any customised
+variable at the end of your <code>init.el</code>, for you to know what other
+differences between your regular out-of-the-box vanilla Emacs
+experience and your personalised experience exist.</p>
+<p>It is perfectly acceptable to keep those variables in a giant block of
+symbolic expressions at the end of your init file.  It is perfectly
+acceptable to even <code>setq</code> most of those variables instead of going
+through the <code>customize</code> interface.  However, for the perfectionists
+among you, that see this as a grand violation of the celestial
+mechanics of Emacs, there is a specialised keyword, called <code>:custom</code>
+that accepts yet another form of argument.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">eldoc</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :custom
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">eldoc-documentation-strategy</span> <span style="color:#a5d6ff">&#39;eldoc-documentation-compose-eagerly</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">eldoc-echo-area-prefer-doc-buffer</span> <span style="color:#79c0ff;font-weight:bold">t</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">eldoc-idle-delay</span> <span style="color:#a5d6ff">0.2</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">eldoc-minor-mode-string</span> <span style="color:#79c0ff;font-weight:bold">nil</span>))
+</span></span></code></pre></div><p>This simply put sets the variable on the left, to the value on the
+right.  The keen eyed observer will see that there isn&rsquo;t a <code>.</code> in
+between the variables, that is because the <code>customize</code> function which
+is invoked here, can accept an optional third parameter in each list
+in the list of lists.  That parameter is almost never used, because
+the only difference between it and a regular comment is that if the
+value is further changed via the <code>customize</code> interface, the interface
+itself will display that comment.  Given that I would recommend only
+using <code>customize</code> for exploratory purposes, I don&rsquo;t find it
+particularly useful.  Given the nature of Emacs it is universally
+better to read the source code for the package, and find the
+customisable variable, and then to decide what value is appropriate.
+It is not that when the authors provide meaningful choices, that
+having a drop-down menu is worse than typing the choice by hand; it&rsquo;s
+that most authors don&rsquo;t bother.</p>
+<p>Truth be told, any difference between <code>setq</code> and <code>customize</code> is an
+anti-pattern, that relies on the assumption that a half-baked, semi
+textual interface is better than nothing.  Technically, if utilised
+correctly, it would, allow people who not only don&rsquo;t know lisp, but no
+programming in general, to successfully use Emacs.  If all the
+packages provided sensible customisation facilities, and that means
+proper documentation, proper formatting, proper choices, and frankly,
+proper channels to clarify some points without leaving the interface,
+I would say, let&rsquo;s deprecate <code>setq</code>.  But, this is a half-feature that
+only half the community cares about and even fewer people want
+properly implemented in their own packages.</p>
+<p>Creating an Elisp package is already a gargantuan task, for people
+that are essentially doing it with no compensation, this is a standard
+of practice that I&rsquo;m willing to let go.</p>
+<h2 id="conclusion-when-to-use-package">
+  Conclusion: when to <code>use-package</code>
+  <a class="heading-link" href="#conclusion-when-to-use-package">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Honestly, I don&rsquo;t believe that <code>use-package</code> is a panacea, and that it
+should be applied indiscriminately to anyone&rsquo;s workflow.  It is
+considered the industry standard, and there are good reasons, it
+automates and abstracts the concept of a package, it allows
+configuration to be local, and thanks to Emacs&rsquo; excellent editing
+facilities this means easy translation, refactoring, etc.</p>
+<p>While it has its benefits, there are some key considerations to keep
+in mind, when you as a new user will decide on whether to make heavy
+use of this facility.</p>
+<p>By avoiding the native Emacs lisp facilities for installing and using
+pacakges, you as a new user learn less.  When I was getting started,
+<code>use-package</code> was already prevalent.  As a consequence of never having
+to install a package manually, that is downloading the lisp files and
+extracting them to a place and then <code>require</code>-ing them, I&rsquo;ve missed
+out on quite a bit of organic learning.  When I started writing my own
+Elisp, I found that I had not had the right exposure to the right
+concepts, and thus had trouble.  In fact <code>use-pacakge</code>&rsquo;s keywords are
+the main reason why I had no idea that <code>global-set-key</code> was deprecated
+in favour of <code>keymap-global-set</code>.  This seems small, but in hindsight
+it really does result in a large amount of re-learning that could have
+been subsumed into the configuration stage.</p>
+<p>A slightly less important aspect of <code>use-package</code> is that you can not,
+mostly, see the functions that are being invoked.  For example, you do
+not know the exact mechanics of what <code>:custom</code> does.  You cannot
+differentiate between <code>custom-set-variable</code> and
+<code>customize-set-variable</code> unless you cheat and lookup.</p>
+<p>Yet another problem, is that you cannot evaluate forms incrementally.
+Given that Emacs is unlike most modern development environments where
+&ldquo;dirty&rdquo; state is persisted, and the image of a machine can be
+different from a linear sequence of steps, you miss out on a lot.
+Batch processing is a standard, but largely because of convention, not
+because that approach is superior.  In fact, incremental evaluation of
+nested code, allows one to build up complex functions much more
+rapidly and reliably, thanks to knowing exactly what each step is
+going to produce.  This is not unlike the reason why it is customary
+to create plain-text streams between programs in a conventional UNIX
+shell script.</p>
+<p>Finally, over-reliance on <code>use-package</code> has made it difficult for me
+to move on to other editors.  I do not plan to remain an Emacsian
+forever.  I find that it is worth exploring other ideas, and I would
+not be able to do that, if I were bound by the same limitations as
+Emacs imposes, even subliminally.</p>
+<p>If I were just starting out, I would use <code>use-package</code> extensively to
+see what packages are available.  But at the moment I had enough
+interest so as to write custom Emacs lisp (which comes later than you
+can imagine), you should drop <code>use-package</code> entirely, and attempt to
+replicate your workflow in a purely function and not macro-driven
+approach.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2023 -
+    
+    2025
+     Aleksandr Petrosyan 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

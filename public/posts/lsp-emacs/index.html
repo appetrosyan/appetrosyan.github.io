@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  How to set up LSP in Emacs · Aleksandr Petrosyan
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Aleksandr Petrosyan">
+<meta name="description" content="This is a semi-rant, but I believe a worthwhile use of my time.  There
+are two compliant implementations of the language server protocol,
+which do not have a bipartisan objective review attached to them.
+Some would argue that eglot is superior by virtue of being in the
+Emacs core, some would instead argue that lsp-mode is more feature
+complete and far more lenient towards language servers with
+non-standard extensions.  Those are true, but they only affect the
+first-hand experience, something that only a total script kiddie will
+complain about.">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to set up LSP in Emacs">
+  <meta name="twitter:description" content="This is a semi-rant, but I believe a worthwhile use of my time. There are two compliant implementations of the language server protocol, which do not have a bipartisan objective review attached to them.
+Some would argue that eglot is superior by virtue of being in the Emacs core, some would instead argue that lsp-mode is more feature complete and far more lenient towards language servers with non-standard extensions. Those are true, but they only affect the first-hand experience, something that only a total script kiddie will complain about.">
+
+<meta property="og:url" content="http://localhost:1313/posts/lsp-emacs/">
+  <meta property="og:site_name" content="Aleksandr Petrosyan">
+  <meta property="og:title" content="How to set up LSP in Emacs">
+  <meta property="og:description" content="This is a semi-rant, but I believe a worthwhile use of my time. There are two compliant implementations of the language server protocol, which do not have a bipartisan objective review attached to them.
+Some would argue that eglot is superior by virtue of being in the Emacs core, some would instead argue that lsp-mode is more feature complete and far more lenient towards language servers with non-standard extensions. Those are true, but they only affect the first-hand experience, something that only a total script kiddie will complain about.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-28T00:00:00+00:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/lsp-emacs/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Aleksandr Petrosyan
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/lsp-emacs/">
+              How to set up LSP in Emacs
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-07-28T00:00:00Z">
+                July 28, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>This is a semi-rant, but I believe a worthwhile use of my time.  There
+are two compliant implementations of the language server protocol,
+which do not have a bipartisan objective review attached to them.</p>
+<p>Some would argue that <code>eglot</code> is superior by virtue of being in the
+Emacs core, some would instead argue that <code>lsp-mode</code> is more feature
+complete and far more lenient towards language servers with
+non-standard extensions.  Those are true, but they only affect the
+first-hand experience, something that only a total script kiddie will
+complain about.</p>
+<p>As an intermediate Emacsian, I believe my insight to be of use both to
+script kiddies that will eventually transition to masters, as well as
+masters that do not believe in such nonsense as LSP.</p>
+<p>Without further ado.</p>
+<h2 id="lsp-mode">
+  LSP-mode
+  <a class="heading-link" href="#lsp-mode">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This is the most presentable of the bunch.  It comes with a
+<a href="https://emacs-lsp.github.io/lsp-mode/"  class="external-link" target="_blank" rel="noopener">well-groomed website</a>, a
+detailed set of instructions, and frankly some of the broadest
+supports for language-server-specific features.  It also comes with
+the companion mode for <code>dap-mode</code>, which, as the name suggests is
+going to be major source of pain, but will eventually allow one to use
+some debuggers in some languages.</p>
+<p>My setup if I were using <code>lsp-mode</code> would look like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(use-package <span style="color:#79c0ff">lsp-mode</span>
+</span></span><span style="display:flex;"><span>  :ensure <span style="color:#79c0ff;font-weight:bold">t</span>
+</span></span><span style="display:flex;"><span>  :bind
+</span></span><span style="display:flex;"><span>  (:map <span style="color:#79c0ff">lsp-mode-map</span>
+</span></span><span style="display:flex;"><span>		(<span style="color:#a5d6ff">&#34;C-.&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">xref-find-definitions</span>)
+</span></span><span style="display:flex;"><span>		(<span style="color:#a5d6ff">&#34;C-c C-r&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">lsp-rename</span>)
+</span></span><span style="display:flex;"><span>		(<span style="color:#a5d6ff">&#34;C-&lt;return&gt;&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">lsp-execute-code-action</span>)
+</span></span><span style="display:flex;"><span>		(<span style="color:#a5d6ff">&#34;C-c m&#34;</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">lsp-rust-analyzer-open-cargo-toml</span>))
+</span></span><span style="display:flex;"><span>  :custom
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-inlay-hint-enable</span> <span style="color:#79c0ff;font-weight:bold">t</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-rust-analyzer-closure-return-type-hints</span> <span style="color:#a5d6ff">&#34;with_block&#34;</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-rust-analyzer-display-chaining-hints</span> <span style="color:#79c0ff;font-weight:bold">t</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-rust-analyzer-display-closure-return-type-hints</span> <span style="color:#79c0ff;font-weight:bold">t</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-completion-enable</span> <span style="color:#79c0ff;font-weight:bold">nil</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-rust-analyzer-cargo-watch-command</span> <span style="color:#a5d6ff">&#34;clippy&#34;</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-rust-analyzer-display-reborrow-hints</span> <span style="color:#a5d6ff">&#34;mutable&#34;</span>)
+</span></span><span style="display:flex;"><span>  :hook
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-mode</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">lsp-inlay-hints-mode</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#79c0ff">lsp-mode</span> <span style="color:#ff7b72;font-weight:bold">.</span> <span style="color:#79c0ff">yas-minor-mode</span>))
+</span></span></code></pre></div><p>Now, most guides will assume that you know what this means, but as
+Emacs doesn&rsquo;t have much beginner friendly documentation, but instead
+assumes that you will discover lisp forms on your own, it bears
+explaining some of this at least once.</p>
+<h3 id="detour-use-package">
+  Detour, <code>use-package</code>
+  <a class="heading-link" href="#detour-use-package">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>`</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2023 -
+    
+    2025
+     Aleksandr Petrosyan 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

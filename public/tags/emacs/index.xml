@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on Aleksandr Petrosyan</title>
+    <link>http://localhost:1313/tags/emacs/</link>
+    <description>Recent content in Emacs on Aleksandr Petrosyan</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Emacs, the editor for the ages</title>
+      <link>http://localhost:1313/posts/rants/emacs/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rants/emacs/</guid>
+      <description>&lt;p&gt;This is a blog post dedicated to my, and many other people&amp;rsquo;s favourite text editor. In-keeping with the theme of this section, I shall mainly focus on the misunderstood nature of the editor, and my personal connection to it. Most of it is going to be in the negative light, so it slightly edges out being posted in the Software section.&lt;/p&gt;&#xA;&lt;p&gt;Without further ado.&lt;/p&gt;&#xA;&lt;h2 id=&#34;about-me&#34;&gt;&#xA;  About me&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#about-me&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I feel like a hostage.&#xA;This is not something that I can &amp;hellip; for lack of a better word admit to lightly.&#xA;Emacs is a tool that I&amp;rsquo;ve invested into heavily.&#xA;The problem is however that I have some long-standing pain points that I hope can someday be addressed.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

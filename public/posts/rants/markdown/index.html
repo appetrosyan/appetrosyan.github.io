@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Markdown considered harmful · Aleksandr Petrosyan
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Aleksandr Petrosyan">
+<meta name="description" content="I&rsquo;ve had complaints about Markdown for years. I don&rsquo;t like it. Is it better than e.g. writing your code in ReST, I&rsquo;d argue marginally, and only if you assume that ReST was meant to be used in the same circumstances as Markdown, which it does not.
+In my opinion, if your life revolves around Markdown, this article will make your life a bit easier, not by a lot, but still. I&rsquo;d make the case that we&rsquo;re better off leaving Markdown behind, and instead to move beyond &ldquo;lightweight&rdquo; text-based markup.">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Markdown considered harmful">
+  <meta name="twitter:description" content="I’ve had complaints about Markdown for years. I don’t like it. Is it better than e.g. writing your code in ReST, I’d argue marginally, and only if you assume that ReST was meant to be used in the same circumstances as Markdown, which it does not.
+In my opinion, if your life revolves around Markdown, this article will make your life a bit easier, not by a lot, but still. I’d make the case that we’re better off leaving Markdown behind, and instead to move beyond “lightweight” text-based markup.">
+
+<meta property="og:url" content="http://localhost:1313/posts/rants/markdown/">
+  <meta property="og:site_name" content="Aleksandr Petrosyan">
+  <meta property="og:title" content="Markdown considered harmful">
+  <meta property="og:description" content="I’ve had complaints about Markdown for years. I don’t like it. Is it better than e.g. writing your code in ReST, I’d argue marginally, and only if you assume that ReST was meant to be used in the same circumstances as Markdown, which it does not.
+In my opinion, if your life revolves around Markdown, this article will make your life a bit easier, not by a lot, but still. I’d make the case that we’re better off leaving Markdown behind, and instead to move beyond “lightweight” text-based markup.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-01-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-01-11T00:00:00+00:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="Markup Languages">
+    <meta property="article:tag" content="Rants">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/rants/markdown/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Aleksandr Petrosyan
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/rants/markdown/">
+              Markdown considered harmful
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-01-11T00:00:00Z">
+                January 11, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              11-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/blog/">Blog</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/markup-languages/">Markup Languages</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/rants/">Rants</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <p>I&rsquo;ve had complaints about Markdown for years. I don&rsquo;t like it. Is it better than e.g. writing your code in ReST, I&rsquo;d argue marginally, and only if you assume that ReST was meant to be used in the same circumstances as Markdown, which it does not.</p>
+<p>In my opinion, if your life revolves around Markdown, this article will make your life a bit easier, not by a lot, but still. I&rsquo;d make the case that we&rsquo;re better off leaving Markdown behind, and instead to move beyond &ldquo;lightweight&rdquo; text-based markup.</p>
+<p>For the record, I believe that something like Org, while miles better in execution still suffers from the same problems in concept.</p>
+<p>So without further ado.</p>
+<h2 id="theres-no-markdown-grammar">
+  There&rsquo;s no Markdown grammar
+  <a class="heading-link" href="#theres-no-markdown-grammar">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This is a fairly pervasive problem for all &ldquo;lightweight&rdquo; markup languages. Specifically, that most people come up with the markup with no regard to traditional BNF and parser combinator approaches. This leads to some things being impossible to represent, some other things being impossible to do, some combination of the two, and a collection of problems related to the fact that you both want every single possible UTF-8 character to be represented, every possible feature of a markup language typography to be represented and to some extent, to be able to do things elegantly.</p>
+<p>So what is the problem, then with there being no grammar to refer to? Well, the fact that when I say Markdown, I have to say explicitly, <code>CommonMark</code>, or <code>Github-flavoured</code> or <code>shit-encrusted</code>. Markdown as a standard only communicates a very vague notion of you do emphasis with underscores, boldface with doubled asterisks and some unholy combination of square and round brackets to do links. Other than that, your mileage can vary wildly.</p>
+<p>I&rsquo;d say perhaps that the reason why this is bad has less to do with the language itself, but with the approach that people take to it. We assume that we could just do things the right way and it would work. That right way happens to be up to the interpreter, and now your way of doing things correctly is contingent on knowing, for lack of a better word, which features does <code>shit-encrusted</code> markdown have. (incidentally, this project does not and will not exist, primarily because its sheer existence would imply that all other markdown is <strong>not</strong> <code>shit-encrusted</code>).</p>
+<p>TODO Latex \usep{},</p>
+<p>TODO EMMET</p>
+<p>TODO Roff</p>
+<p>TODO Extensions break markup</p>
+<p>TODO domain modelling</p>
+<p>TODO logic doesn&rsquo;t allow for one thing to be both italic and bold, but to be bolditalic</p>
+<p>One common advantage of thinking in terms of grammars is that it makes the design of the markup language easier, not only to make, but also to understand. Case in point; in Markdown the <code>#</code> symbol delineates a heading, inheriting the somewhat outdated semantics of HTML&rsquo;s <code>&lt;h1&gt;</code>. It makes natural sense to assume that <code>##</code> is equivalent to <code>h2</code> and beyond. This <em>is</em> good and something that Markdown does well. At the same time, things like links to headings follow rules which I, as a programmer with 15+ years of experience, having dealt with a whole zoo of programming languages, both functional and esoteric, second-guess myself when doing cross referencing. It would have been simpler to have a `\label**-like method for most if not all interactions, but for that to have been possible, there ought to have been some foresight.</p>
+<p>Org is slightly better in this regard, because while it comes with most of the markup already defined, it allows definition of custom markup, and in principle, a label-like reference system. This is also one of a few places where ReST will feature in a positive light.</p>
+<h2 id="fallback-to-better-languages">
+  Fallback to better languages
+  <a class="heading-link" href="#fallback-to-better-languages">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>One of the most profound counter-points to this critique would be to say that, if all else fails, Markdown usually falls back onto HTML. Anything, including this blog, that accepts markdown, also accepts HTML, so if I wanted to, for example, have more reasonable hyperlinks, I could do it in HTML.</p>
+<p>The argument is problematic, because in that case, Markdown is a quick and dirty way to create HTML; in which case, why don&rsquo;t you <strong>just</strong> use HTML?</p>
+<p>It&rsquo;s a similar problem with Org and LaTeX. Sure Org can do things that are impressive by &ldquo;lightweight&rdquo; markup language standards, but fairly standard on LaTeX&hellip; so there&rsquo;s few if any incentives to anyone who&rsquo;s already fluent in LaTeX to use Org for Markup (though thanks to what I just described in the previous chapter, there&rsquo;s plenty of other uses).</p>
+<p>What is more problematic is that the ability to fall back to HTML, means that some features that would be enormously important for semantic reasons, will never get incorporated precisely because they&rsquo;re already available in HTML form.</p>
+<p>One final point: the fact that you can generally rely on HTML as the intermediate representation of text, means that Markdown can never eclipse HTML. It cannot have a heading more deeply nested than <code>&lt;h6&gt;</code> and it can&rsquo;t possibly parse better. And it kinda makes sense, most places you&rsquo;d use Markdown is on the web, so you don&rsquo;t want to veer beyond what is the gold standard. Which begs the question&hellip; why not just use HTML?</p>
+<h2 id="markdown-has-restricted-semantic-content">
+  Markdown has restricted semantic content
+  <a class="heading-link" href="#markdown-has-restricted-semantic-content">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>MD is simple. I&rsquo;d argue too simple and it misses the point which LaTeX made all those years ago. The importance of these formats is in how they can separate the semantic content of the document from the presentation aspects; and that this allows one to do wonderful things and conform to general styles, without sacrificing on complexity of the semantics.</p>
+<p>HTML, for all its faults, is a descendant of SGML, which allows it to do that, and to do it remarkably well, in some cases. You have the built-ins like <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> and things like <code>&lt;a&gt;</code> which would be difficult to implement without access to the end-user&rsquo;s interpreter. At the same time, these comprise more of an instruction set, rather than the language itself; there&rsquo;s such a thing as <code>&lt;em&gt;</code>-phasis, which is rendered italicised by default, but has a very different meaning. There&rsquo;s <code>&lt;strong&gt;</code> which is not the same as <code>&lt;b&gt;</code> and they can be styled independently given the existence of Cascading Style Sheets. How do you style a markdown tag? How do you define a custom tag is another matter, but suppose we dealt with Markdown that addressed that issue. Markdown would need an equally complicated (read slow) means of styling.</p>
+<p>What is more egregious, is that adding those would be inherently against the spirit of being a &ldquo;simple&rdquo; markup language. It is perfectly possible that someone could study HTML and not know about the existence of the <code>&lt;cite&gt;</code> tag, but because there&rsquo;s no agreed upon grammar in Markdown, there&rsquo;s no way of adding that tag in a portable fashion, other than falling back on HTML syntax. And in all fairness, this is not itself a problem, if it weren&rsquo;t for that</p>
+<h2 id="markdown-is-used-in-places-where-heavy-markup-should-be-used">
+  Markdown is used in places where heavy markup should be used
+  <a class="heading-link" href="#markdown-is-used-in-places-where-heavy-markup-should-be-used">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>My first foray into creative writing was in 2020, where in the aftermath of the StallmanGate, I started writing. So for that to work, I needed to produce a text. In any form I wanted, if we&rsquo;re completely honest. It didn&rsquo;t matter.</p>
+<p>But naturally the way we&rsquo;d post was using Markdown. Odysee has a nice UI, and a user-friendly way to post information. That and reddit, are the only two platforms on which I&rsquo;ve had issues with Markdown being escaped: it wasn&rsquo;t as much of a nightmare as you&rsquo;d think, I just had to search for the literal <code>\</code> and replace it with nothing. It&rsquo;s fine, but it&rsquo;s an annoyance nonetheless.</p>
+<p>What I find fascinating is that on MacOS, to the extent to which no other operating system, there&rsquo;s support for rich markup. When one copies text, it gets highlighted. This might seem quaint, but it frees one from having to implement syntax highlighting in every program, inclduing for example, <code>keynote</code>. All I need to do is to copy the already highlighted text into a window, and presto it works.</p>
+<p>This might seem quaint to some, but it is actually low-key genius, because the way I do syntax highlighting in my editor is very different to the angry word salad that most editors prefer.</p>
+<h2 id="wysiwyg-is-important">
+  WYSIWYG is important
+  <a class="heading-link" href="#wysiwyg-is-important">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>In Markdown I don&rsquo;t really get a choice of how to higlight code. I&rsquo;d like to, but there&rsquo;s no way of doing the highlighting in a different way; by that I don&rsquo;t mean the colours, it&rsquo;s somewhat involved to change the colours in the CSS, but it isn&rsquo;t exactly impossible, what I&rsquo;m refering to is the ability to highlight different kinds of keywords, or highlighting identifiers with different colours, I can do it. The process doesn&rsquo;t change much whether I use Emacs or some other text editor. This support for rich markup makes the fact of rendering the markup a priority for the specialised program, not for every possible instance that might need it.</p>
+<p>So why <strong>don&rsquo;t</strong> we have a reasonable support for rich markup? Frankly, this eludes me. I know for a fact that most web browsers support it in some form.  I know for a fact that it&rsquo;s possible to implement a system like that system-wide, and that in principle, there&rsquo;s nothing problematic about there being different platform-specific conventions about how to utilise the rich markup (say <code>CMD+B</code> and <code>CTRL+B</code>).</p>
+<p>What I found to be nonetheless true is that most people prefer &ldquo;simple&rdquo; markup via Markdown for reasons of reproducibility. Despite lacking a standard, Markdown is susceptible to introspection, if your implementation uses underscores and not single asterisks for italics, then there&rsquo;s an easy way to see it and to correct it manually. In case of rich markup, unless there&rsquo;s a tool for it, there&rsquo;s no way to know. As a consequence, despite MS Word being several decades older, fixing markup in Word is harder than it is to fix markup in Markdown.</p>
+<p>As a programmer I&rsquo;m conditioned to believe that text-based markup, one where you type in characters in a text editor, rather than a document editor is superior. But, and this is crucial, is largely a lie, given that a transparent interface based around XML, is what most if not all office suites have converged upon as a solution, I see no reason why we can&rsquo;t simplify some aspects of the XML markup to be less annoying.</p>
+<p>What I will give to Markdown and LaTeX is the ability to cleanly separate the presentation aspects from the logical structure, but I see no reason why LibreOffice or M$ office have to be the &ldquo;gold standard&rdquo;. There are progams, namely Lyx and TexMacs that can compete and do so very well.</p>
+<p>The main reason why you would need to use a WYSIWYG editor is the immediacy of feedback. Lyx can give you a very accurate idea of what the equation that you just entered is doing. Sure I <strong>could</strong> get that information by parsing LaTeX, but I&rsquo;d be expending more of my valuable brain juice on doing a task that&rsquo;s much easier to do with a computer anyway.</p>
+<p>What Lyx is missing is general support, because most UI frameworks think that supporting Markdown is good, and supporting LaTeX is not. And they&rsquo;re right; LaTeX has more than half a century of technical debt accumulated over the years. It&rsquo;d be hard to clean that up, and nobody wants to deal with it. Markdown is a relatively new format, that is not very ambitious, which is why it took off.</p>
+<p>Another feature which I would qualify as missing in Lyx is the abstracted complexity; there&rsquo;s both a problem of Lyx being extremely complex, to the point of intimidating even a seasoned programmer, and also not nearly supporting the variety of possible configurations of a TeX document. It can create presentable works, but it lacks the ability to define custom macros and have them be accessible.</p>
+<p>To put a final nail in the coffin, Lyx is not very WYSIWYG, in the sense that it doesn&rsquo;t exactly produce the final PDF. You see the text, but you cannot put this stuff from within the UI, the one thing that you can potentially need.</p>
+<p>I just think that we may have lost something along the way; that we should perhaps consider doing things in a more visual fashion. I&rsquo;m willing to bet that your content people would like that very much anyway, because they&rsquo;re very visual creatures.</p>
+<h2 id="simple-markup-is-not-simple">
+  Simple markup is not simple
+  <a class="heading-link" href="#simple-markup-is-not-simple">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This is probably the least substantiated of my complaints. It&rsquo;s more of a feeling rather than an observation. But Markup basically comes down to</p>
+<ol>
+<li>I need to specify text with typography/highlighting.</li>
+<li>I need to cover all UTF-8 characters, because they can be part of regular text.</li>
+<li>I need to insert images and style it externally.</li>
+</ol>
+<p>So normally what one ends up with is Markdown with many superfluous bolt-ons. What people mostly don&rsquo;t want to end up with is HTML, because it&rsquo;s rather verbose. What people definitely don&rsquo;t want to end up with is some opaque non-standard binary format that will keep on changing and break their existing documents. What is perhaps every non-technical person&rsquo;s nightmare is having to do this in LaTeX.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2023 -
+    
+    2025
+     Aleksandr Petrosyan 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

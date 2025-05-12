@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSG on Aleksandr Petrosyan</title>
+    <link>http://localhost:1313/tags/ssg/</link>
+    <description>Recent content in SSG on Aleksandr Petrosyan</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ssg/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What I don&#39;t like about Vitepress</title>
+      <link>http://localhost:1313/posts/rants/vitepress/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rants/vitepress/</guid>
+      <description>&lt;p&gt;This is a continuation of the rant about static site generation systems. While I liked vitepress a lot more than I like Jekyll I still have some issues with how it works.&lt;/p&gt;&#xA;&lt;p&gt;In principle it is one of the better static site generators in my opinion, probably better than anything that I&amp;rsquo;ve dealt with so far&amp;hellip;&lt;/p&gt;&#xA;&lt;p&gt;But it begs the question of &amp;ldquo;does a static site generator as a concept&amp;rdquo; need to exist?&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

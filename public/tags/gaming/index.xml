@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gaming on Aleksandr Petrosyan</title>
+    <link>http://localhost:1313/tags/gaming/</link>
+    <description>Recent content in Gaming on Aleksandr Petrosyan</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 18 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/gaming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remasters should not exist</title>
+      <link>http://localhost:1313/posts/rants/remasters/</link>
+      <pubDate>Thu, 18 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rants/remasters/</guid>
+      <description>&lt;p&gt;This is a very controversial topic and perhaps one that will land me a lot of enemies.  I nonetheless believe that it is imperative to understand the point: the existence of game remasters is a symptom of a larger problem, that will soon become all-encompassing.  It is my firm belief that we as a species have blundered our way to this problem unknowingly, and that we can still fix it&amp;hellip; albeit with a lot of effort, specifically pertaining to unlearning some of the bad habits that we have accumulated.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

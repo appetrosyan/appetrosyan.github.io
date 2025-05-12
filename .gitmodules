@@ -1,0 +1,12 @@
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
+[submodule "themes/LoveIt"]
+	path = themes/LoveIt
+	url = git@github.com:dillonzq/LoveIt.git
+[submodule "themes/stack"]
+	path = themes/stack
+	url = git@github.com:CaiJimmy/hugo-theme-stack.git
+[submodule "themes/coder"]
+	path = themes/coder
+	url = git@github.com:luizdepra/hugo-coder.git

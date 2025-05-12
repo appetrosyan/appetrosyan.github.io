@@ -1,0 +1,83 @@
+baseurl = "http://appetrosyan.github.io"
+title = "Aleksandr Petrosyan"
+theme = "coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+
+[pagination]
+pagerSize = 20
+
+[markup.highlight]
+style = "github-dark"
+
+[params]
+  author = "Aleksandr Petrosyan"
+  info = "Eclipse Labs head of Performance Engineering"
+  description = "A. Petrosyan's Blog"
+  keywords = "blog,developer,personal"
+  gravatar = "appetrosyan3@gmail.com"
+
+  faviconSVG = "/img/favicon.svg"
+  favicon_32 = "/img/favicon-32x32.png"
+  favicon_16 = "/img/favicon-16x16.png"
+
+  since = 2023
+
+  enableTwemoji = true
+
+  colorScheme = "auto"
+  hidecolorschemetoggle = false
+  maxSeeAlsoItems = 24
+
+  # customCSS = ["css/custom.css"]
+  # customSCSS = ["scss/custom.scss"]
+  # customJS = ["js/custom.js"]
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+  author = "authors"
+
+# Social links
+[[params.social]]
+  name = "Github"
+  icon = "fa-brands fa-github fa-2x"
+  weight = 1
+  url = "https://github.com/appetrosyan/"
+[[params.social]]
+  name = "Gitlab"
+  icon = "fa-brands fa-gitlab fa-2x"
+  weight = 2
+  url = "https://gitlab.com/a-p-petrosyan/"
+[[params.social]]
+  name = "Telegram"
+  icon = "fa-brands fa-telegram fa-2x"
+  weight = 3
+  url = "https://t.me/m3lcore"
+[[params.social]]
+  name = "Linkedin"
+  icon = "fa-brands fa-linkedin fa-2x"
+  weight = 4
+  url = "https://www.linkedin.com/in/alexander-petrosyan/"
+[[params.social]]
+  name = "E-Mail"
+  icon = "fa-brands fa-linux fa-2x"
+  weight = 5
+  url = "mailto:appetrosyan@linux.com"
+
+
+# Menu links
+[[menu.main]]
+  name = "Blog"
+  weight = 1
+  url  = "posts/"
+[[menu.main]]
+  name = "About"
+  weight = 2
+  url = "about/"
+
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true

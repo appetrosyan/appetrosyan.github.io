@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tooling on Aleksandr Petrosyan</title>
+    <link>http://localhost:1313/tags/tooling/</link>
+    <description>Recent content in Tooling on Aleksandr Petrosyan</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 26 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tooling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Emacs widget toolkit</title>
+      <link>http://localhost:1313/posts/emacs-widget/</link>
+      <pubDate>Sat, 26 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/emacs-widget/</guid>
+      <description>&lt;p&gt;In this blog post I outline the consequences of several months worth of deliberation and dumpster diving into the Emacs display code.&lt;/p&gt;&#xA;&lt;p&gt;In this article I shall outline the potential direction in which to take the Emacs widget toolkit, a plan to revitalise Emacs and get it to a state that would allow newcomers to appreciate it for the marvel of engineering that it is.&lt;/p&gt;&#xA;&lt;p&gt;But first let&amp;rsquo;s talk about problems.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Language servers in Emacs</title>
+      <link>http://localhost:1313/posts/emacs-lsp/</link>
+      <pubDate>Sun, 03 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/emacs-lsp/</guid>
+      <description>&lt;p&gt;In this post I will try to summarise my experience with all things LSP (language server protocol).  I will talk primarily about the two most important implementations of LSP for Emacs: &lt;code&gt;eglot&lt;/code&gt; that is built into Emacs, and &lt;code&gt;lsp-mode&lt;/code&gt; that seems to be much more feature complete.&lt;/p&gt;&#xA;&lt;p&gt;I will delve into the pros and cons of both, explain why I use both as daily drivers and why I prefer to not have them be enabled by default for any mode, and what to do if you don&amp;rsquo;t like the idea of LSP.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Neovim challenge, one month later</title>
+      <link>http://localhost:1313/posts/rants/neovim/</link>
+      <pubDate>Sat, 17 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rants/neovim/</guid>
+      <description>&lt;p&gt;This is quite an interesting experience.&lt;/p&gt;&#xA;&lt;p&gt;I will not say that I am wholly disappointed, but that it is sad. I&amp;rsquo;ve been a &lt;code&gt;vi&lt;/code&gt; user for the better part of my teens, and I&amp;rsquo;ve only picked up Emacs around ten years ago, when I was 19. So this challenge was less of a dive into foreign waters, and more of a return to my own roots. And it is interesting to see your grandparents do some renovations, to see signs of prosperity in some areas, but to also notice that they are struggling. Not financially, but in that they&amp;rsquo;ve lost track of what made them who they are.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Emacs, the editor for the ages</title>
+      <link>http://localhost:1313/posts/rants/emacs/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rants/emacs/</guid>
+      <description>&lt;p&gt;This is a blog post dedicated to my, and many other people&amp;rsquo;s favourite text editor. In-keeping with the theme of this section, I shall mainly focus on the misunderstood nature of the editor, and my personal connection to it. Most of it is going to be in the negative light, so it slightly edges out being posted in the Software section.&lt;/p&gt;&#xA;&lt;p&gt;Without further ado.&lt;/p&gt;&#xA;&lt;h2 id=&#34;about-me&#34;&gt;&#xA;  About me&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#about-me&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I feel like a hostage.&#xA;This is not something that I can &amp;hellip; for lack of a better word admit to lightly.&#xA;Emacs is a tool that I&amp;rsquo;ve invested into heavily.&#xA;The problem is however that I have some long-standing pain points that I hope can someday be addressed.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
