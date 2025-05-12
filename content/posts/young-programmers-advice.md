@@ -4,10 +4,9 @@ title= 'How to learn to program'
 +++
 # How to learn to program
 
-::: tip
-A much more detailed guide is going to be published on the Greybeard
-blog.  So stay tuned.
-:::
+> [!note]
+> A much more detailed guide is going to be published on the Greybeard
+> blog.  So stay tuned.
 
 This is a bit of a short guide, and it's required to be short for one simple reason.
 
