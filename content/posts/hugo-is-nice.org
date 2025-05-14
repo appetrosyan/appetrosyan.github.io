@@ -4,18 +4,68 @@
 #+TOC: true
 #+DRAFT: true
 
-I quite like hugo.  It lets me do much more than either Vitepress or Vuepress let me do and I got a fully functional website in a fraction of the time that it would take me to create a Vuepress site.
+There has been a disruption a few days ago, as I upgraded the blog to Hugo as opposed to continuing using the permanently pre-alpha VuePress.  I just got fed up with it.
 
-Are there limitations?  Yes.  Unfortunately there are various things that I do not know what they get rendered to:
-#+BEGIN_EXAMPLE
-This example, for example
-#+END_EXAMPLE
+The common perception is that JavaScript and everything done in it is inherently fragile.  I tried to give it a fair shot, and I now conclusively think that it is true.  The ~npm~ is a fragile platform, not only because of the fragmentation, something I criticise in Rust and one of the very few things that Go got right by accident.  No.  JavaScript promotes a set of programming habits and packaging conventions that would normally be unacceptable in other languages.  In JavaScript they lead to any odd time you do ~pnpm up~ to give you a heart attack.  I could not update my articles, because (and this is kind of the main problem), they required a bootstrap of VuePress rc20, and that inherently depended on a locked version of the Vite bundler.
 
-I do believe that it is much more prominent.
+I had the aid of some of the best LLMs on the planet and I still couldn't figure out how to, pardon the swearing, /unfuck/ my blog that was getting a lot of the wrong kind of attention.  While I would normally try to fix something before dumping and moving on, the sheer degree of broken-ness left me no choice.
 
-I quite like the way that it works[fn:1].  I quite like the way that other things work.  Maybe bibliography will work out of the box[fn:2], but maybe not.
+The live-reloading server that VuePress shipped with also didn't usually work correctly.  One would expect that the page that you are live reloading would show the error that is happening, rather than you looking at the terminal window each time something breaks down.  Sadly, it's just too unreliable.
 
-* Footnotes
-[fn:1]This is quite fun, footnotes took a lot of effort to be added to vuepress.  But their display is a bit odd to say the least.
+Enough about VuePress.  I liked it a whole lot more than I liked either Jekyll, or VitePress.  However, it is not as nice to work with as Hugo.
+* An overview of my requirements
 
-[fn:2]I hadn't tested it yet.
+One of the few things that I have is a clear set of requirements for my blog.
+
+1. A pipeline for creating views of articles, /e.g./  like the top menu showing articles by date, or showing them by a certain tag.
+2. A way of rendering the following
+   1. Footnotes
+   2. Maths
+   3. Citations
+   4. Images
+   5. Diagrams
+   6. Animations
+   7. Videos
+3. A robust deployment pipeline.  Ideally something that can be automated with /e.g./  GitHub actions, but also done separately on /e.g./  GitLab, since I'm not too happy with GitHub.
+4. Support for call-outs
+5. (Optional) Support for sane markup formats
+6. (Optional) Support for extensions
+7. A professional-looking theme that will give the users the ability to read the articles and render them
+8. (Optional) Pagination
+9. Support for comments
+10. Support for RSS
+11. Support for rich interactive portfolio
+
+VuePress and VitePress hit some but not all of these points.  In fact, I'd say their coverage was potentially better than that of Hugo, with elbow grease, but less out of the box.
+
+Hugo at present covers many of the points out of the box: {1, 2.{1, 2, 3, 4}, 3, 5, 6, 7} and practically everything with a little elbow grease.
+
+One of extremely important nice-to-have's is support for Org.  I would have taken any format really, as long as it is at least slightly more advanced than /e.g./  Markdown.
+
+While it is true to say that I dislike Markdown, I can't exactly say that it is because of anything in particular.  Yes, it's annoying that it sort-of works everywhere, and is inconsistent everywhere; it is annoying that it has a link format that is not as precise as Org's, and that it is more complex to parse (see /e.g./  ~pandoc~ code).  Simply put, there's more work that is at present put into Org, and less into Markdown for the particular kind of work that I do.  More on that in a separate article.
+* Why not Hugo
+
+There are a few reasons.  Some of them turned out to be completely out-of-place worries, with some others being realised to a lesser degree than I originally feared.
+
+First and foremost, Hugo is front and centre a Go program.  My dislike of Go has moved from a principled disdain bordering on a boycott, to a tepid caution, to a recognition that it has a niche in which it is the best tool for the job; a niche that it shares with Rust and Python, but a niche nonetheless.  To understand the shift, I would need to go down a rabbit hole.  Simply put, the endorsements of Drew DeVault, the Cat-V harmful community, alongside its positioning as an anti-Rust and anti-C++ sealed the deal for me.  Incidentally, this is a teachable moment in how /not/ to promote a programming language or model.
+
+Another reason was the somewhat valid concern that its template syntax is a bit convoluted.  I can see the issue there, but I've never particularly had a problem with having verbose code.  After all, part of the reason I switched to Emacs is its uncanny ability to simplify such syntactic problems.
+
+A genuine concern that I have at the moment is the speed at which Hugo is changing.  Outdated documentation is not taken down.  If something could be done one way, it is now done another way, we end up in a bad situation.  This is part of the reason why Arch Wiki, and Gentoo Wiki persevere as the places to get information as opposed to /e.g./  Ask Ubuntu.  The problem first manifests itself when I tried to incorporate call-outs or admonitions into Hugo.  My best understanding so far is that I would need to go back to first-principles: templating, HTML and CSS.  One of the advantages that VuePress and VitePress have in this is that they had the Vue templating syntax.  Hugo's is far less well-documented, but it has the advantage of not having to deal with JavaScript for everything, just for some things.
+
+Another problem is that most of the themes are incomplete and some, depending on how old they are, work differently to how they are advertised.  The ~coder~ theme that I chose is not exactly easy to customise without getting into the weeds.  Fortunately, forking and modifying, part of the (not-so-few) things that Go got right by design, is the standard, and I can always use the Git-specific patterns, such as bisection and semantic commits to add features.  Maybe even contribute to the author and get a thanks.
+
+The Org support is predictably not the first priority.  I assumed it'd be worse than it is.  Most things are well-supported, footnotes work out of the box.  Furthemore, the ~#+BEGIN_<THING>~ blocks, something I fully expected to not work as well as it does under Emacs, works like a charm.  The mathematical support is also quite standard and supported both via KaTeX and MathJax; one usually does not have that choice in the JavaScript land.
+* What the future holds
+
+I'm going to update the current existing articles to make use of the features that are now available to me.  Some of the older perma-links are broken, and I got some requests from surprising places, meaning that this blog isn't me venting into the void; there are people actually reading it.
+
+In the near term I'd like to add support for nice blockquotes (admonitions, call-outs).
+
+Another high priority for me is to figure out if I can use BibTeX citations, because that would allow my usual style to shine through.  Getting it to work via Org would be an even better proposition, but I have to temper my expectations.
+
+I'd like to get some pagination, and maybe consider translating some of the more important articles.  I'm trilingual.
+
+After that, we'll see.  But the long-term intention is to take the discussions of Emacs' widget toolkit out of my personal domain and into a place where there is an organisation.  Quite literally.
+
+This is a bit of a spoiler for another article that I would write in the second half of this week, but I do want for people to understand the seriousness of the endeavour.  This idea has a considerable amount of appetite.  It can make a radical difference to how professional developer tooling is written.  This appetite can be utilised to everyone's benefit.  Tapping into it, and allowing a larger fraction of people to do this work in all earnestness without having to sacrifice their dignity is in my opinion the only way an undertaking such as this can be successful.
