@@ -2,7 +2,6 @@
 #+DATE: 2025-05-12
 #+TAGS: Markup Languages
 #+TOC: true
-#+DRAFT: true
 
 There has been a disruption a few days ago, as I upgraded the blog to Hugo as opposed to continuing using the permanently pre-alpha VuePress.  I just got fed up with it.
 
