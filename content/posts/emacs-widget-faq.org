@@ -1,0 +1,139 @@
+#+TITLE: An FAQ for the Emacs Widget Manifesto
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-05-16
+#+DRAFT: true
+
+This is a small article supplemental to the original, rather viral article.
+
+
+#+BEGIN_DISCLAIMER
+The original was intended for a small circle of friends sharing the same interests.  It was written and phrased in a way which was suitable for their specific tastes, not for the general public.  One flaw that I am acutely aware of is the verbosity of my writing.  I use flowery language.  I ramble.  I get sidetracked.  That's ADHD for you.  If you want to base your entire critique on that, you can make use of LLMs to summarise the article for you[fn:1].
+#+END_DISCLAIMER
+
+Here I will compile common rebuttals to the original article.
+
+* Rebuttals
+
+*** Text-based widgets are superior to GUI ones
+
+This is a historical accident.  GUI objects can render text; they are a superset of textual interfaces.  All off-the-shelf approaches other than a custom toolkit would enforce the sensibilities of other graphical applications, which have significantly less idiomatic diversity.  They are /dumbed down/.  That is not something I intend to do.
+
+*** Use Lucid
+
+It's a step in the direction of a custom toolkit.  Lucid is still very much an off-the-shelf toolkit, with limited interactions modes and verbs.
+
+*** Use a terminal
+
+This is yet another solution that I consider sub-optimal.  Some terminal emulators can supplement Emacs' deficiencies.  And Emacs works as a terminal application better than most programs[fn:2], however, this paves over the problem.
+
+*** The PGTK build is for systems without X
+
+This may be the original intention, but the signalling around PGTK seems to muddy the waters.  As a further counter-point I would state that the number of systems without X, such as mine is quite large.  Yet, thanks to XWayland, the non-usage of the PGTK build has not caused me any noticeable problems.  That is not to say that there aren't systems that deliberately sever ties with older dependencies, /e.g./ don't ship XWayland.  PGTK somewhat addresses some of those concerns.  It does not result in a vastly different experience on systems that choose not to make irrational packaging choices.
+
+*** People with Xwayland do have X
+
+This is somewhat of a pedantic point.  I understand that it is somewhat accurate to say that there are distributions on which no form of X-compatibility can be found.  It is true to say that the PGTK build offers some form of a usable Emacs on these systems.  There is a greater number of users of the PGTK build than those that run these systems.
+
+Therefore I believe it is accurate to say that while the original authors may have /only/ intended for it to provide compatibility to systems that choose not to ship X in any form, that does not detract from the fact that it offers a vastly inferior experience on platforms wherein X is available.  Furthermore, the intention behind going with "Pure GTK" was in fact that GTK offered a first-class support for many Wayland-specific protocols.
+
+I thus believe that the PGTK build offers an inferior solution to the compatibility on X-less systems.  The /correct/ approach would have been to add support for Wayland protocols inside the Emacs code-base.  This is what I intend to rectify.
+
+*** GTK is the de-facto standard
+
+This is somewhat true.  Because of KDE's hectic release schedule, a tendency to dislike C++[fn:3], lack of any other systems[fn:4] programming language with robust graphical tooling and vocal air of superiority that GTK developers exude, most graphical applications for Linux, either official or otherwise ship with GTK if any front-end.
+
+This is the main reason why I believe that many of the changes that took place between GTK 2 and 3 are a blatant disregard for the ecosystem as a whole.  The prevalence of GTK puts a burden of responsibility on the people maintaining and improving it.  While some technical aspects of GTK have indeed improved in the third version, the instability that this brought, the many changes, resulted in programs trying to hit a "moving target".  This in turn resulted in many projects' resources being squandered.
+
+As such, while going against GTK is a going against the grain, I firmly believe that it is a choice that more projects should make.  Furthermore, because then programs with old-fashioned design sensibilities will not be made unreadable by changes in the underlying library implementations.  Since the number of people contributing to Emacs' core graphical subroutines is minuscule compared to the community as a whole, I believe that the solution must inherently have few dependencies with unstable APIs.
+
+This makes SDL a great choice, and GTK as well Qt and Iced poor choices.
+
+*** This is a massive undertaking
+
+Massive undertakings such as these under the ægis of the Linux Foundation were my bread and butter for the three out of the past five years.  I have built two successful heterogeneous teams that have delivered on time.  I have manged projects on a shoestring budget but a lot of good will.  I won't say that I'm the best at this, I'd rather such an initiative were spearheaded by someone that worked specifically with Emacs for a much longer time, but I am far from an unproven youngster.
+
+The organisational aspects of this endeavour are in good hands[fn:5].  I have every intention of treating it seriously.
+
+
+*** You do not understand X
+This is a true statement.  There are many things I do not understand.  If argued in good faith, with minimal condescension, I'd be happy to incorporate your criticism.
+
+*** But X also does the same
+
+If it does, I'd be happy to extol its virtues.  Most likely it does not.  Happy to start from a piece of code that already does what I want, happy to hear recommendations.  You know how to reach me.
+
+
+*** Let's just focus on Lem
+
+I have used this project and I wish it well.  I do not find that what it offers over Emacs scratches my itch, and I don't think that what I want to do is on its roadmap.
+
+*** The EAF is a better solution
+
+This is a rebuttal that deserves its own article.
+
+* FAQ
+
+*** Q: Why use SDL
+
+It is a library that I have spent a lot of time with and is usually considered in cases where
+1. An existing retained-mode GUI toolkit such as GTK or Qt is not suitable
+2. The application must manage its own event loop.
+3. The application uses the C-ABI to link against system libraries.
+4. The application is not expected to be updated frequently, /e.g./ proprietary games.
+
+
+A good example of a successful application that uses SDL is the Common-Lisp-written Lem editor.
+
+There may be better choices, but I firmly believe that they need to offer a significant amount of advantages for them to be considered over SDL.
+
+*** Q: Why not fix GTK
+
+Because GTK is going to change, which will require a considerable amount of maintenance.  But also because GTK is rather opinionated, many of the features needed for Emacs, such as ~Alt~-based key-bindings, need to be implemented in ways that GTK does not expect.
+
+Further, because GTK does not offer the necessary tools to develop our own set of interaction verbs.  GTK's /modus operandi/ is simplicity, which is antithetical to Emacs' needs.
+
+*** Q: Would this let me have a transparent background
+
+The issue is not just graphical in nature.  But I believe that it may be possible to create an efficient implementation, expose it to the user, and keep the old behaviour as the default, so people with existing configurations do not have to deal with unreadable patterns.
+
+Same goes for *shader background*.
+
+Same goes for fancy text effects.
+
+Same goes for animations and fancy graphical UIs.
+
+*** Q: Is this going to be big
+
+Yes.  Unfortunately it will be.  The current best approach is to tightly co-ordinate with people that have maintained the graphical pipeline beforehand.  We need to provide the work as a collection of patches that can be upstreamed into Emacs.  I have my reservations about assigning copyright to the FSF, given its recent issues, but I believe that the /only/ way something like this can be useful is if it is available by default.
+
+*** Q: How will this look
+
+For the time being, I will share my findings and try to gauge interest.  So far the feedback had been universally positive, far exceeding my expectations.
+
+While I'd like to start working on it right now, there needs to be some discussions about the intention of certain architectural decisions.  The best way to fix potential breakages is to understand why things are done a certain way.  Specifically I want to spend time stepping through the main loop, to see if there can be fixes to the perceived slowness of certain operations.  Unfortunately, the issue is coupled to /how/ most Elisp is written.  The solution to that is likely a much more massive undertaking.
+
+*** Q: What is the ideal outcome
+
+I want Emacs to serve the same purpose that electron serves.  It is a programming platform.  Dired is as much a file manager as is KDE's Dolphin and in many ways far superior.  The text editing verbs serve as overall configuration variables.
+
+There is a method by which Emacs could become a host to many more programs and applications that one can use on a daily basis.  Elisp is not the best language that I have used, but it is far superior to JavaScript in some areas.  As such I believe that a free-software-only platform that takes the place of Chromium, and is capable of supporting a large number of different interaction paradigms is the long-term goal.
+
+I believe that WYSIWYG "office" style editing is well-within-reach, offering a far more expert-friendly UI.
+
+I also believe that Emacs' verbs and sensibilities can apply to graphic design and that a vector and/or raster editor based on Emacs[fn:6] is also quite feasible.
+
+The problem is the difficulty of implementing graphical applications in general, and GTK graphical applications specifically.  
+
+
+* Footnotes
+[fn:1]If you do not believe LLMs to be as good as your reading, but would still like to complain about the language, I would be happy to receive your email at ~/dev/null~.
+
+[fn:2]Unfortunately, this comes with many annoying consequences, for example the fact that inputs must be translated in a context that does not need them to be.  I can understand that ~C-i~ is the key-code sent by most terminal emulators, I do not, however, believe that it precludes independent bindings for ~C-i~ and ~TAB~.
+
+[fn:3]But like C that is just as ugly as the C++ they are trying to get away from.
+
+[fn:4]Otherwise, Java is a close contender, as is JavaScript.
+
+[fn:5]Trust me, bro!
+
+[fn:6]Incidentally, Inkscape shares many of its problems with Emacs.  It too is a program fighting against GTK, suffering for it and having problems with UI sluggishness as a consequence of being single-threaded.
