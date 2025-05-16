@@ -1,7 +1,10 @@
 #+TITLE: An FAQ for the Emacs Widget Manifesto
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-05-16
-#+DRAFT: true
+#+TOC: true
+#+TAGS: Emacs
+#+TAGS: Tooling
+#+TAGS: Work
 
 This is a small article supplemental to the original, rather viral article.
 
@@ -122,18 +125,18 @@ I believe that WYSIWYG "office" style editing is well-within-reach, offering a f
 
 I also believe that Emacs' verbs and sensibilities can apply to graphic design and that a vector and/or raster editor based on Emacs[fn:6] is also quite feasible.
 
-The problem is the difficulty of implementing graphical applications in general, and GTK graphical applications specifically.  
+The problem is the difficulty of implementing graphical applications in general, and GTK graphical applications specifically.
 
 
 * Footnotes
-[fn:1]If you do not believe LLMs to be as good as your reading, but would still like to complain about the language, I would be happy to receive your email at ~/dev/null~.
+[fn:1] If you do not believe LLMs to be as good as your reading, but would still like to complain about the language, I would be happy to receive your email at ~/dev/null~.
 
-[fn:2]Unfortunately, this comes with many annoying consequences, for example the fact that inputs must be translated in a context that does not need them to be.  I can understand that ~C-i~ is the key-code sent by most terminal emulators, I do not, however, believe that it precludes independent bindings for ~C-i~ and ~TAB~.
+[fn:2] Unfortunately, this comes with many annoying consequences, for example the fact that inputs must be translated in a context that does not need them to be.  I can understand that ~C-i~ is the key-code sent by most terminal emulators, I do not, however, believe that it precludes independent bindings for ~C-i~ and ~TAB~.
 
-[fn:3]But like C that is just as ugly as the C++ they are trying to get away from.
+[fn:3] But like C that is just as ugly as the C++ they are trying to get away from.
 
-[fn:4]Otherwise, Java is a close contender, as is JavaScript.
+[fn:4] Otherwise, Java is a close contender, as is JavaScript.
 
-[fn:5]Trust me, bro!
+[fn:5] Trust me, bro!
 
-[fn:6]Incidentally, Inkscape shares many of its problems with Emacs.  It too is a program fighting against GTK, suffering for it and having problems with UI sluggishness as a consequence of being single-threaded.
+[fn:6] Incidentally, Inkscape shares many of its problems with Emacs.  It too is a program fighting against GTK, suffering for it and having problems with UI sluggishness as a consequence of being single-threaded.
