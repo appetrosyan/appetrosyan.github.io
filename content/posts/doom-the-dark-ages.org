@@ -1,0 +1,157 @@
+#+TITLE: Why I won't be buying the Dark Ages
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-05-23
+
+I do not usually dedicate a lot of time to games.  I've recently got wind of there being a new Doom, and ordinarily I'd be the first to jump at the opportunity.  Yet, I neither have the urge to buy, nor to watch someone else's playtrhough (to at least know how the lore has been expanded).  Given that I've spent a considerable amount of time with Id games, especially the latter Doom games, (200+ hours in each, Ultra Nightmare playthroughs and trophies in both), I *should* be their target audience.
+
+There are a lot of theories floating around, so I should probably give an anecdotal account to clarify this.
+
+Please be aware, that this is not to say that everyone who has decided not to buy this game does it for the same reasons as I do.  But I believe that there is a significant overlap.
+* The Mick Gordon situation
+
+I worked as a technical director, composer/producer and programmer for a long-enough time to have a clear understanding of what /actually/ went down.
+
+Realistically, everyone had a portion of the fault, but the way these differences were resolved is (at least in my opinion) indicative of on-going issues with the Id Software senior management.  Specifically, while I fully expect Hugo Martin to be both a creative leader in his area of expertise, and had little resources to prevent this from happening, this could have been handled much more gracefully.  I do not believe that he wanted to part ways with one of the main reasons why Doom (2016) was a success.  I do understand that sometimes you are not allowed to be perfectly frank with the people that you manage, and it can result in things festering quietly.
+
+While I'd be happy to give him the benefit of the doubt, and say that "well, maybe there are other things that went down that we cannot talk about", you cannot have that right, and throw the people you worked with under the bus.  His reddit post alone can do an incredible amount of damage to Mick's credibility as an artist.  The fact that this post was not taken down and that there have been half-hearted attempts at refuting Mick's latest Medium post...  tells me that there's not much room for doubt.  He may not be wholly culpable, but his public behaviour disqualifies him from being an efficient manager.
+
+That is to say, that management is itself quite a complex task.  It's not as easy as asking the person whether they have done something.  It requires you to be able to genuinely appreciate the work of the people that are in your charge, but also to hold them up to good standards.  You empower and encourage them to do their best work.  Sounds like a cliche.  I wish it were.  Realistically, you have people who meddle too much, too little, that want things done a certain way out of pure ego, and lately...  the so-called getting-things-done managers.  Think of the abusive conductor played by J. K. Simmons in Whiplash.  Not a great human being to be around, but they get results.  They produce the best out of the people that they work with, reducing them to their most basic function, and squeezing every last ounce of potential out of them.  I worked with someone like this, and found that while their department, indeed, produced work that was always /on time/, and never under-developed, this only lasted for a short burst.
+
+Inevitably, the getting-things-done managers end up alienating their own.  Their work does not degrade slowly.  Their teams are lynch-pinnned on few talented individuals, and those cannot thrive in hostile environments for long.  Very quickly, a project or two later, their teams go from "the best of the best" to a collection of three catastrophic problems.
+1. The benign, talented last-minute-replacement that can't figure out what they need to do and how.
+2. The maliciously compliant fed up old team members, that nominally produce good work, but leave nasty surprises.
+3. The honest-to-god noobs that would ordinarily not even be considered, if the team population didn't degrade this far.
+
+Mick Gordon's departure and the fact that neither Andrew Hulshult nor David Levy (both extremely talented individuals), did not return to work on the Dark Ages, without the soundtrack pivoting to a different style, should tell you everything you need to know.  Music is only one prominent example.
+
+So does that make Hugo Martin a terrible person?  The implied answer is usually no.  However, the problem runs deeper than that.  Anyone who has made even one of the series of blunders that lead to the situation boiling over would have been fired or demoted.  Realistically, the inciting issue was the fact that the OST was promised, without there being enough of an understanding on the scope of work, the number of tracks and an agreement between the parties.  Who exactly was responsible for the contract being in place?  Who exactly thought that assigning Mr Mossholder the task of writing and mixing tracks was a good idea?[fn:5]  In any normal company heads would roll.  Furthermore, if there is, as Bethesda claims, evidence to refute Mr Gordon's complaints, offering six figures for a permanent gag, and /not/ releasing the evidence raises more suspicion.
+
+Whoever happened to do the PR for Bethesda, good job!  I can name a number of people that have been turned off future Doom titles thanks to your competence.  And if I had my suspicions from some off-hand comments that Hugo is a kind of person whose hand I would not shake, you have eliminated all doubt.
+
+So this mishandling exposed to me, for lack of a better term, the trajectory and the current position of the studio.  It is about to crash hard.  The Dark Ages is only the beginning.
+
+And consider the impact of having a good game director.  Miyazaki distilled the best ideas from Dark Souls 2 into Elden Ring, with a shocking number of overlaps between those two specific games and no other souls-borne title.  Consider the polish of the original Dead Space, the diegetic HUD, the tentacle, the fact that the game is one of very few that got delivered on time.  Think back to the thoughtful feedback-driven design process of Valve.  Those games were not shaped by /just/ the visions of these people.  It was their vision filtered though the collective of talented individuals that had been enabled to do their best work, not their egos that created those experiences.
+
+So the game is poor quality compared to what it could be, due to inefficient management, it's still good, right?
+
+* Microsoft Buyout
+
+This is probably a more important aspect of this decision.
+** Before Bethesda
+
+When Id Software were relatively independent, /i.e./  not part of any publisher, they did many good things for their playerbase.  For one, they had what I consider best-in-class mod support.  This took a considerable amount of work.  They had a policy of releasing the source code for their games more less five years after the code base was solidified.  This meant that there were a considerable number of games that had their longevity extended well-past the expected expiry date.  Brutal Doom, Project Brutality, Open Jedi Knight, RBDoom 3, Darkplaces and many other projects would be impossible without this.
+
+Fast forward to the Bethesda buyout.  The company involved in many shady dealings, starting with paid mods[fn:1], horse armour, the multitude of remasters sold as brand new games, a history of mistreating some of their subsidiary studios (consider the case of Fallout: New Vegas), and financial difficulties incurred by Rage.  This led to a sharp turn in the direction of the company.  John Carmack was no longer part of the company.  He moved on to do things I'd consider much more valuable, but left nonetheless.  The tradition of releasing the source code for the games stopped with Rage, with Doom 3: BFG Edition being to my memory the last game with a released source code.
+
+While not strictly related, native Linux releases which were also a bit of a tradition that spread to their sister company, Raven Software, were also no longer a thing.  There was an internal build of Doom (2016) and not much else.  While one could reasonably make the argument that Id Software is /still/ spearheading the technologies such as Vulkan, and a few others, to my humble understanding, this is nowhere near the rate it /could have been/.
+** The Bethesda period
+*** Wolfenstein
+
+Now while Bethesda is not particularly known for being good for...  anyone really, the partnership has been fruitful in a perverse kind of way.  Firstly, we got the Machine Games Wolfenstein duology.  It was something that had crude humour from the start, but also a considerable seriousness.  It dealt with a complex subject matter.  It did so more gracefully than I personally expected, and was a nice mix of old and new.
+
+This game set out the tone and the expectations for future games by Bethesda-owned studios; a mix of old-school, some new things, and a strong emotional narrative.  Incidentally, this is also the place where Michael John Gordon, first worked on a soundtrack for Bethesda-owned Machine Games.
+
+The Old Blood being released as a standalone expansion pack, more similar to the way things were done back in the day, plus having a very appropriately themed soundtrack showcasing Mick Gordon's versatility was an incredibly positive development.  It set expectations high.
+
+*** Psychoshock (Prey)
+
+Then there was Prey.  Simply put, there was a Prey 2 planned for release.  It was to be developed by Human Head Studios, which was effectively ran out of business by Bethesda to obtain intellectual property rights over Prey.  The game that was developed, is more aptly named Psychoshock.
+
+I have mixed feelings.  On its own, it is a good game, with thoughtful design.  I should write about it at some point.
+
+But the problem is, that it has nothing other than the name (that is trademarked) in common with the Prey that came out in 2004.  And from a technical standpoint, I'd much prefer they stayed separate.
+
+Prey 2 was almost complete.  It never came to fruition.  The people that worked on it, the people that had from experience of the first Prey quite a creative mind and an extensive technical skill were dispersed.  All for obtaining the rights over a relatively niche trademark, and building a game that bore no resemblance and made use of none of the setting.
+
+Can we honestly say that Rage 2 is dissimilar?
+*** Quake
+
+As a final point, there's Quake Champions.  It is a game that I desperately tried to like, and ended up hating the guts of.  To be perfectly honest, I was never much of a Quake 3 player.  It came out at a time when I /should/ have played with the other kids and had fun.  I did not have internet, I could not play it, and even to this day, I view multiplayer games as something to stay away from.
+
+This is no more a betrayal of the Quake name, than any of the previous games in the series: Quake 2 betraying Quake 1's art style and story, Quake 3, betraying the focus of both previous games on single-player experience.  Quake 4, is perhaps the odd one out, remaining faithful to the previous games.  And the less said about the /original concept/[fn:2] behind Quake 1, the better.
+
+But Quake Champions is a game that I distinctly dislike.  Its blend of pandering bordering on staleness, its gameplay loop that puts people like myself that have never played these games at a distinct disadvantage, and quite atrocious monetisation practices are enough to turn me off.
+
+Specifically, this game used to cost actual money. It was unfinished, but one was expected to pay for it.  Then the model was altered to work with free-to-play, where, of course, one was strongly encouraged to buy champions.  Far be it a cosmetic choice, each champion had unique mechanics.  At some point later, a battle pass was introduced.  You may wonder, why if such schemes are standard these days, does it stand out to me?  I do not believe that the frequency of a morally dubious practice is a justification.  If anything, it is a condemnation, a reason for there to be a law against it.
+
+What is funny, is that for this to work, all one needed to do was create an arena shooter like /e.g./  Quake Live, just slapping another coat of paint on it.  One could in theory make a good case for creating a new single-player and multi-player game in the vein of Doom (2016) and monetising that.  At the very least, the game would have run at 200 FPS and had immaculate frame time consistency.  What we got instead was a stuttery mess from Saber[fn:3] Interactive, that to my knowledge to this day is considered "early access".
+
+
+*** Doom Eternal
+
+Doom Eternal is the game that is in my opinion a turning point for Id Software.  It had a distinct smell to it.
+
+Firstly, there's the phrasing of some of the interactions.  One could say that the Doom Slayer was upgrading their weapon mods with combat insight, or even upgrade points, but the word "Purchase" had to be used.  One does not unlock upgrades, they are being "Purchased".  It may seem pedantry to get attached to innocuous word choice, but the intent behind this particular use of this word should be clear to everyone.  They have the intention of introducing micro-transactions.
+
+There is also the fact that Bethesda insisted on integrating Bethesda.net.  I opened the game after a two-year hiatus, and was greeted with a "Here are the new terms, either accept them or get lost".  The option "how about I just play the game that I paid full price for with the old terms" was not even considered.  I have to fully bend over.  And given the buoyout from Microsoft, I can kinda see how this can be a problem.  I can be opted into forced arbitration.  I can either eat the cost of having /thought/ that I would buy a game and own it, accept a clause that gives Bethesda, and transitively Microsoft,  power that I do not want them to have, or attempt to refund.  There are no alternatives.
+
+It's a long way down from open-sourcing the games after five years to having pages upon pages of EULAs with R.A.P.E[fn:4].  And while on a technical side, there can be debates on which game was better, it should be undeniable that the consumer-friendliness of Id Software games has degraded, with a strong correlation to buyouts.
+
+*** Nosedive studios
+
+The last straw for me, and the reason why I had not bought Skyrim (not even once), nor Oblivion Remastered, nor Fallout 3, was because of the stream of "remasters" from Nightdive studios.
+
+Is it a bad thing that some games are given a second life through the process of taking their original source code and porting it to a newer engine?  Yes.  Because often this happens at the cost of true community-driven support.  More often than not, the amount of work is minuscule, and justifies a full price.
+
+To be fair, the remasters of Quake 1 and Quake 2, standalone are not bad.  They are bad in comparison to some of the community forks, including a lesser known, small-team endeavour known as Quake 2 RTX.
+
+I find it nefarious, that games with Open Source code are made less accessible than proprietary bare-minimum modifications.  Darkplaces does more than Quake 1 remastered.  Quake 2 RTX does more than Quake 2 remastered.  The many re-releases of Doom 1 & 2 are shoddy craftsmanship compared to their GPL counterparts.
+
+*** Summary
+
+To conclude this section, the fact that Bethesda alongside all of its subsidiaries is now part of Microsoft, a nefarious beast that is desperately trying to maintain a stranglehold over software, and even before then had a track record of introducing what I consider wholly unacceptable practices leaves me no choice.
+
+I do not wish for more money to flow into the hands of people that use the taxidermy corpses of things I used to enjoy to wrangle and worsen terms for everyone.
+
+* Creativity stifled
+
+One could easily make the argument that Doom the Dark Ages is an /incredibly/ creative game.  It went from a fast-paced shooting-focused all-offence style of gameplay to a stand-and-fight paradigm, created a lot of depth.  And it is certainly true.  It is also true that the game is in a setting that would easily allow a talented game director to create a new IP.  If one needed to look for a way to use the catalogue of IP already available to Bethesda, a Hexen or Heretic remake would have done us just as much good.
+
+If anything, connecting the two universes and having some overlap between these characters would have allowed more creative freedom and an opportunity to tell different stories with a different protagonist.
+
+And this is where I should again come back to the previous two games.  There's an interesting discrepancy between the creative constraints under which music was made, and the end product.
+
+For one, Mick reportedly had issues with incorporating guitars into the soundtrack, citing the fact that they wanted to avoid comparisons to heavy metal a genre, that in Mick's own words had become a joke.  And indeed, the soundtrack is much more industrial.  The problem as I see it, is that this constraint was largely based on misconceptions.
+- Firstly, nobody expected high art from Doom, most were happy it wasn't Call of Dooty.
+- Secondly, heavy metal had been part of the cycle of associations for prospective buyers.  Doom 3 famously had work done by Chris Vrenna, a standalone theme that I enjoy very much.
+- Thirdly, the fact that heavy metal is "no longer cool" pales in comparison with the "quality" of writing.  The health drops are disappearing blue blobs, for crying out loud!
+
+
+The constraints, as far as I can tell were loosened for the next game.  It largely lead to both streamlining of the more realistic elements in favour of gameplay.  This is why we had more cartoon-ey and colourful drops, a doubling down on the nonsensical elements, all for a fun combat loop.
+
+The cracks started to show at this level already.  It is true that one does not need lore justification for goofy mechanics, such as a shoulder-mounted flamethrower providing you with armour.  To be quite honest, it makes about as much sense as a hell-grenade that restores it.  But the problem is that the latter had been incorporated in a sensible way.
+
+A clever writer would have found that there is this miracle form of energy known as Argent.  What they would have done is they'd said: "Well, the /armour/ is actually just an active shield that uses a type of argent", and therefore maybe would have come up with an argent projector.  Maybe he would have looped it back to the argent filters, and connected it to hell.  This is not far fetched given the "lore" that we are already given, it just relies on what's known as a Miracle exception.  Assuming you want your story to be grounded.
+
+The reason I specifically take issue with the flame belch, is because of the fact that the game also has an ice bomb.  The effects of those two are not mutually exclusive and there are no interesting interactions, implied by the positions of these things on the typical elemental scale.  There is an /implied connection/ between these mechanics.
+
+The number of similar missed opportunities for grounded lore is large.  The fact that it stood out (at least to me) is indicator that maybe this side needed a bit more work.  I would argue that for a game like 2016 and Eternal the codex was completely superfluous.  I do not need to know how Samuel Hayden ended up in a robot body.  I do not need to hear Olivia Pierce's sob story.  Hugo Martin and his superior, Marty Stratton are both well-aware of the fact that nobody reads the codices of games.  Unlike the Witcher 2, or Cyberpunk, where the solution was to put good stories and interesting ideas into the codices, the best result was the fact that the obviously evil cult was obviously evil and kinda like scientology.  Compare this to the graceful way in which Ultrakill explains the style meter and score.  The fact that a few independent developers managed a better job than a team of professional writers calls into question what was going on in the background.
+
+The problem isn't the lack of a lore explanation or a neat way of tying things together.  The problem is the quality of said lore, the quality of writing, and having reading, an activity that is quite slow even in speed readers in a fast paced game.
+
+To explain this point better, let me give you my understanding of Carmack's famous quote.  The main attraction in a game is the gameplay.  An extremely minimal plot allows one to have incredible flexibility.  Pacing and other considerations for traditional linear media are simply not there, and thus the most effective means of conveying the plot is being pertinent to the experience of the player.  The existence of Half Life doesn't prove Carmack wrong, Half Life tells the story in the environment, in the main plot and in the way the player's attention is subtly directed.
+
+The new games have a scarcity of plot where it counts and an overabundance of it where it wouldn't matter.  In 2016, the problem is at its most egregious.  A simple act of opening shutters forces you into a cutscene (that  should have been a simple interaction).  It stops your progress dead in its tracks to say "Hello, I am Vega, a sentient intelligence assigned to Mars.  After running diagnostics on the praetor suit I ... " and drones on for a healthy amount of time, where I, as a player, would rather be ripping and tearing.  I understand that one needed a tutorial to know that the challenges that appear in their UI will award weapon upgrade points (patented Id Software creativity here).  Dark Souls is famous for cutting these sections out.  While this does make it somewhat obtuse, the pacing is much improved.  The frustration of having to backtrack to a specific spot from the nearest save location is not as great despite having a greater consequence for the player, precisely because of the lack of exposition dumps.  Less is more, because the player is engaged.  They could ask questions.  They could build theories.  They get to use their imagination.
+
+And this is not to say that this couldn't have been done more gracefully.  Due to budgetary constraints, most of the lore of /e.g./  Ultrakill has to exist within the codex.  Most of it has to be read during what is an even faster paced game.  Same with the first two serious Sams.
+
+The plot of Doom Eternal is also quite a fascinating beast.  It is in many ways doubling down on all the things that didn't exactly work in 2016, and yet somehow in the background enough not to annoy the player.  With that said, the constraints put on the Music department during 2016 seem laughable given the tonal whiplash of what Eternal has accomplished.
+
+Noah Caldwell Gervais, a game critic whom I hold in high regard [[https://youtu.be/EpEbbVfp2U4?t=2572][put this best]].
+
+In Eternal this tonal state is something that I can get over.  I do not like it, but thankfully I am not directly involved in it.  The Dark Ages doubled down on misunderstanding the reason why 2016's minimal bare bones plot worked: the joke was that the Doom Slayer, just as much as the Doom Player did not take the plot seriously and were very much interested in the gameplay.  The fact that the cutscenes can be skipped is evidence to some recognition of this fact in Eternal, but the continuation of that and a more prominent role it plays in the Dark Ages simply tell me that it's going to get worse.
+
+In other words, The Dark Ages is the Season 6 of Game Of Thrones, it is The Last Jedi.  It is a point of irreversible downturn in quality.  As such, I'd like to have the memory of when things were good.  
+* Footnotes
+
+
+
+[fn:1] Technically, they are not a bad idea inherently.  The main problem was that it took a medium of artistic expression and teaching and turned it into a commodity.
+
+[fn:2] To the uninitiated, Quake 1 was supposed to be set fully in the fantasy realms and being a role playing experience.  Id Software could pull it off on the original Doom 2 engine.  It could also do what it did.  Given how many games can trace their origin to Quake 1, I'd say they made the right compromise.
+
+[fn:3] A reason why I hate regionally-mis-spelled objects in names, is because I have to make exceptions for words that would otherwise be misspellings.
+
+[fn:4] Stands for Retroactively Amended Purchase Experience.  It is the practice of "updating" the terms of usage for Software that had been paid for in full.
+
+[fn:5] This is not meant as a personal attack, but I have found that the Id Software games that do not have Mr Mossholder's name attached to them sound considerably better.  I also believe that altering one's artistic intent is a dubious proposition, especially without informing them in any way.  In this case I would say that these are dubious behaviours, but don't mean to say that Mr Mossholder himself is a bad person.  We have a difference in taste.
