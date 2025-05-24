@@ -1,6 +1,9 @@
 #+TITLE: Why I won't be buying the Dark Ages
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-05-23
+#+TAGS: Gaming
+#+TAGS: Rants
+#+TOC: true
 
 I do not usually dedicate a lot of time to games.  I've recently got wind of there being a new Doom, and ordinarily I'd be the first to jump at the opportunity.  Yet, I neither have the urge to buy, nor to watch someone else's playtrhough (to at least know how the lore has been expanded).  Given that I've spent a considerable amount of time with Id games, especially the latter Doom games, (200+ hours in each, Ultra Nightmare playthroughs and trophies in both), I *should* be their target audience.
 
