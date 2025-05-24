@@ -1,0 +1,72 @@
+#+TITLE: A look into running local LLMs
+#+DATE: 2025-05-25
+#+TAGS: LLMs
+#+TAGS: Hardware
+#+TAGS: Benchmark
+#+TOC: true
+
+I've dealt with an ego-maniac working on LLMs when I started my industry career in 2020.  Yes, I'm relatively new in the programming scene, at least with regards to having commercial experience.  This left a sour taste in my mouth, leading to me being very cautious of using LLMs in general, and using the mainstream LLMs, such as ChatGPT, Claude and to some extent Deepseek with extreme caution.
+
+I do however, find that if the process of using these results in an improvement in one's life, they are a tool that needs exploring, and improving.  Realistically, I found a set up that is good, at least in my book: Emacs with ~ellama~ and a local collection of LLMs.
+
+Today, in an attempt to give a good understanding of where certain hardware is in terms of running LLMs locally, I ran a few benchmarks for a friend, who is a member of the so-called [[https://t.me/+W7eotJBm4fE4NzM0][Monadic sheep.]]  Here are some of the results.
+* Method
+
+I gave each LLM a standard prompt that is meant to protect from short-circuiting and specialised sub-networks.  Simply put I asked it to write something obscure-enough so that we can gauge if this performance is representative of the reality.  It is the prompt
+
+Write me an Elisp function that prints the best match out of a list by using Levenshtein distances
+
+Simply put, the conclusion is that the vibe part of vibe-coding is more important than either the model size, or the model's hype.  Simply put, you need to find a model that works for you, and no better way to do this other than exploring.
+
+I have bench-marked the models that I've been testing locally.  Their choice is completely random.  I am running this on the following system
+
+|-------------+------------------------|
+| Hardware    | Spec                   |
+|-------------+------------------------|
+| CPU         | AMD Ryzen 9950x        |
+| Motherboard | ASUS X670E Pro Wifi    |
+| RAM         | 4x48 GiB               |
+| GPU         | Sapphire Radeon 7900xt |
+| Kernel      | 6.14 Zen               |
+|-------------+------------------------|
+
+
+The hardware specifications are a bit esoteric to say the least.  It is a fine machine, but somewhat problematic to work with.  The motherboard is a particularly capricious piece of +shit+ hardware, that has some +downright moronic+ questionable design decision.  The way that it was shipped, the way that it worked, and a few minor annoyances caused me quite a bit of headache in October, when I built it with the express purpose of running Solana benchmarks and tests.  Hence the 192GiB of RAM.
+
+The GPU is a 20GiB Radeon card that can run local LLMs due to ~ollama~'s support of AMD HIP.  Having worked with it myself, I find that the amount and quality of work on display is extraordinary, leading to me taking my hat off to yet another Go program that is written well.
+
+This means that some models will be run on the GPU; hence the extreme speed.  Some models will run on the CPU and what I found quite surprising is that the CPU-bound models didn't end up being slower for bigger models.
+* Results
+
+So without further ado, here are the results.  Firstly none of the tested models produced code that fulfilled the request.  Most models hallucinated functions such as ~make-array~ that simply do not exist.  The benchmark was run once only.  In another blog post I will compare how long does it take to torture each model to produce the right output.
+
+|-----------------------+-----------+----------+-----------+--------+---------|
+| model                 | dseekCdr2 | codstral | dseekCdr2 |   qwen | dseekR1 |
+|-----------------------+-----------+----------+-----------+--------+---------|
+| size  (b)             |        16 |       22 |       236 |    110 |      70 |
+| total duration        |      8.0s |    11.6s |     3m45s | 10m16s |  14m38s |
+| eval duration         |      7.8s |    11.5s |     3m43s | 10m13s |  14m36s |
+| eval rate (token/sec) |    111.71 |    38.12 |      3.05 |   0.91 |    1.62 |
+| eval token count      |       879 |      441 |       682 |    560 |    1418 |
+| prompt eval count     |        31 |       28 |        30 |     30 |      25 |
+| prompt eval duration  |     177ms |     57ms |      2.3s |   3.1s |    1.5s |
+| prompt eval rate      |    174.86 |   487.14 |     12.66 |   9.44 |   16.22 |
+| load duration         |     6.8ms |    2.6ms |    15.9ms |  9.1ms |   8.2ms |
+|-----------------------+-----------+----------+-----------+--------+---------|
+* Discussion
+Another fascinating find is that the larger ~deepseek-coder-v2~ outperformed ~qwen:110b~.  I stupidly assumed that the model size was going to be far more important than /e.g./  the model type, but was proven wrong, and am happy to report that larger models /do/ sometimes perform well-enough for daily use.
+
+Another thing to keep in mind is that the tokens per second number is not representative of final performance.  I prefer my models to be terse, but on-point.  Reality is that they spout verbal diaorrhea, and problematic code all the time.  The performance per-token is limited, but it is especially painful if the model produces more tokens.  For example, note that ~deepseek-r1:70b~ produced an extreme amount of tokens, leading to an eval duration well in excess of the others.
+
+The important numbers that you should be looking at are how long does it take end-to-end, which is how the table is arranged, but also the number of times you need to ask the model to rewrite the code.  Here the prompt engineering skill comes into play, and your understanding of a particular model's tendencies.  If you can come up with the answer from a big model with one prompt, it is certainly faster than asking ~deepseek-coder-v2:16b~ ten times.  Remember, it takes you time to read, evaluate and prompt engineer.  For best results, it needs to be a model that you understand well-enough, and is fast-enough for your purposes.
+* Conclusions
+
+So how should you buy your hardware?  Ideally, you buy something that's good-enough to be versatile, but not over-specified.  I'd say that you need specs slightly higher than the best model that you can run right now.
+
+There's a big question whether you want to run your model on CPU or GPU.  GPUs with the requisite amount of VRAM are extremely expensive, likely to be worth more than the rest of the computer.  They are highly sought after, and extremely scarce.  It is true that Nvidia is ramping up production, but they are unlikely to shoot their own (extremely high) margins in the foot.  I find that ~codestral~ is an all-round good model.  It fits into my GPU's VRAM, runs fast enough to be able to help me with some refactoring and menial tasks in code, while also being somewhat useful as a prompt.  It is the ideal model /for me/.
+
+The CPU-based models have their own problems.  Chief problem is, of course, that they are slow, which, for example, precludes them from being useful in running complex programming tasks.  One would hope that the larger models result in better accuracy, but there is a point of diminishing returns.  I cannot tell if any given code were written by a more complex or a more simple model.  In principle this means that I can iterate faster on a simpler, cheaper to operate model, and also get better at prompt engineering the smaller model.
+
+In all fairness, the quality of the results varies with human input even more so than it used to in the olden days.  Swearing profusely when asking the question seems to help some models, and hurt others.  My impression is that one needs to get to know their models better, and knowing the subject evaluating the problems with the code well and having good taste is what becomes more important these days.  As such, one must pick their tools carefully, and know what models they'd run before buying hardware specialised for it.
+
+I have considered indulging myself a bit; I have not had an Nvidia GPU since GTX 560, almost 15 years ago.  In a perfect world, the Blackwell generation would have come with a significant bump in performance as well as VRAM.  Realistically, compared to what I have today, they would at best come with a downgrade in terms of driver experience (AMD has done a great deal for Linux), a downgrade in terms of available VRAM, which realistically determines which models end up being dog slow, and a marginal boost in performance.  If this did not come with a hefty price, I suppose it can be justifiable.
