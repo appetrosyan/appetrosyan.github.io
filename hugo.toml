@@ -34,6 +34,16 @@ style = "github-dark"
   # customSCSS = ["scss/custom.scss"]
   # customJS = ["js/custom.js"]
 
+[params.telegram]
+  siteID = "M49p5ksG"
+  limit = ""
+  height = ""
+  color = ""
+  dislikes = ""
+  outlined = ""
+  colorful = ""
+  dark = ""
+
 [taxonomies]
   category = "categories"
   series = "series"
