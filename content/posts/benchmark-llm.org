@@ -1,4 +1,4 @@
-#+TITLE: A look into running local LLMs
+#+TITLE: Benchmarking local LLMs
 #+DATE: 2025-05-25
 #+TAGS: LLMs
 #+TAGS: Hardware
