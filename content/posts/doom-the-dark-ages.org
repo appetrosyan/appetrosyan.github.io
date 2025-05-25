@@ -144,7 +144,28 @@ Noah Caldwell Gervais, a game critic whom I hold in high regard [[https://youtu.
 
 In Eternal this tonal state is something that I can get over.  I do not like it, but thankfully I am not directly involved in it.  The Dark Ages doubled down on misunderstanding the reason why 2016's minimal bare bones plot worked: the joke was that the Doom Slayer, just as much as the Doom Player did not take the plot seriously and were very much interested in the gameplay.  The fact that the cutscenes can be skipped is evidence to some recognition of this fact in Eternal, but the continuation of that and a more prominent role it plays in the Dark Ages simply tell me that it's going to get worse.
 
-In other words, The Dark Ages is the Season 6 of Game Of Thrones, it is The Last Jedi.  It is a point of irreversible downturn in quality.  As such, I'd like to have the memory of when things were good.  
+In other words, The Dark Ages is the Season 6 of Game Of Thrones, it is The Last Jedi.  It is a point of irreversible downturn in quality.  As such, I'd like to have the memory of when things were good.
+
+* Appendix: the transparent politics of Doom Eternal
+
+I live in a country with a considerable amount of bi-directional immigration.  The sheer fact that I came back here after studying in the UK for five years is considered a blunder, even though technically speaking it made economic sense.
+
+As of late I see a worrying trend among the online communities; instead of being welcoming of the idea of immigration, both to and fro your countries, one is being politically riled up against immigration and immigrants.  The former I can understand.  The latter, I find rather funny but also worrying.
+
+While I have not been in a position of an immigrant, I've had several key factors in common with them, especially as regards lacking support structures and being far away from friends and family.  To put it mildly, the comparison between demons and immigrants to me seemed benign when the game came out.  After all, the immigrants that I knew were people who had to go through a complicated vetting process, and were always at the risk of being deported.  That latter risk is important to note, because in all fairness, coming from a poorer country to a richer one requires a considerable capital investment.  It's not worth the risk for most legal immigrants to even attempt to do anything.
+
+Over the years, however, I've seen a consistent attempt at using "anti-woke" to justify the refusal to engage with problems that (I was hoping) we as a civilisation have surpassed.  We went from institutional racism being the villain, and overall individual racism being low, to individual racism surprisingly being the norm again.
+
+As such, the off-hand comments about pathological liar Steven Seagal, and the overall structure of the screenplay for Doom Eternal, seems to suggest that the writers behind it and potentially the next instalment do not really have a problem with politicising games.  As long as the politics in it agrees with their own.
+
+Games are not apolitical.  There are much more egregious examples of politically dubious messaging in /e.g./  Soldier of Fortune.  There are much more harmful stereotypes that are have been propagated in the past, with the famous scene from Enemy at the Gates, which was amplified by its recreation in Call Of Duty 1[fn:6], and now immortalised in the minds of Millenials.  The reason, however, why I don't view these as /the problem/ is that the politics of someone are extremely difficult to influence.
+
+Gay propaganda doesn't work.  We know this because there have been countless attempts at "straightening the queer" and straight propaganda doesn't work either.  There is a slight preference towards teaching people how to be more kind, as opposed to more selfish, but games about violence regardless of messaging are in a somewhat difficult position to teach you about morals.
+
+What I find baffling is that Psychoshock (Prey) /very clearly/ is an example of graceful ways of messaging one's political affiliation.  They don't just talk about mercy, they encourage you to be merciful extremely effectively.  Realistically Doom is about killing demons, and the off-hand comments from the game's director, are extremely unlikely to change one's opinion on the problems related to immigration of individuals that refuse to adapt to the destination country's way of life.  Simply put, I see demons, not proxies for Indian immigrants in Yerevan, or myself in London.
+
+Incidentally, if you did encounter me in the UK, I would very much doubt you'd be able to tell that I was not a local without looking at my passport.  As such, while I could choose to get offended at the joke, all I'd rather do is laugh and move on.  A game is a game is a game.  
+
 * Footnotes
 
 
@@ -158,3 +179,14 @@ In other words, The Dark Ages is the Season 6 of Game Of Thrones, it is The Last
 [fn:4] Stands for Retroactively Amended Purchase Experience.  It is the practice of "updating" the terms of usage for Software that had been paid for in full.
 
 [fn:5] This is not meant as a personal attack, but I have found that the Id Software games that do not have Mr Mossholder's name attached to them sound considerably better.  I also believe that altering one's artistic intent is a dubious proposition, especially without informing them in any way.  In this case I would say that these are dubious behaviours, but don't mean to say that Mr Mossholder himself is a bad person.  We have a difference in taste.
+
+[fn:6] I am referring to the scene where the protagonist is being given ammo instead of a weapon, and being coaxed into running into Machine Gun fire.  I cannot blame Treyarch for including it in such a way, as they probably didn't even think to double check.  Still, the number of people these days that have strong misconceptions about the state of the Soviet army during World War 2 is a direct consequence of their negligence.
+
+
+
+
+
+
+
+
+
