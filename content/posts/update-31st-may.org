@@ -1,0 +1,15 @@
+#+TITLE: A status update
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-05-30
+
+Just giving a brief update as to what is going on and why I'm pushing back the work on the Emacs widget toolkit.
+
+1. I'm moving.  To a bigger place, not far from where I live today.  I might actually set up a home server from there.
+2. My Dad's sick, and while he seems to be doing fine today, I do not know if he's actually OK.  He refused to see the doctor and quite honestly, given his stubbornness, not much I can do.  I'm quite afraid, and anxious.  Not something you see everyday, but this colours everything I do these few days.
+3. At work, I'm about to embark on a long journey with lots of preparation.  I have fewer people than I expected, and the competitors are promising outrageous numbers in terms of performance improvement.  It's going to be hard.
+4. Two of my friends are dealing with big problems.  I will not go into details, but will say that their problems are similar to mine in scope and severity.
+
+
+I'm both quite busy and, unfortunately, quite emotionally exhausted.
+
+The updates will come.  Just not anytime soon.
