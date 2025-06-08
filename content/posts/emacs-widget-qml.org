@@ -1,0 +1,430 @@
+#+TITLE: Emacs lisp as an interface definition language
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-06-03
+
+Emacs lisp is a language that has a lot of untapped potential.  Today I shall discuss its usage as a lightweight definition language akin to QML.
+
+This is part of a larger series on the Emacs widgets.
+* What is QML
+
+In the middle of the tens the Qt company ran into a particular conundrum.  The UI paradigm that dominated the graphical programming scene up until that point was that OOP is the most natural way to represent graphical programming.  Of course, there were prior experiments with Win-API that were extremely macro-heavy.  There were also very successful experiments with moving away from Flash and towards a JavaScript + HTML + CSS stack.  Of course in the future, Java and Qt itself had a class-based inheritance-centric model, which, though it needed help from something known as a meta-object compiler, was in effect interacting with a C++-based inheritance-oriented class system.
+
+With years, came the understanding of the limitations.  Building a UI in Qt was simply too hard.  You needed to inherit this, implement that, make sure you're creating an ~enum~ while you're at it.  Oh and ensure that you use the ~Q_Object~ macro as well as inheriting from ~QObject~.  It was a lot of fuss.  It was hard to wield.  Further, the way it was done imposed the most important limitation: you needed to know the object hierarchy to render it.  Far be it to say that you couldn't make the old system work with hardware acceleration, but it was a signal that the inheritance model was more limiting than helpful.
+
+At the time then it /seemed/ like a good idea to create a different kind of UI-definition language.  Something lightweight.  Something where you could live-reload and live debug the UI without having to deal with GDB, segmentation faults and a few other problems.  And instead of giving up on the object-oriented model altogether it was chosen instead to focus on the particular subtype that wasn't well-known for being awful.  I'm talking about composition.
+
+The idea there is that QML is a declarative langauge with a very small amount of imperative thrown into the mix.  The most natural thing to do at the time was to add JavaScript to play that role.  People are more familiar with it.  It is demonstrably efficient as a lightweight glue system.  And the UI of the program is to be composed of smaller elements.  You could define custom ones, you could define your own views, models, all the /fancy/ stuff that you're used to, except now, all of this is done at the back end, and your front-end can be developed separately.  Indeed it can be developed with live reloading.  In fact, it is still not part of the way things are normally done, but one can write a live-reloading QML application rather easily and simply.
+
+QML was to be interpreted.  That meant that your UI definitions lived separately from the backend code and said code can be implemented in languages other than C++.  This is particularly important today, as being able to write the backend code in Rust for example, seems to be an important milestone that is somewhat achieved.  It is achieved in a somewhat bastardised fashion, depriving one of a Rust-idiomatic way of handling things, but still, it is somewhat of a reality.
+
+So what is QML doing these days?  A few of the KDE programs are written and re-written in QML.  The main-line KDE package manager is Discover, that is written with the Kirigami library.  I myself wrote-up a small to-do application as a means of keeping myself busy and not go insane during Summer 2017.  I've written a small program for visualising nested sampling that was meant to replace the ~matplotlib~ backend of another library known as ~anesthetic~, and managed to get quite a lot of good results.  I would not say that QML paved over all of the pain points, but the work was enjoyable.
+
+QML is considered the new way of writing simple programs.  It is quite capable of writing complex ones too.  It is here to stay, and an increasing number of newer programs will be written in QML.
+
+So how did it do that?
+* How is QML
+
+This section is going to be fairly technical.  I will bring a few examples from the code that I wrote, not necessarily because it's the best or most idiomatic, but because this is what you can reasonably expect a program outside any given ecosystem to look like.
+
+Paranestamol, is a graphical front-end for interactively drawing something known as nested sampling corner plots.  It is a program that I wrote when I was just finished with my Masters' and was intended to help working with nested sampling.  It has a fairly simple layout: you have a list of sampling sources, or root directories, when you load one or two, you can look at the overlapping parameters, and draw their join posterior distribution as a contour plot.
+
+The directory structure for the entire program is as follows:
+#+BEGIN_EXAMPLE
+  LoadWindow.qml
+  __main__.py
+  Manipulator.qml
+  ParamsPopup.qml
+  PlotSelector.qml
+  plt_managers.py
+  __pycache__
+  samples_model.py
+  utils.js
+  utils.py
+  __init__.py
+#+END_EXAMPLE
+
+The unfortunate problem that is being enforced in Qt is the fact that some things have to be declared as their own files.  This means that I do not have a choice.  ~Manipulator.qml~ has to come as a separate file even though logically it has almost nothing to do.  By contrast ~view.qml~ does the heavy lifting and is for all intents and purposes the entrypoint.  Yet, I cannot break it up.
+
+#+BEGIN_src qml
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Window 2.12
+import QtQuick.Dialogs 1.0
+import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.12
+
+import Backend 1.0
+
+import "utils.js" as Utils
+
+ApplicationWindow {
+	id: mainWindow
+	visible: true
+	title: mainView.currentItem.title + " — Paranestamol"
+	width: 800
+	minimumWidth: 400
+	height: 600
+	minimumHeight: 200
+	function displayPythonMessage(msg){
+		statusBar.text = msg
+	}
+	SystemPalette{
+		id: activePalette
+		colorGroup: SystemPalette.Active
+	}
+	Component.onCompleted: {
+		console.log(samplesModel)
+	}
+	FileDialog{
+		id: fileBrowse
+		title: qsTr("Please choose the samples root file")
+		visible: false
+		folder: shortcuts.home
+		onAccepted: {
+			loadWindow.fileName = fileBrowse.fileUrl
+			loadWindow.fileModel.appendRow(loadWindow.fileName)
+		}
+	}
+	header: ToolBar{
+		visible: mainWindow.height > 400
+		ToolButton {
+			visible: mainView.itemAt(mainView.currentIndex-1)
+			text: visible?mainView.itemAt(mainView.currentIndex-1).title:''
+			onClicked: {
+				mainView.decrementCurrentIndex()
+			}
+			anchors.left: parent.left
+		}
+		PageIndicator{
+			id: pageIndicator
+			count: mainView.count
+			visible: samplesView.visible
+			currentIndex: mainView.currentIndex
+			anchors.verticalCenter: parent.verticalCenter
+			anchors.horizontalCenter: parent.horizontalCenter
+			interactive: true
+		}
+		ToolButton {
+			visible: mainView.itemAt(mainView.currentIndex+1) &&
+				mainView.itemAt(mainView.currentIndex + 1).visible
+			text: visible?mainView.itemAt(mainView.currentIndex+1).title:''
+			onClicked: {
+				mainView.incrementCurrentIndex()
+			}
+			anchors.right: parent.right
+		}
+	}
+	SwipeView{
+		id: mainView
+		anchors.fill: parent
+		interactive: pageIndicator.visible
+		Page{
+			title: qsTr("Load Samples")
+			LoadWindow{
+				id: loadWindow
+				fileModel: samplesModel
+				anchors.fill: parent
+				onBrowseForFile:{
+					fileBrowse.visible=true
+				}
+				onRequestLoadSamples:{
+					fileModel.appendRow(filename)
+					samplesView.visible = true
+				}
+				anchors.centerIn: parent
+				anchors.leftMargin: 8
+				anchors.rightMargin: 8
+				anchors.topMargin: 8
+				anchors.bottomMargin: 8
+			}
+		}
+		Page {
+			id: samplesView
+			title: qsTr("View Samples")
+			visible: !samplesModel.isEmpty
+			FigureCanvas {
+				id: triangleView
+				height: parent.height - higson.height - 40
+				width: parent.width - temperature.width
+				objectName : "trianglePlot"
+			}
+			Manipulator{
+				id: temperature
+				from: 0
+				to: 10
+				stepSize: 0.2
+				objectName: 'temperature_slider'
+				text: 'beta'
+				trans: a => Math.exp(a)
+				invtrans: a => Math.log(a)
+				orientation: Qt.Vertical
+				width: 60
+				anchors.right: parent.right
+				anchors.top: parent.top
+				anchors.bottom: parent.bottom
+			}
+			Manipulator{
+				id: logL
+				from: samplesModel.minLogL
+				stepSize: (-1 - samplesModel.minLogL)/60
+				to: -1
+				value: -1
+				objectName: 'logl_slider'
+				text: 'logL'
+				height: 40
+				anchors.left: parent.left
+				anchors.right: temperature.left
+				anchors.bottom: higson.top
+			}
+			FigureCanvas{
+				id: higson
+				height: 100
+				anchors.left: parent.left
+				anchors.bottom: parent.bottom
+				anchors.right: temperature.left
+				objectName: 'higsonPlot'
+			}
+
+			Button{
+				id: dotdotdotButton
+				anchors.topMargin: 8
+				anchors.leftMargin: 14
+				anchors.top: triangleView.top
+				anchors.left: triangleView.left
+				width: 50
+				height: 50
+				text: '⋮'
+				onClicked: {
+					paramsPopup.visible = true
+				}
+				Popup{
+					id: paramsPopup
+					width: 250
+					height: 300
+					ParamsPopup {
+						model: paramsModel
+						anchors.fill: parent
+						onSaveRequested: {
+							trianglePlotter.saveFigure(fileName)
+						}
+					}
+				}
+			}
+
+		}
+	}
+	footer: Text{
+		id: statusBar
+		text: "Status Bar"
+		color: activePalette.windowText
+		anchors.left: parent.left
+		anchors.leftMargin: 8
+	}
+}
+#+END_src
+
+This leads to a rather large entrypoint of 178 SLOC.  Depending on your school of thought, this is either too small or too large.  Do not try to read it all at once, I shall walk you through the main features.
+
+Firstly, the main window is suitably called an ~ApplicationWindow~ and it has some intrinsic properties.  It has an ~id~, which is the furthest departure from the class-hierarchical model.  Every component has an identification.  This information is preserved.  It has a ~title~, which is specific to the domain of ~ApplicationWindow~ s.  It has a few more interesting properties too: it has a ~width~ and a ~minimumWidth~ that must be component-defined.  In fact, any component can have any number of properties, and aggregated components can forward their property values to their children.  More on that later.
+
+The more interesting properties are ~header~ and ~footer~.   One can choose what they are.  In this case, the built-in ~ToolBar~ component does the trick.  All we do is ensure that it is invisible for smaller windows, and here we come across the first interesting aspect of QML.
+
+Another difference to the inheritance model is the inherent composability of objects.  You've seen this before in Elisp, this is the famous ~&REST~ at play here.   In fact, there are quite a few more similarities.  Specifically that the ~header~ can be any component.  And any component can have as many other components.  In a class-based system, /i.e./  the one in Qt Widgets, one would have to inherit a ~ToolBar~ and declare its components.  Here we just list this off.  It contains ~ToolButton~ instances, all of which do different things.
+
+This leads to a very natural way of laying out components.  You are not saying how to build the UI, you're saying the UI is a window, whose properties are thus, which contains a ~SwipeView~, which contains two ~Page~ s, which themselves contain other components.  These components map 1:1 to the directory structure.
+* The Lisp connection
+** Forms and components
+
+Then your vocabulary of UI interactions isn't restricted to what is available in the chosen systems programming language, but is domain-specific.  A component is different to a data structure.  It also isn't a function.  It's its own thing.
+
+Most languages would struggle with representing this as a concept, but the Lisp-family has a very natural way of representing these ideas.  Everything is a form.  A form can be a function call, an aggregated list, a structured slotted object, an instruction to change the value of a variable, a macro...  the list goes on and isn't at all restricted to what I just described.
+
+What's more, the forms in Lisp are not restricted by the parser.  You can define new kinds of forms as long as you can explain to the interpreter what those forms mean.
+
+Take for instance ~use-package~.  Syntactically speaking it is a macro.  Semantically this is not what we see, though.  Just like the famous character in "the Matrix", we don't see macros, we see packages, we see configuration, we see customisation variables.  And this is exactly what QML strives to achieve and what it is mostly praised for.
+
+The main area where QML indeed struggles is when it comes to interactions with the rest of Qt.  You are not supposed to go and change the UI from the backend.  The trouble then is how do you create complex interplay.  How do you load an abstract representation into memory and signal that to the system.
+
+So in Elisp, the equivalent to the ~view.qml~ would look something like this.
+
+#+begin_src emacs-lisp
+  (application-window
+   :id 'main-window
+   :width '(:min 400 800)
+   :heigh '(:min 200 600)
+   :visible-p t
+   :header
+   (tool-bar
+    :visible-p (lambda () (gt (get-property 'height 'main-window) 400))
+    (tool-button
+     :id 'decrement-current-index
+     :visible-p (item-at (- (get-property 'current-index 'main-window) 1))
+     :text (when (visible-p 'decrement-current-index) (item-at (- (get-property 'current-index 'main-window) 1)))
+     :on-clicked
+     (lambda () (decrement-current-index 'main-view))
+     :anchors (:left (left 'parent)))))
+#+end_src
+
+One can argue the readability of the proposed API.  For a zeroth-order approximation, one should note that a surprising amount of problems is simply resolved.  Elisp already has symbols.  Elisp already lets you define polymorphic inputs as well: the ~:visible-p~ keyword is set to the boolean true in the first place, and to a function that evaluates to a boolean in the second.
+
+Next, we attach properties in a structured fashion.  The ~:anchors~ and ~:width~ keywords are set to structures.  Except we are making use of polymorphic input.  If we give it a number, it becomes a number.  If we give it a structured value, it must follow a specific pattern.  We can depart from this further, by the way, we can specify a single ~:size~ that can be set to a list of lists and contain the right data.
+
+
+** Model/view
+
+In case of QML, the best way to do this is with language bindings and a "real" programming language.  You are not expected to extend the JavaScript parts of the language, you are supposed to create global-scope variables that behave a certain way.  This means that a considerable amount of preparation has to be done by interacting with the interpreter on the back end.  In our case, it is the definition of what a model is for the ~LoadWindow~.
+
+Specifically, consider this snippet of code.
+
+#+BEGIN_SRC qml
+  LoadWindow{
+  	id: loadWindow
+  	fileModel: samplesModel
+  	anchors.fill: parent
+  	onBrowseForFile:{
+	  fileBrowse.visible=true
+  	}
+  	onRequestLoadSamples:{
+	  fileModel.appendRow(filename)
+	  samplesView.visible = true
+  	}
+  	anchors.centerIn: parent
+  	anchors.leftMargin: 8
+  	anchors.rightMargin: 8
+  	anchors.topMargin: 8
+  	anchors.bottomMargin: 8
+  }
+#+END_SRC
+
+We are creating a re-usable component known as a ~LoadWindow~.  This component is initialised with the global value ~samplesModel~ as its ~fileModel~ parameter.  Internally this gets forwarded to the ~ListView~ component, which expects an object with certain behaviours.  These behaviours are consistently the worst aspect of programming in Qt, and this is partly due to the API being designed in a very peculiar fashion, but exasperated by lack of decent documentation.  I'm still not sure I'd be able to implement a model for a generic list view.  In principle the way to avoid this problem is to load the data from JavaScript, but the question then becomes how to translate these components and how to call backend code.
+
+Simply put JavaScript's understanding of objects is not sufficient to manage objects.  As such, it is often /neater/ to spend a bit more time creating a purpose-built abstract model for something that can be done with off-the-shelf components, rather than trying to embed the domain and fill the data from the JavaScript side.   This is not how it was intended, but is often how it is done.
+
+So how does the model work?  In Python, the implementation is the least ugly in my experience.
+
+#+BEGIN_SRC python
+class ParameterModel(QtCore.QAbstractListModel):
+    """A model representing parameters in a nested sampling run."""
+
+    nameRole = QtCore.Qt.UserRole + 1000 + 0
+    texRole = QtCore.Qt.UserRole + 1000 + 1
+    selectedRole = QtCore.Qt.UserRole + 1000 + 2
+
+  #+END_SRC
+You create an object that inherits from ~QtCore.QAbstractListModel~ and override the methods that you need.  This unfortunately means that you still need to define enumerations for the different data /roles/ and this is a concept that is easy to understand once you see that the ~QAbstractListModel~ enforces a specific conceptual framework.  You are dealing with data in a table, it has rows and columns.  Nesting is suitably complex to represent and is also the most common pattern.   As such, to define the columns, it is not enough to rely on the structures being identical, they need to play a certain kind of ~QtCore.Qt.UserRole~, so we do that.
+
+Next we define some properties.  The easiest to understand is probably ~isEmpty~.  We create a new ~QtCore.Signal()~, something that gets sent when something happens that says "the value of ~isEmpty~ is no longer what it was, so any UI logic that needs to update, should update."  We want the value to not be stored as a boolean.  In C++, this is done by a getter method, but in our case, Python already has indirection for non-slot members, so we can create a short-hand function.  This returns a Python boolean that is transparently converted into a JavaScript boolean.
+
+#+BEGIN_SRC python
+    isEmptyChanged = QtCore.Signal()
+
+    def _isEmpty(self):
+	  return self.rowCount() < 1
+
+    isEmpty = QtCore.Property(bool, _isEmpty, notify=isEmptyChanged)
+#+END_SRC
+
+Next for the model to work as expected, /i.e./  to be readable by all the APIs that expect a Qt model, we need to implement a few functions: the role names need to be accessed via standard API; which we do here.
+
+#+begin_src python
+    def roleNames(self):
+	roles = {
+	    ParameterModel.nameRole: b'name',
+	    ParameterModel.texRole: b'tex',
+	    ParameterModel.selectedRole: b'selected',
+	}
+	return roles
+#+end_src
+Our data is that there is a ~name~ for a dataset, a (La)TeX representation ~tex~ and a boolean ~selected~.  This is meant to represent different parameters in different datasets.   For most of the work I used it for, this would include things such as the Cosmological constant, the baryon density parameter, the dark matter parameter among a few other calibration parameters for the particular telescope.
+
+Now suppose we found a way to internally represent the data.  The API needed to access it for display is where we need to spend the largest amount of time.
+
+#+begin_src python
+    def data(self, index, role=QtCore.Qt.DisplayRole):
+	if 0 <= index.row() < self.rowCount() and index.isValid():
+	    if role == ParameterModel.nameRole:
+		return self.names[index.row()]
+	    if role == ParameterModel.texRole:
+		return self.parent.tex[self.names[index.row()]]
+	    if role == ParameterModel.selectedRole:
+		return self.names[index.row()] in self.displayNames
+#+end_src
+
+Because we don't want to handle different columns, we simply look at different rows and postulate that every element of this model has data representing their ~name~ their ~tex~ and their ~selected~ status.  Incidentally if you are wondering why I need to store this information in the model, this is because I want to be able to synchronise the behaviour of different components.  Selecting a parameter in one dataset should scan for another parameter of the same name and same ~tex~ in a different dataset.
+
+Convoluted, right?
+
+It gets worse.  Especially if you are nesting data.  Especially if you are writing the program in C++, which has stronger typing and fewer convenience features.  There are no decorators in C++, for example.
+
+This is very much a problem caused by the rigid API imposed for compatibility's sake.  Qt needed a way of representing the same data in multiple ways.  This had to work around C++'s constraints and typing system.  This meant that you /had/ to do things a certain way.   This meant that you needed the concept of a Role and it had to be implemented the way it is in the code.
+
+This also meant that you needed to comply with Qt's other peculiarities.  Qt has an ownership system.  Unlike Rust, however, this is not enforced at the language level, it is something that is enforced by coding convention.  In other words, you have a few opportunities to forget to properly initialise the parent, and if you do it wrong, congratulations, you have leaked memory.
+
+#+begin_src python
+    def __init__(self, parent=None, columns=[], tex={}):
+	"""Construct."""
+	super(ParameterModel, self).__init__(parent)
+	self.names = columns
+	self.tex = tex
+	self.displayNames = {}
+#+end_src
+
+The C++ for this would be more verbose, but no less convoluted.  There are quite a few things that you cannot do in Python that you would be able to do in C++, which would entice you to bite the bullet and do it "properly" but there is no chance that you could use a program that used dynamic libraries, and QML.
+
+Lisp, by contrast, can do away with most of these problems.
+
+What would a similar API look like in Lisp?  Everything is a list, so most likely just lumping things into a nested list should work.
+
+#+begin_src emacs-lisp
+((:name "lambda" :tex "\\Lambda" :selected false))
+#+end_src
+
+is simply a natural thing to pass.  Lisp is polymorphic.  It can advise functions.  So instead of relying on a rigid QML interpreter, we can rely on changing the behaviour both on the sending /and/ receiving end.  The polymorphic specification here gives us that flexibility.  Indeed we would enjoy the same flexibility if we were working on the JavaScript end only.  Unlike Elisp, however, the version of JavaScript embedded into QML has a limited extensibility, and even more limited set of packages.
+
+So what's next?
+
+Suppose we indeed needed to do a bit more work.  We needed a custom made model.  How would one go about communicating the information in a particularly reliable fashion?
+
+One way is to expose the low-level API for the most general case and ensure that the end user is able to understand this well.  The Qt model/view paradigm gets the first part but not the second.
+
+In Elisp, however, one has a third option.  Elisp macros are routinely used to create forms that can do multiple things, like set up and wrangle global state, register something when the time comes and add a hook when one needs to.  Unlike C++ where your only choice to create a parameterised model is to subclass, Elisp gives you a wide array of tools to create a good user experience.  So for example, to represent a nested model, one could have a macro:
+
+#+begin_src emacs-lisp
+  (make-model
+   :roles ('name 'tex 'selected)
+   :properties
+   ('is-empty . (booleanp (lambda (self) (row-count self)) :notify ('is-empty-changed)))
+   ;; Realistically, we will do some trickery to fill in the mentioned, but empty bits automatically.
+   :data
+   (lambda (index role)
+     ;; todo
+     ))
+#+end_src
+
+Note that this approach is:
+1. Much easier to interpret.  Roles are symbols and won't overlap with other symbols.  Unless we explicitly ask them to.
+2. Much easier to write.  You can literally tab through the macro and it the documentation will tell you what each keyword is doing.
+3. Much easier to debug.  Literally, if something is not sensible, we can raise an exception in the macro itself.  In Qt, you must first run this and maybe get a view that shows nothing.  Maybe get a segfault instead.
+4. Much easier to extend.  For example, notice that we lumped the roles into the definition.  Things pertaining to the same definition will exist within the definition.  Want to add more keywords?  Well, you're not breaking anyone else's code in the process, and you can still have a sensible default that depends on the other parts of the input.
+
+
+** The rendering backend
+
+The real meat and potatoes of the QML system is its rendering code.  Simply put, it is the most efficient one can come up with.  It outperforms most browsers.  The main reason is that there is a scene graph and retained mode updates.  There's also hardware acceleration.  There's also a sophisticated convention on properties that allow you to know when to update certain parts of the retained mode GUI, when to make parts of the model/view invisible and de-load the objects from memory.
+
+These can be ported to Elisp, but more likely re-implemented.  I firmly believe it would be in everyone's best interest to have a diversity of implementation.
+
+That being said, there's a lot from QML that we don't necessarily need to replicate rendering-wise.  For one, the update system is contingent on values going through the property interface.  In QML, because of the native code that is being run, and the ABI constraints, one can only rely on one form of interoperability -- a rigid interface.  A property has to follow a certain convention.  There needs to be a notification that a value has been updated.  How these updates are propagated have to be controlled by the programmer, so there is a zoo of functions that realistically only exist as functions, because the lambdas can't cross the ABI barrier.  Further, the limited polymorphism is further limited.
+
+In Elisp, there isn't a compile-time run-time barrier.  All Lisp code exists in both kingdoms.  This gives us a great advantage.  In QML, the frontend and the backend are usually segregated into code that has to comply with a rigid ABI and a segment of code that lives in the dynamically typed land, but can't precisely make use of that freedom, because it doesn't exactly do much.  In Elisp, the situation is radically different.
+
+Whether or not we can make use of this fact is another matter.  This, if anything makes us more flexible than /e.g./  QML.  This may come at a considerable performance cost, but has a few benefits as well.
+
+Consider where the QML development experience is lacking.  Installing third-party components is not very clear cut.  Emacs, by contrast offers ~use-package~ as well as facilities to make specialised package managers.  Registering new types is a pain.  Emacs lisp lets you do that much more easily and hide the installation behind a macro.
+
+As yet another example, consider how a complex negotiation between the model and its view can be negotiated.  In Qt, the pre-existing model/view segregation is rather challenging to wrap your head around.  It helps to think of these as tables, and having done this twice in different languages (Python and C++) I will say, it is not a wholly inscrutable sphinx, just mostly inscrutable.
+These limitations arise from prior constraints of prior systems that need backwards compatibility, but also because of the limited ability of most programming languages to generate code at compile time.  Lisp and Zig can create wonderfully simple methods of creating better more customised models.
+
+Let's be more precise.  Something like sending a signal whenever a value is updated is not something that is absolutely necessary, but if our system were to keep it, those can be accomplished with advice.  As could the handling.  There is a natural correspondence between /signals/ and /slots/ as well as /hooks/ and pretty much everything that can be attached to them, namely functions, callables, and lambdas.  Assuming we can retain the generality, QML's requirements become baroque.
+
+** To be continued...
