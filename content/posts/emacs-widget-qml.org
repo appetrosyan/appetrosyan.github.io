@@ -1,6 +1,11 @@
 #+TITLE: Emacs lisp as an interface definition language
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-06-03
+#+TAGS: Emacs
+#+TAGS: Tooling
+#+TAGS: GUI
+#+TAGS: Qt
+#+TAGS: Widgets
 
 Emacs lisp is a language that has a lot of untapped potential.  Today I shall discuss its usage as a lightweight definition language akin to QML.
 
