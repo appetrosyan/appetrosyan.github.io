@@ -1,0 +1,86 @@
+#+TITLE: Emacs Widget toolkit -- why not electron
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-07-04
+#+TOC: true
+#+TAGS: Emacs
+#+TAGS: Tooling
+#+TAGS: Work
+
+This is a small article explaining the suitability of using Electron as the widget system for Emacs.
+* The electron plague
+
+These days we have a great deal of graphical work being done in one specific set of technologies: HTML + CSS + some ungodly abomination known either as Vue, React, or Angular.  The odds of a new application being written in one of those tech stacks is overwhelmingly more likely than either Qt or GTK, and still comparable to the amount of work done in Swift UI, whatever Windows is using these days...  <Bing!ing my head against the wall using google> ...  Oh shit...  windows 11 is using HTML + CSS too!  OK.  Well, that doesn't detract from the point.  Front-end these days is synonymous with doing HTML + CSS.
+
+Porting Emacs, the stuff that works, into an electron window, giving it its own HTML + CSS styling is not inherently an idea without merit.  This is the most widely used method of creating UIs.  It is the most adopted, best documented, and well-explored avenues.  We /know/ how to make a good UI with these technologies.
+
+Furthermore, the main reason why web UIs are so prolific has to do with the fact that any service provider writes and maintains one canonical UI, which is done for the Web, but runs equally well on mobile on Linux, on Mac OS and Windows.  All it would take for something to support Emacs is for something to exist at all, in the sense in which Slack for Linux exists: minimum effort, extremely poorly designed, lacking basic common-sense features like re-bind-able commands, and having idiotic defaults.
+
+On top of all of these advantages, we know for certain that Electron can do wonderful things if one puts their mind to it.  It can do live video playback.  It can allow for some clever design choices such as 3d graphics in the background of pages.  We know for certain that it can do text editing well, because the most popular (at the moment) text editor at the moment is based on Electron (Atom EEE edition, a.k.a.  VSCode).
+
+At this point one might be wondering why /wouldn't/ I push forward with using Electron?  And I'll be honest I don't have a principled opposition to this idea, I just think that there are better ways.  Off the top of my head, I can list a few reasons why using Electron isn't going to make Emacs better.  So here come a few.
+* The Web stack is bad
+
+The first thing that comes to mind when critiquing the usage of web technologies in desktop (and very specifically old-school desktop) applications is the amount of technical debt that will be inherited necessarily.
+
+The TL;DR of this paragraph is that in order to support all of the quirks and idiosyncrasies of modern day web, one needs to turn Emacs into 95% [[https://pissandshittium.org/][Google Piss-and-shittium]] by volume.  The code base has a long and storied history, and it supports many technologies that trace their origin back to [[https://www.yourhtmlsource.com/starthere/historyofhtml.html][1997]].  Given the constraints of the modern day web, these technologies are as good as we can make them without also forcing everyone to rewrite and re-learn everything.  A lot of what the Web is doing in a complicated way, could be done more simply.  Especially given that a lot of what the web is doing is assuming that you are accessing a remote resource, and therefore have no better recourse /than/ to interpret the layout and the style sheet and the DOM.  These constraints make little sense for the modern web, but they are justifiable.  The assumptions are all wrong if you want to build a local-first programmable text editor.
+
+There are more in-depth problems too.  Emacs already has a theme system.  You either need to re-create the theme system from scratch such that it can parse CSS and replicate most of its behaviours, scratch the Emacs' themes and use /only CSS/ or come up with a hybrid translation that goes the other way: overriding the CSS with Emacs' themes.  The problem here is that the scope of these two systems is very different.  One would need to have a long transition period between one and the other.  And realistically, the only reason to have some forms of theme elements is /to be compatible with CSS/, because otherwise there are better systems for doing the same.
+
+For example, consider that ~faces~ and ~div~ s provide roughly the same functionality for text, but the programmability of the latter is far superior to the former.  Do we keep both?  Probably not, because then there would two worlds of packages.  Do we keep the most programmable one?  Do we bastardise the faces system?  And then there's the question of what you would do about the program itself.  Electron doesn't like much native code.
+* This has been tried before
+
+Another reason I don't think it's a good idea, is because every attempt at creating a Web-tech-enabled Emacs resulted in dead projects.  Emacs-ng had some good ideas.  Web render was something that could be done in a relatively light-weight fashion.  Adding the ability to write emacs packages with /slightly better/ asynchronous support (via JavaScript), as well as using the vast majority of the code that it inherited from ~remacs~ would have given Emacs-ng a great deal of traction.
+
+The main problem was that of...  shall we say...  developer interest.  It ran out of steam.  Is there still work done on it?  Absolutely.  But it's mostly the kind where I as a regular user can only see the drawbacks and not the advantages of using Emacs-ng.  It just doesn't have any.  The Web Render is not used for anything that vanilla (GTK-based) Emacs can't do.  Sure the text looks a bit less blurry, but then it also has some major glitches.  The dynamic modules system is simply unmaintained.  Deno/JavaScript is turned off.  And even if it didn't the README contains some questionable statements about the advantages of JavaScript.
+
+#+BEGIN_QUOTE
+TypeScript offers an extremely flexible typing system, that allows to user to have compile time control of their scripting, with the flexibility of types "getting out of the way" when not needed.
+#+END_QUOTE
+
+Typescript has a fundamentally unsound type system.  It can mitigate some of the deficiencies of extremely poorly designed JavaScript projects.  For well-designed projects, the extra compilation step is more of a hindrance.
+
+#+BEGIN_QUOTE
+Deno uses Google's v8 JavaScript engine, which features an extremely powerful JIT and world-class garbage collector.
+#+END_QUOTE
+
+That is certainly true.  They are both significantly worse than AOT compiled C.  It trades blows with (but for the sake of argument let's concede that V8-based JavaScript is much faster than) Elisp that went through the native compiler.  If one's diet consists of fast food; asking the person to eat fruit is only useful if said fruit displaces some of the fast food.  You can't get rid of the fast food in this context, because Emacs lisp is fundamentally a part of Emacs.  So what you do, is you ask a fat person to consume extra calories.  They get more nutrients, and fewer calories than they would if they had eaten fast food, but this is on top of the calories that they already consumed.
+
+And I'm being rather charitable in this analogy, by labelling JavaScript as the fruit and not some other brand of fast food that claims to be healthier, despite being just as greasy.
+
+#+BEGIN_QUOTE
+Usage of modern Async I/O utilizing Rust's Tokio library.
+#+END_QUOTE
+
+Is probably the main selling point.  Sadly, most serious readers have probably already tuned out at this point.  Hence why it should have been the first.
+
+Still, ~async~ programming in Rust is neither easy, nor addressing the fundamental problems with how Elisp is written.  There's sufficient asynchronous work done in the C parts of Emacs.  The problem is orchestrating the Elisp work.  Just getting the JavaScript asynchronous is not enough, unless your selling point is that you intend to rewrite most of the blocking code with non-blocking JavaScript based code (in which case, you could equally do it in Rust and C).
+
+#+BEGIN_QUOTE
+Emacs-ng has WebWorker support, meaning that multiple JavaScript engines can be running in parallel within the editor. The only restriction is that only the 'main' JS Engine can directly call lisp functions.
+#+END_QUOTE
+
+Which confirms the previous point as an almost-nothing burger.
+
+
+#+BEGIN_QUOTE
+Emacs-ng also has WebAssembly support - compile your C module as WebAsm and distribute it to the world. Don't worry about packaging shared libraries or changing module interfaces, everything can be handled and customized by you the user, at the scripting layer. No need to be dependent on native implementation details.
+#+END_QUOTE
+
+The latter part of this quote shows a fundamental misunderstanding of WASM.  It has good support for being run from inside JavaScript.  Just like shared objects have good support for being called from inside C.  The quote makes it look like they have done a great deal of work to ensure that some fancy tech that saves you from hours of headache-inducing debugging can be avoided.  In reality WASM is something any JavaScript-kiddie would assume to be supported anyway.
+
+Plain Emacs has plain native code support.  WebAssembly, is simply a "shoot your performance in the foot" button.  The reason why Blockchains gravitate towards web assembly have to do with how L2 rollups and ZK provers need to model the instruction set, and x86 is an unfixable mess that people far smarter than myself gave up on modelling.  And even then, almost every VM that started with WASM moved on to RISC-V.  If you do not need to run the code from inside the web browser, there's few reasons to use WASM.
+
+Bottom line is that Emacs-ng is a good example of what might happen if you assume that you can inherit the performance of JavaScript and that it would just be smooth sailing from that point on.  I wish this project the best of luck, and I genuinely admire the fact that there is still activity on the repository, I just think that the problems that they faced are rather predictable and dare I say avoidable.  Just don't use web technologies.
+* This won't solve the major problems
+
+The main issue with assuming that Emacs on Electron would work better than current Emacs, is the fundamental misconception about what makes Emacs slow and Chrome -- fast.  Emacs is a single-threaded REPL.  It does display, it does event processing and many more things in a way fundamentally similar to how it would be done in a terminal.  Neovim, by contrast, is not.  And neither is Google Chrome.
+
+Asynchronous execution and non-linear processing are things that happen in the programming models of Google Chrome and Neovim.  They have the concept of a lightweight worker thread, of thread-local storage, it is possible to do work that is encoded in Lua or JavaScript, because you don't need to assume that there's a bunch of imports that need to happen before some things are defined.
+
+To rework that part of Emacs would require a considerable amount of effort.  I must say /considerably/ more than the already gargantuan task of creating workable widgets.  The reason I am a bit more optimistic about the work that I want to do with SDL, is because I can assume that a slightly faster, but /much more flexible/ Emacs is going to be enough.  The reason I believe this is because the currently slow and rather rigid Emacs is already enough for me.  Performance never factors into my decision of doing something with Emacs.  Having a slightly faster Emacs is good enough.  It being much faster would be great, but realistically, the flexibility is much more important.
+
+For the moment I see one way in which a fundamental rewrite of Emacs' internals /could/, after a good five years of work, result in a fix; allow us to write async elisp that is on-par if not faster than JavaScript.  It would be moot.  It /could/ enable some projects that are currently impossible to become feasible, but so could incremental changes.  And realistically, if the point were about performance and performance alone, there would be a push towards rewriting a great deal of Emacs packages in AOT compiled languages.  There isn't one, even with a broken event loop that makes you feel every minor mode.  All I would do with the extra performance budget is add more packages, and I think I already have more than I can reasonably remember to use.
+
+Having more flexibility, by contrast, would let me do more things.  I'd be able to edit SVGs without leaving the text editor.  The already excellent PDF viewer would be fast enough to replace Zathura.  For something like a DAW, the event loop fix would be useful, but /only/ if the other part of the equation, the increased flexibility, is there.  A program that does nothing fast, is just as useless as a program that simply does nothing.  So for Emacs to be the editor that it is, we would need to invest heavily into its strengths before even considering addressing its weaknesses.
+
+So what does Electron give us?  Not much really.  It'd be held back by the programming model from what other Electron-based editors can do.  It'd not have much of an advantage over the other editors either, because Elisp would need to be neutered in order to be made compatible.  Can it be done?  I don't know.  Probably.  But I firmly believe that there are easier ways of increasing the entropy of the universe.  
