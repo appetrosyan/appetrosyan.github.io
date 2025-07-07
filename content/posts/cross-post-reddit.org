@@ -1,0 +1,23 @@
+#+TITLE: Please don't cross-post my articles to reddit
+#+DATE: 2025-07-07
+#+AUTHOR: Aleksandr Petrosyan
+#+TAGS: Work
+
+Please do not cross-post my content to reddit.
+
+
+This isn't just about r/emacs, where I was given the proper welcome by the /only/ "moderator" of r/emacs.  This isn't a personal vendetta.  The platform eases people into a mode of thinking that I find rather unproductive.
+
+Furthermore, I have only limited time and space to reply to comments.  So far, I have replied to zero on the articles themselves, and everything was external.
+
+If you would like to not make my life harder than it needs to be, please consider the following.
+1. Platforms in general remove my ability to reply to comments as soon as they arise.  I have friends that let me know when something like this comes up, but they are doing this as volunteers.
+2. Platforms encourage non-civil interactions.  The so-called "moderator" of r/emacs swung the ban hammer after (what I assume their alternative account) took a comprehensive non-constructive dump on the ideas there, and missed the perpetrator.  This isn't a "bad mod".  This is a failure of the reddit's moderation system.
+3. Platforms externalise the discussion.  You no longer have the luxury of seeing the text as you're typing.  Happens to me whenever I reply to a comment with a link.
+4. Platforms are taking away freedom.  X and Reddit shamelessly train LLMs on the "content".  I'd like to have a say, and my say is "if you trained your LLM on my content, your LLM is now free software".  I can't exactly enforce this on a platform with terms of dis-service.  I can on a self-hosted site.
+
+
+With all of these things taken into consideration, I would please ask you to not cross-post these to Reddit specifically, but to other social media in general.  I can see the value in cross-posting links to Sacha Chua, but I'll do that myself.  I can cross-post to system crafters too.  Other than that, I would politely ask you not to cross-post.
+
+I have a busy life; and this is becoming enough of a problem that I had to write about it.
+
