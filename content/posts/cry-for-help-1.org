@@ -1,0 +1,27 @@
+#+TITLE: Mercy
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-07-21
+
+This is an internal post, explaining my absence, and general fatigue.
+
+I have a hard time handling human malice.  Not in general, but very specific instances.  While most work-related problems can be explained with exhaustion coupled with a refusal for the engineers and non-engineers to sit down and talk; the "personal" life problems have began to spill over.
+
+I had been dealing with a considerable amount of stress.  Most of it is generated maliciously.  I do not wish to go into details, but I will say that whenever inheritance is involved it is /always/ ugly, /always/ painful and almost always requires a level-headed ruthlessness.  I find it difficult to even comprehend how a human being is capable of such heinous behaviour, much less acquiesce and produce a proportionate response.  However, the events of the past two weeks have taught me a valuable lesson regarding where I belong.
+
+I am going through a family shattering process for the third time.  By proxy, thankfully, but with the full knowledge that the direct process is not as far as I'd prefer it to be.  Within this, I have found that almost all relatives are capable of acts that warrant anathema and re-qualify their life less as sacred right and more as a heavily abused privilege.  One ordinarily would also argue that this would re-classify said persons as a different species, but the prestigious company of Lank Temur and a certain Austrian painter is precisely why such people /are human/ in my eyes.  The aforementioned "leaders" had a difference in capability, not in moral compass.
+
+Going through a long period of continuous major distress made me a more cruel, cold, and calculating person.  It led me to decide to retire [[https://greybeard.consulting/][greybeard.consulting]], even though the co-founder only wished to resign, and despite the fact that the BVI-incorporated company would still be useful to me.  It led me to swear off making any major monetary gestures towards an ever-shrinking number of friends.  Said co-founder had been a recipient of a major grant, and through no virtue of their own managed to exhaust my patience; as said grant simply dissolved in a sea of problems that by some contortion of logic I was culpable in.  The co-founder had been someone I had considered a friend, and was eyeing for collaboration on a bigger project.  Terminating this relationship at this stage is the preferable outcome, even though *right fucking now* it is but a turd in a faecal sea.
+
+I have plenty of friends in distress.  I /could/ do what I think would help them.  Experience dictates that this rarely happens.  As a consequence I recognised a pattern of behaviour that had been detrimental to me and the recipient of said /help/.
+
+One thing that does not cease to amaze me is the lengths to which a person would go to avoid conceding fault or ignorance.  I find it baffling in two ways, both of which ultimately come down to how self-defeating the entire exercise is.
+
+The first is the more direct.  I saw a grown man that is a few inches taller than me cower behind a door.  The premise is that they /know/ that there is a leaky pipe in their apartment, and there is on-going water damage in my apartment: the one right below theirs; and they refuse to face the music.  This charade had been on-going since Monday last week and had been resolved only on Friday, because I noticed that their apartment had light, and that the pinhole in the door got darker as I was knocking.  Funnily enough, said person was rather intimidated by the process.  Going so far as to raise a few red flags, ask me "not to threaten them" (despite every right for me to had called 911 and bashed his door in) and *quite literally saying that their /mum/ would settle the problem*.  In this case the damage to myself is largely contained to being slightly annoyed.
+
+However, during a rather long work-adjacent engagement, much of the guesswork; a solid man-year's worth would have been easily cut out, if some over-hyped, under-qualified and utterly stupid people admitted that they had no idea the code that they were responsible for did.
+
+It's hard only the first time you have to do it.  I had been schooled by a person that, despite being more experienced, a solid decade older, and having spent a greater proportion of their time on computer science, was """technically""" my subordinate.  I know many people that would not let it fly, and I get it: it hurts.  Your ego is your worst enemy.  It is also your projects' worst enemy.  If I can suck it up and accept that there is something that I don't know, so can you.  In fact, I'm more afraid of long stretches of time when I'm /not told that I got something wrong/.  It is because I'm a scientist by training, but also because I have ADHD: meaning that the success rate of computing ~2+2~ even when I'm sober is below 70%. Being in an echo chamber is dangerous.
+
+
+Overall, I'm tired, and any work on any extracurricular (SDL GUI) will have to wait.  
+
