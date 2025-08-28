@@ -1,0 +1,26 @@
+#+TITLE: Post-Eclipse Layoff: an Update and Plan
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-08-29
+
+This post is prompted by an unexpected major event in one's life.  This is the first time I got laid off.  The Eclipse main network launched well.  The performance team, the one I was in charge of produced quite a bit of content, most of it favourable, matching and often exceeding expectations.  Neither I, nor anyone who got the short end of the stick did so because of some failure.  The company did not expect the token to launch so poorly.  Despite the fact that this meant bad news for the future, and people were told how little they were valued, some myself included decided to err on the side of loyalty.  And we got our "reward".
+
+At the moment I'm dealing with burnout.  To a greater extent it is a consequence of a long plan of building a better Solana on the Eclipse L2 turning irrevocably into ash.  This is the second time I was building a validator client, and was faced with the stark reality of the fact that nobody wanted or needed one.
+
+I am now actively looking for new positions.  Not just for myself, but the exemplary engineers that I spent the better part of two years working in tandem with.  I myself would rather take the time off and recuperate.  I had what can be described as a five-year-long sprint with obstacles and to paraphrase the great comedian Benny Hill, "Ich bin Kaput Knackered".
+
+This post is here for historical reasons.  I have no wisdom to share with anyone, just a statement and a permanent record of facts.  The emotions that I am going through right now are irrelevant, that is why none are presented here.
+
+I am not bitter about the experience.  I recognise that the landscape of blockchains looks grim at the moment, due to overarching real-world pressures.  The decision is a sound one for Eclipse.  I would certainly prefer that these sorts of decisions weren't an option on the legislative level, but also recognise that if I weren't pushed out, I would have stagnated.  I do need something new.
+
+This is an unfortunate state of affairs.  But unfortunate thins have a right to exist nonetheless.
+
+At the moment I am holding off starting work on the Widget system for Emacs; this is due to a combination of being far too burnt out to start it well, but also because I have not quite completely exited Eclipse.  Despite having a consultant's agreement, I'd hate to give away the copyright to a company that has nothing to do with it.
+
+Of the things that are the main plan, I want to do three things
+- With Divya Ranjan, we composed a letter that will be posted to Emacs developer mailing list on September the 4-th.
+- I shall begin working on the prototype shortly after.  I'll try to confine the work to weekends, because I don't know how long or short the search for a new position would be, or how busy I would be during the probation period.
+- I would like to reach out to major Emacs Lisp UI developers.  I'd like their input.  I particularly would like the opinion of Jonas Bernoulli, someone I am currently sponsoring.  If you would like to be included, just reach out.
+- I shall set up a weekly schedule for blog posts.  I do want to keep my readers updated on what's happening.
+
+
+With luck, there will be something to brag about.  If not, it was an earnest attempt.  
