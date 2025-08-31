@@ -1,0 +1,160 @@
+#+TITLE: Rust instruction: Two Sum
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-09-01
+
+What follows is a practical example of solving the well-known problem of identifying the indices of two numbers in a sorted array whose sum is a given target.  This specific example is a popular programming interview question owing to its versatility; it opens up doors to many conversations about engineering efficient concise and maintainable code.  When wielded properly, this interview question can elucidate one's familiarity with best coding practices, as well as tastes and preferences.  This question is also one that is conducive to both optimization by means of external depedendencies in a well-factored code base, as well as tighly coupled specialisation.  Solving this problem should be on one's journey of learning the Rust programming language.
+
+In the particular instance, one would also like to draw comparisons between idiomatic C-99 style solutions and modern library-based solutions, the former optimising for the program's efficiency, while the latter is optimising for the programmer productivity.
+* Brute force
+
+The subject of instruction, a programmer of considerable ability but without prior exposure to the problem, is expected to identify a brute force approach relatively quickly.  The quadratic solution comes as second nature to most.
+
+#+BEGIN_SRC rust
+  pub fn two_sum_brute_force(input: Vec<i32>, target: i32) -> Option<(usize, usize)> {
+      for (l_idx, l_val) in input.iter().enumerate() {
+	  for (r_idx, r_val) in input.iter().enumerate() {
+	      if l_val + r_val == target {
+		  return Some((l_idx, r_idx))
+	      }
+	  }
+      }
+      return None
+  }
+#+END_SRC
+
+
+The more experienced programmers will attempt to solve the problem in a more efficient fashion, which is something that the interviewer should attempt to suppress.  It is important to point out that this is indeed the optimal solution when one is not allowed any extra memory or side-effects such as locking the allocator.  The merits of such solutions should not be ignored, particularly for small inputs.
+
+This milestone has quadratic time complexity.  A slight optimisation would be to replace the ~enumerate()~ iteration with explicit indexing.  This would allow one to start the inner loop from the value of ~l_idx~, thus reducing the amount of redundant work.
+
+Observing that the precise number of operations in the worst case for ~n~ elements is ~n(n+1)/2~ iterations should be noted.  The mental picture is a triangular matrix, where the reflexive comparisons are eliminated, which also gives a straightforward geometric method of approximating the number of iterations.
+* Sorting and Binary Search
+
+This approach is usually a trap.  In the real world, this approach has a multitude of difficulties, and is unfortunately a common-enough mistake that the author of this blog post had made it themselves when interviewing for an important job position.  Here are a few of the reasons why this approach shall not work.
+
+1. It requires traversing the array to the end at least once.  This is a waste of resources, as most other approaches can short-circuit the return if the two numbers are closer to the beginning of the array.
+2. It leads the programmer down a few false-optimisation rabbit-holes such as
+   1. Optimising by removing values that could not add up to the ~target~.
+   2. That re-arranging the numbers and using a converging two-pointer technique changes the asymptotic behaviour.
+   3. That a binary search on the resultant array will yield optimal asymptotic behaviour.
+3. The practical implementation of the binary search is prone to off-by-one errors.
+4. The programmer may be tempted to destroy the original array in the process.
+
+The problem is purely psychological.  Optimal asymptotic scaling cannot be obtained by generalising this algorithm, as can be done with another approach.  While in principle this method can obtain better asymptotic behaviour for the memory constrained case, this requires the original array of numbers to be destroyed in the process.
+
+It is the author's firm belief that if a candidate is tempted to go in that direction, they should be prevented from doing so.
+* Lookup-based solutions
+** Rust Standard Library Structures
+
+The class of optimal solutions is is called the lookup-based solutions.
+
+A discussion about the features of the optimal solution should be had at this point.  Can the outer loop be dispensed with.   This question is usually settled by reminding the subject of the lack of further properties known about the input, and constructing a counter-example for every possible access pattern.
+
+The inner loop is examined in the context of a question: what does it do, exactly.  An astute observer will identify this as a linear search for the complement of the element pointed to by the index of the outer loop.  This can be done more efficiently, by constructing a lookup system.
+
+Rust provides two structures which can serve that purpose, the ~BTreeMap~ and the ~HashMap~, both of which have an identical interface as far as the implementation is concerned.
+
+#+BEGIN_SRC rust
+  pub fn two_sum_lookup(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
+      let mut lookup = std::collections::HashMap::new();
+      for i in 0..nums.len() {
+          if let Some(left) = lookup.get(&(target - nums[i])) {
+              return Some((*left, i))
+          } else {
+              lookup.insert(nums[i], i);
+          }
+      }
+      return None;
+  }
+#+END_SRC
+
+One should question the use of a ~BTreeMap~ for these purposes, which can lead to a discussion of amortised constant time insertion and lookup in hash tables.
+
+This is a sub-optimal solution; but it is asymptotically identical to the optimal.  The key insight is understanding that the hashing process is practically useless, but that it cannot be wholly removed from the implementation as is.  A second insight is observing that ~i32~ has a limited range: there are only approximately four billion distinct values that such a number can take.  An earlier discussion into ~counting_sort~ may potentially help the programmer come up with the final iteration of the solution.
+
+
+** Custom Lookup Table
+
+This is an approach that is customary and idiomatic in C, but not in Rust, by virtue of requiring a slightly greater understanding of the operating system, but also providing a relatively complete solution with standard library structures.
+
+The extra optimisation is also completely invisible for micro-benchmarks.  One can suspect that they have done worse, when in fact, they have created a better scaling solution.
+
+The overall idea is simple: provide an API-compatible associative structure.  It can be thought of as a hash table with the identity hash function, and a pre-allocated single contiguous memory block.
+
+An reasonable implementation of this kind may look like this:
+
+
+#+BEGIN_SRC rust
+  pub struct Map {
+      inner: Box<[Option<usize>; (u32::MAX as usize) + 1]>,
+  }
+
+  impl Map {
+      pub fn get<'a>(&'a self, key: &i32) -> Option<&'a usize> {
+          let key = (*key as u32) as usize;
+          self.inner[key].as_ref()
+      }
+
+      pub fn insert(&mut self, key: &i32, value: usize) {
+          let key = (*key as u32) as usize;
+          self.inner[key] = Some(value);
+      }
+  }
+
+#+END_SRC
+
+This code is optimised for elaboration, and API-compatibility and not performance.  For example, we return references to integers, instead of integers.  This is done for compatibility with the API of ~HashMap~, as that structure is designed to handle more complex keys and values, which often benefit from the indirection.  In cases where the keys and values are primitive, the compiler is often able to replace the references to ~Copy~ structures with the structures passed-by-value.
+
+The main issue with this structure is the manner in which the inner unique pointer: ~inner~ is to be populated.
+
+One cannot ~derive(Default)~ on this structure for a number of reasons.  There is no guarantee that the value implementing ~Default~ has a lightweight ~Default~ constructor.  However the behaviour of a heavy allocation attached to ~Map~ is unexpected, because ~Vec~, ~HashMap~ and ~BTreeMap~ all have trivial ~Default::default()~ factory functions.  Deriving this automatically fails also because a default value for a unique pointer is widely considered a mistake, including by the author of this value in the C programming language -- C. A. R. Hoare.
+
+Instead we would prefer creating an associated function: ~new~ that function would accept nothing, and return a ~Self~ with already allocated table.
+
+The obvious approach, sadly, does not work:
+#+BEGIN_SRC rust
+  pub fn new() -> Self {
+      let inner = Box::new([None; u32::MAX as usize + 1]);
+      Self { inner }
+  }
+#+END_SRC
+
+The simple reason is that semantically the array is not constructed on the heap, but instead one is constructed on the stack and ~move~'d to the heap.  As the required size is approximately 64GiB, this is almost guaranteed to fail on any reasonable machine.  No operating system permits a stack size anywhere near that number.
+
+However, one can allocate 64GiB chunks on the heap relatively easily provided that their system RAM is sufficient.  Furthermore, unless the full range of integers is presented, the full 64GiB might not ever be allocated, meaning that machines with less RAM can still make use of this approach.
+
+But how does one perform such an allocation.  There are a few candidates in the ~Box~ structure's associated functions.  They can accept management of memory that was allocated outside of ~Box::new~.  Unfortunately, they do little to help with allocating the memory.
+
+The ~Vec~ datatype has a few associated functions of interest.  The first suggestion is to construct a ~Vec::with_capacity(u32::MAX + 1)~, which can then be consumed, returning a pointer to the allocated memory.  That pointer can then be passed into the custody of ~Box~ to introduce RAII semantics.  ~Vec::into_boxed_slice~ trims the allocated memory.  Furthermore, the space is actually not zeroed.  What one needs instead is 
+
+#+BEGIN_SRC rust
+  pub fn new() -> Self {
+      let inner = Box::new_zeroed();
+      let inner = unsafe { inner.assume_init() };
+      Self { inner }
+  }
+#+END_SRC
+
+We do not violate safety, because we know the layout of ~Option<usize>~.  Namely it is a tagged union, wherein the tag is usually taking up a machine word.  Usually is the active word.  The value ~0~ is customarily associated with the value ~None~, which is precisely what we would like to assume.
+
+** Discussion
+
+The work presented above can be considered as the upper limit of what an engineer should be able to produce within a reasonable time frame.  It is however interesting to discuss the solution.
+
+First of all, it should be noted that the custom structure is not sensible for inputs that are less than a certain threshold.  This approach would not work well for small inputs, or if the program is already experiencing high memory fragmentation and allocator pressure.  This solution is an idealised case, that in a real world benchmark can be a few orders of magnitude slower than the the ~HashTable~ approach.  This is both to be expected, but also one of the primary reasons why it is not idiomatic to create custom structures for these sorts of problems in production code.
+
+For large inputs, this approach should perform better.  The exact break-point is machine dependent, but in testing we have found that approximately 10,000 elements already produce results favourable to the custom allocator.
+
+One important aspect of this problem is that frequently the solutions are accompanied by unit tests.  One must take great care to not encode implementation details into the tests, because this problem in particular is prone to under-specification.  Some solutions will record the first instance of a value, and ignore subsequent ones.  Others will do the opposite.  Unit tests generated by LLMs have a tendency to encode that property, which will exclude valid solutions.  This is an instructive example for roles which require the programmer to also maintain tests for code bases.
+
+Finally, there is room to improve this solution's memory footprint.  The tag of the ~Option~ is usually a single bit of useful information, with often as much as a whole machine word allocated to store it.  Thus, approximately half of the storage is wasted.  There is also space wasted in the ~usize~ portion of the payload.
+
+A ~usize~ is typically a pointer-width integer.  On x86_64 it is 64-bit wide.  However, one can reason about the maximum value that will actually be stored in the map.   An input that would utilize the full 64 bits of index would exhaust the memory address space.  In fact, because a byte is the smallest addressable unit, it'd do so by a factor of 4.  Even so, the memory used for solving this problem, /i.e./ storing the ~lookup~ variable is occupying the same address space as the input, therefore the practical number of bits set in the payload is less than 64.
+
+However, thanks to something known as the *niche optimisation*, even one /value/ of the payload being unreachable, /e.g./  ~usize::MAX~ would mean that you can store the single bit of information in the tagged union of ~Option~ inside the payload.  To do this, we could replace ~Option<usize>~ with ~Option<NonZeroUsize>~ and record the 1-based index, instead of a zero-based one.  This allows us to retain the convention of the value /zero/ representing ~None~ needed for the allocation to be done easily, as well as reducing the size of the allocated chunk by half.
+
+At this point it may be worth exploring principled reductions of the space based on the value of ~target~.  There is a simple heuristic for unsigned values: for a concrete value of the target, every number greater than the target can be excluded from the search.  The twos complement representation allows this heuristic to be extended to signed values, but with some effort.
+
+* Conclusion
+
+This problem is a teachable example for learning the Rust programming language.  It of particularly great use to C programmers looking to evaluate Rust's suitability to their project.
