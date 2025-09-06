@@ -2,6 +2,8 @@
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-09-01
 #+TAGS: Programming
+#+TAGS: Rust
+#+TAGS: Book
 
 What follows is a practical example of solving the well-known problem of identifying the indices of two numbers in a sorted array whose sum is a given target.  This specific example is a popular programming interview question owing to its versatility; it opens up doors to many conversations about engineering efficient concise and maintainable code.  When wielded properly, this interview question can elucidate one's familiarity with best coding practices, as well as tastes and preferences.  This question is also one that is conducive to both optimization by means of external depedendencies in a well-factored code base, as well as tighly coupled specialisation.  Solving this problem should be on one's journey of learning the Rust programming language.
 
