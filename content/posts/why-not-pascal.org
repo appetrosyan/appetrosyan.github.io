@@ -1,0 +1,92 @@
+#+TITLE: Why not Pascal
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-09-07
+
+This post is a response to a student of mine having a rather strong urge to study this arcane language.  To put it simply, I find that the hatred towards that language is rather unwarranted and often misses the point.  Not to say that there aren't any valid critiques of the language, but rather that it is limited in its depth.
+
+Without further ado.
+* Pascal
+
+It is a teaching language that inherited much from the Algol family.  It was pushed by a certain someone, Niklaus Wirth.  The idea was that Pascal would instill good programming habits in the young programmers by sheer design.
+
+For all intents and purposes, that language was not a great success, or a success at all, for that matter.  In my day, the only reason I knew about its existence was because of a few books, that detailed older programming languages, such as FORTRAN, BASIC and PASCAL.  Of the three, this one didn't seem like a particularly appealing choice, due to FORTRAN being faster and more widely used in science, a thing which from very early on I wanted to pursue.
+
+But one may argue that it is rather a problematic position to be in.  PASCAL was designed with principles.  It was not an ad-hoc jumble of ideas designed by a committee, such as the ALGOL 68.  It was not certainly an outcome of an experiment at Bell Labs.  It was for all intents and purposes a language with a clearly defined niche, and absolutely no compromises.
+
+So why did it not take off?
+
+There are some possible suggestions.  For one, the language, as admitted by Niklaus Wirth himself, must be frugal.  In the interest of readability.  This is a rather bold statement, as at the time, there was not a clear infrastructure of libraries that would simplify the pain points created by the frugality.  With Java the same is far from an issue because of three things.
+1. It has a rather large, corportate-supported standard library, so things such as a ~HashMap~ are readily available.
+2. It has a principled stance on libraries and tooling, which allow extending the language further.
+3. It tries to reasonably accommodate syntactic sugar where possible.  That coupled to its choice of OOP as the primary focus may lead to verbose code, but code nonetheless that is perfectly reasonable.
+
+
+Not a single person would accuse Java of being ergonomic.  But one has to control for surviroship bias.  Those people managed to do their task with Java.  Furthermore, despite the complaints about it being a soul-less corporate program, I have frequently come across incredibly polished, and detailed programs that were written entirely in Java.  Why did that not happen to Pascal?  Well, it did, kinda.
+
+Enter Delphi.  It is a proprietary mess.  That is why it is not highly regarded in most circles.  It is perhaps the same fatal flaw that Jai has, but only mitigated to a great extent, by the fact that it is also a well-polished product.  It supports OOP to an extent, and has some regrettable quirks.  It is a programming language to which I had limited exposure, but cannot argue with the results of.
+* Why Brian Kernighan should have known better
+
+
+I'm afraid that this may be taken out of context.  I do not have an axe to grind against Kernighan.  I've met him in real life, and we had a lovely exchange of one question.  As with Wirth, as with Hoare...  but I'm not writing a memoir.  Yet.
+
+The problematic statement is that one's opinion is amplified by their status.  Kernighan didn't like Pascal for specific reasons.  As someone who has written books on pascal, he gets to do that.  Unfortunately, he targeted what I consider to be extremely fixable problems.  This is precisely why I held off on publishing my critiques of programming languages.  All of them.  The reason is very simple.  Languages change.
+
+But the reputation-al damage to Pascal was already done.   It was assumed to be a poor medium for structured programming from then on in, precisely because Kernighan had a scathing critique of it.
+
+Many of my critiques of Solana have aged like milk.  The one that didn't is the fact that it is still pretty much a tyrannical pseudo-democracy, where you either fall in line or try to play catch-up and fail, and _then_ fall in line.
+
+The problem with the critique of Pascal was not that it would start a war of polemics, but that in the cargo-cult world of computer science, someone's opinion trampled common sense, and there was no polemics.  It turns out that many of Kernighan's points were well measured, and well-articulated, but the key takeaway was not the measured critique, it was the overall mode.
+
+There is no escape: there are no ways of bypassing the language's design, which come to think of it, is the entire point.  Now one can reasonably make the "consenting adults" point, where we can say, I know what I'm doing, now please let me do it.  A language that takes away one's freedom is fundamentally a problem for a programmer that knows what they are doing.  This is why I believe that Rust's ~unsafe~ was a key decision.
+
+To Kernighan what Pascal represented was an opinionated colleague's imperfect vision for a world in the future, where he would not be allowed to manipulate memory.  A future where all loops can only be exited once the loop has done its job in full, and everything has a nice type, even if that means extra boilerplate.  Furthermore, instead of adapting to the users, the grammar was pedantically insistent on "there's a semicolon here, but not there".  Remind you of something?  Maybe something that claims direct lineage to C?
+
+One has to understand that a master craftsman would not take kindly to his favourite tools being taken away.  No one would doubt that Kernighan was a master of the facilities in C, and of the minimalist "just right" balance of complexity in C, that allowed it to flourish.  Take it away, and make Kernighan have to deal with slow compilation times, and you get the predictable result.
+
+Pascal existed in an environment in which it could not stand out, it was an instruction tool.  It couldn't be good, and the fact that it wasn't adopted more widely should not come as a surprise.  However, calling an instruction tool bad, because of the fact that you are not the intended audience, is not necessarily the right thing to do.
+
+I would be curious to see if this reputational damage has done any real harm to humanity.  Probably not.  But it certainly disbarred Pascal from being treated seriously by default.  The few problems that it used to have, have become a sort of an in-joke, and then something that got transferred as received wisdom.  The /actual/ wisdom of course being available, easily readable, and frankly quite measured, while the received wisdom is often extremely inflammatory, misguided and denigrates good ideas by proxy.
+* Pascal the good parts
+** Size as part of type
+
+This hits close to home.  But Rust has a similar design to Pascal as far as arrays are concerned.  An array of length ~n~ is a distinct type from an array of length ~n+1~.  You cannot mix them up.  This turns out to be useful in cryptographic applications, where arrays are being passed around, but have a different semantic meaning.
+
+This allows one to eliminate quite a number of bounds checks, and not have to worry about early termination in the C-style strings.  But there is a way around the problem that Kernighan described.  Rust arrays decay into what's known as slices.  These slices all have the same type.  So a contiguous chunk of memory, regardless of size, can be expressed in the type system.  If Pascal had something along those lines, I assure you the 80-char strings would not need to exist.  At the same time, the whole reason why this is useful has to do with a large compiler with many optimisations, type inference and a complex system of traits.  Without ~Deref~ working the way it does, one actually has to resort to the incomplete solutions that Kernighan was referring to.
+** Algebraic Data Types
+
+One can (and often does) argue that the Algebraic data types are a functional programming idea.  That enumerations and records had no precedent.  This may be somewhat true, but Pascal's inclusion of them was a useful idea.
+
+In Rust, the ~Option~ and ~Result~ monads are the shining examples of Enums applied correctly.  Data-carrying enumerations are also the solution, the escape hatch that Kernighan would have liked to have.  They allow one to group certain kinds of data into one type, pass it around as such and use.  Enumerations clearly allow a great deal of algorithms to be expressed more cleanly.  They also permit encoding intents, which we shall talk about shortly.
+** Booleans
+
+This idea was so good that it had informal support in the C programming language as part of libraries for a few decades, and was recently introduced into the C standard.
+
+Booleans are not the most expressive idea, but they are a ready-made solution for some algorithms.  They are universally acknowledged to be useful, though not many credit their existence to Pascal, many should.
+** Lack of Goto
+
+One of Kernighan's critiques of Pascal was the absence of Go-to.  Indeed, this is one comment that in retrospect made the least sense, but has to be qualified by the statement that Kernighan was referring to absence of control structures that would cover all cases, and only then then absence of Goto to circumvent these limitations.
+
+The sheer fact that the case against the go-to was converted into a much more aggressive form by Wirth himself, should be no surprise.  What should be surprising is that the actual keyword is almost universally phased out of modern programming languages.
+** Structured programming
+
+Pascal was truly the first programming language that can be considered fully structured.  This is in reference to the previous point, but it was also because of a particular form of frugality.  The idea was to dispense with many of the "baroque" (to borrow Wirth's own verbiage) features of the older languages, and force the programmer on the path of perhaps somewhat reduced efficiency in the interest of improved clarity.
+
+Clarity allows the compiler to better understand the constraints, and for the compiler to produce more efficient code.  It is simply useful to do so.
+** Imposing good habits by design
+
+It is often the case that the older programming languages required quite a bit of instruction to work around the somewhat surprising conventions.  Once figured out, programming in these languages comes as second nature, but the initial hump is a problem.  It is specifically a problem in a programming language as complex as C++.  Pascal being one of the earlier examples of a progrmaming language that was supposed to impose good programmer choices, by increasing friction and often eliminating the options that would lead to sub-optimal design.
+
+The problem was that the implementations in Pascal were largely guided by the limitations of what was practical in compilers at the time, Wirth's personal tastes, and did not have the benefit of hindsight of several decades of programming and man-millenia's worth of code to draw upon.  Wirth had seen some problems occur in his personal experience, and prevented those problems, by adding friction.  His principle was good, the way in which he had done it was not.
+
+Firstly, it was too radical.  As I said before, Rust has the option of writing potentially (and intentionally ~unsafe~) code for those that know how to wield it.
+
+Secondly, it was based on his personal opinion.  While Wirth is widely regarded as one of the best computer scientists of his day, he was but a human.  Humans have limited scope of vision.
+
+Thirdly, it came at an inopportune time.  Pascal was a single-pass programming language because it needed to conform to a limited computational budget.  I doubt that Wirth would have conceded that efficiency is necessary in this context, but he may have chosen to allow the program to be more reasonably grouped.  That would result in a good habit in general.
+* Conclusion
+
+Pascal is a fun case study.  It is by no means an in-depth deep dive, into the programming language (which will follow).  It is merely an evaluation of the programming language's cultural impact.
+
+I would highly encourage anyone willing to try and implement QuickSort in Pascal, to see the strengths and weaknesses of the language for themselves.  However, I would caution against investing much time into it.  Rust performs the function of Pascal in the modern day.  It is the programming language that offers a great amount of flexibility that was against the will of Wirth, and is a large language with a complex parser and compiler, which Wirth would undoubtedly object to.  However, the computational efficiencies of most things being what they are, we are in an acceptable position to make the "doesnt matter, I can afford it" argument, and use a more complex tool.
+
+
