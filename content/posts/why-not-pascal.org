@@ -1,6 +1,7 @@
 #+TITLE: Why not Pascal
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-09-07
+#+DRAFT: false
 
 This post is a response to a student of mine having a rather strong urge to study this arcane language.  To put it simply, I find that the hatred towards that language is rather unwarranted and often misses the point.  Not to say that there aren't any valid critiques of the language, but rather that it is limited in its depth.
 
