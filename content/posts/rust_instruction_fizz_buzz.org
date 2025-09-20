@@ -1,0 +1,199 @@
+#+TITLE: Rust instruction: FizzBuzz
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-09-02
+
+To a relative newcomer, FizzBuzz seems like far too simple a problem to bother writing about.  Yet there seems to be an endless stream of content dedicated to this problem.  It is something that is brought up in many of Kevlin Henney's talks.  The reason is simple.  It is a distilled version of a problem that occurs in many programming situations; a mismatch between the tools given to the programmer and an accurate model of the problem space.  Simply put, structures and objects do not represent the concept of ~Fizz~ and ~Buzz~ accurately.
+* Introduction
+
+The problem is a game that is used as an interview question in some if not to say many interviews.  It is a simple-enough question so that a child can produce an answer to it.  Coding it up lends itself to a simple brute-force solution, and as the aforementioned Kevlin Henney points out, is often a consequence of programmers being unable to binary search.
+
+You are asked to produce a list of numbers.  You replace numbers divisible by ~3~ with ~Fizz~ and numbers divisible by ~5~ with ~Buzz~.  If two apply at the same time, /i.e./  the number is divisible by ~15~  -- you call it ~FizzBuzz~.
+
+This sort of description lends itself to an easy implementation:
+#+BEGIN_SRC rust
+  pub fn fizz_buzz(upper_bound: usize) {
+      for num in 0..upper_bound {
+	  if num % 3 == 0 {
+	      print!("Fizz");
+	  } else if num % 5 == 0 {
+	      print!("Buzz");
+	  } else if num % 15 == 0 {
+	      print!("FizzBuzz");
+	  } else {
+	      print!("{num}");
+	  }
+	  println!()
+      }
+  }
+#+END_SRC
+
+One may wonder why, if anything, why do we discuss this problem,  if it can be solved /that/ easily.  Well, the solution has a number of problems.  Those problems are not reflected in the problem specification as it is now, but as is often the case in real software engineering, the problem specification is malleable.  The customer might choose something else.  The programmer may need to make cuts to make a deadline.  The original specification was mathematically inconsistent, and the cryptographic library implementing this has to be adjusted for the new understanding.  The number of possible situations is vast.
+
+So how can the specification of a problem such as Fizz Buzz be adjusted?  One common option is that the number of rules is not fixed.  There could be more funny words associated to divisibility with ever more divisors.  We may need to think about the efficiency of this, and we may also need to decouple the input from the output.
+* Information Flow and Monads
+So how do we approach this?  Kevlin Henney in almost every occurrence of this problem in his talks mentioned [[https://themonadreader.wordpress.com/wp-content/uploads/2014/04/fizzbuzz.pdf]["Embedding a Domain-Specific Language"]] a paper dedicated to solving one specific inefficiency.  We have a doubled check whenever dealing with numbers divisible by 15.  Consider how the naive approach would handle such a number.)
+
+If a number is divisible by 15, it must also be divisible by 3 /and/ 5.  The way it's laid out, there would be three checks that would happen no matter what.  The way it should is that you need to check divisibility by 3 and divisibility by 5.  So slightly less naive code would look like this:
+
+#+BEGIN_SRC rust
+  if num % 3 == 0 {
+      if num % 5 == 0 {
+	  println!("FizzBuzz");
+      } else {
+	  println!("Fizz");
+      }
+  } else {
+      if num % 5 == 0 {
+	  println!("Buzz");
+      } else {
+	  println!("{num}")
+      }
+  }
+#+END_SRC
+
+But there's an additional twist.  Look at the code that I've written before this one.  Does it *even* solve the problem?  If you ever wondered why most software is a buggy mess, this is why.
+1. Most engineers wouldn't bother testing this code, because it's trivial.
+2. Most engineers would look at the spec, would look at the code and say "close enough".
+3. Most engineers would generate this code with an LLM, and not run it once.
+4. Most engineers would be under pressure to release the software as soon as possible, and would treat the doubling of control flow as an artefact.
+
+
+The less naive version however, suffers from poor maintainability.  If I wanted to extend this, how do I do that?  The concatenation here is implicit.  If I had a third number, the total amount of possible combinations is going to explode quadratically.  Every single possible concatenation variant is going to be included.  Moreover, how do I convert a specification of rules into this structure?  It's rigid!
+
+#+BEGIN_SRC rust
+  if num % divisors[0].number == 0 {
+      if num % divisors[1].number == 0 {
+	  println!("{}", divisors[1].string);
+      } else {
+	  println!("{}", divisors[0].string);
+      }
+  } else {
+      if num % divisors[1].number == 0 {
+	  println!("{}", divisors[1].string));
+      } else {
+	  println!("{num}")
+      }
+  }
+#+END_SRC
+
+It's not at all obvious to me how something like this can be generated with code.  And the idea of embedding a domain-specific language is to create a structure that would.
+
+Let us take a detour into functional programming.  Haskell is one programming language that handles most of its unclean, side-effect prone state conversions via something known as /monads/.  I believe that they are a simple idea made complex, owing to the fact that category theory mathematicians named it.  My definition of a monad, is encoding control flow in the type system.
+
+An ~Option~ in Rust is a monad.  A ~Result~ is not, strictly speaking, but it for all intents and purposes behaves like one, which is why it's called a monoid.  But you can call it a monad.  The most pedantic mathematician would correct you, the less pedantic would understand what you mean and shut up.
+
+So how do we solve this problem with monads?  Well, let's go with a naive version first, to illustrate the point, and expand from there.
+
+The primary idea is that we want to encode what to do with a number in terms of the type system.  We build a sort of a state machine.
+
+The input goes through the state machine, gets tested for things in a deterministic order, and that order gets annotated into the type.  It's either there or it isn't.  The ~Result~ type is quite useful here.   We model the test as something that returns one thing upon success, and something else upon failure.  This is exactly what a ~Result~ would do.
+
+So we schematically have the following process:
+1. We start with a number,
+2. We test it for divisibility by 3
+3. We test it for divisibility by 5
+4. We collect the results and print what's needed.
+
+The template for the test functions is that we run a test, we record the data in the type, and we compose with the next test.  The concatenation needs to factor into how we combine the test results.
+
+#+BEGIN_SRC rust
+  pub fn test(num: usize, divisor: usize, print: &str) -> Result<(usize, &str), usize> {
+      if num % divisor == 0 {
+	  Ok((num, print))
+      } else {
+	  Err(num)
+      }
+  }
+#+END_SRC
+
+The test is fairly sensible.  It's also following a simple convention of that we have a master order of these numbers, and we just apply them in that order.  Now one may reasonably ask how to apply the results of one test to another object, after all what we want is a ~Result<Result<usize, usize>, usize>~.  Do we even care to differentiate one kind of failure from another?  Turns out we do.
+
+#+BEGIN_SRC rust
+  let fizzer = |input| test(input, 3, "Fizz");
+  let buzzer = |input| test(input, 5, "Buzz");
+  let printer = |(i,m)| {print!("{m}"); i};
+  let result = fizzer(input).map(printer).map_or_else(buzzer, buzzer).map(printer);
+#+END_SRC
+
+gives us exactly the structure we want.  So extension is now trivial.  Just add another line in the lambdas and add another ~map_or_else~.  The trouble is that the printing is inaccurate.  There's a crucial subtlety that results in a doubled check; we need to print the number if it is not divisible by anything.  But how do we know if we have already printed something?
+
+One way is to set an external captured boolean; if we find something, we set it to true and only print the number if it is false.  Unfortunately we have already checked if something happened, we are checking the same condition twice.  Except that condition is much more vague, and combined via logical ~or~.
+
+The method that is proposed in the paper that we mentioned before proposes the following approach: Maybe we need to propogate that information via lambda.
+
+#+BEGIN_SRC rust
+    let do = |m| {print!("m")};
+    let dont = |_| {};
+    let test = |i, d, s, p| {
+	if i % d == 0 {
+	    Ok((i, s))
+	} else {
+	    Err((i, p))
+	}
+    }
+    let result = test(input, 3, "Fizz", do)
+	.map_or_else(
+	    |(i, s)| {
+		print!("{s}");
+		test(i, 5, "Buzz", dont)
+	    },
+	    |(i, p)| {
+		test(i, 5, "Buzz", p)
+	    }
+	)
+	.map_or_else(
+	  |(i, s)| {
+	      print!("{s}");
+	  },
+	  |(i, p)| {
+	      p(i);
+	  }
+      );
+#+END_SRC
+
+Now, let us walk through some of this.  The first test can give us one of two outcomes.  Either we get something and we don't really need to print anything else, or we don't, in which case whatever we needed to do before, is still valid.  The fact that we're propagating this all the way means that if at any point the chain is broken, the control flow will indicate that we don't need to print anything.  If you wanted to extend this, the obvious place is to add another structure in the middle, via ~map_or_else~.  We follow the same pattern of overriding things with ~dont~ in the positive case, and continuing the tests in the negative case.
+
+But is this actually more efficient?  I think the answer should be obvious.  The boolean flag is a single run-time value that does the propagation.  We may set it to ~false~ during printing, and that's the extent of the change.  The only place it matters is at the end.  Is swapping out a single boolean more efficient than swapping out a function pointer?  Probably identical.  But every time we move forward by one rule, we need to check the previous result, and do different things in different cases.  These sorts of monads in Rust double every check.  Not only do we know which branch we're supposed to be in, but check anyway during the ~match~ that's inside ~map_or_else~, the lambdas cannot be inlined.
+
+This is excellent if you want the code to be more maintainable than the most naive example, but it is not by any means a good solution, though it probably would be in a proper functional language.  What are the objective benefits?
+
+1. The extension of this to more rules is easier.  We explained how to insert extra rules earlier.
+2. There are no places where an extra check based on overlap needs to be inserted.  *This is good for preventing some programmer errors*.
+
+
+The problems though are abundant.
+1. The rules can only be added at compile time.
+2. The checks can only run sequentially.
+3. The types of objects are not easily understood or inferred.
+4. The point of composition is still a major failure point.
+5. Any extensions must touch the point of composition.  Get something wrong, and it stops working.
+6. The compiler must recognise the the code as corresponding to the branches in ~test~ in order to properly inline the code blocks and avoid function call overhead.
+7. Determining the remainder of division is actually an expensive operation.  It is not warranted.
+* Periodic generation
+
+While we could take a number, and compute two remainders per operation, this is far from efficient.  If we concede that checking divisibility by 15 is redundant to checking 3 and 5 separately, we should also acknowledge that checking anything at all is redundant.  We *already* know the pattern.
+
+Let's take an arbitrary rule: ~(n, S)~ where ~n~ is a divisor, and ~S~ is a string.  The pattern according to just this rule dictates that every ~n~-th entry /must/ contain ~S~.  Normally if you want to know if any given entry ~k~ contains ~S~, you should ask if ~k mod n~ is nil, which is faster than generating all the previous entries, for this particular number.  The fallacy is that the problem clearly states that we need to generate previous entries as well and then the question is actually less efficient.
+
+So what to do if we have two rules?  ~n~ and ~m~ have what's known as a lowest common multiple.  In case of 3 and 5 that is 15.  The pattern of ~FizzBuzz~ repeats after 15.  So it is enough for us to generate the pattern up until the first LCM over all rules, and then increment all the numbers in that pattern /by/ the LCM.  Two rules have a special property in case of only two: the only case where you see ~FizzBuzz~ is at the end of the pattern.
+
+So how would we solve the problem utilising this insight?  We have a pattern element.
+#+BEGIN_SRC rust
+  pub struct PatternElement(Box<str>);
+#+END_SRC
+What this represents is the string representation of the current element of the pattern.  For indivisible numbers, it's the number's string representation.  For divisible numbers, which are part of the pattern, it's the concatenation of the rule representations.
+
+So roughly speaking the algorithm is thus:
+1. Compute the LCM of the rules, and every common multiple in between.
+2. Assume all rules apply, for each word pre-allocate  a buffer wide-enough to keep all words.
+3. For each rule in the buffer, mutate the buffer in place, keeping track of the final character position.  This is to avoid re-allocation, but also to note that most words are short, so you can set the entire string in one instruction using SIMD.
+4. For each place that was modified, "punch a hole" in a mask.  We'll use that mask later.
+5. Finally, once we've gone through all rules, we want to set the numbers in the buffers.  We generate a sequence of numbers.  The places where there is a "hole" in the mask, we skip. Everything else can be done with SIMD.  Then the numbers need to be converted into a string.  We just concatenate that to the places in the mask where there is no hole.
+6. We convert this into a single string and print it out.  Buffered.  Many lots of this can be printed without flushing the buffer.  Moreover, if we have control over the allocator, we can ensure that the entire object is in a contiguous chunk of memory.  So ~PatternElement~ objects reside in adjacent memory locations.  This is good for cache locality.
+
+
+One may be asking if such efficiency is warranted.  Well, the truth of the matter is that it usually isn't.  But that is also why most pieces of code are optimised for some vague notion of efficiency, that is hiding a doubled check.  And I do mean hiding, because changing the function pointer itself is tantamount to changing a boolean.
+
+A real-world improvement to performance can be expected from such an implementation, because we use SIMD, because we care about cache locality and because we optimise for the use-case that we have: printing out sequences of strings, and not figuring out how many rules overlap in one place.
+
+

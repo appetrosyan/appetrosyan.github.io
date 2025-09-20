@@ -1,0 +1,566 @@
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-09-21
+#+TITLE: The Emacs widget saga: viewports and windows
+* Preface
+
+The updates are sparse.  There are a few reasons.  I am actively looking for a new job.  On a good day, this process is long and arduous.  But I have a few complicating factors.
+
+The second reason is because the amount of work that would be necessary to make this project work was severely under-estimated by yours truly.  I have spent the better part of a day trying to figure out why the Emacs source code is organised the way that it is.  At the risk of ruffling some feathers, I have given up on the idea of re-using the code that is already there.  The new system is going to be implemented from scratch.
+* Introduction
+
+Every book on Emacs starts with a preface that says what a =frame=, =window= and =buffer= mean in Emacs.  For our purposes:
+
+***  =frame=
+
+an entity that is often called a window in most desktop environments.  It represents a set of decorations a menu bar, a title bar, a tool bar (if you like me, have not disabled it), and some select few additional properties that a user never sees.  The =frame= represents a connection to the Emacs server.  If the Emacs application is run in non-client-server mode, closing or =killing=  the last =frame= means killing the Emacs process.
+
+*** =window=
+
+ an entity that is used to display the edited content.  It is where the text appears, where in =reader-mode= one gets the PDF.  It is also what gets created with the vertical and horizontal split commands.  The =window= at the moment is a very /simple/ structure.  It is given here for reference.
+
+  #+BEGIN_SRC C
+    struct window
+      {
+	union vectorlike_header header;
+	Lisp_Object frame;
+	Lisp_Object next;
+	Lisp_Object prev;
+	Lisp_Object parent;
+	Lisp_Object normal_lines;
+	Lisp_Object normal_cols;
+	Lisp_Object new_total;
+	Lisp_Object new_normal;
+	Lisp_Object new_pixel;
+	Lisp_Object contents;
+	Lisp_Object prev_buffers;
+	Lisp_Object next_buffers;
+	Lisp_Object old_buffer;
+	Lisp_Object start;
+	Lisp_Object pointm;
+	Lisp_Object old_pointm;
+	Lisp_Object temslot;
+	Lisp_Object vertical_scroll_bar;
+	Lisp_Object vertical_scroll_bar_type;
+	Lisp_Object horizontal_scroll_bar;
+	Lisp_Object horizontal_scroll_bar_type;
+	Lisp_Object display_table;
+	Lisp_Object dedicated;
+	Lisp_Object combination_limit;
+	Lisp_Object window_parameters;
+	Lisp_Object cursor_type;
+	Lisp_Object mode_line_help_echo;
+	struct glyph_matrix *current_matrix;
+	struct glyph_matrix *desired_matrix;
+	EMACS_INT use_time;
+	EMACS_INT sequence_number;
+	int change_stamp;
+	int pixel_left;
+	int pixel_top;
+	int left_col;
+	int top_line;
+	int pixel_width;
+	int pixel_height;
+	int old_pixel_width;
+	int old_pixel_height;
+	int old_body_pixel_width;
+	int old_body_pixel_height;
+	int total_cols;
+	int total_lines;
+	ptrdiff_t hscroll;
+	ptrdiff_t min_hscroll;
+	ptrdiff_t hscroll_whole;
+	modiff_count last_modified;
+	modiff_count last_overlay_modified;
+	ptrdiff_t last_point;
+    #ifdef HAVE_TEXT_CONVERSION
+	ptrdiff_t ephemeral_last_point;
+    #endif
+	ptrdiff_t last_mark;
+	ptrdiff_t base_line_number;
+	ptrdiff_t base_line_pos;
+	ptrdiff_t column_number_displayed;
+	int nrows_scale_factor, ncols_scale_factor;
+	struct cursor_pos cursor;
+	struct cursor_pos phys_cursor;
+	struct cursor_pos output_cursor;
+	int last_cursor_vpos;
+    #ifdef HAVE_WINDOW_SYSTEM
+	enum text_cursor_kinds phys_cursor_type;
+	int phys_cursor_width;
+	int phys_cursor_ascent, phys_cursor_height;
+    #endif /* HAVE_WINDOW_SYSTEM */
+	int left_fringe_width;
+	int right_fringe_width;
+	int left_margin_cols;
+	int right_margin_cols;
+	int scroll_bar_width;
+	int scroll_bar_height;
+	int mode_line_height;
+	int header_line_height;
+	int tab_line_height;
+	ptrdiff_t window_end_pos;
+	int window_end_vpos;
+	bool_bf mini : 1;
+	bool_bf horizontal : 1;
+	bool_bf update_mode_line : 1;
+	bool_bf last_had_star : 1;
+	bool_bf start_at_line_beg : 1;
+	bool_bf force_start : 1;
+	bool_bf optional_new_start : 1;
+	bool_bf phys_cursor_on_p : 1;
+	bool_bf cursor_off_p : 1;
+	bool_bf last_cursor_off_p : 1;
+	bool_bf must_be_updated_p : 1;
+	bool_bf pseudo_window_p : 1;
+	bool_bf fringes_outside_margins : 1;
+	bool_bf fringes_persistent : 1;
+	bool_bf scroll_bars_persistent : 1;
+	bool_bf window_end_valid : 1;
+	bool_bf redisplay : 1;
+	bool_bf suspend_auto_hscroll : 1;
+	bool_bf preserve_vscroll_p : 1;
+	int vscroll;
+	ptrdiff_t window_end_bytepos;
+    }
+#+END_SRC
+
+Realistically, as you can probably tell, adjusting this object will have some quite drastic consequences.  The state that is being persisted is very much everything and the kitchen sink.  The information is not segregated and segmented in any way.  The window simply has all of the properties.  The window is responsible for many of the interactions with the UI.  While the implication of presenting the rather large structure in full is that the interactions are undesirable, it is in fact the opposite.  While it would certainly be prudent to refactor this object /a little/, the fact that the window has all of its behaviour encoded directly allows one to expand the behaviour of the window.
+
+More on that later.
+
+*** =buffer=
+
+The buffer is the bread and butter of any editor.  In effect, the buffer is what defines the behaviour of the editor as a whole.  A buffer is supposed to be a rather simple structure; the actual code is presented below.
+
+#+BEGIN_SRC C
+  {
+    union vectorlike_header header;
+    Lisp_Object name_;
+    Lisp_Object last_name_;
+    Lisp_Object filename_;
+    Lisp_Object directory_;
+    Lisp_Object backed_up_;
+    Lisp_Object save_length_;
+    Lisp_Object auto_save_file_name_;
+    Lisp_Object read_only_;
+    Lisp_Object mark_;
+    Lisp_Object local_var_alist_;
+    Lisp_Object major_mode_;
+    Lisp_Object local_minor_modes_;
+    Lisp_Object mode_name_;
+    Lisp_Object mode_line_format_;
+    Lisp_Object header_line_format_;
+    Lisp_Object tab_line_format_;
+    Lisp_Object keymap_;
+    Lisp_Object abbrev_table_;
+    Lisp_Object syntax_table_;
+    Lisp_Object category_table_;
+    Lisp_Object tab_width_;
+    Lisp_Object fill_column_;
+    Lisp_Object left_margin_;
+    Lisp_Object auto_fill_function_;
+    Lisp_Object downcase_table_;
+    Lisp_Object upcase_table_;
+    Lisp_Object case_canon_table_;
+    Lisp_Object case_eqv_table_;
+    Lisp_Object truncate_lines_;
+    Lisp_Object word_wrap_;
+    Lisp_Object ctl_arrow_;
+    Lisp_Object bidi_display_reordering_;
+    Lisp_Object bidi_paragraph_direction_;
+    Lisp_Object bidi_paragraph_separate_re_;
+    Lisp_Object bidi_paragraph_start_re_;
+    Lisp_Object selective_display_;
+    Lisp_Object selective_display_ellipses_;
+    Lisp_Object overwrite_mode_;
+    Lisp_Object abbrev_mode_;
+    Lisp_Object display_table_;
+    Lisp_Object mark_active_;
+    Lisp_Object enable_multibyte_characters_;
+    Lisp_Object buffer_file_coding_system_;
+    Lisp_Object file_format_;
+    Lisp_Object auto_save_file_format_;
+    Lisp_Object cache_long_scans_;
+    Lisp_Object width_table_;
+    Lisp_Object pt_marker_;
+    Lisp_Object begv_marker_;
+    Lisp_Object zv_marker_;
+    Lisp_Object point_before_scroll_;
+    Lisp_Object file_truename_;
+    Lisp_Object invisibility_spec_;
+    Lisp_Object last_selected_window_;
+    Lisp_Object display_count_;
+    Lisp_Object left_margin_cols_;
+    Lisp_Object right_margin_cols_;
+    Lisp_Object left_fringe_width_;
+    Lisp_Object right_fringe_width_;
+    Lisp_Object fringes_outside_margins_;
+    Lisp_Object scroll_bar_width_;
+    Lisp_Object scroll_bar_height_;
+    Lisp_Object vertical_scroll_bar_type_;
+    Lisp_Object horizontal_scroll_bar_type_;
+    Lisp_Object indicate_empty_lines_;
+    Lisp_Object indicate_buffer_boundaries_;
+    Lisp_Object fringe_indicator_alist_;
+    Lisp_Object fringe_cursor_alist_;
+    Lisp_Object display_time_;
+    Lisp_Object scroll_up_aggressively_;
+    Lisp_Object scroll_down_aggressively_;
+    Lisp_Object cursor_type_;
+    Lisp_Object extra_line_spacing_;
+  #ifdef HAVE_TREE_SITTER
+    /* A list of tree-sitter parsers for this buffer.  */
+    Lisp_Object ts_parser_list_;
+  #endif
+    Lisp_Object text_conversion_style_;
+    Lisp_Object cursor_in_non_selected_windows_;
+    struct buffer_text own_text;
+    struct buffer_text *text;
+    ptrdiff_t pt;
+    ptrdiff_t pt_byte;
+    ptrdiff_t begv;
+    ptrdiff_t begv_byte;
+    ptrdiff_t zv;
+    ptrdiff_t zv_byte;
+    struct buffer *base_buffer;
+    int indirections;
+    int window_count;
+    char local_flags[MAX_PER_BUFFER_VARS];
+    struct timespec modtime;
+    off_t modtime_size;
+    modiff_count auto_save_modified;
+    modiff_count display_error_modiff;
+    time_t auto_save_failure_time;
+    ptrdiff_t last_window_start;
+    struct region_cache *newline_cache;
+    struct region_cache *width_run_cache;
+    struct region_cache *bidi_paragraph_cache;
+    bool_bf prevent_redisplay_optimizations_p : 1;
+    bool_bf clip_changed : 1;
+    bool_bf inhibit_buffer_hooks : 1;
+    bool_bf long_line_optimizations_p : 1;
+    struct itree_tree *overlays;
+  #ifdef HAVE_TREE_SITTER
+    struct ts_linecol ts_linecol_begv;
+    struct ts_linecol ts_linecol_point;
+    struct ts_linecol ts_linecol_zv;
+  #endif
+    Lisp_Object undo_list_;
+  }
+#+END_SRC
+
+The buffer is responsible for figuring out how to edit itself.  there are quite a few functions that get called.  Unfortunately, a lot of what I assumed was well-encapsulated code, as for example, ~abbrev~-related functionality is also present in ~buffer.c~.
+
+While it is true that ~buffer.c~ is responsible for some of the upkeep that is happening with the gap buffer that we have above, reality is that quite a bit of it is happening in ~cmds.c~ as well.
+
+
+#+BEGIN_SRC C
+DEFUN ("self-insert-command", Fself_insert_command, Sself_insert_command, 1, 2,
+       "(list (prefix-numeric-value current-prefix-arg) last-command-event)",
+       doc: /* Insert the character you type.
+Whichever character C you type to run this command is inserted.
+The numeric prefix argument N says how many times to repeat the insertion.
+Before insertion, `expand-abbrev' is executed if the inserted character does
+not have word syntax and the previous character in the buffer does.
+After insertion, `internal-auto-fill' is called if
+`auto-fill-function' is non-nil and if the `auto-fill-chars' table has
+a non-nil value for the inserted character.  At the end, it runs
+`post-self-insert-hook'.  */)
+  (Lisp_Object n, Lisp_Object c)
+{
+  CHECK_FIXNUM (n);
+  if (NILP (c))
+    c = last_command_event;
+  else
+    last_command_event = c;
+  if (XFIXNUM (n) < 0)
+    error ("Negative repetition argument %"pI"d", XFIXNUM (n));
+  if (XFIXNAT (n) < 2)
+    call0 (Qundo_auto_amalgamate);
+  if (!CHARACTERP (c))
+    bitch_at_user ();
+  else
+    {
+      int character = translate_char (Vtranslation_table_for_input,
+				      XFIXNUM (c));
+      int val = internal_self_insert (character, XFIXNAT (n));
+      if (val == 2)
+	Fset (Qundo_auto__this_command_amalgamating, Qnil);
+      frame_make_pointer_invisible (SELECTED_FRAME ());
+    }
+
+  return Qnil;
+}
+#+END_SRC
+
+Which of course is not the real function that does the work, but rather is the front-end for a backend function with a great deal of complexity:
+
+#+BEGIN_SRC C
+
+static int
+internal_self_insert (int c, EMACS_INT n)
+{
+  int hairy = 0;
+  Lisp_Object tem;
+  register enum syntaxcode synt;
+  Lisp_Object overwrite;
+  /* Length of multi-byte form of C.  */
+  int len;
+  /* Working buffer and pointer for multi-byte form of C.  */
+  unsigned char str[MAX_MULTIBYTE_LENGTH];
+  ptrdiff_t chars_to_delete = 0;
+  ptrdiff_t spaces_to_insert = 0;
+
+  overwrite = BVAR (current_buffer, overwrite_mode);
+  if (!NILP (Vbefore_change_functions) || !NILP (Vafter_change_functions))
+    hairy = 1;
+
+  /* At first, get multi-byte form of C in STR.  */
+  if (!NILP (BVAR (current_buffer, enable_multibyte_characters)))
+    {
+      len = CHAR_STRING (c, str);
+      if (len == 1)
+	/* If C has modifier bits, this makes C an appropriate
+	   one-byte char.  */
+	c = *str;
+    }
+  else
+    {
+      str[0] = SINGLE_BYTE_CHAR_P (c) ? c : CHAR_TO_BYTE8 (c);
+      len = 1;
+    }
+  if (!NILP (overwrite)
+      && PT < ZV)
+    {
+      /* In overwrite-mode, we substitute a character at point (C2,
+	 hereafter) by C.  For that, we delete C2 in advance.  But,
+	 just substituting C2 by C may move a remaining text in the
+	 line to the right or to the left, which is not preferable.
+	 So we insert more spaces or delete more characters in the
+	 following cases: if C is narrower than C2, after deleting C2,
+	 we fill columns with spaces, if C is wider than C2, we delete
+	 C2 and several characters following C2.  */
+
+      /* This is the character after point.  */
+      int c2 = FETCH_CHAR (PT_BYTE);
+
+      int cwidth;
+
+      /* Overwriting in binary-mode always replaces C2 by C.
+	 Overwriting in textual-mode doesn't always do that.
+	 It inserts newlines in the usual way,
+	 and inserts any character at end of line
+	 or before a tab if it doesn't use the whole width of the tab.  */
+      if (EQ (overwrite, Qoverwrite_mode_binary))
+	chars_to_delete = min (n, PTRDIFF_MAX);
+      else if (c != '\n' && c2 != '\n'
+	       && (cwidth = XFIXNAT (Fchar_width (make_fixnum (c)))) != 0)
+	{
+	  ptrdiff_t pos = PT;
+	  ptrdiff_t pos_byte = PT_BYTE;
+	  ptrdiff_t curcol = current_column ();
+
+	  if (n <= (min (MOST_POSITIVE_FIXNUM, PTRDIFF_MAX) - curcol) / cwidth)
+	    {
+	      /* Column the cursor should be placed at after this insertion.
+		 The value should be calculated only when necessary.  */
+	      ptrdiff_t target_clm = curcol + n * cwidth;
+
+	      /* The actual cursor position after the trial of moving
+		 to column TARGET_CLM.  It is greater than TARGET_CLM
+		 if the TARGET_CLM is middle of multi-column
+		 character.  In that case, the new point is set after
+		 that character.  */
+	      ptrdiff_t actual_clm
+		= XFIXNAT (Fmove_to_column (make_fixnum (target_clm), Qnil));
+
+	      chars_to_delete = PT - pos;
+
+	      if (actual_clm > target_clm)
+		{
+		  /* We will delete too many columns.  Let's fill columns
+		     by spaces so that the remaining text won't move.  */
+		  ptrdiff_t actual = PT_BYTE;
+		  actual -= prev_char_len (actual);
+		  if (FETCH_BYTE (actual) == '\t')
+		    /* Rather than add spaces, let's just keep the tab. */
+		    chars_to_delete--;
+		  else
+		    spaces_to_insert = actual_clm - target_clm;
+		}
+
+	      SET_PT_BOTH (pos, pos_byte);
+	    }
+	}
+      hairy = 2;
+    }
+
+  synt = SYNTAX (c);
+
+  if (!NILP (BVAR (current_buffer, abbrev_mode))
+      && synt != Sword
+      && NILP (BVAR (current_buffer, read_only))
+      && PT > BEGV
+      && (SYNTAX (!NILP (BVAR (current_buffer, enable_multibyte_characters))
+		  ? XFIXNAT (Fprevious_char ())
+		  : UNIBYTE_TO_CHAR (XFIXNAT (Fprevious_char ())))
+	  == Sword))
+    {
+      modiff_count modiff = MODIFF;
+      Lisp_Object sym;
+
+      sym = call0 (Qexpand_abbrev);
+
+      /* If we expanded an abbrev which has a hook,
+	 and the hook has a non-nil `no-self-insert' property,
+	 return right away--don't really self-insert.  */
+      if (SYMBOLP (sym) && ! NILP (sym)
+	  && ! NILP (XSYMBOL (sym)->u.s.function)
+	  && SYMBOLP (XSYMBOL (sym)->u.s.function))
+	{
+	  Lisp_Object prop;
+	  prop = Fget (XSYMBOL (sym)->u.s.function, Qno_self_insert);
+	  if (! NILP (prop))
+	    return 1;
+	}
+
+      if (MODIFF != modiff)
+	hairy = 2;
+    }
+
+  if (chars_to_delete)
+    {
+      int mc = ((NILP (BVAR (current_buffer, enable_multibyte_characters))
+		 && SINGLE_BYTE_CHAR_P (c))
+		? UNIBYTE_TO_CHAR (c) : c);
+      Lisp_Object string = Fmake_string (make_fixnum (n), make_fixnum (mc),
+					 Qnil);
+
+      if (spaces_to_insert)
+	{
+	  tem = Fmake_string (make_fixnum (spaces_to_insert),
+			      make_fixnum (' '), Qnil);
+	  string = concat2 (string, tem);
+	}
+
+      ptrdiff_t to;
+      if (ckd_add (&to, PT, chars_to_delete))
+	to = PTRDIFF_MAX;
+      replace_range (PT, to, string, true, true, false);
+      Fforward_char (make_fixnum (n));
+    }
+  else if (n > 1)
+    {
+      USE_SAFE_ALLOCA;
+      char *strn, *p;
+      SAFE_NALLOCA (strn, len, n);
+      for (p = strn; n > 0; n--, p += len)
+	memcpy (p, str, len);
+      insert_and_inherit (strn, p - strn);
+      SAFE_FREE ();
+    }
+  else if (n > 0)
+    insert_and_inherit ((char *) str, len);
+
+  if ((CHAR_TABLE_P (Vauto_fill_chars)
+       ? !NILP (CHAR_TABLE_REF (Vauto_fill_chars, c))
+       : (c == ' ' || c == '\n'))
+      && !NILP (BVAR (current_buffer, auto_fill_function)))
+    {
+      Lisp_Object auto_fill_result;
+
+      if (c == '\n')
+	/* After inserting a newline, move to previous line and fill
+	   that.  Must have the newline in place already so filling and
+	   justification, if any, know where the end is going to be.  */
+	SET_PT_BOTH (PT - 1, PT_BYTE - 1);
+      auto_fill_result = call0 (Qinternal_auto_fill);
+      /* Test PT < ZV in case the auto-fill-function is strange.  */
+      if (c == '\n' && PT < ZV)
+	SET_PT_BOTH (PT + 1, PT_BYTE + 1);
+      if (!NILP (auto_fill_result))
+	hairy = 2;
+    }
+
+  /* Run hooks for electric keys.  */
+  run_hook (Qpost_self_insert_hook);
+
+  return hairy;
+}
+#+END_SRC
+
+I may have been a bit uncharitable to Emacs, by picking what I was convinced is an extremely complex function from first principles.  But it should also show one how much complexity is inherent in a buffer.  It is not a trivial structure.
+
+In fact, almost everything that I had originally assumed to be well-factored and easy-to-work-with code fragments were in fact, huge detours containing such pearls of wizdom as the ~bitch_at_user~ function.
+
+When I originally set out on the journey of figuring out how the Emacs internals work, the main goal was to find the reason why some architectural decisions were made, and carefully, retaining backwards compatibility fix some of the issues.  The Augean Stables require herculean solutions.  The alpheus and peneus in this case shall be the SDL-based display engine and a new interaction model.
+
+* Proposed new architecture
+
+Unfortunately, for my project to be successful, you should be able to boot up Emacs with no modifications, load a package that potentially touches these objects and still be fine.  As such, I cannot get rid of these structures and refactor the entire paradigm.  But I can make some adjustments to the paradigm, which would make it backwards incompatible to some extent, but grant you much more programmability, dear reader.
+
+As it stands now, the event processing and display systems for buffers are hard-coded and identical across windows/frames.  That is one thing I wish to change.
+
+I would like to
+
+1. Expand the meaning and role of a major mode
+2. Decouple the concept of buffer from the current textual representations,
+3. Decouple the concept of a window from the textual representations
+4. Provide a natural and obvious method by which projects such as ~reader-mode~ can create graphical viewports into content.
+
+
+For this to work, we must adopt a specific worldview informed by the past, but also supplemented with some observations.
+
+The Emacs can be viewed as an interactive program that in general, decoupled from the popular perception that it is only a (plain)-text editor, is a programming environment.  The distinction is crucial; Emacs is a really an REPL, where the =read= and =evaluate= parts are relatively standard, but the print and loop aspects are rather more involved.
+
+Typically the objects that we want to modify are files.  These files are typically, but not universally plain text with some encoding.  They are accompanied by a buffer, which is the  in-memory representation of the on-disk file.  The buffer /is/ for all intents and purposes, /data/.
+
+That data goes through an /output/ function.  This function determines how to display the contents of the buffer on-screen.  Typically, this is done through a window.  However, because the menu items per-major-mode and therefore per-buffer can differ, the active buffer is reflected on the frame as well.
+
+#+BEGIN_aside
+This output function is meant to be /bijective/.  By that we mean that if the two buffers are different, their on-screen representations should be as well.  Conversely, if the two on-screen representations signal a difference, the buffers should be different as well.
+#+END_aside
+
+As of today, there is a one-size-fits-all solution.  The output function is one that uses a mixture of the textual glyphs and overlays.
+
+The latter are the key to why Emacs has so many impressive features, and is also the major source of pain.  Contrary to popular belief, overlays are dead simple structures.  This time unironically so.
+
+#+BEGIN_SRC C
+struct Lisp_Overlay
+/* An overlay's real data content is:
+   - plist
+   - buffer
+   - itree node
+   - start buffer position (field of the itree node)
+   - end buffer position (field of the itree node)
+   - insertion types of both ends (fields of the itree node).  */
+  {
+    union vectorlike_header header;
+    Lisp_Object plist;
+    struct buffer *buffer;        /* eassert (live buffer || NULL). */
+    struct itree_node *interval;
+  }
+#+END_SRC
+
+The overlays are the pixmaps that can display your rendered latex.  They are what is used for displaying the PDFs.  Contrary to another popular belief (bordering on propaganda) overlays are not powerful.  They do not have the same level of programmability as shaders do.  IT is very easy to break them, if the buffer contains characters of different sizes (and mine frequently do).  They cannot be blended.  They are the rough equivalents of sixels, except sixels can be displayed in the terminal, while most overlays cannot.
+
+What I propose is a break from this architecture.  The hard-coded version of the output function should be replaced with a user controlled one.
+
+Next there is the question of event processing.  Emacs is not just a viewer of text, after all, and its great power stems from the layered and extensible system of key bindings.  The layer that mediates the interaction of the input peripheral devices and Emacs we shall call an /input/ function.
+
+Today there is only one kind of input function.  Every key stroke, regardless of duration and timing is processed individually.  Using key-maps, this translates into a function call, modifying either the internal state of the Elisp interpreter, or the buffer, or both.  One such example is ~self-insert-command~.  The event processing modifies the state of the elisp interpreter.  The event processing pipeline routes all printable character key codes to the function ~self-insert-command~ which then based on the state of the elisp interpreter modifies the buffer.
+
+The way in which the event handling is currently done is quite suitable for plain-text editing with a standard QWERTY-keyboard.  Working with /e.g./  Plover on Linux with Wayland, one will soon find problems, caused by the fact that Emacs is unaware of the fact that input into it is emulated.  In effect, while a program such as Emacs should in principle be able to route controls such that it would be possible to run a first-person-shooter inside of an Emacs window, the practical possibilities for this are slim to none.
+
+We should be able to introduce custom input functions.  But at the moment we cannot.  This is not what I would consider a major issue as of today, but one has to be cognisant of the consequences of their actions.   if we are successful in creating a suitable set of graphical functions  that can do WYSIWYG editing, the next reasonable ask  from the  users is that they be able to interact with the new objects, and with the current methods it is not practical to do so.
+
+ So we must introduce a new way to process input.  That new way must be exposed to programmatic adjustment following the same conventions that the regular elisp does, and must feel familiar to the programmer.   We must use the key map mechanism is what I am saying.  But it may not be done as straight forward as just that.  We may provide only some of the ways to bind events to functions, which may not use the old conventions requesting a new way of defining the mapping.  The sky is the limit, and we have seen time and time again that the programmer is more inventive than our best prognois.  This leads us to the following isssue: the way in which this system operates shall be extended in ways that we can not anticipate.  So may be that the way should not be limited as well.
+
+ What this may look like is a promise that the system will take into account the possible configurations of the key maps, but the general behavior is implementation defined, and not confined to the key maps.  It can be further new structure that may or may not be known now, and future implementations can choose to define that structure and add it to elisp.  Not bad IMO.
+
+That leaves us with the fun exercise of figuring out how to do the output.  There are two ways: we can extend the major modes to include the new information.  This means that the  programmers will have to  extend the definition of what a major mode is to include the part of the input and output functions.  This may seem like it has some profound implications, but it does not.  The work can be done by the macro.  We simply define the default implementation of the two, and is it done.  The second option is to extend the vocabulary that we use to talk about emacs, that is to say, we add the concept of a viewport, and of an event processor.  We now attach the two to the decisions.
+
+As of today, I do not know which is the  better way.
+
+ So in conclusion, there is progress, but it is not as much as I would like.  There are unresolved issues that I can not promise will be solved in a satisfying fashion. I can neither promise that there will be progress soon. But I will try.
+
