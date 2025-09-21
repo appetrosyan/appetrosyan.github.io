@@ -1,5 +1,5 @@
 #+AUTHOR: Aleksandr Petrosyan
-#+DATE: 2025-09-21
+#+DATE: 2025-09-20
 #+TITLE: The Emacs widget saga: viewports and windows
 * Preface
 
