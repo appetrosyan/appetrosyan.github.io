@@ -1,6 +1,12 @@
 #+TITLE: A Tale of Two Keyboards
 #+AUTHOR: Aleksandr Petrosyan
-#+DATE: 2025-07-23
+#+DATE: 2025-09-27
+#+TAGS: Keyboard
+#+TAGS: Hardware
+#+TAGS: Stenography
+#+TAGS: Python
+#+TAGS: FOSS
+
 
 This is a discussion of two keyboards that I have the displeasure of owning.  It is a tale of stupidity, gullibility, betrayal and  ultimately a cathartic vent about the state of input methods for programming and Linux.
 
@@ -172,7 +178,7 @@ While the number of things wrong with the PolyGlot is greater, and Plover is a p
 
 My frustrations with the PolyGlot come down to what I consider to be easily avoidable and fixable mistakes.  My frustrations w.r.t the Keychron come down to them being a rather...  shall we say...  corporate entity wearing sheep's clothing.
 
-If you are a maintainer of either the StenoKeyboards or Plover.  I don't hate you.  You're doing many things wrong, but a lot of things right.  I would be happy to help you, the first step being: I'd like to help you out.  
+If you are a maintainer of either the StenoKeyboards or Plover.  I don't hate you.  You're doing many things wrong, but a lot of things right.  I would be happy to help you, the first step being: I'd like to help you out.
 
 
 # Local Variables:
