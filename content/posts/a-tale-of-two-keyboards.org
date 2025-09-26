@@ -1,0 +1,180 @@
+#+TITLE: A Tale of Two Keyboards
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-07-23
+
+This is a discussion of two keyboards that I have the displeasure of owning.  It is a tale of stupidity, gullibility, betrayal and  ultimately a cathartic vent about the state of input methods for programming and Linux.
+
+Simply put I will rant about Keychron k13 pro, I will praise and somewhat explain my disappointment with the Polyglot, as well as finally explain the reasons why I fundamentally dislike QMK and everything related to it.  Before providing an alternative.  This is a simplified version of the discussion that I had with the co-founder of Greybeard Consulting and one that due to said co-founder's untimely resignation I would not be able to complete with him.
+
+Without further ado.
+
+* Keychron K13 Pro, the True Face of Keychron
+
+Simply put, Keychron are lying sacks of shit that I will never buy hardware from ever again.  If you want more details, consider that they still list many keyboards as fully supporting QMK/VIA, despite those not really being recognised even on their own bastardised fork: Keychron Launcher.  This is the kind of shit that in the past got crimes named after you.  Sadly for Mr Ponzi, they weren't born in 2025, when behaviour that would ordinarily land you in jail is perfectly acceptable, and often covered by a forced arbitration clause.
+
+I cannot leave a review for their "product" neither where I bought it (because the retailer no longer works with them), nor on the official Keychron site.  As a compromise, I will leave a review on my personal blog.  Consider it product placement.
+
+#+BEGIN_aside
+To the inevitable bots from Keychron, trying to argue that hosting this particular blog post on my personal blog is either defamation, libel or a violation of the GitHub terms of service.  You are criminals.  You belong in jail.  Everything I wrote here I can back up with evidence and a long paper trail.  If you try to take it down, I will fight back.
+
+You had the option of leaving my original review on your site.  It was measured, and reasonable, but also pointed out that you were lying about VIA/QMK support.  Had this review remained visible, I would have gladly left it at that, and moved on.  You decided to "fix" the situation.  I'm returning the favour.
+#+END_aside
+
+Let me begin by pointing out that /support for X technology/ is not a subjective perception.  If you say that Keychron K13 Pro has support for QMK, it must, at the very least, be listed in supported keyboards.  As of writing it is not.  In fact none of the K-series is listed.  The main reason, specifically for the K-series is its support for Bluetooth.  The only way in which Keychron kinda-sorta with fifteen asterisks can be considered by loyal Keychron lapdogs to not be lying about its support of QMK, is if you dig through the repository and find the ~bluetooth_playground~ branch.
+
+Indeed, this is what they would argue.  And even if I play devil's advocate, there's a difference between a phone being IP68 water resistant, and there existing a blueprint of a prototype somewhere in a folder in an archive.  But that is much too charitable: the prototype has been rejected by QMK maintainers.  Nonetheless, Keychron would still argue that it has the finest support for QMK.
+
+One could argue that as QMK is a tech-savvy-only method of keyboard configuration, some rough edges are to be expected.  The problem, however, is that there is a fundamental difference in how /e.g./ the Keychron Q3 and Keychron K13 are configured.  One is on the main track, and follows the documentation quite closely...  the other had been shat out and shat upon and is a cautionary tale against buying any of the Keychron devices.  Yet the gulf in quality isn't reflected anywhere on the page.  There aren't reviews pointing this out, only GitHub issues.
+
+As a tech-savvy person I should have done the research myself, and I agree that someone of my background should not have fallen into that trap.  At the same time, I believe that our society should not have "attention traps" with outright lying on a public web page.  I also do not believe that the best recourse against such blatant lying should be what I do now.  At most it will make it slightly less hard to find that the keyboard is a piece of faeces.  But oh well, we don't live in a perfect world, and I have ADHD, meaning that doing the research prior was out of question.
+
+But suppose one wasn't tech savvy and wanted to use VIA to configure the keyboard live?  Well, sucks to be you.  Especially if you live on Linux.  Keychron K13 isn't even recognised on VIA anymore.  It uses an older format.  At the moment, you might *think* that you can at least use the Keychron official configuration program, but you are sadly mistaken.  Firstly, the best you can do is re-map the key-codes to other basic key-codes.  Useful for converting the Function keys back into function keys, and maybe making the ~fn~-based shortcuts less useless.  The problem is that to even get to this point, requires an inordinate amount of luck.  The keyboard simply refuses to be recognised.
+
+And this, coupled with the fact that no other configuration program works is why I'm not at all happy with Keychron.
+
+I could go into details, and I will, if prompted, but I would simply ask the prospective buyer to look elsewhere.  Consider building one themselves, out of off-the-shelf components.  Keychron isn't worth your time, or mine.  I wish there were a way to initiate a class-action lawsuit and get back at them...  but I can't.  The best I *can* do is point out their shittygineering and gasmarketing.  I am no longer a willing user of this hardware.  And I no longer do.
+
+* The not-so-poly-glot: Plover sux
+
+Let's start with some background.  Stenography is something that I never really finished, but made several serious attempts to understand.  In fact I have a tendency to dog food the thing that I critique, and this very sentence is written in Plover.  It is something that I consider worth doing, even if the they work is more than I had anticipated by a large margin, and the pay off may not be worth the trouble for most people (I do a lot of writing).
+
+However, the positives end here.  I do not mean to denigrate the work of the people that worked on open steno project, but Plover is an unfixable mess.  It is a Medieval torture device.  I need to switch to qwerty to do input of things such as parens, and any punctuation marks aside from the commas and periods.  And as I said earlier, it is not fixable.  The only good idea is steno itself.  Every other idea is in the top 10 worst.  It is very much in contention  with rust analyzer for the least favourite software for me.
+
+** Pip for extensions
+
+Where to begin is a tough question.  I suppose that the language is the first point of call.  Python is the worst language in my experience.  That is a rather impressive feat, given that I worked with Go, C++, FORTRAN, Pascal, Java, StandardML, Prolog.  It is the one language that I have taken to writing scathing reviews of; something I refuse to do, to most misguided languages.   If someone were to identify as a Pythonista, I would regard them no more than I would a barista in terms of their programming ability, and tech literacy.  In fact I would give the barista  some points, because they do not pollute GitHub.
+
+The brilliance of the idea is that you get the pip, and the rest of the similar tools for free, as in you don't pay, but your users will.  That is the theory at least.  Not the practical truth. the truth is that the Python Package Index is perhaps the worst kind of package archive.  It is not particularly easy to get into, but it is also not for the right reasons.  This is a bad choice for user facing programs.  It is a bad choice, because there is little to no curation of content, no standards, and no good way to install these packages.  It is a free for all.   And it is treated as such.
+
+
+The main problem as I see it, has to do with the way in which these packages are made.  They are random GitHub (if you're lucky) works, that have not much of a discussion arena.  And so much of functionality is tied to some of the packages.  Your machine will get disconnected, and while you can trivially recognize that it could be automatically reattached, for some reason that is something that you need a separate package to do.  It would be very convenient if you could also install a different steno theory without having to wade through a swamp of other extensions.  The funny thing is that this would be much less hassle if we had more extensions.
+
+In my case, the main problem is that to install any new packages I would need to disable the external management of the python. That is there for a reason, which is that the people that work on python have come to the realization that letting  any user program install other packages from pip is a bad idea.  They of course can not say that you should not use Python at all, or stop shipping Python packages as if they were real programs.  No!   They would bitch at the user and call that some fancy name, like I don't know, PEP 668, and make it the problem of whoever thinks that shipping a Python  package as if it were an honest binary was not dumb.
+
+The least worst option is to make an AUR package, that has all of the Plover extensions.  The best way out is to stop using the pip and to develop a proper extension standard.  Not that it is easy to do, but I don't think that it is fair to ask the distribution maintainers to do that work for you, and claim to have an extension system. This may be taken to be most uncharitable, to which I would say that not challenging the vast stupidity of so called Pythonistas is what led to this state of brokenness. The developers of Plover are not to blame for the fact that the systems of Python do not protect against bad design.   It would be if there were an abundance of good design to contrast but I do not think that good design correlates with Python much.
+
+** UInput
+
+The next problem that I see is how Plover does input.  It is a bit  tough to do any symbolic input without relying on the uinput so called input method and the input bus.  I can see the benefit of being able to produce any unicode char.  If that were done in a new protocol, that would let you output any char at any place, that would be nice.  But that would require some skill.  That is not what you get.  No.  You get a dumb, and impossible to turn off macro that in most normie contexts would be fine:  it types ~CTRL+SHIFT+U~ and then the hexadecimal code of the character.... Yes.  Actually.
+
+I use Emacs, so you can probably tell that it is sub-optimal.  But the extent to which, may only become evident, when you realise that despite both the full stop and the question mark being ASCII characters, the former is treated as if it were a key press, and the latter, as if it were a very hard to reach character in some obscure keymap.  Yes, that goes for all brackets and parentheses.  So as you can imagine, in order for me to learn a new physical skill -- stenography, I would have to give up on quite a lot in the way of my old programming habits.  In fact, I have not been able to program with the Polyglot, either in Steno mode, or the QWERTY mode.
+
+This is not an inherently unfixable problem, or a problem that can be fixed /only/ by rewriting the program.  How do I know that it is possible?  Because ~numen~, a voice control program that offers much finer control, much faster and more reliable input, can input an exclamation mark without having to use keyboard macros.  What is more fascinating is that it does not rely on you having a specific key-map variant, so you can safely use this on Dvorak and Colemak.
+
+This is what I call an /unforced error/.  A problem that only exists because the developers far from solving problems, cause them.  Who are those developers is a tougher question.  I suppose the main reason why this even came about, is because in the good-old X11 days, the input could have been emulated directly.  This was a simple system, and it worked well...  eventually...  now the big bad wayland came along and said "no, you have to do it differently now".  On the one hand I can see why this is annoying.  You start somewhere and it stops working.  Why?  Shitcurity.  End of story.  No debates.  No nothing.  Just perpetual bikeshedding.  The premise is that you want "'muh security", and that it doesn't matter that something that used to be simple now requires you to keep state, update the state, ensure that the state is correctly updated, and when it inevitably isn't, take the blame for poorly implementing an even more poorly thought-out design.
+
+On the other hand, Wayland provides me with compelling reasons to use it.  For one, I have an HDR monitor, and I quite enjoy the difference that /that/ makes.  I also quite like the fact that programs cannot eavesdrop on what other programs are doing.  I kinda like the fact that this does not involved a doubled layer of indirection, just a singular one.   I prefer it being a protocol and not an implementation, because then something like a Common-lisp compositor that is as customisable as Emacs could exist.  The stupid behaviours of X11 can be left in the past, and only some behaviours that are commonly attributable to the protocols can be implemented.  I quite like that the resolution and scaling settings of different monitors can be set independently.  It is, for all intents and purposes a slightly better experience, which even a couple of years ago was not the case.
+
+Realistically, the "there isn't a way to emulate input on Wayland" fallacy had been cured.  The only problem is that the way to do so is rather convoluted; too late and to add insult to injury, something that Plover very clearly doesn't implement right.  This seems like a basic thing, but apparently it is rather difficult to do.
+
+** An aside: using FOSS as a shield
+
+"But can you really blame these people who are dedicating their free time and put in so much effort into making this thing work?" you may ask.  This is where I see a profound dysfunction in the FOSS world.
+
+I have read in a blog post a while ago where there was an analogy made.  That FOSS developers are kinda like the people that created a public kitchen.  You are free to come in and make some food for yourself, and you're nobly not asked to pay for it in return.   In essence, you are given this thing for free, you ingrate.  And you should not complain about the fact that the quality is slightly less tasty than the fancy meal you get at the restaurant.  How can you complain about something that is given to you for /free/, and with the best intentions?
+
+Firstly, the main beneficiaries of Open Source are the mega corporations that use it as a way to offload and externalise the development costs of software.  Who are the biggest contributors to Linux?  Who are the biggest beneficiaries of ~redis~ and maybe some other success story, such as ~blender~?  You did not solely nobly feed a homeless person, as you put it, but you have in fact undercut quite a few programmers or chefs that would have a job feeding people professionally.
+
+A second point is that the quality of the produce being served actually has boundaries.  It is true that most FOSS comes with a disclaimer of no guarantees of merchantability and other things.  The asparagus in your kitchen can be laid with cyanide and from a legal perspective, if someone gets sick, because they assumed that it was edible, the law in this analogy blames the stupid homeless person that assumed it was food.  However, that is the law.  Not the social norm.  I get to, and by the way, must, warn others that your software is no good, when it is objectively not good.  In case of Plover, all I'm doing is warning the people that /might/ want to eat it, that if they do, they should expect a runny gut, and a great deal of headache.
+
+And lastly, to hammer home the point that being a FOSS developer is no shield against criticism, the vast majority of the so-called FOSS contributors that I have dealt with neither fall into the noble maintainer archetype, that sacrifices their life for the good of the public and isn't even thanked for it.  There are Eli Zaretskis out there, and Bram Mollenaars and Andrew Kelleys.  One tends to forget that these people ended up in such positions because they have done an exceptionally good job with the software, not just because they have nobly decided to dedicate some time to it.  More often than not, they will confront a problem pointed out by users as something that should be fixed.  They won't RTFM you, unless what you're doing is extremely stupid, and realistically, they're more likely to ignore you than do that either way.
+
+Some people, like myself, get paid to maintain the software.  It is given away for free.  Doesn't mean I don't get paid to maintain it.  If I am being paid, you actually get to critique the quality of my output.
+
+Finally, there are people that view Open Source projects as a means to pad out their resume.  I'm not against people doing it that way, not every job allows you to create FOSS, and it is much easier to discuss what you built, rather than to do an honest to god systems design interview.  You're not doing this because of the alleged contributions to the public good.  You are doing this for your own selfish reasons.  Indignant users are what you should be listening to, not disregarding.
+
+As a final point, I should mention that many of the genuine critiques of big FOSS projects come from users.  They may be veiled in lots of harsh language, a reflection of the amount of frustration that a particular mistake caused.  Do not be dismissive of this.  Be empathetic to the user.  And think objectively about the quality of the end product.  Having an artistic vision is useful, and you cannot satisfy everyone's tastes.  It is OK to push back on those grounds, but be mindful that you are ultimately the architect of a house, not its occupant.  Understanding feedback while staying true to your vision is a delicate proposition, but that is the only way.  If you think only about your own aesthetic preferences, your software is a monument to your own vanity.
+
+As such, let me continue with providing constructive critique of Plover.  Aside over.
+
+** Delay as a fix-all
+
+Quite a few of the issues require there to be a delay between the simulated keypresses sent by plover.  Reliance on the delay, and suggestions that this is an acceptable form of programming are the kinds of things that would make me physically violent.  That is not to say that if you wrote code like that in your life that I would immediately try to smash your skull with a keyboard.  More so that I would politely ask you to stop writing this kind of code...  or possibly all kinds of code.  And percussively convince you to comply.  I find that just demonstrating the weight of an IBM model M is enough to convince people who may yet be productive programmers to not rely on delays for timing.
+
+This form of code is a real problem in networked code.  Most guarantees are soft guarantees.  Relying on "let's put a delay in there and it works" is symptomatic of programmers that are chronically not fixing problems.  Moreover, asking the user to do so is a worse idea.
+
+Now at the moment there is an outstanding bug: Plover sends a short input for something like ~TAB~, meaning that the command doesn't register as it should.  Consequently using the stenographic strokes that would allow you to move from one field to another do not work.
+
+** Shortcuts
+
+In general, I find that the chorded nature of input does not gel well with controlling applications via keyboard shortcuts.  Hitting a single arrow key is easier than hitting a chord.  Not /much/ easier, but enough to matter.
+
+Plover cannot replace your keyboard shortcuts, it cannot augment them.  You cannot execute arbitrary pipes and there isn't a convenient GUI to do whatever you need.  On Mac OS, there may be a way to trigger menubar items, but unless your program has a command pallette which factors spaces into search terms, (which thankfully both Emacs and Blender do), you can kinda survive.  The main problem is that there are not nearly enough shortcuts coded into the ~commands.json~ dictionary.  Because of the way Plover works with shortcuts, you cannot string together a stroke for ~ctrl~ and a stroke for ~a~ to get ~Ctrl + a~.  You have to create a stroke for ~CTRL+a~ and oftentimes, end up with conflicts, because apparently "anyingannoyannoyfuckshitingd" is a word that Plover thinks can exist.  It's not like Emacs with clear feedback; you are stuck in trial and error mode.
+
+Plover is simply not useful for regular keyboard work.  So just use the polyglot as a regular keyboard, what's the problem?  Well, on the positive side, switching away from the steno-only input method to the QWERTY one is a single key.
+
+The bad news is that the layout of the Polyglot is horrible.  Thankfully you can change the firmware in QMK, get something less annoying, and be off to the races.  Except now, you get an important realisation.
+
+Plover lets you use a standard QWERTY keyboard to do stenography.  All you need is n-key rollover.
+
+
+** The polyglot is a bad keyboard
+
+It might not have hit you immediately, but there was a moment, when it hit me.  I wasted $125.00 on this.  Plus shipping.  What I got was a keyboard that was certainly more advantageous for steno:
+1. It has an ortholinear layout with triple thumb keys on both sides.
+2. It has a controller that is sufficiently powerful to support embedded steno.
+
+The list of disadvantages is much longer.
+
+The one thing that made me buy it, and what turned out to be a dumb idea, was that the keyboard supported a "native" *gemini PR protocol*.  That is a complete nothing-burger because all it does is occupy a QMK layer, and take up a key to switch to it.  Plover when using a QWERTY keyboard, allows turning it back into QWERTY with a single ~PHROLG~ (/i.e./  a chord where you hit 7 keys).  This changes the state of the tray icon, this can be used to toggle the steno mode back, and works wonders.  The only conceivable advantage is that you can use more than one keyboard at a time, and having a dedicated protocol would allow you to use the regulat keystrokes on the regular keyboard concurrently and without having to chord anything.  This is wholly outmatched by the fact that in order to connect a non-QWERTY keyboard, you need to fuck around with ~udev~.  If you already have a stenography machine, those protocols kinda make some sense, but for using this purely on your main PC, don't bother.
+
+The more powerful controller is not a great selling point.  The key benefit is that the firmware of the keyboard itself emitting the input events comes with the great advantage of cutting Plover out of the equation entirely.  If this is not an indictment of the so-called software I don't know what is.  But the unfortunate consequence of that, is that you cannot rely on some of the features that software is best equipped to provide.  You do not get a window that tells you how to stroke a word that you just finger-spelled.  I admit the signal-to-noise ratio of Plover's implementation is sub-optimal, but it is a life-saver for a stenography novice such as myself.  Some keyboards designed for Javelin come with built-in screens that do that, but Polyglot is not one of them.  The stronger controller is not a benefit for a noob like me.
+
+The keyboard costs $125.00 to buy, depreciates to zero almost immediately, and feels like a hobby project that you didn't get to build.  Indeed, this is because it /is/ in fact, a hobby project.  Difference being that I would now have preferred if I had some more flexibility.  Like I'd be happy to add another row of keys at the top.  Or come up with a less moronic default layout.  I would have probably bought an enclosure so that the switch solder points aren't as exposed, and would have perhaps built a split keyboard.  I don't like it enough to keep, nobody wants it, and I hate to throw it away.  But costing that much, and offering so little makes it a bad purchase, one that I would have avoided, had I known what it is like.  With that said, at least the PolyGlot is usable as a standard QWERTY keyboard.  Something like the Uni costs only 20% less and offers 95% less utility.  It is only useful as a stenography input method.
+
+* How to fix it
+
+** You have alternatives
+
+From a purely practical perspective, nothing about the polyglot makes it uniquely good for steno.  Hate to beat a dead horse, but it is not a good investment, even if like me, you are going to stubbornly study stenography, and let the sunken cost fallacy reign supreme.  So what would I get instead then?
+
+One possibility is a much more expensive, but better, ZSA moonlander.  It is a wired ergonomic, split ortholinear keyboard with thumb clusters.  It has one more row, it has a graphical program that lets you configure its behaviour, and while on Linux, this function is lacking, on Mac OS and Windows, it also allows you to automatically switch the keyboard layout based on the open application.  Does it cost more?  Yes.  But if steno doesn't work out, it is a great QWERTY keyboard, and if even that doesn't work out, at least you can sell it.
+
+What you lose as a consequence is Javelin.  It is a great loss, but only for someone who can deal with the fact that it is embedded in the firmware, but also someone heavily invested into Steno.  However, this is only situationally useful, and I would prefer that we fixed Plover instead.
+
+The one thing that the steno community will point out to you is that for the chording to work, you need to narrow the gaps between switches, and you need to use lower actuation force switches.  Both can be achieved with off-the-shelf components.
+
+I will however, state that the best alternative is to try and build one yourself.  All of the flaws in the Polyglot are things that I can remedy myself.  If any of the designers of the Polyglot are still reading this article, this is what I would recommend for V2.
+
+** A better PolyGlot
+
+Firstly, I think that the Gemini protocol has negligible value add, not that it matters in terms of space on the controller, but more so that it takes up a key that I'd rather have vacant.  A better solution would be a switch, like a DIP switch.  The reason is that it would allow you to know if you are in steno mode or in regular mode without having to produce output.  Normally, in QMK controlled keyboards I use RGB to signal that, but it is not an optimal solution.  A longer switch with clearly defined positions is better.
+
+This allows you to amend the layout. The main problem stems from the scarcity of keys, and the irrational placement thereof.
+
+The numbers layer is in my opinion the most misguided.
+
+The numbers being placed in that layer is not something that I object to, but that is about the only thing that I think is placed right.  The tilde key, should be Escape, and delete should be backspace.  This is more conventional.  But it also allows you to use shortcuts such as ~CTRL+Delete~.  Keyboard shortcuts don't work as chords, if you somehow hit the modifier key after the delete key, you are not going to trigger the overall shortcut.
+
+The navigation keys are placed wrong.  The whole reason why the so-called VIM keys are ergonomic, is because the navigation keys are in the resting position of the dominant hand.  This is not where the navigation keys are placed, and those keys are not bound at all in the numbers layer.  The navigation is in the left hand, and for some unknown reason, also shifted right by one column.  I cannot use them with just my left hand, because it requires tension to pull the hand to the right.  I cannot use the right thumb to hold the numbers layer switcher, because it is the middle key, and I would have to cross the hands.  I would struggle to find a worse place for them.  Put them on hjkl in the right hand.  Use the freed space to add a numpad-like ortholinear cluster.  Better yet, turn them into actual numpad keys, then they can serve a dual purpose, and a numlock actually does something useful.
+
+There are many more changes.  I will invite anyone curious to see my fork of the QMK firmware for this keyboard, to see how I would prefer it be laid out.
+
+As a final note, I would say that I do not hate the Polyglot.  I was lucky enough to have foot pedals and a macropad that supplement the keys that are absent from the Polyglot.  It is rather optimistic of me to expect to replace a regular full-size keyboard with this, but I also think that with some small corrections, it can work.  In fact, I'm keeping my Polyglot, until it runs out, dies, and is beyond repair.
+
+I did not expect it to be as good as it is for games.  I did not anticipate that it would be usable even in older titles.  But at the same time, there are simple avoidable mistakes, that are just obvious.  Why not fix them.
+
+** Plover has some technical debt
+
+I will admit that I am far from the foremost authority on how Plover ought to be maintained.  My first instinct w.r.t.  Python user-facing programs is to kill it with fire, preferably accompanied by a stern talking to.  Unfortunately, this would be too much of a stretch.  I would love to create a Rust-based alternative.  That would have to wait until after my work on the Emacs widget toolkit is done...  or really started in any way that won't be thrown out.
+
+There are some concrete steps that would probably have served it well.  For one, I would package the Plugins for the AUR.  This is not hard to do, and I will do it shortly.
+
+Next, consider rewriting the output logic.  I would like the output delay to not be there.  It may be prudent to also consider fixing the unicode input.  I would consider allowing more granular definitions in the dictionary.  I would prefer that it were possible to string together modifer keys and key combinations.  This is not particularly hard to do either.
+
+I would consider consolidating some of the functionality of the plugins.  Reconnection is something that should be an option, not a plugin.  The suggestions window is also rather threadbare.  For example, an option to filter out words that were not finger-spelled, would be useful.  As would an option to show suggestions, in case the currently written word is a sub-string of something longer, so you don't have to spell it out in full.  There are some inconsistencies in 5.0.0, that I find problematic too, in the way that it works, and in some smaller issues.  It decisively lacks polish.  That polish could in principle be added.
+
+The main problem is that the program needs a considerable amount of work to get working right.  It is not in the best position as of right now.  But far from unfixable.  I would not mind there being an alternative implementation, say a Rust-based all-in-one stenography solutions.
+
+* Overall Conclusion
+
+While the number of things wrong with the PolyGlot is greater, and Plover is a piece of software that is not doing super well, I overall think that of the two this one is a success story.  The Keychron is a well-built toy that I do not think  I would make the mistake of buying in any way ever again.  By contrast, I will invest in making the Polyglot work, while perhaps not entirely getting rid of the KeyChron, I would not try to make it work.
+
+My frustrations with the PolyGlot come down to what I consider to be easily avoidable and fixable mistakes.  My frustrations w.r.t the Keychron come down to them being a rather...  shall we say...  corporate entity wearing sheep's clothing.
+
+If you are a maintainer of either the StenoKeyboards or Plover.  I don't hate you.  You're doing many things wrong, but a lot of things right.  I would be happy to help you, the first step being: I'd like to help you out.  
+
+
+# Local Variables:
+# jinx-local-words: "Keychron"
+# End:
