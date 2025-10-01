@@ -1,0 +1,35 @@
+#+DATE: 2025-10-01
+#+AUTHOR: Aleksandr Petrosyan
+#+TITLE: The Battleground of forced arbitration
+
+Forced arbitration is bad.  It is a means of heavily biasing disputes that should be egalitarian, in the favour of a service provider.  Oftentimes, forced arbitration is without a term, survives long after the agreement, and can affect more than one person.  I will not recount the famous incident regarding Disney and a certain food allergy.  Instead I will point out something that happened to me quite recently.
+* Normalised R.A.P.E
+
+Retroactively amended purchase experience, aptly acronymised as R.A.P.E is a practice that is quite commonplace these days.  You buy one thing, agree to one set of terms, and then you are presented another agreement for something that you already bought.  Oftentimes, the agreement is very...  shall we say...  heavily biased towards agreement.
+
+You see, if a smart TV that you bought pops up "suggesting" a new multi page legalese phonebook for you to read, at a time when you did not expect something like this to pop up, and just wanted to watch the damn thing, you are quite likely to press "I Agree".  Aside from pure psychology, the "I Reject" often does not mean a return to the old agreement, but in fact complete inactivation of a fully-paid-for device.  Thanks to DMCA, if you do not agree to the R.A.P.E terms, you are now a proud dupe, that has an expensive piece of sillicon that cannot be used for the intended purpose.  You are not allowed to "hack" the machine to opt out of the dis-service, you are either stuck with the original programming, which will hold your device hostage.
+
+This isn't informed consent.  You are held at gunpoint.  You are no longer in a quasi-egalitarian position by which the terms and conditions can be accepted or rejected with a full or almost-full refund.  What happens in effect is a cascade of contracts with ever worsening terms of "service" for a device that you paid for in full, but would hardly classify as owning.
+
+For digital goods, such as Games, this is the case, regardless of what you do.  The story begins, when a couple of days ago I decided to download Phantom Liberty and play through CyberPunk 2077; I owned it for a while, never got around to play it, because of the amount of work.  And indeed, at the end of the update process (thanks to Lutris, this wasn't as hard as I had originally thought), the game presented me with an EULA.
+
+Is this technically R.A.P.E?  Morally grey question.  Fact of the matter is that the updates to the game come with strings attached, and as someone who paid for the game a long time ago, played through it almost a year ago (a review will come) I was unpleasantly surprised that I couldn't just start a new game.  Thankfully, because I bought it on GOG, if I knew that this had happened, and wanted to reject the agreement, I could have simply rolled back the binary.  But the next time I would have liked to install the game, there is no guarantee that the game would "agree" with its new location and would not present me with an "updated" EULA from the internet.
+
+I'd say that if the game's version came with its own hard-coded EULA, then this is not /exactly/ R.A.P.E, but adjacent.  Because I have no way of testing this (as I am on a trip) let's give CD Project Red some benefit of the doubt.
+* Human CentiPad
+
+One of my favourite episodes of south park is related to a similar situation.  Nobody reads the EULAs.  Nobody.  I can't say that I do every time, and in this particular case, the fact that I did was extremely unlikely.
+
+These updated terms often contain some problematic terms.  I cannot give you legal advice.  I cannot tell you how you should read the EULA.  Maybe you should get a lawyer.  But I found a bit of a life-hack, which will follow that might serve you well.
+
+When reading the EULA, there are specific problematic clauses that I tend to watch out for.  If it's a consulting agreement, there are clauses about exclusivity and non-competition.  If it's a severance agreement, there's a bit of a calculus involved.  As for all the rest, thanks to Louis Rossmann, I now know that forced arbitration is a terrible thing.  In more ways than one.
+
+Reading the EULA is no longer a matter of untenable drudgery.  It is now a search with a purpose.  And unfortunately, in this specific particular case there was indeed a clause that stated forced arbitration.  Luckily there was an opt-out clause.  Which got me thinking.  Why would they?  Unless required, why would you provide for a way to opt out.
+* Opt out
+
+Indeed, it just so happens that there is a law which requires every single case to provide an opt-out mechanism.  [[https://www.classaction.org/media/lipsett-v-banco-popular-north-america-settlement-agreement.pdf][Lipsett v. Popular bank]]
+is a fun read.  It turns out that in many contracts in many jurisdictions it is in fact possible to opt out of forced arbitration despite clicking the "I agree" button overall.
+
+I came across [[https://www.sadakafirm.com/blog/forced-arbitration-how-to-opt-out/][some legal advice]] that I believe is the best option in most cases.  This is not the exact text that I used to opt out, but it is very much in the same ballpark.  I supplemented an opt-out notice with an email to [[mailto:legal@cdprojektred.com][legal@cdprojektred.com]].  You can prove receipt of the email as much as certified mail, but it is much cheaper (often free).  While it is often better to err on the side of caution I would prefer that you half-arsed this, but voiced your distaste than sat and did nothing.  Certified mail, especially from outside the US is expensive, slow and not guaranteed to reach the destination.  An email /might/ be ignored, but it costs you nothing to send a digital copy.
+
+Another aspect is the wording.  I chose a less careful wording, because (1) I did not see the wording in the specific thing that was linked; (2) I did not believe that being particularly rude or particularly polite was helpful, but clearly and unambiguously communicating that it is in fact not acceptable to waive an internationally recognised right to sue them over an infringement of internationally recognised commerce rules.  
