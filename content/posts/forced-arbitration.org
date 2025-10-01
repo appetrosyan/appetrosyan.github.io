@@ -32,4 +32,18 @@ is a fun read.  It turns out that in many contracts in many jurisdictions it is 
 
 I came across [[https://www.sadakafirm.com/blog/forced-arbitration-how-to-opt-out/][some legal advice]] that I believe is the best option in most cases.  This is not the exact text that I used to opt out, but it is very much in the same ballpark.  I supplemented an opt-out notice with an email to [[mailto:legal@cdprojektred.com][legal@cdprojektred.com]].  You can prove receipt of the email as much as certified mail, but it is much cheaper (often free).  While it is often better to err on the side of caution I would prefer that you half-arsed this, but voiced your distaste than sat and did nothing.  Certified mail, especially from outside the US is expensive, slow and not guaranteed to reach the destination.  An email /might/ be ignored, but it costs you nothing to send a digital copy.
 
-Another aspect is the wording.  I chose a less careful wording, because (1) I did not see the wording in the specific thing that was linked; (2) I did not believe that being particularly rude or particularly polite was helpful, but clearly and unambiguously communicating that it is in fact not acceptable to waive an internationally recognised right to sue them over an infringement of internationally recognised commerce rules.  
+Another aspect is the wording.  I chose a less careful wording, because (1) I did not see the wording in the specific thing that was linked; (2) I did not believe that being particularly rude or particularly polite was helpful, but clearly and unambiguously communicating that it is in fact not acceptable to waive an internationally recognised right to sue them over an infringement of internationally recognised commerce rules.
+* Conclusion
+
+One important open question is how did we get here.  CD Project Red is considered one of very few "good guys" in the gaming industry.  They could do no wrong, before the release of Cyberpunk and even after the catastrophe, they are held in high regard.  So what gives?
+
+Really just one thing.  Lawyers add more clauses favourable to the companies that they serve.  This is them doing their job.  So what you could do, and what you would consider doing, is making it clear that these sorts of pushes are not acceptable.  The best way to achieve that, is by pushing back, with material consequences.
+
+From this we have learned some valuable lessons that may be not as apparent.
+
+1. Opt-out from forced arbitration is mandated by precedent.
+2. Most contracts containing that clause also contain an opt-out clause.
+3. Most companies will have a legal team that will most likely respond to an email.
+4. Sending a certified mail just in case might also work.
+
+This gives us regular people a means of fighting back against this encroachment.  Not the best, as one would have to follow these instructions, and it is often much easier to just agree, but I would argue that this is something that needs to change.  We ought to be able to do a little bit of extra work to ensure that the standard is not set towards forced arbitration by default.  
