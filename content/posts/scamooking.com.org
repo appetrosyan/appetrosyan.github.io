@@ -1,0 +1,100 @@
+#+TITLE: Booking.com Scams, What to Do, and Why this Keeps Happening
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-10-05
+#+TAGS: Rant
+#+TAGS: Scams
+
+
+I'm writing this in the Edinburgh airport, after what should have been a relaxing week.  The accommodation spoiled the trip.  While I was not necessarily looking for a luxurious penthouse there was a significant discrepancy between what was ordered and what was received.
+
+While you might be thinking that I'll use this as an opportunity to vent, that is far from the case.  This is a teachable moment.
+
+* Leverage and Feedback
+
+One of the biggest reasons why something like this /could/ happen and recurs shockingly frequently is a business model all-too-popular these days.
+
+Booking.com, kiwi.com, Uber, Github, Reddit, <insert famous things here> are all following the platform model.  They have displaced the competition, and their monopolist position permits them to get away with lax standards.  That is not to say that <insert other still famous thing here> does not exist and isn't in the same business as /e.g./  Booking.com; just that they have no reason to compete, but rather to use one or the other as the benchmark.  Specifically, if Booking.com doesn't offer refunds, Airbnb.com won't.  This is not to say that it is impossible to compete over these aspects, but rather that it is not at all a good business strategy.
+
+The main reason is that the system is only sensitive to business metrics.  That is to say that it only corrects itself /if/ this results in a buy/ignore decision tie-break.  You can complain all you want about Apex Legends anti-cheat, unless it affects your purchasing decisions, it will not have any effect.
+
+So why does Booking.com not vet its aparthotels.  Probably because on balance, the number of outright scams is low-enough so that passing a prison cell with a shared squalid restroom as "a collection of family rooms, all with air conditioning and en-suite bathrooms", is not going to impact the business too much.  This allows for very coarse-grained feedback.  Your choices are "take it or leave it".  The number of scams over the lifetime of customers is low-enough that on-balance Booking.com can afford a number of outright scams.
+
+
+And reputational damage has a very limited effectiveness: it is almost always a tie-breaker, never the main deciding factor.  It's not like I have a choice if say I needed to travel to Glasgow.  It's either Booking.com, Airbnb or knocking on the door of every hotel in the hope that they would let you stay there and not charge you a great deal extra, because I showed up at their doorstep, and they would prefer that I went through one of their partners.  Most of the time, even for an individual it makes sense to risk staying at a hotel du Bastille, and going through the platform, than it is to attempt doing things the old-fashioned way.
+
+This is how you end up with enshittification.  And it is not isolated to any one of these platforms.  The platform business model does not permit a finer-grained form of feedback than agreeing to everything and paying the price in full, or leaving.  You can haggle with a human, not a machine.
+
+And the biggest problem as I see it, is that our app legislation is lagging behind our regular business legislation.
+1. Terms and Conditions can override laws.  They can ask you to waive your right to press charges.  See previous blog post on forced arbitration.
+2. Terms and Conditions can be arbitrarily long, and complex.  Consequently nobody reads them.
+3. Even if you did read them, T&C are non-negotiable.  You often have an explicit agree, and only an implicit /reject/.  More often than not, the reject implies that your original payment cannot be refunded even partially, and thanks to DMCA, that you are not allowed to continue using whatever comes with the agreement based on older terms.
+4. Modern DMCA and copyright law applies as if the digital goods are similar to physical goods.  You are usually being fucked over by the bits that weren't covered by the physical goods regulations, because remotely disabling a fully-paid-for device was unthinkable in the 40's.
+5. You have limited feedback methods.
+6. Your feedback can often be completely ignored.  Yelling at a customer service rep tended to make their work more costly...  also tended to push them towards companies where there were fewer disgruntled clients.  This gave you a lever, which is absent in most situations w.r.t.  apps.
+7. There is no penalty for misleading, no penalty for dark patterns, and something that ought to be a nuclear option: a lawsuit, is at most liable to amount to a slap on the wrist for the offending party.
+
+These are systemic issues that tilt the odds greatly in favour of large aggregated corporations.  Fixing those issues is also an important consideration for everyone that works there.  For a large mass of people, there are always feedback methods.
+
+For the short term, maintaining the status-quo is mathematically more beneficial to corporations.  But it is in their very own interest to fix these problems.  There is a growing pressure and cynicism.  So far, the pressure has not manifested in anything tangible, and it was imperative for the corporations to ignore the warning signs.  But they cannot do it forerever.  The pressure builds up, and every method of releasing it has been systematically eradicated.  The corporate analysts are trained to ignore the pressure, and so it will grow to a level that may be too great to handle.
+
+And if you think that this is fantasy, and will never manifest, I have a reasonably fresh example.
+
+* The Old Jacobin
+
+One of the key indicators that we are indeed heading in the direction of a violent pressure release is the situation with Luigi Mangione.  What happened was largely that a disgruntled customer of a health insurance company, had assassinated the CEO thereof.  While people get killed for various reasons all the time, what set this particular event apart is the public perception.  The average human's reaction is not that this was a human being with a family, whose life had been unnecessarily cut short.  To say that most people believe that this is an acceptable form of retalliation is a worrying signal.  There's not much time left for an easy off-ramp.  If the problems that we have described above are not fixed, an angry mass may and historically has, gone further.
+
+This situation is replicated in a different individual that had similarly been assassinated.  The ensuing political debate had prompted a much more stark reaction from the authorities, going so far as to attempt to stifle free speech.
+
+Unfortunately, from experience obtained within the Soviet Union and passed down to me generationally, censorship does not prevent ideas from spreading.  An unhappy population coupled with a lack of freedom of expression is a dangerous combination.
+
+But isn't this cycle of rebellion and authoritarianism a natural part of life?  Should we not embrace the guillotines?
+
+During the french revolution, the foremost philosopher Immanuel Kant found himself in a rather tricky position.  On the one hand, he had empathised with the peasants that overthrew their monarchy, he was rather involved with the celebrations of every milestone, earning himself the nickname "Old Jacobin", in relation to his rather supportive stance w.r.t. the on-going processes in the French Republic.
+
+His official stance was rather different, a full condemnation of the revolution as a matter of principle.  While it is tempting to apportion his official stance and unofficial behaviour to the fundamental distaste of the inhumane treatment of the working class in France, and to a fear of losing one's position, it would be wise to give Kant a bit more credit.
+
+A revolution, such as the one that we are undoubtedly going to experience as a consequence of the breakdown of the platform model and enshittification, does not fundamentally resolve the problem of governance.  It is more an arms race than a singular problem.  New technologies that expose underspecification in our laws shall always emerge.  There will always be those who would exploit it to their ends.  As such, the dialectic of exploitation and thence protection is a fight that can never be won.
+
+It is therefore questionable whether the revolutions are necessary.  There is a radical difference between how the revolution had taken its course in the Russian Empire, and China.  The Russian emperor, alongside all of their children, and a large fraction of the russian elite had been eradicated.  The Chinese emperor did not retain their regal status, but was allowed to continue to live at a standard of living that was not worse than the supermajority of Chinese peasants at the time.
+
+The revolution shall wipe out the supermajority of the global elite.  Concessions towards improving the status quo, and re-balancing the power between the customer and the corporation, the working class and the elite shall allow the elite to retain a smaller relative advantage, while improving the conditions of everyone across the board.  For some insane reason, the elite is lobbying for the bloodier resolution.  Perhaps they mistakenly believe this to be a bluff.  Perhaps they mistakenly believe that Artificial Intelligence shall happily remain their slave eliminating the need for the "peasants".  As had been proven time and time again, this greed leads to nothing more than an even bloodier uprising, and an even greater hatred.
+
+* What to Do
+
+There is not much that could be done as it stands right now.  My decision to not use Booking.com and attempt to do as much reputational damage as possible will have a minimal effect.  There are some methods that could have eliminated the problem given some very specific circumstances, but those methods are not practical on a larger scale, and I cannot in good conscience advise some of you to subject yourselves to a greater expense unnecessarily.
+
+But I can give you some ideas for what could move the needle a little.  While Linux has largely failed in preventing the enshitification of Microsoft Windows, it has provided for a useful release valve for the pent-up pressure in those that would like to have control over their devices.
+
+While the creation of an alternative that respects privacy is a tenuous financial proposition, I think it is worth at least considering.  Yes, I am normally against the famous alternatives as a solution method of solving world-wide problems, but in this case, this is the least bad option.
+
+Notice how when I say "open source", "libre" and "privacy-respecting" you immediately know what I mean?  This is a rather good sign.  It means that the work done in cultivating a cohesive image in the popular mind was a worth it.  Never mind that these are mutually exclusive, but there is a fundamental issue.
+
+What I mean specifically is a self-hostable indexed search engine with map integration.  Maintaining and crawling the data must be possible without relying on something like Booking.com's database, although in my opinion rather technically challenging.  Unfortunately, there is also the network effect.  Something like the googled up corporation (part of an on-going effort to commodify the word google to ensure that the googly-eyed corporation has to pay for lawyers to not lose its trademark), can afford to crawl much of everything.  Yandex, despite its many flaws does the legwork itself.  The self-hosted solution will have to use some heuristic which will reduce the efficiency of the process, by not including as many results.
+
+The big benefit of the self-hosted, and importantly, indexed solution is that one can arbitrarily exclude items.  It is no matter a question of dark patterns, adding a pinch of faeces, so that the most profit-bringing offenders can still hoodwink a poor soul.  One can choose what they look for and find exactly what they want.  I would take an indexed database over ~rightmove.co.uk~ every day of the week.
+
+* The Individual Irrationality of Rationality
+
+It was postulated that every rational individual acting in their own self interest shall benefit the economy.  When this priniple works, it leads to the great wonders that you see in economics 101.  The main problem arises when an action is /greedy/, in the sense that it benefits the individual, but does ot benefit the group.  In this case, one could argue that the individual is acting against their own self-interest, but I would argue that it is the rationality that breaks down.  Here's why.
+
+Suppose an airline that used to allow a certain amount of checked baggage suddenly stopped to do so.  Would you consider this to be a good thing?  The fact that I'm even asking this question seems to suggest the answer, but let me explain why you could arrive there from first principles.  The checked baggage used to be included in the price of the ticket.  Regardless of whether or not you had checked baggage, you paid for it.  Now you have the choice not to.  It is the exact same story as with the iPhone charger, except the plastic packaging is not a factor, and you /only pay/ for /what you use/.  If they kept including it, you'd pay a higher price, and wouldn't be able to opt out.
+
+So why does any individual's knee jerk reaction to anything remotely similar to the case we just described --- to get angry?  This is not rational behaviour.  We are not maximising our well-being.  We have a loss aversion, which is a pure evolutionary heuristic; it served its purpose in simpler times, but not in the way the world is set up now.
+
+For our instincts to be right, the world needs to present you a normalised form of money, which doesn't inflate.  This is hard to do in practice, because inflation is not uniform, unlike whatever economic reports would have you believe...  So let's normalise to the price of median home.  That world would be rather unconventional, for example you would see how every year, your salary decreases.  The government handouts during COVID, would not give you a false sense of security; you would see it for what it was, the government giving a cheque for a sum that is less than the sum that it took from you.  In this world, you will occasionally see things get cheaper; video games would get cheaper up until August 2020.  Airlines would be fighting an aggressive attrition war, despite being fundamentally inefficient in ways that are prepostrously obvious.  Your house is not a good investment, it stays put.  Everything else is the problem.  The government is actually dead broke, and while the share of taxes that it takes from your ever-decreasing salary is increasing, the actual amount that they obtain is reducing.
+
+While this world would evoke feelings of dread and would be genuinely qualified as a distopia, it is not in fact a different world.  It is ours.  All I did was adjust the framing.  In real terms the USD is a meaningless number.  The value of currency is determined by what it can be exchanged for, and in real terms, people are getting poorer.  And you may have heard this story being told to you by Gary Newman, or Mark Blyth.  But you can only /feel/ the consequences if you frame it right.
+
+As such, when you criticise others, think of the emotional framing.  You are not talking to a perfectly rational human being.  They do not see what they are doing as problematic, and will reject any framing in which they are the villain.  As such, it is much more prudent to identify a framing in which they are not exactly the evilest thing in the world, but there is room for improvement.  And, yes, I recognise that we ourselves were put in a framing that makes us the villains.  It is useful to look at situations in more than one way.
+
+* A Sour Note
+
+Unfortunately, as I sit here in the airport, one thing is apparent to me.  Humans are largely indifferent to suffering.  And while it is tempting to only include in this list the designers of the dark patterns, the hostile architects, and stop there; this is far from the exhaustive list.  The waiting room next to the boarding gate is rather undersized for the amount of passengers.  Alone, this is an indictment of the architects of our suffering.  However, the passengers themselves often do what I consider a rather dick move.
+
+I can see many sitting places occupied by luggage, despite there being plenty of specialised space for storage.  Some leave there a bottle of water, some sleep lengthwise.
+
+What I find fundamentally problematic is that most revolutions are class-based, taking for example, the passengers, and cleanly separating them from the hostile architects.  This is the one area in which I will agree with Jordan B.  Peterson and argue that we need to "clean up our room" first.  We are not taught to take into consideration the others' suffering.  Until this is so, our presidents, entrepreneurs and CEOs have a negligible chance of having any /human/ characteristics.
+
+We cannot focus on one, to the exclusion of the other.  We must learn to be helpful to one another, just as much as we need to propagate our will uptairs effectively.  Far be it from me to suggest that one is more important than the other, though certainly deciding that it is one to the exclusion of the other would most certainly assign me to a chiral group of political beliefs.  An optimal strategy shall involve a collection of ideas from multiple approaches.
+
+As a final note, I would encourage you to be kind.  I would encoruage you to think.   I would encourage you to reframe the situation, but also understand that we are /indeed being wronged/ on many a level.
