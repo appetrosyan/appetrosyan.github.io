@@ -1,8 +1,9 @@
 #+TITLE: Booking.com Scams, What to Do, and Why this Keeps Happening
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-10-05
-#+TAGS: Rant
+#+TAGS: Rants
 #+TAGS: Scams
+#+TAGS: Life
 
 
 I'm writing this in the Edinburgh airport, after what should have been a relaxing week.  The accommodation spoiled the trip.  While I was not necessarily looking for a luxurious penthouse there was a significant discrepancy between what was ordered and what was received.
