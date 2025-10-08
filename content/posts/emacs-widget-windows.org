@@ -1,6 +1,10 @@
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-09-20
 #+TITLE: The Emacs widget saga: viewports and windows
+#+TAGS: Emacs
+#+TAGS: GUI
+#+TAGS: Widgets
+#+TAGS: Tooling
 * Preface
 
 The updates are sparse.  There are a few reasons.  I am actively looking for a new job.  On a good day, this process is long and arduous.  But I have a few complicating factors.
