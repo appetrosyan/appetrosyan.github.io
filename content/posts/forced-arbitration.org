@@ -1,6 +1,9 @@
 #+DATE: 2025-10-01
 #+AUTHOR: Aleksandr Petrosyan
 #+TITLE: The Battleground of forced arbitration
+#+TAGS: Life
+#+TAGS: Legal
+#+TAGS: Ownership Erosion
 
 Forced arbitration is bad.  It is a means of heavily biasing disputes that should be egalitarian, in the favour of a service provider.  Oftentimes, forced arbitration is without a term, survives long after the agreement, and can affect more than one person.  I will not recount the famous incident regarding Disney and a certain food allergy.  Instead I will point out something that happened to me quite recently.
 * Normalised R.A.P.E
