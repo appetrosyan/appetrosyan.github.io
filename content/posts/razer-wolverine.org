@@ -1,0 +1,95 @@
+#+TITLE: Razer Wolverine V2
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-10-16
+#+TAGS: Review
+#+TAGS: Hardware
+#+TAGS: Gaming Controller
+
+This article is a brief detour into one annoying piece of hardware that I wish I did not own, but nonetheless do.  A Razer Wolverine V2 controller.
+
+I bought it despite the notoriety of Razer.  Having done so, I now firmly believe that it is likely the last piece of Razer hardware I will buy willingly.
+* Background
+
+I owned a Steam Controller.  I got it second hand, and it felt cheap, but it also felt like it was a great, well-thought-out device, with potential, and as my first controller, it set the standard.
+
+I had been chasing the experience of using a trackpad, back buttons, and a circular touchscreen menu ever since.  Alas, Valve time is at work with respect to the second iteration.  While the Steam Deck itself recaptures much of this charm, it is also a fully fledged game console, that more often than not cannot sufficiently ergonomically facilitate the interactions with other games and storefronts.  If the developer has made a reasonable assumption that you would be working with a keyboard and mouse, and for (some) reason Nr. 1059 the Steam UI either fails to load, or does so sub-optimally, you cannot play the thing on the steam deck.  Case in point, most of my GOG library.  Some of the games offer rudimentary controller support.
+
+But I digress.
+
+The closest mainstream controller to the Steam Controller that exists today is the Dualsense.  It's cheap, abundant, reasonably well-supported on Linux (which came to me as a great surprise), and despite being made with sub-optimal technologies for the analog sticks, it comes with a gyroscope as a standard.  This is what I would recommend most people get.  And this is what I had for a long time.
+
+But I had a bunch of money burning a hole in my pocket and I just had to splurge on something...  so I did my research and got a controller that felt like an upgrade.
+* The Honeymoon
+For a long time after purchase, specifically for the first three months, it felt like a direct upgrade.  Credit where credit is due, there are good things I could say about this device.
+
+*** The Features
+
+On paper this is a rather good device.  It has two pairs of back paddles, which are configurable.  It has two additional buttons between the bumpers and the triggers.  It has a wireless and wired mode, as well as some mechanical switches that convert its triggers into short-travel buttons.
+
+*** The materials
+
+The controller is rather expensive, but you do feel the expense pretty much in every aspect of it.  Its exterior finish is weighty and solid.  The buttons have a clicky mechanical crisp feel.  The controller sticks feel premium.  It is a well-made controller.
+
+* The Disappointments
+
+The controller eventually made me a little more than just a little annoyed.  But there is a small collection of small things that in isolation mean nothing, but when combined, led to a massive feeling of "I messed up".
+
+*** The Price
+
+The controller is extremely expensive.  This is not exactly disappointing, as much as the overarching confounding variable.  It is the reason why this chapter even exists.
+
+With shipping the overall package took something approaching $300 to get.  Keep in mind at the time I had a lucrative job working at a boutique L2, that I should have recognised was run by criminals.  So I said, what the hell, I never splurged on a controller, might as well.
+
+And while I do acknowledge that it feels somewhat more expensive than the others I have considered, I don't necessarily feel that it translates into being better.
+
+*** The Layout
+
+First and foremost, the layout is IMO not ideal.  In fact, I'd go so far as to call it bad.  The basic DualSense is in my experience a rather ergonomic package.  The symmetrical stick positioning and the fact that the face buttons and the dpad are essentially interchangeable allowed me to adopt a left-handed layout.
+
+The same does not work with the weird asymmetrical shape that for some reason persists to this day in XBox controllers.  It has two nubs, which you are meant to grab, but which also give you RSI.  The controller is inconvenient to grip, to the point to which I did not use the paddles for their intended purpose when playing through Elden Ring.  On paper you read that this design is more ergonomic, but I have found that to not be the case at all.  The main issue is that for something /as exotic/ as the Razer Wolverine, unless you live in a western country, you are unlikely to be able to take it for a spin, and try it in your hand.
+
+In fact the weird-mishshapen form of this controller made me swear off from buying peripherals online in any which way.  If it's something I am intended to spend a great amount of time with, holding and straining my hands and fingers I should better see it for myself.  Weirdly, the Steam Controller, that has a similar appearance has a much better layout.  The "how" eludes me to this day.
+
+*** The Extra Buttons
+
+The extra buttons are not additional buttons that get recognised by the game and can be bound independently as a feature of the controller.  Razer is too niche, and Wolverine is too niche within that niche for that to be the case.  I had hoped that because the Dualsense Edge exists that the support for the back paddles would at least materialise as additional buttons, but it did not.
+
+These buttons are useful if you want to move the dodge roll away from the face buttons, (which are now harder to press as per the previous point), but they are not additional buttons if say, you wanted to have extra controls in Beam NG drive, or FreeSpace 2.  Nay.  They are the same buttons, just located in different places.
+
+Contrast that with the Steam Controller, which just provided you with a new controller layout, and wherein the extra buttons had actual function.  Where the stance control could be separate from the interaction control, such that one could use the back paddle as a modifier.  Alas.
+
+*** The Vibration
+
+Razer's nascent entry into the controller world has a peculiar lack of haptic feedback.  It is said that a controller like that is designed for e-sports, and as such the haptic motor is not considered important enough to be included.  Well, I suppose the logic requires a genius to understand, as to me the unnecessary heft of the controller provides more than enough opportunity to include a haptic motor.
+
+That is something that I should have perhaps paid attention to when buying.  In fact, me not double checking every aspect of every purchase seems to be what's causing a lot of these impulse purchases to fall apart.  But this is a feature which I had assumed was broken at the software level, and was actually simply not there.
+
+For a cheap 8-bit-do or if Linux did not actually support haptic feedback I'd say -- whatever, not working, I can live with it.  Not for an expensive controller that specifically does not require any spyware to be installed on your system to control.
+
+*** The Gyroscope
+
+The main issue that I ran into was the fact that the controller presented a gyroscope rather inconsistently, and with rather unreliable results.  The Gyroscope in the Steam Controller provided better-than-mouse intuitive input.  Furthermore, because one could activate/deactivate the gyroscope by touching the trackpad, the system worked quite well.  With this thing reaching the top touchpad is a struggle, using the imprecise Gyro is a struggle and getting the desired outcome of Gyro Aiming + Flick Stick is a struggle.
+
+While I was quick to dismiss the Horipad as being a sub-standard substitute to the Steam Controller and giving the slight edge to the Razer Wolverine...  I must say that having capacitive thumbsticks would have been useful.
+
+*** Thumbsticks
+
+They rattle, and they are not the TMR kind.  They have replaceable caps, which add nothing except the aforementioned rattling.
+
+* The Software Bugs
+
+This is the part which prompted me to throw in the towel on this piece of hardware.
+
+The constant hardware-software problems.
+
+I booted up Dark Souls: Remastered and was quickly greeted to my character doing heavy attacks and the camera spinning constantly.  The inputs are scrambled and I cannot use the controller to control my character reliably.
+
+The issue may be with Steam Input.  And I fully acknowledge that Linux has a real problem with exotic/niche hardware.  I do not think it is my problem anymore, because I know for sure that the cheap and abundant dualsense controllers handle this well, and the Wolverine does a job worthy of Razer's legacy.
+
+Simply put the issue is with the motherboard, Linux, and this controller.  If I plug this controller into the Steam Deck for some reason it's fine.  If I plug a regular Dualsense it's fine too.  For some god-only-knows-why reason if I plug it into the PC that houses my old motherboard with its old CPU it's ALSO FINE.  This is the kind of Heisenbug that is uncertain enough to guarantee that nobody would fix it for years.  And of this trio of hardware products:
+
+1. The motherboard is the better x670E motherboard by ASUS.  A bit on the cheap side, but enough to power my CPU.
+2. Linux is the least terrible OS at the moment.  I can sometimes pretend that stuff works, and not have to put in much effort.
+3. Razer is a company with a terrible track record that doesn't support Linux.
+
+So the only reasonable takeaway is don't buy Razer.  For real.
