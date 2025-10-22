@@ -1,0 +1,103 @@
+#+TITLE: The Evolution of Mathematical Notation: Part 1
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-10-22
+#+math: true
+#+TAGS: Mathematics
+#+TAGS: History
+#+TAGS: Philosophy
+#+TAGS: Notation
+#+TAGS: Programming Language
+
+The mathematical notation is a rather interesting beast.  We want to look at it from the perspective, of evolution of human thought, and ask a few "what if" questions.
+* Introduction
+
+In the beginning there was the need to count things.  That need, never really went away, though its character has changed.  Over its existence, humanity has accumulated a great deal of experience and a great number of notations.  Our journey will terminate at modern day programming languages, but it is not the end-goal.  I would like to entertain the fact that our notations have not changed as much as they ought to have.  And having a good notation is half of creating the theory.  It may not help in developing one, as the notation is just as likely to trap the designer, but it is certainly a great component in training and obtaining a proficiency.  It is often the method by which one can subtly guide the humans towards the right method of solving a certain class of problems.
+
+While I would not go so far as to say that our modern mathematical notation is lacklustre, I would make the point that there have been many developments from which both our teaching and our computing capabilities would have benefited.  Our mathematicians are often proficient in programming.  Our programmers are often hopelessly incapable of mathematical reasoning.  And I would make the argument that both mathematical notation and programming languages refuse to meet in the middle.  We have a notation that is useful for one form of communication, but rather incapable for the other.
+* Arithmetic notation
+
+The first kind of counting that would arise during the natural development of any civilisation, would probably be the tallying of totals.  One has a very simple concept of quantity, that is not at all simple to someone that does not have it.  We understand that certain objects can be grouped.  That group has a naturally associated property, which we call the quantity.  That quantity has certain properties related to the makeup of the group.
+
+{{< notice note >}}
+#+BEGIN_aside
+As such, the concept of one-ness is something that great mathematicians have argued is inextricable from sets containing one element.  However, I believe that this is mostly a historical accident.  The more involved ways of defining one-ness from lambda calculus seem more appealing, but certainly, and similarly unrelated.
+#+END_aside
+{{< /notice >}}
+
+We thus define quantities.  And what better way to tally up the quantities than by associating every element of the group, one-to-one to another object, representing the number of objects.
+
+This gives rise to the most ancient form of notation.  Vertical scratches.  A unary natural counting system, where for each object we associate a symbol so simple, as not to be considered one, despite being one.  Have three apples?  Carve three bars.  Have four, add one bar.  Lost one, got three instead --- create a new record.
+
+This is the most natural of the forms of symbolic representations, but it quickly breaks down.  For a number \(n\), its representation is \(O\left( n \right)\).  This alone makes this particular system intractable for grain and other substances made up of small particles.  None of the ancient cultures used this system in this primitive form for long.
+
+The one you are most familiar with, is perhaps the Roman system.  It uses a very simple heuristic.  Some numbers are more important than others.  So some objects are given a different symbol for representing them, and others are given in relation to those landmarks.
+
+Indeed, one has five digits, so perhaps the number 5 should be important.  Double that -- ten, is easily represent-able.  The trouble is that the system is rather inconsistent.  The pattern so far anticipates that the next landmark would be 20, which but it is not.  While the number of digits on one hand, and on both hands is important, the total number of digits and toes doesn't seem to be that important.  Perhaps it is so, because us humans lack the toe dexterity to count with them.  The reason why the number 50 ought to be the next landmark shows a bias towards the powers of 10.  And indeed, the Roman system as a whole is decimal, the landmarks are exponentially spaced, it just so happens that they happen to have half-way points.
+
+It also has the remarkable property of correlating with our innate grasp of these numbers.  We have a propensity to think of numbers beyond one million as intractably large, because exponential thinking doesn't seem to be well-represented.  Folding a piece of paper doubles its thickness, twice --- quadruples, and twelve times --- we don't have a word for it, but $2^12$ is a rather large number: $4096$.  Nobody expects that though.
+
+The rival system that has arguably more representation in our modern life is the sexagesimal system used by Mesopotamian people.  It relies on the fact that it is rather simple to count numbers of wedges: just think about the faces of playing cards.  Up to 10, you just stack the numbers: easy natural, and lends to easy arithmetic.  10 is where you start introducing new symbols, and you stack them too.  Up until exactly 60.  At that point, you just use a positional system.  Except one that does not have zero[fn:1].  More on that later.
+
+Our understanding of the world in terms of degrees and hours and minutes comes from this ancient system.  It is a system that comes with great advantages in terms of logic of addition, because tallying up some quantities is easy.  The precise choices of the landmarks are rather odd, though I'd argue odd in a way which is familiar.
+
+The main function of these systems of notation was to record a quantity.  The Roman System was more amenable to hand gestures, which is advantages in trading.  The base-60 positional system, on the other hand made it amenable to calculating fractional values.  The ancients understood the decimal point (or rather sexagesimal) point quite well, otherwise they wouldn't have chosen a base with so many factors.
+
+This notation, however, only recorded the quantities.  One had to read text interspersed with this notation in order to understand what it is supposed to mean.  In many cases this meant that only those that understood the underlying concept found the numbers useful.  For trade, that is easy: it is number of apples in, number of gold coins out, and a fraction of that given as tax.  For astronomical calculations, this is far from the case.  And yet our ancient ancestors have managed to find the ratio of the circumference of the circle to its radius to nine sexagesimal digits.  They knew the radius of the earth to at worst 17% accuracy, mostly because their units of measurement were flawed, not because their calculations were.
+
+However, there is a considerable need for human-to-human communication.  These notation systems cannot encapsulate the symbols for addition, which is instead an external concept.  It is rather a complicated beast to even explain what operations are.  From a purely philosophical standpoint, there may be a justification for these things, but mathematics was mostly required for the commoners to a certain limited degree, and as a consequence, a more easy-to-grasp but problematic in the long-term notation was adopted.
+
+I am almost certain that there were private forms of notation used by the thinkers themselves.  It is quite unlikely that they would be able to do the work that they have done without such notations.  However, we can safely argue that the period of antiquity only toyed with positional systems.
+
+At least in Europe.  In China, according to Alexander Wylie, a positional system was in use centuries before.  India is largely considered the progenitor of the modern European positional system.  And as a likely through line you will have spotted that most of our examples are technically favouring ten[fn:2].   This is far from universal.  The choice of ten is arbitrary, and often stems from practicality considerations.
+
+Still positional systems have a great collection of advantages.  The Roman system has a tendency to balloon in complexity for specific numbers, whilst being rather simple for powers of ten.  This means that writing three and thirty thousand requires the same number of repetitions of symbols.  But a number that is one less than thirty thousand has a rather complex representation.  This will result in a bias towards doing less work, and as a consequence of that, the Roman system does not have equal precision.  Furthermore, the Roman system cannot cope with a great deal more numbers that we have to deal with on a daily basis.
+
+A separate collection of symbols, unrelated to the alphabet, combined with a positional system confers great advantages.  We have zero and we can place it in every digit position, including the leading one.  This lets us do comparison of numbers rather easily.  It is rather apparent to us that 1991 is less than 2023, whilst the string MCMXCI has a tenuous connection to /e.g./  MMXXIII.  And I picked relatively easy numbers.  Another advantage is that the initial simplicity of explaining how one is to do addition is often overshadowed by the tedium of having to replicate the numbers time and again.  We thus optimise for ease of reproduction.  This sadly means that humans have to do the arithmetic in their head, using multiplication and addition tables and only then write out the answer.  For Roman numerals this is less so the case, because the draft of an addition can be corrected to standard form with less effort.
+
+The decimal positional system is what the world has agreed to.  This is what we use.  But mathematical texts during Newton's times would still look foreign to the modern observer, as they did not have symbols for standard operations.
+* Algebraic notation
+
+A class of problems requires so much mental correction that it is practical, nay required to record the numbers alongside the operations that must be done to them.  This is the essence of the method of Al-Jabra, of balancing.
+
+It was possible for many people to solve extremely complex problems such as figuring out the radius of the earth by intuition and experience.  If I asked the following question to you: "if Isaac can build a house in three days, and Isaav can build a house in four days, how many days would it take Isaac and Isaav to build a house together", there is a chance that you would be able to solve this problem in your head.  You would be able to find that one does a third of one house in a day, and another does one quarter, so together they would do seven twelfths of house in one day.  Then take the reciprocal of that to figure out how many days it would take them to find that.  For extra credit, you might want to think why choosing these specific people means that right answer is exactly two[fn:3].  However, problems that are methodologically identical, would not be solved as easily by you, or your poor 10-year-old that is about to start doing these forms of problems.
+
+You are taught to create an equation.  This is conceptually what we do every day of our existence, and every time we think about mathematics.  In reality there was a time, before this method existed, and during these times, hand waving and arguments such as the one presented above were the /only/ way of solving such problems.
+
+A true mathematical genius, Al-Khwresmi, was not only exceedingly good at solving these problems...  nay...  he has taught us how to do that ourselves.  We must represent the truths in two ways, then we must balance those truths with the unknown on the one side, the known on the other, and consequently resolve the unknown.
+
+Over the many centuries we have learned that there may be information obtained out of quadratic equations, and that sometimes, these equations are best left without substituting quantities in (/c.f.r./ all of physics).  However, the method of balancing operations and utilising properties of said operations is the core of the algebraic manipulations.
+
+The key insight is, however that we must not be too eager to perform the operations.  We record them, we manipulate a string of operations, but we only collapse them for known objects.  And thus it became necessary to express those operations in some way shape or form.
+
+The notation commonly used in schools is a recent invention however.  Long after the method of Al-Jabra took hold, up until as late as the 16-th century one still used words to express the mathematics.  Even so, during Newton's time, the concepts which are easily expressed using mathematical notation today, were not expressed that way by Newton himself.  Things that we take for granted, that is that $pi$ almost always means the ratio of the circumference of a circle to its diameter, (and only occasionally the prior probability density function, or partial pressure), were not standard for Euler.  We would just as easily be able to understand those people's mathematical notation as we would Chaucer's writings.  Descartes is where $x$ is the unknown, $a$ is the constant, and $i$ -- the imaginary unit.  Much work had to happen in one's head in order to accomplish what every child can do today with great success on a piece of paper.
+
+The notation is quite literally reducing the complexity of the operations.  Think again of the problem: if I had presented the following system of equations to you:
+\[
+3x = \text{House}\\
+2y = \text{House}\\
+z*(x+y) = \text{House}
+\]
+
+you are naturally drawn to trying to solve this for $x$ and $y$ and $z$.  You could even solve this /class/ of problems by keeping the terms $a$ and $b$ instead of $2$ and $3$, and just remember the so-called closed-form solution.
+
+This is not the end of algebraic notation, however.  We have gotten exceedingly efficient at removing unnecessary work.  Under /linear algebra/, the notation is doing even more work, but it also allows one to solve a greater class of problems.  Furthermore, introducing the concepts of determinants, adjoint and inverse matrices, we can broaden the scope of what we consider to be /this class of problems/.  Suddenly you can solve a problem when you are given $n$ people and $n$ different /linearly independent/ ways in which they could build a house.
+
+Solving these sorts of problems is what GPUs are used for.  Being able to solve these problems well, nowadays allows us to pretend that we have thinking machines.
+
+So algebraic notation is immensely important.  It allowed us to formalise the steps that were before considered more art than science.  It still, arguably leaves much to be desired; we do not have a general purpose algorithm for telling a student how they should prove any given conjecture.  If something like this existed, there would be no open problems in algebra (and indeed mathematics).  However, we can subtly guide the person to do what's known as /symbolic reasoning/, to obtain an answer to a complex question.
+* To be continued...
+
+In this chapter we have covered the early days of evolution of mathematical notations and what kinds of challenges it faced.  The next chapter will concern itself with some curiosities related to mathematical notation.
+
+
+* Footnotes
+
+[fn:3]Isaac pretended to be Isaav to obtain his inheritance.  Consequently, they would both do one quarter of the work a day, which leads to half the work being done in total.
+
+[fn:2]One can only speculate as to why the most successful systems today are decimal, but it is unlikely to have any non-accidental advantages.  While technically most mammals have five digits, consider how many visible digits a hypothetical canine sentient species would be able to use for counting.  An octal system has great advantages over the decimal one from the arithmetic standpoint.
+
+[fn:1]Technically cuneiform writing did have zero in the middle of numbers, so you could distinguish $60^3 + 60^1$ from $60^3 + 60^2$.  However, there was no way of specifying the quantity's scale.  One would have to understand that from the context, as we do with many things in our ordinary language.  Say, /the numerical notation/ in this case specifically means Sexagesimal Sumerian, which you can understand from the context.
+
+# Local Variables:
+# jinx-local-words: "sexagesimal"
+# End:
