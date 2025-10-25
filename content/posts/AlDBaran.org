@@ -1,0 +1,5 @@
+#+TITLE: AlDBaran: Towards Blazingly Fast State Commitments for Blockchains
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-08-14
+#+EXTERNALLINK: https://arxiv.org/abs/2508.10493
+#+TAGS: External

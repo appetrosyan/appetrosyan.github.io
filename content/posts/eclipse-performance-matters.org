@@ -1,0 +1,5 @@
+#+TITLE: Why Performance Matters
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-03-13
+#+EXTERNALLINK: https://www.eclipselabs.io/blogs/why-performance-matters
+#+TAGS: External

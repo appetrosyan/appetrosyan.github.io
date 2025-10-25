@@ -1,0 +1,5 @@
+#+TITLE: The Eclipse Performance Thesis
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-03-19
+#+EXTERNALLINK: https://github.com/Eclipse-Laboratories-Inc/docs/blob/main/Eclipse_Performance_Thesis_v_0.9.pdf
+#+TAGS: External

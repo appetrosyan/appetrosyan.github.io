@@ -1,0 +1,5 @@
+#+TITLE: AlDBaran: Chasing 50M State Updates a Second for Eclipse’s GigaCompute, Part 1
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-06-30
+#+EXTERNALLINK: https://www.eclipselabs.io/blogs/aldbaran-50m-state-updates-gigacompute
+#+TAGS: External

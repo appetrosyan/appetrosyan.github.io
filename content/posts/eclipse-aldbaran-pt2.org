@@ -1,0 +1,5 @@
+#+TITLE: AlDBaran Part 2: Tuning Snapshots, Prefetching, and Subtree Roots for 50M+ Updates/Second
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-07-21
+#+EXTERNALLINK: https://www.eclipselabs.io/blogs/aldbaran-part-2-tuning
+#+TAGS: External
