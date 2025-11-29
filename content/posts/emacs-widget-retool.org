@@ -1,6 +1,10 @@
 #+TITLE: An Update on the Emacs Widget Project
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-11-01
+#+TOC: true
+#+TAGS: Emacs
+#+TAGS: Tooling
+#+TAGS: Work
 
 This is a long awaited update on my misadventures with the Emacs Widget system.  This update contains some good news.  From some points of view, it contains all good news.  But the tone is coloured by a few real world happenings, so it is not all positive.  I will allow myself some profanity, more so than usual, and this may not be charitable.
 * Emacs, the Program
