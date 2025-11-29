@@ -1,6 +1,10 @@
-#+TITLE: The Graphical Emacs Prototype
+#+TITLE: The Emacs Widget Prototype
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-11-29
+#+TOC: true
+#+TAGS: Emacs
+#+TAGS: Tooling
+#+TAGS: Work
 
 I had to fork ~rune~ in order to make it usable for my project.  I provide some reflections on some of the ideas that I would like nail in the next stage of the project.
 * Brief recap
