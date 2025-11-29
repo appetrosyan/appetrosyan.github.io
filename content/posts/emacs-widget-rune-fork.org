@@ -1,0 +1,83 @@
+#+TITLE: The Graphical Emacs Prototype
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-11-29
+
+I had to fork ~rune~ in order to make it usable for my project.  I provide some reflections on some of the ideas that I would like nail in the next stage of the project.
+* Brief recap
+
+I started a series of articles on the limitations of the current Emacs binary.  I wrote a rather disparaging post about the code quality of the code, as a consequence of a failed attempt to find a way to make the project upstream-merge-able by incremental changes.  The current plan of action is to produce a demo, a stripped down version of Emacs, that is plainly an alternative GUI, a slightly modified Elisp interpreter with more internals and a direct form of programming graphical elements in it.
+
+So let's go into more detail.
+
+What Emacs is, to me, is a graphical programming environment.  It is an IDE of sorts, but it is not /only/ that.  It is a place you could play tetris, not very efficiently, mind you, but still.  It is a place that allows one to transform plain text markup such as Org, into a comfortable writing environment with Headings marked with bigger numbers, prose alignment functions, a comfortable middle column to write into, that doesn't require hard newlines to make the text easily readable.  The amount of technological effort needed to make this program display a PDF inside the buffer is not huge, so it does that too.  It has a decent file manager built in, called ~dired~.  I don't like it much, personally, but I don't mind using it either, especially given that it offers some insights that other file managers prefer to hide by default.
+
+Emacs owes its flexibility to the incredible amount of Emacs Lisp that is written.  The quality of that Emacs lisp differs greatly, but the beauty of it, is that since it wasn't a corporate mandated language, where any inefficiency was deemed a flaw to be removed, but rather as a form of artistic expression.  The usage of ~cl-loop~ is not an inconsistency, but a preference.  This is like one's handwriting.
+
+Unfortunately, Elisp is far too forgiving, and some of the elements that were adopted with the intention of providing better performance are now the very reason why Emacs is sluggish.
+** Emacs is not slow
+
+Emacs is not slow.  It has bad architecture.
+
+The Emacs lisp interpreter is capable of producing extremely well-behaved programs.  It owes that to its simplicity.  Because of its simplicity, /e.g./  things like dynamic scoping, lack of namespaces, conventions over mechanisms, and a few other things can work.  Simply put, you never reach the level of complexity such that imperfect solutions to programming management problems become problems.
+
+Now the trouble is that most of the time, the complexity debate comes down to /less is more/ and stops there.  The suckless people tend to say "JSON good, XML bad; complexity".  That is a rather superficial critique, because it ignores the fact that complexity is a price paid for functionality.
+
+Saying /something/ is simple is like saying /something/ is /cheap/.  It means that the amount of work that went into that /something/ had a very crude model of the world, and a very plain model of interaction.  Emacs lived in a different world; one in which computational power was quite constrained, and if you needed to have programs talk to each other, that communication was largely unidirectional, and pipe-lined.
+
+Now the world is different.  Unix is not the dominant way of designing operating systems, most programmers can't write a bash script to save their life, and the main way of connecting to the internet is through an HTML + CSS + JavaScript execution environment, that has the complexity of an operating system.  To account for the changes in how the world operates today, Emacs would have needed to accumulate a kind of complexity.
+
+The complexity accumulated naturally.  It responded to small changes with small changes.  And this led to some problems that are now harder to solve than they need to be.
+
+In the previous post it sounded like I was disparaging to a project that I very much started this one because of.  The [[https://codeberg.org/divyaranjan/emacs-reader][Emacs Reader]] owes most of its complexity to work necessary to circumvent technical considerations of the olden times.  I started the work on this editor *specifically* to provide more maintainable methods of achieving the same functionality.  When I say that this should have been a weekend project, I mean that the complexity that has gone into the project is a problem.
+* Status
+
+I now have a fork of the Rune project.  It was something I wanted to look at anyway, and has the potential to be useful long term.  As it stands, it's going in a different direction to what I need.  I will get into more details shortly.
+
+I have a graphical editor, based on Vello and ~winit~, which provide a sufficient level of flexibility and performance.  This is not necessarily what the end product would be implemented in, just a convenient starting point.
+
+At the end of the weekend, I plan to have a text editor with some ability to read elisp configuration.  Simply put, this is to avoid technical debt accumulated by working on two separate projects and bringing the two back together.
+* Plan
+
+I over-estimated the amount of free time that I would have to work on this.  The setbacks were not at all unforeseen, though their frequency was a bit of a surprise.  I have a cadence which allows some progress to be made, so I will subscribe to the mantra of "slow and steady wins the race" and hope that many of the people that have kindly offered to help can be given something to work on soon.
+** Experiments
+
+I want to try different variations on the theme.
+
+Truth be told, the whole reason for using Elisp at all is to have native day-one compatibility with Emacs packages.  That means that a bug-compatible Elisp interpreter is a good idea.  But that also constitutes a form of golden handcuffs.  We will never grow beyond what was already done, and for compatibility's sake, limit the architectural improvements.
+
+My current understanding is that the killer apps, such as ~magit~ and ~gnus~ and potentially ~org~ would have to be rewritten anyway to take advantage of the new features.  Smaller packages are easier to port.  So a bug-compatible Elisp interpreter is not necessary for the project to succeed, they are a trap, in fact.
+
+We can go with a flavour of Elisp.  It could be that a different environment, such as the new editor, provides some differences that can be taken into account with a macro.  It's possible to write a package that works both there and in Emacs, and the work comes down to using some macros for compatibility.  This is a compromise that I think should be taken as a baseline, because it keeps things relatively simple.
+
+Another, thing to try is Scheme.  Because Scheme and Guile are much more wide spread than Emacs Lisp, and have certain advantages in general, it is a good idea to consider building a brand new editor that takes a larger departure from the status quo.
+
+This can be a blessing for people who daily drive [[https://guix.gnu.org/][Gnu Guix]], this should be a blessing for the whole community, as the consensus is that Emacs lisp, while being vastly superior to /e.g./  Lua and JavaScript, is still not the best Lisp.  There is already a project for an editor that uses Common Lisp, called [[https://github.com/lem-project/lem][Lem]].  For symmetry, I believe that my project could experiment with a different branch of the lisp family.
+
+Another thing I want to try, is to break away from the standard architecture entirely.  Having played around with ACME for a bit, I can probably borrow some more ideas from the Unix-style of interaction.  A protocol and API-driven development is something that I find much more appealing.
+
+If this approach works, the language for orchestration becomes irrelevant.  You could have modules written in Rust, in C, in Guile, in Common Lisp, and in Emacs lisp.  How can this be possible?  Think about BSPWM.
+
+The idea there would be that you have a process-isolation type system, resources, and implementations for components in a variety of programming languages.  Then you can have competition for the "glue" language.  But that in and of itself is a program.  This way, you can have evolution where entire components simply go out of time-related scope.  You don't create a reader plugin, that has to be maintained, you just use muPDF, and the programs of origin simply implement the protocol.
+
+This is a bit more ambitious, but things like that are neither unheard of (think about suckless utilities), nor unsuccessful.  How this would work in a post-Wayland world remains to be seen, but I have a feeling that at least trying this approach should be useful.  I am not wasting anyone else's work, as the only work that went into this project is mine.  Later on, when the project is already on solid footing (if such a time ever comes), this can be changed.
+
+Truth be told, there's also the question of the implementation language.  Contrary to the fact that the prototype is written in Rust, it being the language of choice is uncertain.
+
+Rune showed that Rust does not give us a magic bullet w.r.t. abstractions that would let us be faster than C.  Some functions under ~#[defun]~ have to contain unsafe blocks, and what happens with the ~root~-ing of the objects is a subject for debate.  I could spend time and make safe wrappers for those behaviours, and that would be essentially wasted time.
+
+The second problem is that the facilities for compile-time code generation in Rust are not sufficient to *greatly* simplify code generation.  Rust is not designed with this form of flexibility in mind, and doesn't like to bend that way.
+
+Thirdly, Rust is a project that has a community that is rather hostile to the ideals of the FSF, the GNU project and Emacs.  The standard practices in Rust would be a problem.  The people already involved in the project find Rust to be a boring language, and the whole point of going with /it/ rather than C, is to precisely attract more attention.
+
+This leaves the door open to trying other languages.  I personally would not mind trying out Zig in this regard, as it has robust compile-time programming support.  It lacks the graphical libraries that Rust has, as it is a smaller community of programmers, but makes up for it, by being ABI-compatible with C.  And this could be the big break.
+
+C is a contender that has the small disadvantage of requiring more effort on my end to make the code make sense.  Allocations are inevitable, and the ~unsafe~ in Rust makes almost every ~defun~ a potential source of undefined behaviour.  As such, a better Emacs, with none of the technical debt of GNU Emacs would work just as well.  Plus it could be C with the modern features, such as designated initialisers, the booleans, and [[https://github.com/cmhood/c-defer][defer]].
+* Call to Action
+
+At the moment, the best that you can do, is participate in the discussions.  The dedicated telegram channel is not the best way to do that, at the moment, given that it is not very active.  I plan to create a dedicated site, with a proper domain, forum and hosting to discuss these things.
+
+Next week, I plan to finalise the prototype and create a small recording to be uploaded to Peer and You tubes, to get some feedback.
+
+I want to get things rolling slowly, and to keep the door open to insightful input.  Truth be told, I have a bit of a thicker skin than in June, so perhaps some limited discussions on some social media are warranted.  I may not be allowed to participate in the Emacs reddit, but I no longer think that taking the discussion there is a strict violation of my wishes.  I will do my best to chase up any comments, but keep in mind, I do have a limited number of hours.
+
+Stay tuned.  
