@@ -1,0 +1,46 @@
+#+TITLE: A new Emacs, or what I've learned from the Rune-based prototype
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2025-12-30
+
+Firstly, I must clarify that this is a first post after a long hiatus.  I have a very sick dog, and there are limited facilities in Armenia for something as simple as a veterinarian CT scan.  Needless to say, I am not in my best condition to program, much less make longer-term decisions.
+
+With that said, I did manage to get a prototype out, almost exactly as soon as I mentioned that I would.
+*** Prototype TL;D Execute 
+
+The prototype is a fork of the [[https://github.com/CeleritasCelery/rune/][rune]] project.  When I was just starting out, it seemed like a good choice, and I was hopeful that it would be possible to use the Rune engine unmodified.  They handled the Elisp, I provided the GUI.  Turns out, the way that this project is organised is highly coupled.  I can get a rudimentary graphical user interface to work, but getting anything more complicated is out of the question.
+
+The current prototype resides on GitLab, and shall not be developed further.
+
+To test it out, I recommend
+
+#+BEGIN_SRC bash
+  git clone git@gitlab.com:appetrosyan/emacs-gui-prototype.git
+  git checkout b4b09da0f968423f09af76ddff4685d87ab3465f
+  cargo run -- --no-bootstrap --repl
+#+END_SRC
+
+which will create a terminal-based line interpreter for Elisp.  Inside of that you can type ~(make-window)~ and that should pop up a Lorem ipsum window with some Emacs-y key bindings.
+
+The keys are hard-coded, because ~rune~ does not implement ~CharTable~ functions correctly, and consequently ~make-keymap~ does not produce the right structure.  The communication is unidirectional, so other than the select few defaults, you cannot rebind any keys.  But it does look fairly similar to vanilla Emacs, until you try to ~kill-word~ and realise that /that/ doesn't work as it should.
+
+Today, this prototype has shown me that getting *some* graphics attached to Elisp is not as hard as one might think.  The kinds of changes that would be necessary to make =rune= play nicely with the other libraries are not too complex, and there are good reasons to wait and perhaps contribute to the upstream project.
+
+This direction is a clear /go/ but with some caveats.  There will need to be extensive modification to =rune= if we plan to use it.  The later that those modifications take place, the better.  The scope of the modifications would necessarily be comparable to the amount of work necessary to strip out the built-ins from the C source code, however, so unless =rune= offers some specific advantages, the original approach of building a better front-end to the existing C-based Emacs Lisp Interpreter is still on the table.
+*** Scheme
+
+Before the work begins in earnest, and I already have two talented programmers to collaborate with, there is one more approach that could be taken.  Specifically, by creating an Emacs lisp-based editor, unless we plan to inherit the packages, and the editing paradigm, there may be more sense in trying either a custom lisp, or another pre-existing lisp.
+
+Elisp has a lot of problems in the way that it is designed.  Rune, largely inherits those problems, and exacerbates them by being the un-tested variety.  As of today, it cannot go through the bootstrap sequence without major deviations from the Emacs behaviour.  It is not something that is caught by the built-in tests, and the bootstrap sequence makes no assertions.  As of today, =rune= offers no tangible advantages over the interpreter in C.
+
+Going with GNU Guile may offer great advantages in the long run.  It has a pre-existing package ecosystem, it is a dialect of Scheme, a language that is heavily featured in the famous [[https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html][Structure and Interpretation of Computer Programs]], and until recently, [[http://lambda-the-ultimate.org/node/1840][was directly taught to MIT students]].  It is well-tested, comparable to Common Lisp, in terms of its power, and can conceivably support better performance.  Scheme is much more widely used as the extension language of [[https://www.texmacs.org/tmweb/home/welcome.en.html][TexMacs]],  [[https://guix.gnu.org/][Guix]], and has a robust packaging ecosystem.  Scheme has drawbacks, and until a prototype using Scheme is built, most arguments against the usage of Guile would be hypothetical in nature.  The arguments against using Elisp had been refined as a consequence of the prototyping; I suspect something similar will happen as a consequence of using Scheme.
+
+There are also some very obvious advantages to Scheme, the amount of work that is necessary to integrate Scheme into a Rust-based project is nowhere near the amount of work necessary to decouple =rune=-isms from each other and be made marginally more usable as a library.  GNU Guile was designed as the extension language, not unlike Emacs lisp, but unlike the latter, much less coupled to the paradigms of the host program.  We could, thus create an application ecosystem; not unlike what Emacs is today, but running largely independent, uncoupled and well-optimised programs.  The entirety of the Emacs reader, becomes a standalone program that does not need to conform to the Emacs overlay limitations and is not confined to Emacs' glyph matrix.  Furthermore, only the communication protocol would be based on Guile, allowing for tighter optimisation, and allowing for a far greater flexibility.
+
+Of course, assuming it would work.  The Guile Emacs is a project that had this same intention, and failed.  Unless the underlying causes of the failure are addressed, and one of them is the sheer scale of Emacs as a software ecosystem, going down this path is rather dangerous.
+*** Next Steps
+
+For me personally, I would be working on the next prototype.  This time around, I would rather end up with a no-lisp editor that has some Emacs sensibilities: sequence based non-modal editing, with some of the desired qualities of the end product, /i.e./ a sensible rendering model and an FFI-based extension system that would allow one to define new built-in functions, and to interact with the rendering pipeline.  I want to end up with something close to Neovide, more Emacs-y, but without the Lisp for the time being.  The extension system should be flexible enough so that it is possible to produce components that need not interact with the Lisp subsystem, and lisp-based subsystems should be more isolated in terms of computation and exposed to a larger number of API interactions.
+
+This is, and I apologise for the term, the essence of the synergies between Emacs packages.  The reason why =dired= is successful, as pointed out by Mr Azozin, has to do with the fact that it is an editable view of textual output from =ls=.  Who is to say that we could not do the same with a different data interchange.  The data is highly structured, it is a table.  We could, simply turn this into a data format with a known schema, and have the same synergies work.  That would need to be worked out, based on some work that has to be done once we have a fully functional editor, similar to, but not exclusively to Emacs.
+
+So, my priorities will be with my sick dog, and potentially finding a source of income.  I have taken a considerable hiatus, and it is unfortunately time for me to focus on the "business as usual" way of things.  
