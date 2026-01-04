@@ -1,0 +1,65 @@
+#+TITLE: A Review of Kiwi.com
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-01-04
+
+This post might as well come with the subtitle of *why I hate travel*.  It is extremely charitable to say that Kiwi.com are the reason why I hate travel.  They are typical scumbags, they have done a great deal to stand out, and I shall not be doing business with them ever again, but they are not...  shall we say...  atypical.  If you know of one good apple that hasn't yet been spoiled by the bunch, by all means, let me know.  Otherwise, and without further ado.
+* What prompted this article
+
+I just got a refund.  I bought two tickets to visit a friend in Edinburgh.  I bought them well in advance of travel (mistake number one), and had an unfortunate issue: my dog had a swollen leg, that we suspect is due to cancer.  Needless to say, we're not going.
+
+The second mistake was to request a refund well-in-advance, and not get a doctor's note, to say that I'm not travelling because of illness.  I did this, because I wouldn't have thought that I would be ripped off to this extent.  Now I know better.
+
+They returned around 30% of the original sum.  No explanation, no breakdown, nothing.
+
+I have no recourse, as is usual, because any form of recourse is forfeited in an """agreement""" that nobody reads, not because of laziness, but because it is impossible to alter or amend.  There isn't an office of Kiwi.com.   The customer support "people" have their humanity taken away, follow a script, and follow paths that have been meticulously crafted to ensure that you have no recourse.  You are decoupled from the service provider, so you can't exactly even sue, because there isn't a /corpus/ as in /habeas corpus/.
+
+This is, ostensibly, the last straw in a series of aggregators and middlemen being capital A arseholes.  Kiwi.com's function is one that I will happily replace with AI.  Every person who works at Kiwi.com, and happens to read this article, first of all, I hope you find a much better job, if they treat their customers this way, I can only imagine how they treat you, and secondly, fuck you, your entire job is a net negative to humanity, and the entire shop is only legal because of lobbying.
+
+* Doing ostensibly nothing
+
+One thing that I should point out is that the function of Kiwi.com could have been replaced with direct indexed search through airlines.
+What they do, is they do a search with filtering, that is exactly a few lines of Rust, not very efficiently, not very reliably, and quite annoyingly without much flexibility.
+
+If airlines had a sensible API, which was standard, government mandated, /the same/ across airlines, and contained accurate information, Kiwi.com would be out of a business model.
+
+What they are doing, to a computer-literate person is a few lines of bash.  The whole reason why airlines can pick and choose their shitty flight information, is to justify the existence of such flight aggregators.
+
+Getting rid of them would not /exactly/ be trivial, because airlines, do *not* have a sensible API, and are obfuscating and hiding a lot of the information, and if you try to, as a regular customer, obtain that information, they might use the shitcurity excuse of "you were trying to DoS us" and cut you off.
+
+However, if aggregators were collectively made illegal, there would be need for an alternative legislation to not impose undue problems in the way of anyone who wants to book a flight.
+
+* Why I chose to use an aggregator
+
+**My version of hell is an airport**!
+
+Unfortunately we live in a world, in which travel is considered a luxury, because it is meant to signify that someone is affluent enough to be able to afford air travel, and this excuse is meant to reduce to nil the amount of suffering that is inflicted upon people with a very clear profit motive.
+
+However this does not extend beyond excuses.  You are treated like cattle.  There are lines everywhere you go.  There are completely unnecessary operations as part of security theatre, that have unpredictable time delays, which are of course, your liability as opposed to the airline's or airport's.  Baggage claim can take hours, or minutes.
+
+So if there are no direct flights available to your destination, as is the case to the places where I needed to go, your options are quite limited.
+
+The reason I used Kiwi.com in the first place, was because I needed to go somewhere on a relatively short notice.  The flights available, ranged from intractable to "how about fuck you too".  The biggest issue was the presence of non-transit flights, which unfortunately, the other aggregators couldn't, or more likely *didn't want to*, filter out.
+
+Kiwi allowed one to enable, but crucially disable, the inclusion of so-called "travel hacks".  One of these hacks, is the so-called self-transfer.  So I chose Kiwi for the ability to stuff these bullshit ways of making flights cheaper where the sun don't shine.  Unfortunately, as Kiwi itself is a perpetrator of this bullshit, as one can see now, you're better off without it.
+
+* What to do instead
+
+Don't travel if you can help it.
+
+If travel is a necessity, and it often is, and if it is paid for by some third party, don't be shy, buy the more expensive ticket.  Actually, I would always go with the most expensive ticket.  This serves the double purpose of putting a monetary disincentive on forcing people to go through +hell+ air travel, and ensuring that you lose as little of your sanity as you can.
+
+If you have to be travelling and have to pay for it yourself, here's what I found.
+
+None of the so-called insurance is worth it.  They will have a "policy" which makes it null and void.  Don't buy it.  The same function can be attained by buying the tickets directly from the airline, because then you have someone to sue, and can read through their policy.  Kiwi refused to even tell me how much money they received.
+
+Choosing your seating is only useful if you are seated near the emergency exits.  If you do this, don't have hand luggage.  It feels like the bins should be available to you, but reality is that something else will be stuffed in there.
+
+{{< notice note >}}
+Of course, another situation where you have to choose seating is when you travel with your spouse.  These capitalists have put a price on the cost of not being split up, because if you don't choose, the algorithm will feign that it could not put you two in proximity of each other.  The reason it would do that, is to prevent you from not paying in the future, if you intend to have a functional relationship.
+
+This and many other "subtle" design decisions is why I believe that calling air travel a luxury should be punishable by summary slap in the face.
+{{< /notice >}}
+
+If you have an unusual configuration, /i.e./  you need anything beyond the baseline, the more expensive ticket /with/ something that you intend to use, such as luggage, now considered a luxury, should be compared against a baseline ticket with all of this attached after you've gone through the forms.  Your aggregators can and *will* lie to you.  Double check everything.
+
+As a last piece of advice, avoid middlemen.  If you can book with an airline do it.  This gives a more direct chain of lawsuits if something goes wrong (and it inevitably will).  Platforms exist to take away money from you as a customer, 
