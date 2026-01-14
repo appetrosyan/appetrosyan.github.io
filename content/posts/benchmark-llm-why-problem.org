@@ -1,0 +1,80 @@
+#+TITLE: Why you shouldn't trust Benchmarks Scores for Large Language Models
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-01-14
+#+TAGS: LLM
+#+TAGS: Work
+
+In this post I briefly describe my experience in using local LLMS for agentic development.  I did this under considerable pressure from my former colleagues.  While my interactions with Claude Code have been largely underwhelming, I must admit that it was quite fun, and well-worth the money.  It is, on balance, a tool which has a niche and to me seems like a benefit.
+
+My experience with local LLM-driven development was not quite as positive.  Firstly, while ~claude-code~ is a first-party vendored application, providing excellent user experience, it is very fine-tuned towards Anthropic's models.  While there are instructions to make ~claude-code~ use ~ollama~, I have not had success with them.
+
+Of the agentic coding projects that I tried, very few even support using non-cloud LLM providers.  The good news is that ~Ollama~ is effectively a locally-hosted ChatGPT, the bad news is that since local development is not anything more than an afterthought, your mileage will not vary...  it will invariably be a bad time.
+
+The one project that is annoying but can be used to make any progress at all is OpenCode.  It tolerates local LLMs.  I say tolerates, because adding support for an Ollama provider is not something that is given much consideration outside of the "documentation".  This is not just barely software, in terms of being unfinished.  It is a project which is done in excessively poor taste, has some questionable decisions regarding the functionality, and is otherwise underwhelming in terms of its capabilities.  What can you expect from a CLI project using JavaScript.
+* OpenCode - em dash - the first program in years that made me angry
+
+If you /do/ want to go down that rabbit hole, here are some suggestions.  The most important limitation I found was the size of the context window.  The main deciding factor for choosing a model I found, was to identify how much a typical task requires in terms of context, and go with the smallest context that fits your task without triggering repeated compactions.
+
+The first success I had was with ~qwen3-coder:30b~ with the context window of size ~32k~ tokens.  While I initially assumed that this was a big amount.  In practice, this can sometimes be enough to do a medium-scale refactor, and it can sometimes not be enough to fix errors reported by ~cargo check~ in a single medium-sized file.  Incidentally, for C programming LLMs are practically useless, as they cannot identify use-after-free bugs even for textbook examples.
+
+Extending the context window is something that you have to do manually, usually by doing ~ollama run~, followed by ~/set num_ctx <window>~, and a ~/save <name-for-model>~.  This is poorly documented, and given how easy it is to update documentation using an LLM (allegedly), the fact that it isn't mentioned in the documentation and by default OpenCode just loops and nothing happens, should tell you everything you need to know.
+
+The problem, as you shall soon see, is that when a model has an extended context window, it also becomes much slower.  You will run into issues where reading files becomes painfully slow.  That is the main reason why, despite some success with ~qwen3~ I had to choose a different model.  With the 32k context it could barely fix a few errors, while with the one million, it felt like it needed a breather after typing out every word.  Sadly, changing the context window is not something that can be done easily.
+
+{{< notice note >}}
+Incidentally, I believe that the difficulties associated with running local inference are intentional.  OpenCode has its own product to sell, OpenCode Zen.  There is also the fact that peddling cloud-based solutions oftentimes comes with an additional potential kickback.
+
+As such, if any of the OpenCode developers are reading this, I would cordially like to extend a middle finger to them, and cordially wish upon them the accomplishment of their work, specifically, for them to be made redundant by LLMs.
+{{< /notice >}}
+
+Ordinarily this would suggest getting better hardware.  I already have 192GiB of RAM.  I also have an RX7900, which of the consumer line, is the GPU that has the largest amount of VRAM and can simultaneously run a Wayland-compatible GNU+Linux distribution without issues....  or indeed simply catching fire.  This is a case of gargantuan software inefficiency.
+
+So I tried both different agentic coding systems, all of which turned out to be basically useless, as well as different models.  And so here's what I found.
+* How to compare models
+
+The only way I found is by running those models on a representative example.  Every other method has some problem which makes it practically useless.
+
+For example, I tested a few models in the cloud.  It turned out that their performance locally is important.  Specifically, if your model barely fits into the VRAM, you get fast execution and the largest (hopefully smartest) model that would fit into that budget.  However, the cloud is running larger GPUs, and so your local performance is probably going to be affected.
+
+Another problem you may encounter is that the models that perform well in a localised code completion setting may not be the best for agentic coding.  These skills are different, mainly because a model that will do a lot of thinking and second-guessing is likely a model that would produce good code completion, but be borderline useless in an agentic setting.  Indeed, while accuracy is important, there are situations in which you want a less-than-perfect answer now, and not a perfect answer in a week.
+
+Thus picking a model is more like picking a weapon in Elden Ring.  You must make it fit your (PC) build.
+
+So how do you pick which models to test then?  I do not  have a good answer.  Mainly you are  trying to find a good model, with good performance, but that tells you next to nothing.  good at  what exactly?  I have a project, that I  have some tasks in, that i would like to be  somewhat automated.  That said, those tasks need to be done to a certain standard of quality.
+
+So for instance, anthropic has a good speed, a good chance that the code will stay in the repo at least for a while.  it can be left to do
+its own thinking, and to do some of the work that would go into the final product.  if i could, i would take a human to do the same work,
+and would end up in the right spot faster, and would keep more of the code, and no, i'm not afraid that this llm would take over my job, as
+much as i would prefer it to.  but the experience is not that of frustration, more of disappointment.
+
+~qwen~ is not that.  It does too little, too slow and most of the time, you do wonder, if it would be faster to do the work, than to prompt the model.  It is not a good time.
+
+I had some success with gpt-oss.  That model is small enough to do what I want within a reasonable time, but smart enough to not make me tear my hair out.  It is dumb as a cork, make no mistake, and it would be too generous to say that it does any significant amount of work. But it is not actively counterproductive.
+
+The nvidia llm, by contrast promises to do much more, and has the bench marks to prove it.  It is much more good at using tools, and should do the same amount of work in a fraction of the time.  As is the case with most nvidia products, it is an order of magnitude more infuriating to use.  For the same prompt it would go in circles, and would get frustratingly close to what it must do, and then decide to go in the completely opposite track.
+
+
+On paper, the new model should be 4 percent faster than ~qwen~, and reason to a similar extent and do the job as well.  It might not be as good with programming tasks, and it is frustrating to see LLMs get the usage of escape characters wrong in ~ls~, but it is not the end of the world.  I would accept a model that were comparable, but within margin of error.  It is not.  It is in human terms, the difference between a stupid, but acceptably productive junior developer that just learned how to program, but whose abilities do contribute some good to the project, versus a pathologically stupid systematic liar, that can choke on a glass of water, and have not learned basic bowel control. nVidia produces trash hardware that burns, trash software that doesn't work 99% of the time, and now trash wetware, even though technically they should have the biggest head start.
+
+In other cases, the problem comes down to not being able to use the tools.  To put it mildly, most models cannot call a program to save their life.  If you look at the transcript, the amount of times that it gets the invocation of a standard tool wrong are shocking.  The best part is that you get charged for those invocations, either in electricity, or in tokens.  I will have thought that there was a way to measure how well can a model use tools.  But apparently the model that regurgitated the instructions for 15 minutes and did nothing, could not figure out how to determine where to put a name into a cargo workspace, is 5% faster than a model that finished the entire task in 15 minutes, and required no additional guidance.
+
+The benchmark numbers might as well not exist.  You need to test the models based on a hunch.  I have not found a better way to put it. The objective metrics are not objective.  They are based around the merchants trying to sell you their product.  That product, if it were to work as advertised does not expand one's horizons, and it very much under-delivers.
+* Conclusion
+I have a bit of learning to do.  Yes, generative AI is sub-standard.  It might not stay that way.  The skills needed to obtain useful information and work out of these massive plagiarism systems is a skill that might be useful in the far future.
+
+I say /might/ because I firmly believe that we have hit an inherent limitation by now.
+
+Firstly, stat models and LLMs have inherent problems that don't get solved.  Agentic systems mitigate the problem, but still require supervision.  Like "full-self-driving" in a Tesla car, the driver must be there to take over at any point.  This is true of the best LLMs I've used so far, and I had to take over multiple times, and I stil found that the code was generated in a sub-standard way.  Claude still has a way to go to become a junior engineer.
+
+Secondly, AIs need a lot of resources and infrastructure.  The amount of work that I could do locally is infinitesimal.  The amount of work that I can do with Claude code is not infinitesimal, but it costs a great deal.  Anthropic largely operates at a loss.
+
+{{< notice note >}}
+Incidentally, I have no qualms with buying Claude Pro, because I know for certain that if I max out the tokens at every opportunity, this means that Anthropic is going to lose money.  Win win!
+{{< /notice >}}
+
+Ignoring the economic factors, unless we come up with fusion energy within this decade, we might run out of energy to run these datacentres.  And the economic factors introduce /a lot of tension/ in isolation.  People are largely afraid that AI will take away their job.  The fact that it could reduce the amount of tedious boilerplate-driven development to zero is not even something that registers on most people's mind.
+
+Thirdly, the way the models had been trained was largely illegal.  It is theft, if you try to read a book on Anna's Archive, or try to share in the science, without paying scientific parasites known as scientific publications.  It is by no means illegal, however, to take one's code and use it to train their model with no attribution?  Yeah, legal.  Taking up all of Anna's archive to train LLAMA?  Totally legal.  And to quote modern day Louis XVI: Sam Altman, doing things according to American laws, which largely allowed Microslop and Crapple to attain dominion over the world would finish the AI race (as if that's a bad thing).  This point I am willing to concede to the AI megacorporations, as long as it is also passed on to us.  Specifically, either revoke copyright, or follow it.  The only unacceptable outcome in this case is some exception for AI specifically.  
+
+
+
