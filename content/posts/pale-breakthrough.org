@@ -1,0 +1,57 @@
+#+TITLE: Some Good news
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-01-31
+
+In this post I want to clarify some exciting news.  Well, exciting for me.
+
+We have unanimously decided to make our telegram group, Monadic sheep, official.  It's going to have similar goals to the FSF.  We want, and have always wanted a place to hack and +slash+ program.
+
+This group was a spun off the Emacs telegram chat and has over time grown to encompass people with an interest in crypto-+currency+-graphy, distributed systems, Emacs (of course) and the ethos of the Free Software movement.  At various points, we had been contributors to various GNU projects, too many to name.
+
+The first important milestone is the launch of ~pale~.  It is a library that allows efficient animations in Emacs.  It lives in its own repository for the time being, but it will be moved.
+
+NeoEmacs, the thing I'm working on will eventually be part of Monadic sheep.  I'm sick tired of LLM-brainfarts and would rather replace Claude with a Natural Intelligence.  I'm not alone in this, because most mass-layoffs with the pretense of automation were followed up by massive (re)-hiring or bankruptcy.
+
+The purpose of the code is not profit.  The purpose of the code is the learning experience.  The light side of the force can be used for knowledge and defence, never for +plagiarism+ attack.  We would be the first platform to take a hard-line stance against AI scraping.  The exact shape that this will take is up for debate, but it may result in you having to prove that you are...  shall we say...  a human meatsuit.
+
+I have some more things to say about AI in general, which I will write about over the week.  It's going to be a big blog post.  It'd be co-written with Divya, the main author of ~pale~, the Emacs reader, and a good friend.  
+
+There's more information on progress with regards to NeoEmacs, which I can share.  It's still a few weeks off from being an editor I can dogfood (read use it to write other code and itself, but it's getting to the point of being useful in places I would use =Notepad.exe=.  Still a bit away from what I'd consider acceptable quality and/or representative feature set, but it is getting there.
+
+And if anyone is wondering why it's taking so long...  multiple reasons that can be flagged as
+1. I have a dog with a large tumour on their leg...  and I want to avoid having to amputate the leg.  The shitty state of medicine, the even shittier state of veterinary medicine, coupled with my country's dislike for good things make it complicated and time consuming, not to mention nerve-wracking.  
+2. I am working on the first blockchain project that does something useful in my career.  It's done by extremely talented people, though I can't yet disclose its details.
+3. Vibe coding currently contributes mostly headaches for me.  I'm too afraid to delegate important features to Claude.  The reason is, that it's dumber than the dumbest junior that I worked with.  It can't do most things remotely correctly.
+
+   
+{{<notice note >}}
+Specifically, I can give you one anecdote from recent memory.  Thursday, when I took my dog for the CT scan, I felt adventurous and asked the LLM to implement a composable UI system.
+
+It did basically none of what I asked it to do.
+
+I asked it to come up with a generic way by which I can have the concept of a footer element.  The idea (for now) is to just have the mathematics of figuring out which element has focus, which element needs to be drawn where, and how, to arrange them in a sensible manner be abstracted away.  So instead of having a complex `draw` implementation, I just say that the minibuffer is two stacked rectangles in the footer, with some text that can be controlled in response to system-wide events.
+
+What I have is *still* an overly complicated ~draw~ call, that *still* doesn't factor the objects correctly, and I *still* cannot extract the minibuffer to be its own translation unit, because the abstractions that I would need don't fit into a fucking trait.
+
+Now this would be fine in isolation, if it werent' for a few people that I /used/ to highly value the opinion of, telling me that this useless piece of junk that plagiarised a fuck ton of people's work wasn't just going to become another annoying developer feature that I ignore[fn:1][fn:2][fn:3][fn:4]!  NAY
+
+*IT WILL PUT ME IN A PERMANENT UNDERCLASS OF PEOPLE THAT WON'T HAVE ANY MONEY*.
+
+I have yet to see the magic of Claude code.  All I saw was an LLM that struggled with basic systems programming.  Yes, it can trivialise Web """programming""".  It is only non-trivial because of ever changing conventions, poor documentation that is often at odds with reality, and poorly designed frameworks.  Claude is only capable of regurgitating mediocrity.  It is only capable of doing any amount of useful work on the project, because I always have to wipe after it.
+
+*AND I DON'T WANT TO BE AN LLM'S BABYSITTER!*.  
+
+{{< notice >}}
+
+In either case, I do have some relief.  My dog isn't gonna die.  The only thing that is in question at the moment is how much of my dog is going to live with me.
+
+As you can probably imagine the other factors don't help.  But *do* stay tuned.  The editor is almost in the alpha stage.  And it should be able to do amazing things!
+
+* Footnotes
+[fn:4]Debug symbols in Rust.  I can see the appeal of stepping through a complex system in a debugger.  Unfortuantely, there aren't any good ones.  So the debug symbols just pad out the object files. 
+
+[fn:3]Tabs in editors.  No point.  Most of the time, I know which file I need.  Rather than looking through the open tabs, grabbing the mouse, and clicking on a potentially very far-away object.  The alternative is =C-x b=, followed by some (but not always) typing and then =RET=.  That's it!
+
+[fn:2]I believe Docker is a way of masking dependency issues.  If the main way of using your application is ~docker run~, I also execute ~human run away~.  
+
+[fn:1]I don't use autocomplete from LSP, because it's mostly counter-productive, and =M-/= does the job just as well.   I have had the pleasure of working with another great engineer, (who is also an Emacs user) that didn't use code completion either.  
