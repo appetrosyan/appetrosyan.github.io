@@ -41,7 +41,7 @@ I have yet to see the magic of Claude code.  All I saw was an LLM that struggled
 
 *AND I DON'T WANT TO BE AN LLM'S BABYSITTER!*.  
 
-{{< notice >}}
+{{< /notice >}}
 
 In either case, I do have some relief.  My dog isn't gonna die.  The only thing that is in question at the moment is how much of my dog is going to live with me.
 
