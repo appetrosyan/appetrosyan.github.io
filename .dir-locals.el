@@ -1,4 +1,5 @@
 ;;; Directory Local Variables            -*- no-byte-compile: t -*-
 ;;; For more information see (info "(emacs) Directory Variables")
 
-((nil . ((compile-command . "hugo server"))))
+((nil . ((jinx-dir-local-words . "NeoEmacs Neomacs priori")
+		 (compile-command . "hugo server"))))

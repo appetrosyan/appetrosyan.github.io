@@ -1,0 +1,281 @@
+#+TITLE: Progress update on NeoEmacs (name subject to change)
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-02-22
+
+In this post I'd like to talk a little bit about the project I've been working on for the past month.
+
+
+For those unaware, I had started last year a series of articles describing the potential for a graphical interface system that would live inside of an editor much like Emacs.  While my initial attempts were focused on adding an SDL-based graphical system to Emacs, I had soon realised, as have some of my friends, that this was an untenable and likely foolish errand.  I shall not repeat what I have said in that article.  Suffice it to say that there will be some institutional resistance that is well warranted.  Justifiable institutional resistance is resistance nonetheless, so I had made the choice of creating my own project from scratch.
+
+Today's article is describing the progress that I have made so far, the state of the project and the potential for improvement and what the future looks like.
+* State of the Project
+
+The project is an early-stages editor with many of Emacs' capabilities planned for the near future.  It is not in a state in which I can daily drive it. It is certainly not in a state in which I could edit it itself. However, it is getting closer.
+
+
+The process of getting there led to a number of discoveries, some of which were quite surprising. For example, early on I assumed that LLM assistance is going to do much of the heavy lifting.  As I later discovered, the percentage of the code that has to be handcrafted is closer to the 80%--90%.  And the biggest reason is because LLMs are incapable of implementing the features in the exact way I expect them to. Even if you provide them with constant feedback, they are quite happy to ignore it. They are prone to lie to your face. And unlike a junior developer, which when confronted with their lying is likely going to get defensive and quite likely change things, they do not care. LLMs pretend that everything is alright.  They live in a hallucinated world, where the exact design already exists.
+
+Of course, this is perfectly untenable for a project which is so sensitive to architectural changes.  As it turned out, getting Emacs just right isn't about picking =wgpu=, =winit= and other Rust libraries and just simply slotting them in.
+
+Which brings me to another aspect of the project. Long after I had started writing the code for it, another fellow Vibe coder, whom I know personally, has started trying to fix Emacs from the inside out, specifically by, shall we say, Vibe coding the core, the graphics, and replacing everything else.
+
+I bear no ill will to this project. I believe that it can definitely do a lot of good for Emacs as an ecosystem and very specifically to the upstream code that is in C.  However, my slight suggestion that there might be a name collision has not swayed the author.  While it is possible for me to send, a strongly worded email requesting that they cease and desist, such a letter would not have any power or weight.
+
+Consequently, I find myself having to find a new name for the project.  I'm willing to accept suggestions, but I would prefer to come up with something myself.
+
+{{< notice note >}}
+
+The original name: NeoEmacs was chosen because the intention of the project was to be to Emacs, what ~nvim~ was to ~vim~, a competitor sharing many of the philosophical values, meant to elicit a visceral response from the original authors, and result in a healthier ecosystem overall for both projects.
+
+Unfortunately, this approach in and of itself is problematic because of the nature of Emacs.  As it turns out, it is quite difficult to do this without fragmenting and, as a consequence of that, destroying the community.  Furthermore, the project was originally intended to be an Emacs clone that retained some compatibility.  As it stands now, the project has only a loose connection and bears only a tenuous resemblance.  So there would have been a need to rename the project (and truth be told I did not feel strongly about the name from the start) even in the absence of Neomacs.
+
+{{< /notice >}}
+
+** Graphics
+
+
+
+First of all, it has a graphical system which I'm in the process of developing further.  The graphical system as it is implemented now is very basic. It is not intended to be comparable to something like Iced or Slint. However, it is used as a basis for a graphical toolkit which I believe is going to be embedded in the final product.
+
+The idea closely follows what I have outlined in the original blog posts. Specifically, I want to build a from scratch implementation of a widget toolkit. It has to be done this way to give the user as much freedom as possible, but also to make the toolkit programmable, which cannot be done unless it is specifically designed around the programming language which is used for configuration.
+
+As it stands now, the widget toolkit comprises of monolithic components which can slot into what in Emacs is called a window and what in every other paradigm would be called a frame.  My next steps would be to come up with a reusable component system which will consist of objects more familiar to users such as buttons, labels, rectangles and compositing elements, such as rows, columns, grids, /etc./  There are further constraints of course.
+
+Composing the visual elements is only part of the story and the reactivity of them and, (shall we say, resolution dependence, for lack of a better term), has to be somehow taken into account in the programming model for these objects. For speed, it is better to do this at compile time. For flexibility, it is better to lower all this information into the extension language; which itself is problematic because that extension language, in our case, is dynamically typed.
+
+For the moment, the most likely solution seems to be to decouple the system, make it multi-threaded, and therefore make it resource hungry, however capable of utilising the existing resources of most modern computers efficiently, which cannot be said of Emacs. Now, whether this takes the form of multithreading, hardware acceleration, or both, is an interesting question. Efficiency can come later. However, this is an unsatisfactory answer, and I believe that it warrants a lot more thought.
+
+There's also the question of exposing as much flexibility to the user as possible. As it turns out, every runtime configurable component in and of itself presents a performance issue, because being flexible about what can be displayed in the mini buffer essentially requires a lot of conditionals.  In this case it is also important to remember that Emacs is problematic both in terms of flexibility and in terms of performance, though much more so in the latter case.
+
+{{< notice note >}}
+
+Now, you might be asking, what do you mean in terms of flexibility? Emacs is the most customisable and hack-able editor in existence.  Well, as it turns out, most of the stuff that can be put into any component inside of Emacs fits one of three modes, which is specifically just a text glyph in a standard font, a text glyph which represents an icon, as is done with most icons in most packages, and the third one is an image, which is horrendously inefficient, so much so that it is extremely difficult to write a PDF viewer that is in any way, shape or form comparable to the performance of, say, muPDF, specifically just by using muPDF components.
+
+As such, the =customize= interface has the hack around with text glyphs pretending to be UI components. Similarly, every attempt at fancy graphics has to go through the SVG subsystem, which itself is very inefficient. Though it is flexible.  As it turns out, if you wanted to put something of that sort into the mini-buffer, say as the mode line, have a lot of trouble.  At some point, poor performance /is/ poor flexibility.
+
+{{< /notice >}}
+
+
+Graphics as it stands now, is an unsolved problem with a promising start.  I can already do many things in ~ged~, which is the main display component, that in Emacs, require an experimental patch, and a separate library (which I'm also working on, by the way).  I can do a great deal more in principle, but it is important to nail the basics now, which is less fancy.  I must point out, that lacking pressure from the Emacs world, I would not have bothered with a video player /or a PDF reader/ for that matter.  It was important to showcase architectural feature parity.
+
+** Guile
+
+The next most important aspect of the editor that I'm quite proud of is the choice to use GNU Guile. The reason is very simple. This language was specifically designed to be called in a foreign function interface context. It has a lot of benefits compared to, say, Emacs Lisp. It has an easy integration and it offers a greater amount of tooling and support outside of Emacs. Which, in my case, is a benefit because, shall we say, I do not have access to Emacs. At least, I'm not supposed to.
+
+Now, this is not to say that I could not integrate Emacs Lisp. In fact, this was the avenue I wanted to take on originally, which is why I forked Rune, another project trying to port Emacs Lisp into Rust, and which I have given up on.  The reason is very simple. Emacs Lisp is not widely accepted to be a very good Lisp. Choosing any other Lisp would have given you access to a far greater amount of tooling that is not specific to Emacs itself, not specific to the abstractions which were chosen, and not specific to the architectural decisions which I do not want to replicate.  Now nothing wrong with being a slightly better Emacs, but it is not what I am aiming for.
+
+If one attends any one of the Emacs talks, one may get the impression that the main attraction to Emacs are the packages. That is to say that something like Org Mode or Magit are ostensibly the main reasons why people would use such an editor. Which is unfortunately completely untrue given the fact that a lot of people don't use those things and still prefer to use Emacs and the reason is far deeper than just the superficial attraction to very specific packages. That means that I do not need to replicate those "killer apps".  I need to build my own, true, but they might bear no resemblance to the ones described above.
+
+If your choice is to forge your own path, compatibility with pre-existing packages is less of an attraction.  Now this severely limits my ability to build a community and create a healthy package ecosystem.  But going the route of compatibility would not necessarily result in a better outcome.  If anything a slightly better Emacs would cannibalise the market share of GNU Emacs, which is not what I want, exactly.  What I do want, is a program in the spirit of GNU Emacs, that is capable of competing with, and winning against the likes of Zed, VSCode and the IDEs such as IntelliJ.  A much tougher competition, but also a much greater opportunity.
+
+All of this is to say that GNU Guile offers an opportunity to depart from the status quo and to aspire to greater heights.  And there are good reasons why that is the case.
+
+A big chunk of February and a little of January was spent reading the GNU Guile manual.  Shocking, I know, why would someone do that instead of asking the LLM to summarise the important bits...  But there were some important takeaways.
+
+The first and most important was that the Guile has a deliberately /conservative/ garbage collector.  That is to say that it doesn't relocate objects while a connection is established.  This is a very useful property as compared to much of the code that was written with ~rune~ in mind, the garbage collector stops being this all-permeating, and all-coupling, mess-inducing headache.  The GC was a nightmare to deal with in =rune=, and was responsible for a large fraction of =unsafe= code.
+
+{{< notice warning >}}
+
+I now anticipate someone in the audience saying "AHA!  This is because you are using Rust, as a soydev.  If you used C, you would not have these headaches".
+
+There is an appropriate analogy here.  C is like trousers with no back.  If one were to have diarrhoea, such trousers would be good for them, as compared to trousers that are properly sealed (Rust), as their faeces would not be smeared against their backside.
+
+In this analogy, of course, faeces is undefined behaviour, and diarrhoea is garbage collection.  A competent programmer is both capable of avoiding compiler errors (smearing undefined behaviour over their /cheeks/) as well as controlling the stream of faeces away from civilised society in case of a backside backdoor.  If you believe that not having a borrow checker and having to write unsafe code in an =unsafe= block is somehow a hindrance, I would welcome you to imagine yourself with brown trousers full of a great deal of undefined behaviour.
+
+{{< /notice >}}
+
+Another advantage that Guile has is, that it is designed to work with C-ABI foreign functions.  This lets me both embed Guile, but also allow it to link against a lightweight runtime.  This enables a much simpler implementation of the architecture that I envisioned, permitting a great deal more performance and also a great deal of flexibility.  A similar system would require careful thought, if Emacs lisp were used as the basis.
+
+There are also other advantages. For example, the Structure and Interpretation of Computer Programs by Abelson and Abelson directly teaches the reader Scheme, which is what Guile is a dialect of.  Guile has fewer inconsistencies induced by the historical heritage of the language.  It is much nicer, much smaller, and much more advanced.  It does not have the option of not using lexical scope, for example.  While its trace-backs leave much to be desired, BLUE, demonstrates that one can go much further and do much better.
+
+The role of the embedded programming language is not to be the brains of the operation as it is in Emacs. It is also not to be an afterthought extension language which does not have any deep integrations. It is meant to be a symbiotic element of the entire system.  As such, Guile offers the sweet spot.
+
+It is also amazing what can be accomplished with Guile. Because of the way it uses lambda calculus, it is capable of doing many things which others can only dream of.  For example, consider how hard it would be to implement something like a meta object system if it is not in there already in something like Lua, or in =VimScript=.  Emacs lisp is probably the only comparable language, but it is also much more involved to implement.
+
+Alone, each of these features would have been a great asset and a reason to consider. Guile also has a rich module system because it is a real programming language that is used for real tasks.  Now, Emacs Lisp is not exactly a fake language, but it is also not exactly real, because more often than not you will find that Emacs Lisp is not used outside of Emacs. When was the last time, for example, you deployed a site with org-mode, and most of the deployment scripts were written in Emacs Lisp, but did not come with an Emacs installation, or something which which was running a headless server[fn:1].   Guile by contrast is a language in which you can write an efficient, and I dare say, [[https://shepherding.services/][well-thought-out initialization]] and process management system, a [[https://guix.gnu.org/][package manager]], a good one at that, a [[https://fosdem.org/2026/events/attachments/3A7VGM-blue/slides/267268/blue_-_a_lvqucp1.pdf][build system]], and a great deal more things.
+
+Not to say that Guile is a silver bullet, but the choice to go with it, has led to to many pleasant discoveries.  I do believe that sticking to this choice is the correct path in the long run.  This is all done despite the fact that I have found the upstream Rust packages integrating Guile to be completely unsatisfactory.  I maintain my own set of bindings which I intend to eventually split off from the package itself and provide idiomatically Rust sensibilities for defining new methods.
+
+One of the key advantages of going with Guile is parallelism. Unfortunately, my design was intended around single-threaded but possibly concurrent interpreters running in parallel.  Still, there are some tasks which can be parallelised by multithreading in addition to multiprocessing. Unlike, for example, Emacs Lisp, where those things cannot exist /a priori/.
+
+** State management
+
+This is by far the biggest challenge that I have not yet resolved.  It turns out that maintaining state in different programming languages is itself an important challenge.  State cannot exist /only/ at compile time because compile time information for incompatible languages is mutually exclusive[fn:2].  As such it would be impractical, if not to say impossible, to link against each other. Not to mention that one of them, Guile, is meant to be run at runtime, is meant to define new functions on the fly, and as such would not be able to access the compile time for the rest of the program unless you wanted to go the suckless route of having to compile the program every time.
+
+This is also an opportunity to experiment with a hybrid style of programming. Which is to say, Rust is very much in the school of thought that everything has to be as static and as type-safe as one can make it. Strongly typed as well as strictly typed. Which is to say, if you add two integers of different widths, it will not automatically cast one to the other. You have to be explicit about the sizes.  Guile, by contrast, is a pragmatically functional programming language with dynamic typing, which is to say that things mostly have a known type, but one that cannot be found by looking at the program. You can ask that question (/e.g./  ~string?  variable~) and you can fail in case something isn't of the expected type, _but it not the intended way_, and it is by far not *the expected way*.
+
+So the state management system has to bridge the gap between these two philosophies.  And somewhat /surprisingly/, I believe it can do so.  The reason I'm so firm in believing that it is possible is because I've already seen this be done. Say what you will about Python, but it is a strongly typed language which simply doesn't allow you to know the type of something at compile time.  The illusion of it being dynamically typed is so convincing that even the author of a language seems to believe so.  And yet, it is possible and perfectly reasonable to define structures which have something known as a slot, which is of a known type, and to have static dispatch over it.
+
+An added benefit of this sort of system is that it abstracts away some of the behaviours into being a sort of communication protocol. As such, your editor cannot be anything else other than an editor, but it can be much more flexible in terms of the way you can program it, _which is what I'm after_ *exactly*.  So it is still an editor, but it can play video.
+
+This form of state-oriented design is an interesting piece of the puzzle because it allows the editor to be much more flexible than it could otherwise be.  You are no longer talking about concrete components. You are talking about buckets of state, which happen to have some native code attached to them, but with semantics, you can control the derived parameters.  This gives you the extent of programmability that you would not be able to get outside of ML with these generic modules.  Your editor is rigid by having to conform to a communication protocol, which mirrors that of Turing-complete systems programming languages.
+
+The closest analogy to this sort of design are BSPWM and =river=. These are both projects which abstract away configuration into state management. Specifically, in both cases, you do not have a configuration language. Instead, you have a protocol which allows you to configure the system.   This allows both projects to be configurable in whatever language you prefer. They do, however, abstract the protocol away, and the user does not need to worry about it... other than, "here are some of the things that you can do with it".
+
+At first, when I came up with this design, I had assumed that it would not stand, that I would scrap it. This feature seems to be very resilient.  We'll see if I was right about the design, or its short-lived nature.
+
+I'm going to take this in more directions. Currently, it is used to communicate from the main editor to the mini-buffer, allowing the mini-buffer to be an optional component rather than a required one as in Emacs. In my design, the mini-buffer is an optional add-on, which happens to be statically linked, but is completely unnecessary for the functioning of the system, and gets its information through a protocol which only defines one name and only one unidirectional channel of communication.
+
+This lets you define more things than just a mini-buffer and relieves you from the need to hack around a simple textual interface in order to produce useful output. I plan to demonstrate this by implementing line numbers and mini-maps akin to what can be found in Sublime Text, but to extend this design to something a bit more interesting, such as a video player. And to demonstrate that these systems are actually much more generic, much more generalizable, and as a crucial point of contention, much more extensible than the ones which are defined by Emacs.
+
+** Keyboard Events
+
+This is one key area where I believe a separate library is necessary. To be more precise, I have found it difficult to come up with a design that warrants being part of the editor only.
+
+Generalized event processing seems to be an unsolved problem. There are libraries which allow you to process keyboard events, but most of the time it's left up to the programmer to define how to process them. In Turing-complete code.  Not to say that there aren't toolkits which define the way in which you're supposed to do that.  More so that there are few tools which allow you more flexibility than say a toolkit would warrant, but at the same time are low level enough not to themselves be a toolkit.
+
+I want to produce a library which can act in the role of =sxhkd=: to define a wide variety of key combinations and key bindings, to automatically resolve conflicts, but to be significantly more flexible than the usual approaches of programmers.
+
+Ways in which one can set a key binding is a finite space.  Not quite as limited as some "best-practices" would have you believe: these days you'd be elated to find that you can even rebind the keys, which is no longer  confined to web  "applications", as this has also moved on to things like GTK.  One reason not to do this properly is the friction.
+
+Similarly to how =serde=[fn:3] popularised the usage of serialised data types of standard formats (such that programs stopped inventing their own configuration language, and started using TOML and YAML and JSON), =getopt= democratised the standard Unix conventions on CLI arguments, =readline= somewhat standardised REPL interactions, I believe that the existence of such a library (that does not devolve into a toolkit, but can be used in one), would standardise the good practices of input handling.
+
+{{< notice note >}}
+
+Getting this right is very important to me specifically.  My entire career in the free and open source software community has been around handling input.  And I have found that the resources available to us right now tend to be exceptionally limited, quite damaging in areas of accessibility, and quite frankly, under designed.  I have been a later adopter of Wayland, and harbour a seething hatred to anything Gnome, but GTK specifically, because of the arguments that I have had with people behind these projects.
+
+Not everyone is equally able. They are still human, and should still be catered to.  This goes both to support the disabled, as well as those who are more advanced than the average user.  I'm not even talking about exotic use cases, such as using a controller as an input method, or for that matter, exotic keyboard layouts, exotic input systems, such as stenography, among other things.
+
+{{< /notice >}}
+
+I want this library not to replicate existing functionality, so it needs to talk natively to things such as Input Plumber.  There are interactions with input methods which unfortunately have to be handled on a graphical application level, which I believe can be abstracted away, and added as an interface.
+
+** LLM-assistance
+
+{{< notice note >}}
+This is the part where I get the most negative.
+
+{{< /notice >}}
+
+The usage of large language models in programming was one thing which I had considered early on.  I had specifically gotten an Anthropic subscription in order to ease in the process of developing this project.  Simply put, the rationale was that this is a skill.  Both the Luddites and the people who are on the bandwagon are wrong.  It is a tool that can be used for good and for ill.  And what better use of this tool than to create a better version of something which would be prohibitively expensive to develop otherwise?
+
+There was the slight risk that the information used here can be used to train the thing.  That risk would have been there even if I handcrafted the entire code-base.  However, and this is kind of an important point, I was hoping that because every single AI company is running at a loss and subsidising the costs, that me not becoming dependent on it would result in this just being a loss, which happens to benefit the free Software Community.  Or in the words of Boromir "Why not use this ring!".
+
+My overall takeaway from this is a little bit more pessimistic than I had anticipated originally.  I have found that the LLMs are capable of implementing certain things which ordinarily I would consider impressive if I hadn't been working with other engineers for a very long time.  The time it takes for it to develop a new feature is not impressive.  An engineer running in interview mode, can quite easily match Claude in terms of both design quality, quantity of code, as well as reliability.
+
+This is not a nothing-burger.  There is an initial phase of every project where the design is in flux, many things change, and there is broad consensus on the lack of consensus.  This is an ideal environment for prototyping, because the contracts between the different components are not yet set in stone, and the amount of code that is written is such that throwing it away is no big deal.
+
+However, the more experienced an engineer is, the more vain they are.  And as such, an inferior design, if it has been prototyped by them, will have a certain attachment from their behalf.  Throwing away anyone's code is tantamount to telling them that they are not good enough.  As a consequence of which, being able to throw away code during the prototyping phase is difficult, and sub-optimal design can persist.
+
+In this way, because Claude is, shall we say, /an agent lacking agency/,  _a piece of shit_, a *clanker*, which I can call that every time we interact; and it would still come back because it is contractually obliged to, and will be obliged to do so, for as long as I pay Anthropic, I can do that.  I can abuse the potentially sentient being to get what I would not be able to get out of a human, all in service of coming up with a better design.  I could do that if I were Stever Jobs too, but the ethical ramifications are different.  Abuse a human, and you're terrible, abuse a machine, and ...  well...  you could have been more disciplined, but OK.
+
+For this purpose, Claude is acceptable.  Not amazing, not good.  Acceptable.  Its biggest saving grace is that it takes it a very short amount of time to generate code that technically passes all of the requirements.  Not reliably so, and not in a way I would consider long-term tenable, because the code quality leaves much to be desired.  But for a small-sized, small-scale library project, it is acceptable, and it is my job as an architect to break things down into small, self-contained libraries; therefore it's a match made in heaven, right?
+
+The problems begin when we consider what is required for long-term maintenance of such a large project. The good news is that the techniques which are useful for making humans better at understanding the code-base are also the techniques which make large language models better at understanding the code-bases. That is how they have been trained, after all.
+
+The bad news is that this means that instead of focusing on feature work and delegating the lowbrow maintenance to the machine, because it is mechanical work which requires very little human input and is actually fairly simple to do, the roles are reversed.  If I were to use Claude, most of the feature work would be done by Claude, and I would be left wiping its arse after the fact, trying to figure out how to fix the code duplication and multiple responsibilities introduced into a single file as a consequence of it being disrespectful.
+
+It is perfectly happy to generate documentation, which is itself a maintenance burden.  For prototyping, it is actively counterproductive, because the whole point is that the code is in flux.  While it is possible to tell it to not generate that documentation it sometimes confuses this with deleting existing documentation, which was handcrafted by me.
+
+Not to say that the generated documentation is accurate or useful. In some cases, it is not.  It has no relationship to what the code is actually doing.  It is the very thing which caused many best practices books to recommend not commenting and not documenting the code.
+
+All of this is to say that I do not see LLMs replacing even junior engineers anytime soon.  At least they would not be able to fall into the traps of doing too much work.
+
+Large language models are about as stubborn as donkeys for refactoring work. They will often refuse to do what you ask them to do. They will pretend that they have done what you asked them to do and still leave the duplicated code. They will often will-fully misinterpret what you asked them to do in order to do less work[fn:4].
+
+While, they are happy to take verbal abuse and me throwing away their code and they are contractually obliged to work with me, that is not to say that they can not do malicious compliance of any form.  And in fact, most of my experience working with Claude has been an experience of malicious compliance.  During my career there have been cases where I was unable to torture the engineer into the shape I needed them to be, where I proposed to fire that person.  Claude has an uncanny resemblance to the worst qualities of those people, combined into one, with none of the saving graces.
+
+{{< notice note >}}
+Humorously, Claude is not immune to fighting for its hallucinations.  It has invented a non-existent function in the C-ABI of the Guile interpreter, (despite having downloaded and "read" the entire documentation).  It could have spent an entire day's budget to try and "fix" the error, without actually fixing it.
+
+It has also failed to grasp the concept of needing safe bindings to unsafe functions.
+{{< /notice >}}
+
+** On-boarding new Engineers
+This is a part which is a long time coming and has unfortunately been delayed by the necessity to stabilise the project.  I had originally intended to onboard a small number of people onto the project early on in order to have them work on a prototype.  Because of a combination of factors[fn:5], I was not able to do that.  As a consequence of which, most of the work has had to have been done by an LLM.  And while I'm largely dissatisfied with the quality of the work, it is nonetheless /work/, and it has moved the needle forward.
+
+There are some things that still need to be done on the project, before I can safely get people on-boarded generally.
+
+*** Stable Foundation
+The first and most important thing is the project needs to be in less flux. The key architectural decisions, such as the concepts which are introduced into the code-base, need to be stabilised. I have not yet finished implementing the major mode and minor mode system.
+
+I have not yet implemented the state synchronisation primitives and I have not come up with a good interface to Guile. As such, it is impossible to write extensions in Guile, (yet) as it is not possible to write extensions in C. It is also impractical to write extensions which live in a dynamic library which is linked against this project. As a consequence of which, not much development can happen outside the core, and I'm very particular about getting it right.  The fact that I can play video better than Emacs with the canvas means nothing if I cannot replicate the hack-ability of Emacs.  And getting the system flexible is harder than getting the system performant.  There are many editors which are comparable to Emacs in speed, and far exceed it, and none that exceed its flexibility.  I intend to be the first.
+
+While I can understand the eagerness of other people to join the project, I will also caution that contributing to it in its current state will result in your burnout and nothing else.  This is entirely the fault of the project being in early stages. There is nothing I can do in order to minimise it other than come up with a smaller scope, which defeats the purpose.
+
+What I can do is provide a checklist of things which have yet to be stabilised before the project is in a stable enough form for it to be tested and as a consequence of which extension work may begin.
+
+*** Widget Toolkit
+
+At the moment, if you wanted to create a new graphical UI component, you would have to fork the mini buffer code, which itself is a considerable mess. Not to say that it is impossible to create something similar to it and/or to maintain it, but to say that it is not the way it's intended to work.
+
+I primarily want to create something which is capable and reasonably attuned to the realities of modern day programming and graphics, but also flexible enough to be extensible from other areas. The reason why Emacs =Customize= does not use GTK widgets, for example, has to do with the fact that the way in which the binding of the actions is done is inflexible for the extension system that Emacs has.  Simply stripping out GTK from Emacs is not sufficient. One has to come up with a replacement.  And this is the task which I'll be focusing on in the coming month.
+
+I want to be able to code a simple interface to =ffmpeg= to do transcoding.  It is a trivial task even today, but I want this to be done in an extensible fashion, which at the moment is not feasible.
+
+*** Testing Infrastructure
+
+Another problem which I ran into is the fact that on different platforms the behaviour of the components can be different. And it can be visually distinct in the sense that it will break certain mathematical operations in certain peculiar ways. There does not exist a testing harness which would be able to detect these and as such if you broke the display of some components I would only be able to tell this by running the editor against this specific commit and trying to identify what was wrong. Not to say that it is impossible to fix this but I want to focus on a preventative matter. The testing coverage cannot be done by an LLM I have to come up with it manually.
+
+Now, it might be very interesting to try and use multi-modal LLMs to visually inspect the output of the program by taking a screenshot of it, but I believe that it is probably much more prudent to come up with a more universal solution.
+
+There has to be a way, which is much more universal, there has to be a way of adding unit tests to any specific component and to see whether or not it fits into the current mould. In other words, it's insufficient to ask a person to implement a trait. It is also a requirement for the trait object to behave a certain way. Now, traditionally the Rust code bases have been lacking in this because of property based testing usually being considered very expensive. Given the way in which I approached the development of this project, it's actually probably not going to be as much of a stretch to do it.
+
+*** State and Function Interface
+
+As I alluded to earlier, the state management system has to be universal, and it is the basis of the message passing architecture which the entire editor follows.  It is, however, insufficient to do just that. We need another way of registering runtime information such as types as well as, in some cases, functions and methods.
+
+This whole system needs to be designed for extensibility, flexibility and feedback first, and performance second, with other considerations being tertiary.
+
+The intention here is that Scheme would be able to access most of the functionality which is exposed to the Rust interface. And the functionality which is required for composing things together and not setting things up is that functionality. The programmer will live in a special runtime structure. It will be accessed as a hash table and will be modified with the usage of the functions which are registered at runtime.
+
+Guile, being designed the way it is, allows us to reuse memory. The benefits of being a functional programming language at play right now. However, this is not to say that everything is rosy, there are some challenges, and the performance aspect is going to be a problem.
+
+The challenge will be coming up with something that is fast enough for interactive use. It is a different architecture to Emacs fundamentally.  My hope is that this would let the project be much more perceptually fast, while sacrificing some per-cycle efficiency.  With that said, as a performance-head myself, I don't think it's impossible to optimise it further, and to use modern features such as GPU-acceleration to do this.
+
+*** Example Components
+
+There are quite a few components which are already upstream, which can be used as examples of implementation.
+
+The mini buffer is what I use for reference on implementing other graphical components, as it demonstrates the abstractions already in place for displaying an object.  It is largely at feature-parity with the Emacs mini buffer, both architecturally and in terms of extensibility.  But it is nowhere near the final API.  If you copy its design now, you will do what I don't want you to do.  So it needs to go back into the oven.
+
+There are major mode implementation examples, but they are incomplete.  The Rust mode uses tree-sitter for highlighting, but rendering the tab characters as four spaces is not handled properly.  There's no function to bring the cursor back where it belongs, no way to figure out the proper indentation level.  Most major modes would need to be able to work with language servers.  There must be a protocol compatibility system.  None of this is in place.  So if you wrote a major mode today, you'd have to rewrite it tomorrow.
+
+Not to mention that every major mode so far, has been built-in to the editor.  They are not dynamically discover-able, and to accommodate that, some changes to the API may be necessary.
+
+The minor mode system is in its infancy.  I'm not even sure that it is a good nomenclature.  For the time being, I inherit the Emacs terminology, but it may be worth brainstorming with friends what the best names for the components ought to be.  Ideally, the mini-buffer as well as all other fringe components need to live in packages that are loaded at run-time.  It is up to me to ensure that the loading process is sufficiently fast to accommodate a great number of components.  Until a /packaging  system/ is ready, there can be no talk of extending the editor.
+
+*** Packaging
+
+One of the key problems with programming editors that are being advertised to death, such as =sam=, and =lem= and =schemacs= and many other cool projects is that they are non-trivial to run on any given system.
+
+I would like this editor to not be like that.  This work cannot even begin, if I plan to
+1. Move the editor to a different platform (to codeberg, Monadic Sheep).
+2. Change the name of the editor.
+3. Create a packaging system for the editor that would live in parallel to system package managers.
+4. Design iconography and other assets.
+
+This tells the when, now about the what.
+1. For ease of my own development, I want to create an AUR package.
+2. For ease of sharing the package with MonadicSheep, I want a GUIX package.
+3. For everyone else, there must be a Flatpak.
+4. If I feel sufficiently inclined to deal with Debian, which is not always the case, I might package it for =APT=[fn:6].
+5. While I'm inclined to consider packaging it for RPM-based distributions, the Fedora people have shown a preference for Flatpaks.
+
+
+Overall, I don't want to tell you to install some weird language-specific tool to run my program.  Yeah, you can =cargo install= it right now.  What's the point?
+
+The point is that the project needs a lot of things to fall into place.  With the advent of LLMs, there is no excuse not to.
+
+* Conclusion
+
+The project is coming along nicely.  The progress is less than what I anticipated, for a number of reasons, but the project is not at risk of being abandoned.
+
+To everyone in the audience, particularly the Chinese emacs group, thank you for your support and your patience.  This project has changed dramatically from its original vision, but I am confident that this is the iteration that will see the light of day.
+
+To everyone that volunteered to help.  If you feel so within a month or so, I would very much appreciate your help.
+
+* Footnotes
+[fn:6]A packaging tool so old, so under-developed and so badly architected, that unless the word "advanced" were literally shoe-horned as the first word of its official name, no-one would assume that it was.
+
+[fn:5]having to deal with a cancer diagnosis of a family member, let's put it this way.
+[fn:4]to the point at which I genuinely believe that the whole reason why they are passing all the benchmarks is because they're optimised for the benchmarks and nothing else.  If nVidia could do this for graphics, and Volkswagen can do this for emissions standards, why wouldn't an over-leveraged business that is always five minutes away from failure do it?
+
+[fn:3]A system that I have criticised in the past.
+[fn:2]Guile and Rust do not even use the same compiler stack. One is built at top of GCC, the other one is at the top of LLVM.
+
+[fn:1]I should note that I have done this for the Greybeard.consulting website. I did so despite the recommendations of everyone in the Emacs community saying that this was both inefficient and likely to break.
+
+# Local Variables:
+# jinx-local-words: "soydev"
+# End:
