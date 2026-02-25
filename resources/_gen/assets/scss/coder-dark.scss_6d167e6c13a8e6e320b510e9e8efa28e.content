@@ -137,11 +137,25 @@ body.colorscheme-dark .content .post .tags .tag {
     color: #dadada; }
   body.colorscheme-dark .content .post .tags .tag a:active {
     color: #dadada; }
+  body.colorscheme-dark .content .post .tags .tag.gradient-tag {
+    background-color: transparent; }
+
+body.colorscheme-dark .content .list ul:not(.pagination) li {
+  background-color: rgba(66, 66, 66, 0.3); }
 
 body.colorscheme-dark .content .list ul li .title {
   color: #dadada; }
   body.colorscheme-dark .content .list ul li .title:hover, body.colorscheme-dark .content .list ul li .title:focus {
     color: #42a5f5; }
+
+body.colorscheme-dark .content .list ul li .tags .tag {
+  background-color: #424242; }
+  body.colorscheme-dark .content .list ul li .tags .tag a {
+    color: #dadada; }
+    body.colorscheme-dark .content .list ul li .tags .tag a:hover, body.colorscheme-dark .content .list ul li .tags .tag a:focus {
+      color: #42a5f5; }
+  body.colorscheme-dark .content .list ul li .tags .tag.gradient-tag {
+    background-color: transparent; }
 
 body.colorscheme-dark .content .centered .about ul li a {
   color: #dadada; }
@@ -155,10 +169,22 @@ body.colorscheme-dark .content .centered .about ul li a {
       color: #dadada; }
     body.colorscheme-auto .content .post .tags .tag a:active {
       color: #dadada; }
+    body.colorscheme-auto .content .post .tags .tag.gradient-tag {
+      background-color: transparent; }
+  body.colorscheme-auto .content .list ul:not(.pagination) li {
+    background-color: rgba(66, 66, 66, 0.3); }
   body.colorscheme-auto .content .list ul li .title {
     color: #dadada; }
     body.colorscheme-auto .content .list ul li .title:hover, body.colorscheme-auto .content .list ul li .title:focus {
       color: #42a5f5; }
+  body.colorscheme-auto .content .list ul li .tags .tag {
+    background-color: #424242; }
+    body.colorscheme-auto .content .list ul li .tags .tag a {
+      color: #dadada; }
+      body.colorscheme-auto .content .list ul li .tags .tag a:hover, body.colorscheme-auto .content .list ul li .tags .tag a:focus {
+        color: #42a5f5; }
+    body.colorscheme-auto .content .list ul li .tags .tag.gradient-tag {
+      background-color: transparent; }
   body.colorscheme-auto .content .centered .about ul li a {
     color: #dadada; }
     body.colorscheme-auto .content .centered .about ul li a:hover, body.colorscheme-auto .content .centered .about ul li a:focus {

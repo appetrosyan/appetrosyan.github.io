@@ -1,0 +1,68 @@
+[Emacs]
+color = "#7F5AB6"
+
+[GUI]
+color = "#6f5fbf"
+
+[Widgets]
+gradient = "linear-gradient(90deg, #5f5fbf, #777703)"
+
+[Tooling]
+color = "#777703"
+
+[Work]
+gradient = "linear-gradient(90deg, #777703, #889933)"
+
+[LLM]
+gradient = "linear-gradient(0deg, #8fa900, #866020)"
+
+[Personal]
+color = "#aa00aa"
+
+[Life]
+gradient = "linear-gradient(45deg, #aa0990, #00ffaa)"
+
+[Motivation]
+gradient = "linear-gradient(45deg,  #00ffaa, #aa0990)"
+
+[Sirius]
+color = "#0077ff"
+
+[Rants]
+color = "#ff0000"
+
+[Scams]
+gradient = "linear-gradient(90deg, #8fa900, #866020)"
+
+[Keyboard]
+gradient = "linear-gradient(90deg, #447700, #33ff00)"
+
+[External]
+color = "#ffffff"
+
+[Blog]
+color = "#aaaabb"
+
+["Gaming Controller"]
+color = "#447700"
+
+[Hardware]
+color = "#33ff00"
+
+[Mathematics]
+color = "#00aaff"
+
+[History]
+color = "#00aaff"
+
+[Philosophy]
+gradient = "linear-gradient(45deg, #00aaff, #00ffaa)"
+
+[Guide]
+gradient = "linear-gradient(45deg, #00aaff, #a3a2a1, #00ffaa)"
+
+["Systems Administration"]
+gradient = "linear-gradient(45deg, #00ffaa, #00aaff, #a3a2a1)"
+
+[Privacy]
+gradient = "linear-gradient(45deg, #aaffaa, #0088ff, #00ffaa)"
