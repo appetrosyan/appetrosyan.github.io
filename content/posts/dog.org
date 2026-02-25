@@ -1,6 +1,8 @@
 #+TITLE: On Absence
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-12-23
+#+TAGS: Small Update
+#+TAGS: Sirius
 
 This is not an overly long post. I don't have the energy to write a longer post.
 
