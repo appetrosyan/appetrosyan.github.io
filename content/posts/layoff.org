@@ -1,6 +1,9 @@
 #+TITLE: Post-Eclipse Layoff: an Update and Plan
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-08-29
+#+TAGS: Small Update
+#+TAGS: Life
+
 
 This post is prompted by an unexpected major event in one's life.  This is the first time I got laid off.  The Eclipse main network launched well.  The performance team, the one I was in charge of produced quite a bit of content, most of it favourable, matching and often exceeding expectations.  Neither I, nor anyone who got the short end of the stick did so because of some failure.  The company did not expect the token to launch so poorly.  Despite the fact that this meant bad news for the future, and people were told how little they were valued, some myself included decided to err on the side of loyalty.  And we got our "reward".
 

@@ -1,6 +1,8 @@
 #+TITLE: Some Good news
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2026-01-31
+#+TAGS: Small Update
+#+TAGS: Emacs
 
 In this post I want to clarify some exciting news.  Well, exciting for me.
 

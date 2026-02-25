@@ -1,6 +1,9 @@
 #+TITLE: Rust instruction: FizzBuzz
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-09-02
+#+TAGS: Programming
+#+TAGS: Rust
+#+TAGS: Book
 
 To a relative newcomer, FizzBuzz seems like far too simple a problem to bother writing about.  Yet there seems to be an endless stream of content dedicated to this problem.  It is something that is brought up in many of Kevlin Henney's talks.  The reason is simple.  It is a distilled version of a problem that occurs in many programming situations; a mismatch between the tools given to the programmer and an accurate model of the problem space.  Simply put, structures and objects do not represent the concept of ~Fizz~ and ~Buzz~ accurately.
 * Introduction

@@ -1,6 +1,12 @@
 #+TITLE: Progress update on NeoEmacs (name subject to change)
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2026-02-22
+#+TAGS: Fib
+#+TAGS: Emacs
+#+TAGS: GUI
+#+TAGS: Widget
+#+TAGS: Tooling
+
 
 In this post I'd like to talk a little bit about the project I've been working on for the past month.
 
