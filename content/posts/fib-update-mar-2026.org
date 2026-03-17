@@ -1,6 +1,11 @@
 #+TITLE: An Update on the Fib Editor
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2026-03-17
+#+TAGS: Fib
+#+TAGS: Emacs
+#+TAGS: GUI
+#+TAGS: Widget
+#+TAGS: Tooling
 
 In this post I'd like to summarise some of the work that has happened, and where the project is going.
 * Progress
