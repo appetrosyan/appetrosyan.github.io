@@ -10534,7 +10534,7 @@ strong {
 
 pre {
   display: block;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-family: "SF Mono", Consolas, Liberation Mono, Menlo, monospace;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.6rem;
@@ -10548,7 +10548,7 @@ pre {
     color: inherit; }
 
 code {
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-family: "SF Mono", Consolas, Liberation Mono, Menlo, monospace;
   font-size: 1.6rem;
   font-weight: 400;
   border-radius: 0.6rem;
@@ -10663,7 +10663,8 @@ figure {
   .content article a:where(.external-link):not(:has(img)):after {
     content: "\f08e";
     padding-left: 0.5em;
-    font-size: 0.75em; }
+    font-size: 0.75em;
+    display: inline; }
   .content article details summary {
     cursor: pointer; }
   .content article footer {
@@ -10886,6 +10887,15 @@ figure {
     .notice.note .notice-title i {
       color: #5e35b1; }
 
+div.note {
+  border-radius: 0.2rem;
+  position: relative;
+  margin: 2rem 0;
+  padding: 0.75rem;
+  overflow: auto;
+  background-color: #7e57c21a;
+  border-left: 4px solid #5e35b1; }
+
 .notice.tip {
   background-color: #26a69a1a; }
   .notice.tip .notice-title {
@@ -10920,6 +10930,15 @@ figure {
     background-color: #ffc1071a; }
     .notice.warning .notice-title i {
       color: #ffb300; }
+
+div.warning {
+  border-radius: 0.2rem;
+  position: relative;
+  margin: 2rem 0;
+  padding: 0.75rem;
+  overflow: auto;
+  background-color: #ffca281a;
+  border-left: 4px solid #ffb300; }
 
 .notice.error {
   background-color: #ef53501a; }
@@ -11036,8 +11055,7 @@ figure {
     display: inline;
     text-align: center;
     font-weight: 700;
-    padding: 0 5px 0 5px;
-    margin: 0;
+    margin: 0 2px;
     text-align: center;
     width: 2.2rem; }
     .pagination li a {
