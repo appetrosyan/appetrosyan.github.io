@@ -1,0 +1,104 @@
+#+TITLE: An Update on the Fib Editor
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-03-17
+
+In this post I'd like to summarise some of the work that has happened, and where the project is going.
+* Progress
+
+I've slowed down considerably.  I did so for a number of reasons.
+
+First and foremost, probably the largest contributor, is that I no longer have the LLM to kick me out of procrastination.  I know /objectively/ that Claude mostly acted as a placebo.  But subjectively, being able to type in a broad-strokes prompt and see progress on the editor meant that there was less mental resistance to trying to add new features.  Even if I was the one that ended up fixing most of the problems, the fact that I had something that gave a broad-strokes right solution, overcame the "what I do today might need to be thrown out, just because I'm not 100%" feeling.
+
+The second reason is that I actually wanted to use the editor as my main driver for a project.  The editor itself could do the trick, but I wanted a piece of real-world code that wasn't optimised for consumption from within Emacs.  I have a friend who is working on a game, so I thought: add a new major mode for C, and let's see how it goes. Personally, I found the experience to be not bad, but it hightlighted some things that I have not paid attention to before. This caused all work that wasn't on the game to be focused on bug fixing. 
+
+The third reason is a bit less relevant now, but might become relevant relatively soon.  I've taken a break from work over the period starting last October.  I had a bit of money left over, and was in no condition to continue with the interviews. This didn't exactly work out the way I intended, because my dog got sick over that period.  In a very direct way, he is still sick, but I cannot wait any longer.  I need a job. 
+
+Because of these factors, I expect that there will be a decrease in the number and flashyness of updates. In fact, most of what I've managed to fix this week is in that area. 
+
+* Bug Fixes
+
+There was undefined behaviour in interacting with ~libmpv~. I forgot that some of the functions behave differently if you link against them at compile time, or via run-time loading, so the asynchronous functions that used to hold the main thread hostage no longer did that, and I had a race condition that broke the player.
+
+Another issue was that I had accidentally refactored one of my dependencies in the cargo registry.  So to people that had a hard time building the package over the two weeks -- my apologies, it was a silly mistake, but one I tracked down and fixed. 
+
+There were two major problems with the current way highlighting worked.  Because I assumed Claude would generate a reasonably efficient implementationm, I had not looked into the specific inefficiencies of how the entire thing was implemented.  Turns out, some functions did an enormous amount of wasted work. 
+
+One big problem was that the tree-sitter incremental parser was run without caching.  Yes, this is the quality of the rest of the code that I did not audit personally, and while this is bad news for Anthropic, it is good news for me, because.... you know... I actually am in the driver seat again. 
+
+When the incremental parsing was done, the next problem was flickering. I have a gap buffer backing the editor, but claude decided it was perfectly reasonable to keep syntax highlighting ranges as a vector of syntax markers, globally by buffer.  And the way it optimises for the fact that you can't see all syntax highlighting is by throwing away the information that is outside the viewport, but re-requesting it every time you scroll.  
+
+{{< notice note >}}
+
+This is added mostly for educational purposes.  Some people might disagree on my choice to remove AI from the development loop, thinking that this was going to hurt the project.  As you can hopefully see, letting the AI do even less important tasks, such as adding built-in major modes would result in an even worse outcome.
+
+{{< /notice >}}
+
+So how to fix this?  Well, turns out this can be done semi-automatically by someone that has had education in high-performance programming.  Firstly, I reworked the ~Face~ system to be laid out efficiently for the performance critical area: you need to make sure that the data is laid out ideally where it matters most.
+
+I added string interning, which technically limits you to 256 faces per mode.  This is done so I can quickly look-up and merge syntax spans, and if you need more than 256 faces, you just break up your functionality across minor and major modes (though technically I can just double the size of the key, and you can have 66k faces). 
+
+Then I needed to figure out how much binary searching was appropriate.  Turns out, your CPU really hates linked structures such as red-black trees and linked lists.  It much prefers to work with linear spans. Why? Simple. 
+
+If your CPU has an AVX512 vector unit (and those are per-thread, but sometimes shared between multiple CPU cores), I can operate on a whole chunk of numbers at once.  If I'm doing a binary search on 32 elements, I need roughly 5 steps in the worst case.  If the key is small enough I can do this in roughly one instruction. 
+
+{{< notice note >}}
+
+There's a great deal more to it.  The layout of the linked structure in memory matters, and you can do it much more cleverly than just allocating each node on the heap.  The sizes matter, figuring out what size integer I use as the key for string interning is left as an exercise. 
+
+There's also the fact that linear approaches are more optimisable, but you actually need to be aware of how to do it.  I assumed I did, but actually, I had a lot of misconceptions about how the pre-fetching works in hardware shockingly late into my career. 
+
+{{< / notice >}}
+
+So a B+ tree is the right call.  Not an interval tree, that was used in ~rune~, but a cache-friendly structure that is going to perform better in the small cases that we usually deal with. 
+
+** Gap Buffers for Everyone
+
+And when trying to implement this, I came across a few other problems; the fact that I was using the gap-buffer for the thing that is actually not at all expensive to change (text) and *not* using it for the thing that actually would cost a lot to change. 
+
+Let me explain the problem.  Imagine that you're doing some editing in the middle of a program; this is actually where most editing takes place anyway.  If you typed a character, the way the highlighting worked was that I had a vector of syntax markers: beginning and end character positions.
+
+In the worst case scenario, an edit is completely unpredictable, it can invalidate everything.  So you *could* send the new text to tree-sitter, wait for it to re-parse the text, and come back to you.  This would be pixel-perfect, but also sluggish. 
+
+{{< notice warning >}}
+
+When I say sluggish, keep in mind that this form of synchronous update is actually pretty fast.  Some editors can afford to do it, specifically Emacs. 
+
+{{< / notice >}}
+
+You could try and do it a bit more smartly.  For example, you could adjust the syntax markers per-character, so if I'm typing, this can only affect the syntax elements that go after what I have typed, and not before.  I don't need to re-parse the whole file, it's enough to re-parse the parts that could be affected.  
+
+This approach is better, but still not quite good enough.  Firstly, this is no longer pixel perfect, because one thing that could happen is that I have different syntax highlighting for ~struct~s and ~enum~s, and if I have a language like Rust, where the location of where I defined an object doesn't cause a syntax error, the syntax spans before my edit can actually be affected. 
+
+Secondly, and this is probably the thing I found most annoying, is that this results in the syntax spans having to be updated.  Not by re-parsing, but by arithmetic.  If I inserted a character, I need to shift all following syntax spans by 1 (exactly).  This is much less of a headache than re-parsing, because this can be done
+1. In parallel in different threads, by chunking the buffer. 
+2. In parallel using SIMD per-thread, because incrementing a number is one of those things that can be done very efficiently using SIMD instructions. 
+
+But this heuristic is just that, a heuristic.  The re-parsing still needs to happen, because inserting one character =!= in Rust, for example, can convert a function call, to a macro invocation, changing the semantics of what follows. 
+
+I do think that being able to type without interruption and blocking the UI is more important than showing a couple of frames with technically incorrect syntax highlighting.  Plus, because it is more and more common for a file to be changed externally, the editor does need to periodically refresh the contents of the buffer.
+
+This is what I spent the last day on.  I still don't have a satisfactory system for syntax span presentation.  But I do know that I'm already doing a bit better than most other editors.
+
+* Competition
+
+I am facing stiff competition.  In a move that broke my heart, I discovered that someone I respect greatly is using VSCode for C++ development.  In another discussion with Minad, I found that he does seem to like some of the ideas in another editor -- Zed, that shares a lot of similarities with what I want to accomplish.
+
+There are also many editors competing for the crown of being Emacs, but better.  Lem and Schemacs are both completely implemented in lisp.  Emacs Guile is not dead contrary to popular belief.  Neither is XEmacs. There is of course Neomacs which has a considerable overlap with the early vision of what I wanted this to be: a fix of upstream Emacs.  Furthermore, thanks to Minad, the one thing I thought I would never have in upstream Emacs, is now perfectly feasible: we have the canvas in Monadic sheep, and I have a great deal of programs that would benefit from it.  
+
+I can no longer assume that being able to do one thing better than Emacs is enough to justify the existence of this editor.  I have to provide a better platform long-term.
+
+And realistically, I've mostly been using Emacs over the past few years.  This means that /at best/ I would be able to poach current users of Emacs.  Truthfully, though, I wouldn't be able to do that.  I can't support =org-mode= to the same extent as upstream Emacs, the same way I can only try to port =magit= and there's no guarantee that I'd end up with something comparable in quality.  Yes, I can do better than =c-mode= and =rust-mode= and probably even better than =rust-ts-mode= and AucTex, but until I'm at feature parity, this is simply playing catch-up with a vast community of extremely experienced programmers.  I would not claim that I can beat it until I do.  This is a lot of work, with many subtleties. 
+
+And truthfully, I might not need to.  People that stick to Emacs, stick to it for a long time, and for good reasons.  It is the editor written by the founder of GNU, it is *the* editor that can trace its lineage to the 70's lisp machines, it is an editor that happens to have a vibrant community, all of which I can only hope to *start* building when I reach feature parity.  
+
+Meanwhile, there is a large untapped market of people that are looking to move away from something like VSCode, but have no better alternative.  They need something that /just works/ and a lot of the time, even VSCode isn't that, but they can fix the problems with it, while they can't exactly fix problems with Emacs, without that becoming an excursion into SICP chapter 4, and quirks of internal implementations. 
+
+Vim moves people into the terminal.  Arguably a selling point.  Right up until you ask those people to exit the program.  Neovim and Neovide pave over some of the difficulties, and IMO are the best editors on the market (leapfrogging Emacs in some respects).
+
+There is a lot I can learn from other editors that I wouldn't be able to, if I were stuck in the Emacs bubble.  I know enough about the annoying aspects of Emacs, but fixing them runs the risk of falling into other traps, and coming up with arguably worse designs.
+
+So moving forward I'll try to use Zed and maybe get over my hatred of VSCode. I have already learned much about how Zed handles some interactions with the language servers and LLM agents.  While I personally believe that LLMs are counter-productive for what /I/ am trying to do, not having support for them means ignoring a potentially useful tool for others.
+
+* Conclusion
+
+Building an editor, much like building a game engine, is something that can greatly benefit a programmer's understanding of their craft.  While the point at which =fib= is good enough to be used for its own development is approaching, there is a great frontier of work that must be done, that I am not even aware of, because it is made invisible by the engineering that went into Emacs. 

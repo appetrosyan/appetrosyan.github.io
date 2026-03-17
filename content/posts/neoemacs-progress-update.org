@@ -272,15 +272,17 @@ To everyone in the audience, particularly the Chinese emacs group, thank you for
 To everyone that volunteered to help.  If you feel so within a month or so, I would very much appreciate your help.
 
 * Footnotes
-[fn:6]A packaging tool so old, so under-developed and so badly architected, that unless the word "advanced" were literally shoe-horned as the first word of its official name, no-one would assume that it was.
+[fn:1]I should note that I have done this for the Greybeard.consulting website. I did so despite the recommendations of everyone in the Emacs community saying that this was both inefficient and likely to break.
 
-[fn:5]having to deal with a cancer diagnosis of a family member, let's put it this way.
-[fn:4]to the point at which I genuinely believe that the whole reason why they are passing all the benchmarks is because they're optimised for the benchmarks and nothing else.  If nVidia could do this for graphics, and Volkswagen can do this for emissions standards, why wouldn't an over-leveraged business that is always five minutes away from failure do it?
-
-[fn:3]A system that I have criticised in the past.
 [fn:2]Guile and Rust do not even use the same compiler stack. One is built at top of GCC, the other one is at the top of LLVM.
 
-[fn:1]I should note that I have done this for the Greybeard.consulting website. I did so despite the recommendations of everyone in the Emacs community saying that this was both inefficient and likely to break.
+[fn:3]A system that I have criticised in the past.
+
+[fn:4]to the point at which I genuinely believe that the whole reason why they are passing all the benchmarks is because they're optimised for the benchmarks and nothing else.  If nVidia could do this for graphics, and Volkswagen can do this for emissions standards, why wouldn't an over-leveraged business that is always five minutes away from failure do it?
+
+[fn:5]having to deal with a cancer diagnosis of a family member, let's put it this way.
+
+[fn:6]A packaging tool so old, so under-developed and so badly architected, that unless the word "advanced" were literally shoe-horned as the first word of its official name, no-one would assume that it was.
 
 # Local Variables:
 # jinx-local-words: "soydev"
