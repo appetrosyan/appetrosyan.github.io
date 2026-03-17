@@ -1,7 +1,11 @@
 #+TITLE: A new Emacs, or what I've learned from the Rune-based prototype
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2025-12-30
-
+#+TAGS: Small update
+#+TAGS: Emacs
+#+TAGS: Fib
+#+TAGS: Widget
+#+TAGS: Tooling
 Firstly, I must clarify that this is a first post after a long hiatus.  I have a very sick dog, and there are limited facilities in Armenia for something as simple as a veterinarian CT scan.  Needless to say, I am not in my best condition to program, much less make longer-term decisions.
 
 With that said, I did manage to get a prototype out, almost exactly as soon as I mentioned that I would.
