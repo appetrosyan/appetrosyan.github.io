@@ -1,6 +1,7 @@
 #+TITLE: The comments are broken
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2026-03-27
+#+TAGS: Blog
 
 I was going through the list of articles and found that they had a problem.
 
