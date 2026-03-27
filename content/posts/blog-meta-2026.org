@@ -1,0 +1,15 @@
+#+TITLE: The comments are broken
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-03-27
+
+I was going through the list of articles and found that they had a problem.
+
+There aren't any comments, bar one.  This was, predictably, a reply to "a case against Cat-V considered harmful", which was an argument I would have liked to reply to, were it not for the fact that it asked me to input my phone number.
+
+Needless to say, I'm getting rid of the telegram based system.  What I will do instead, is something that is based around GitHub, or even something self-hosted.
+
+The reason I went with this, was because I had assumed that having everything in one place would be good, but I totally forgot how invasive telegram may be.
+
+Apologies to those that wanted to comment, but didn't feel like they could.
+
+
