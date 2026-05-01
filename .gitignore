@@ -5,6 +5,7 @@
 /docs/.vuepress/.cache/
 /blog/.DS_Store
 /.DS_Store
+.DS_Store
 /public/posts/hugo-is-nice/
 /public/
 /content/posts/ltximg/

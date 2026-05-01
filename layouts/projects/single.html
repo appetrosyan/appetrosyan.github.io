@@ -1,0 +1,87 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+<section class="container page projects-page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="{{ .Permalink | safeURL }}">
+          {{ .Title }}
+        </a>
+      </h1>
+    </header>
+
+    {{ range .Params.employers }}
+    <div class="employer-group">
+      <div class="employer-header">
+        <div class="employer-icon">
+          {{ if .logo }}
+          <img src="{{ printf "employers/%s" .logo | relURL }}" alt="{{ .name }} logo" class="employer-logo" />
+          {{ else }}
+          <i class="{{ .icon }}" aria-hidden="true"></i>
+          {{ end }}
+        </div>
+        <div class="employer-info">
+          <h2 class="employer-name">
+            {{ .name }}
+            {{ if .url }}
+            <a href="{{ .url }}" target="_blank" rel="noopener" class="employer-link">
+              <i class="fa-solid fa-arrow-up-right-from-square fa-xs" aria-hidden="true"></i>
+            </a>
+            {{ end }}
+          </h2>
+          <div class="employer-meta">
+            {{ if .role }}<span class="employer-role">{{ .role }}</span>{{ end }}
+            {{ if .period }}<span class="employer-period">{{ .period }}</span>{{ end }}
+          </div>
+          {{ if .description }}<p class="employer-description">{{ .description }}</p>{{ end }}
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        {{ range .projects }}
+        <div class="project-card">
+          <details class="project-details">
+            <summary class="project-summary">
+              <div class="project-icon">
+                {{ if .image }}
+                <img src="{{ printf "projects/%s" .image | relURL }}" alt="{{ .name }}" class="project-image" />
+                {{ else }}
+                <i class="{{ .icon }}" aria-hidden="true"></i>
+                {{ end }}
+              </div>
+              <div class="project-header-info">
+                <h3 class="project-name">{{ .name }}</h3>
+                <span class="project-tagline">{{ .tagline }}</span>
+              </div>
+            </summary>
+            <div class="project-expanded-body">
+              <div class="project-expanded-icon">
+                {{ if .expandedImage }}
+                <img src="{{ printf "projects/%s" .expandedImage | relURL }}" alt="{{ .name }}" class="project-image" />
+                {{ end }}
+              </div>
+              <div class="project-content">
+                {{ .description | markdownify }}
+                {{ if .url }}
+                <p class="project-link">
+                  <a href="{{ .url }}" target="_blank" rel="noopener">
+                    {{ .urlLabel | default "Visit project" }}
+                    <i class="fa-solid fa-arrow-up-right-from-square fa-xs" aria-hidden="true"></i>
+                  </a>
+                </p>
+                {{ end }}
+              </div>
+            </div>
+          </details>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ .Content }}
+  </article>
+</section>
+{{ end }}
