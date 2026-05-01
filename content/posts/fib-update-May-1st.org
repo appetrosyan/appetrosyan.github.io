@@ -1,0 +1,109 @@
+#+TITLE: FIB, road to fundraising
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-05-01
+#+TAGS: Fib
+#+TAGS: Tooling
+#+TAGS: Emacs
+
+This is a shorter post detailing some of the more important happenings during this time.
+
+The most important is perhaps the realisation that I want to see this project done, and I want people to work on it full time.  I have asked people *not* to contribute, out of a feeling of false modesty, and this ia a major blunder.  People /want/ to work on it.
+
+* I've been busy
+
+Since the last update, here's a short list of features that were implemented.
+
+*** Bootstrap
+Editor's initial state is now set from Guile.  There is a ~boot.scm~ file that contains a number of guile expressions that set things up for the initial window.  One of the things that get set up in the latest version (that is behind a merge request) is that it sets up a menu bar.  Modeline is still somewhat hard-coded, but that is to be fixed in the coming few weeks.  It shall not be a pre-defined object that every system ships with, but rather a fully customisable object.
+
+The philosophy is simple.  If you want to customise something, you should see how it's done by default.  There's still a number of key-bindings that are set in Rust, and this is consequence of not having time to extract things.  But this is not going to take long.
+
+*** Protocols
+
+This is the most under-the-hood and nerdy aspect of the new project.  I initially thought that the wheel-and-spokes kind of dispatch was going to be the right call for the project.  But, having spoken to a couple of people from the SmallTalk community, came to the conclusion that indeed, I should make things directly addressable.
+
+The result of that was what took most of the time this last cycle: the dynamic protocol system.  The idea is that you have the rough equivalent of traits or type classes for interactions across the message boundary.  Your Guile can query objects for specific capabilities and program them thusly.  As a consequence of that, your Guile code can call into code defined in another guile module, that defines its own Zig-written dynamic module that also links some Forth.
+
+The system is fully dynamic.  And every single operation had to be ported to the new system.  That resulted in a much cleaner and idiomatic interface, so your Guile code looks like relatively imperative Guile code.  For the moment at least.
+
+The next stage is defining custom syntax.  Projects like Blue and Guix have demonstrated B- and G-expressions respectively that allow you to define custom syntax to alleviate boilerplate.  And this is the exact pattern which will collapse the relatively ugly Guile that is needed to set up the menu bar into a much more palatable monadic function.
+
+Needless to say, committing to GNU Guile was the right decision.  And I'm only beginning to reap the benefits.
+
+*** Diagnostics
+
+You can hit ~f5~ and get cards showing up around error diagnostics.  This is a new system unlike what you might find in other editors.  It's closest cousin is Emacs' built-in compile system.
+
+Why do I prefer ~compile~ in Emacs?  Because it produces an itemised list of compiler diagnostics, it runs proactively, rather than with vague time delays as the LSP does for example, but crucially, this gives you the raw output of the compiler.  References to files, functions...  all of that metadata can be clicked, and ... *bam!* You're exactly where you need to be to fix the problem.  
+
+No other UI for diagnostics does the same...  And I'm slowly making my way towards a superior system, that has the benefits of both, and weaknesses of neither.  It's journey.  The plumbing for major modes, in fact, was what prompted the need for protocol-driven design.
+
+*** Procedures as first-class values
+
+This was a tricky bit of FFI that I managed to solve.
+
+For context, the internal ~from_lisp~ machinery is a means by which a Rust program can look directly into a Guile's internal memory and obtain information about these structures.  This is not like using ~serde~ even with zero-copy exchange, you lose much of what makes Lisp -- lisp.  Your symbols may no longer be unique, and some of the variables may need to be expanded in order to be evaluated in situations in which they really shouldn't.
+
+This way I *know* and have semantic understanding of Guile's internals, without being glued to the REPL or having to wait on a GC.  But before now, if I wanted to say that something was callable from Guile, I had to wrap it in a string and do a round trip?  Why?  Precisely because Guile's functions are not functions, they are lambdas.  This means that the context in which they were created matters.
+
+I came up with a system by which I can ecanpsulate the function's captures, such that indeed you *could* pass lambdas safely across the message boundary.
+
+This was the main blocker for binding arbitrary keybindings to arbitrary behaviours.  There are still a couple more, but with the major one down, you can ~bind-key!~ to your heart's content.
+
+*** Interface system
+
+A bunch of compiler speak.  But there's a topological sort subroutine that is exposed to Guile.  Useful for the future package manager...  speaking of which...
+
+*** First serious effort to package the editor
+
+A dear friend Divya Ranjan is a wizard with Guix.  Thanks to him, you can now run ~fib~ in a Guix environment.  There's even a ~manifest.scm~ there.  Packaging for Guix is probably going to be the first real deliverable.
+
+Unfortunately, this experiment also surfaced a bunch of bugs:
+- WebGPU refuses to fall back on software rendering if it detects a GPU.  This is resolved by adding ~mesa~ for some users, others are stuck with having to use nVidia's proprietary drivers...  which is unacceptable.  I may need to do some low-level digging to ensure that no matter what, the executable creates a window.
+- Using an input method refuses to refresh the content.  So your point moves, but the text only shows up when you move your mouse.  The reason turned out to be that Keyboard and IME inputs are routed independently.
+- This means that I would need to get back to the drawing board with respect to the keyboard event processing.
+
+
+*** Visual component work
+
+I now have a fully fledged and battle-tested ~Button~.  With icons.  And native GPU-drawn SVG.  Pretty good performance.  So much so that I think I need to start measuring it.
+
+I have a menu-bar that can feel at home on Mac OS.  Rounded corners and translucency shaders and all.  The default sticks to the basics, though, as visual style is something I need to be considerate of.
+
+On the one hand, transparency sure looks nice.  On the other, lack of visual separation is impractical.
+
+I have a general purpose image viewer component.  I have also a component nesting system planned: with far reaching consequences.
+
+*** Visual novels
+
+This is perhaps the most important work yet.  Credit goes to the organiser of the Yerevan-based Emacs meetup, who goes by the name of Third Child.
+
+During the last meetup, I was sat in the audience of them describing ostensibly a visual novel engine in Emacs, with one caveat: Emacs didn't (and to this day -- doesn't), have a canvas object that is suitable for drawing a visual novel.
+
+While ~fib~'s technical stack was much closer to what is needed, it still had vital gaps.  These gaps have been quickly plugged by the aforementioned contributor, and resulted in two merge requests, one of which was merged on the same day, and the other is sttill in progress.
+
+There is some impedance mismatch between the core architecture and philosophy, which we are currently in the process of ironing out.  When this is done, you will have a fully Guile-side programmable canvas object that can draw *any* known visual component, including ones that are linked in a dynamic library written in Forth, and part of a plugin.  You can play music and show a visual novel, but that's only one of many possible applications.
+
+The programmable canvas can serve as a much more refined alternative to either embedding a Webkit browser, or using ~eww~.  You could in theory draw a native-like facsimile of a web page.  Your package could come with a configuration page that is also done completely in Guile.
+
+What's more, your package can come with interactive tutorials and drills.  One of the biggest missed opportunities is that Emacs' interactive tutorial is effectively a text buffer that is not context sensitive.  Mickey Friesen's "Mastering Emacs" is a much more thorough exploration, but at the end of the day, one has to tutor themselves in the more advanced techniques.  ~Fib~ has a chance to rise above these limitations and provide you with an advanced tutorial on Emacs motions.  Furher, owing to its more general key-binding sytem, it *itself* may benefit from such tutorials.
+
+As a final note, I will say that the scriptable canvas object is a gap.  A tiny gap that is often bridge by Org's monumental capabilities that allows Emacs to behave like an interactive notebook.  But it has limitations; limitations that we intend to rise above.
+
+* Next Steps
+
+I want to turn progress reports about ~fib~ into an official and weekly thing.
+
+The aspirational goal is to open the project to external contributors.  This is slowly happening, largely despite my insistence, somewhat unfounded after review, that the project is a mess.
+
+The project has multiple well-documented sub-systems, and yesterday a detailed walk-through had been recorded by the aforementioned Divya Ranjan.
+
+The trouble, as far as I can see is that I have not been as regular and as consistent as I ought to be for this project to be taken seriously.  I am depressed, I recently started a new job, and I have a sick dog that must go through a challenging treatment that at best will buy us another six months.
+
+Another major blunder, although one that in my case can be justified, is that I have not been advertising this project as much as I ought to have.  If anything I have been its largest detractor and mostly focused on the negative aspects.  It is a rather problematic behaviour that I intend to correct for.
+
+What I plan to do concretely over the next month is as follows:
+
+1. I want to finish the canvas merge.  It is much too important to leave out, and is going to fundamentally reshape the plugin landscape, if provided as a built-in.
+2. I want to involve more heavily the Monadic Sheep collective in the development effort.  I have not done so, for a number of reasons that are not all gone.
+3. I want to make this project official.  Apply for funding, go to talks and advertise it as much as I can. Doing this once during a talk on functional patterns in Rust has resulted in the single most important contribution and the killer feature of this development cycle.  One can only dream what FOSDEM can do for this project.
