@@ -7,7 +7,7 @@
 
 This is a shorter post detailing some of the more important happenings during this time.
 
-The most important is perhaps the realisation that I want to see this project done, and I want people to work on it full time.  I have asked people *not* to contribute, out of a feeling of false modesty, and this ia a major blunder.  People /want/ to work on it.
+The most important is perhaps the realisation that I want to see this project done, and I want people to work on it full time.  I have asked people *not* to contribute, out of a feeling of false modesty, and this is a major blunder.  People /want/ to work on it.
 
 * I've been busy
 
@@ -46,7 +46,7 @@ For context, the internal ~from_lisp~ machinery is a means by which a Rust progr
 
 This way I *know* and have semantic understanding of Guile's internals, without being glued to the REPL or having to wait on a GC.  But before now, if I wanted to say that something was callable from Guile, I had to wrap it in a string and do a round trip?  Why?  Precisely because Guile's functions are not functions, they are lambdas.  This means that the context in which they were created matters.
 
-I came up with a system by which I can ecanpsulate the function's captures, such that indeed you *could* pass lambdas safely across the message boundary.
+I came up with a system by which I can encapsulate the function's captures, such that indeed you *could* pass lambdas safely across the message boundary.
 
 This was the main blocker for binding arbitrary keybindings to arbitrary behaviours.  There are still a couple more, but with the major one down, you can ~bind-key!~ to your heart's content.
 
@@ -80,13 +80,13 @@ This is perhaps the most important work yet.  Credit goes to the organiser of th
 
 During the last meetup, I was sat in the audience of them describing ostensibly a visual novel engine in Emacs, with one caveat: Emacs didn't (and to this day -- doesn't), have a canvas object that is suitable for drawing a visual novel.
 
-While ~fib~'s technical stack was much closer to what is needed, it still had vital gaps.  These gaps have been quickly plugged by the aforementioned contributor, and resulted in two merge requests, one of which was merged on the same day, and the other is sttill in progress.
+While ~fib~'s technical stack was much closer to what is needed, it still had vital gaps.  These gaps have been quickly plugged by the aforementioned contributor, and resulted in two merge requests, one of which was merged on the same day, and the other is still in progress.
 
 There is some impedance mismatch between the core architecture and philosophy, which we are currently in the process of ironing out.  When this is done, you will have a fully Guile-side programmable canvas object that can draw *any* known visual component, including ones that are linked in a dynamic library written in Forth, and part of a plugin.  You can play music and show a visual novel, but that's only one of many possible applications.
 
 The programmable canvas can serve as a much more refined alternative to either embedding a Webkit browser, or using ~eww~.  You could in theory draw a native-like facsimile of a web page.  Your package could come with a configuration page that is also done completely in Guile.
 
-What's more, your package can come with interactive tutorials and drills.  One of the biggest missed opportunities is that Emacs' interactive tutorial is effectively a text buffer that is not context sensitive.  Mickey Friesen's "Mastering Emacs" is a much more thorough exploration, but at the end of the day, one has to tutor themselves in the more advanced techniques.  ~Fib~ has a chance to rise above these limitations and provide you with an advanced tutorial on Emacs motions.  Furher, owing to its more general key-binding sytem, it *itself* may benefit from such tutorials.
+What's more, your package can come with interactive tutorials and drills.  One of the biggest missed opportunities is that Emacs' interactive tutorial is effectively a text buffer that is not context sensitive.  Mickey Friesen's "Mastering Emacs" is a much more thorough exploration, but at the end of the day, one has to tutor themselves in the more advanced techniques.  ~Fib~ has a chance to rise above these limitations and provide you with an advanced tutorial on Emacs motions.  Further, owing to its more general key-binding sytem, it *itself* may benefit from such tutorials.
 
 As a final note, I will say that the scriptable canvas object is a gap.  A tiny gap that is often bridge by Org's monumental capabilities that allows Emacs to behave like an interactive notebook.  But it has limitations; limitations that we intend to rise above.
 
