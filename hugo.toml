@@ -1,4 +1,4 @@
-baseurl = "http://appetrosyan.github.io"
+baseurl = "https://appetrosyan.github.io"
 title = "Aleksandr Petrosyan"
 theme = "coder"
 languagecode = "en"
@@ -13,7 +13,7 @@ style = "github-dark"
 
 [params]
   author = "Aleksandr Petrosyan"
-  info = "Eclipse Labs head of Performance Engineering"
+  info = "Lead Backend Engineer at Proof"
   description = "A. Petrosyan's Blog"
   keywords = "blog,developer,personal"
   gravatar = "appetrosyan3@gmail.com"
@@ -31,7 +31,7 @@ style = "github-dark"
   maxSeeAlsoItems = 24
 
   # customCSS = ["css/custom.css"]
-  # customSCSS = ["scss/custom.scss"]
+  customSCSS = ["scss/projects.scss"]
   # customJS = ["js/custom.js"]
 
 [params.telegram]
@@ -84,8 +84,12 @@ style = "github-dark"
   weight = 2
   url  = "posts/"
 [[menu.main]]
-  name = "Tags"
+  name = "Projects"
   weight = 3
+  url = "projects/"
+[[menu.main]]
+  name = "Tags"
+  weight = 4
   url = "tags/"
 [[menu.main]]
   name = "About"

@@ -1,0 +1,151 @@
+#+TITLE: The ~CharDet~ situation
+#+AUTHOR: Aleksandr Petrosyan
+#+DRAFT: true
+
+In this post I go over some of the happenings that took place several weeks ago. I was hoping that I can leave this mostly behind, but alas.
+
+* Introduction
+
+Chardet is a character encoding detection library. In this day and age, this is a niche.  It doesn't uphold as much of the infrastructure as one might think, it is a popular library that was maintained by Person X.  
+
+{{< notice note >}}
+To be quite honest, I've only heard of that person when this happened, and I've haeard of the library when this happened also; I don't use Python, and character encoding detection is something I want to do in-house for Fib.
+{{< /notice >}}
+
+The ~chardet~ library, throughout most of its existence was maintained by a certain Person Y, that maintained the library for 12 years.  Throughout that period there were multiple instances where the library was "offered" to be included in the Python standard library.  The main barrier was the usage of LGPL in ~chardet~ (according to Y).  So over the years of frustration, Y has decided to do one thing that caused the uproar, and landed me in the unenviable position of having to juggle a work trial task (I got the job, BTW), having to express ideas on GitHub, and dealing with two other projects that needed a lot of my attention. 
+
+The situation went so far as to have me break out my blood pressure medication, something I must admit cannot wholly be attributed to this event, aside from it being a last drop of sorts. 
+
+* The Steel Man Argument
+
+There are three things that Person Y got essentially right. 
+
+** Clean Room enshittification
+
+Firstly, and most importantly, they are the maintainer.  Alone this does not give you much, but in context of there having been 12 years over which Y had ample opportunity to contribute code to the project, institute a CLA, and obtain copyright over the majority of contributions, if not a full reimplemntation of the project.  This is something that projects do, this happened to Audacity and caused a public uproar, because it was a dick move.  We can't do anything legally about it, but we can fork and develop.  Personally, as an avid user of Audacity, this was much more impactful when it happened, and yet, I neither voiced my displeasure, nor got involved in the public discourse surrounding it.  This was coming off the tail of a successful counter-campaign to protect Richard Stallmann from being singled out (was Chomsky asked to resign from his teaching position, or disbarred from leading an organisation he founded as a consequence of being deeply involved in the you-know-what?). 
+
+The truth is, this is OK. Within the established rules of the game, this is what allows Wine, Proton, DXVK as well as many other projects to flourish.  You can't take the good without also taking the bad.  Rules are /rules/ not mild suggestions. 
+
+It is sad that a copyleft project can be sunsetted, but truth is, the original is still there, and a copyleft version may still essentially exist. 
+
+** AI Slop
+
+While it is technically accurate to say that AI produces mostly slop, work slop, video slop or otherwise any other form of slop... This output is often useful as a consequence of being better than nothing.  In the early days of Fib, back when it was called ~neoemacs~ (it still is, on GitLab), I used Claude quite often, and while I have some very specific critique of how it works, given that soloing a project can seem like a daunting task, using AI is not something I reject wholesale.  I do reject it as a form of artistic expression when dealing with Free Software, and I disagree with the statements made under corporate pressure.  I find usage of AI as much of a mark on one's reputation as using code completion.  Personally, would prefer that the professional knew their libraries very well and didn't need either, but in this climate it is rather difficult to do, and there's this pressure to perform... It is what it is.
+
+AI-assisted code exists. It is rather a matter of debate for the moment, whether the AI agent, or the person who prompts the AI, or the generator of the original dataset that retains copyright.  The legislative bodies seem to believe that the stochastic parrot produces original work.  But who exactly retains copyright is unclear, and as such for the moment it is widely believed that the outputs of the aforementioned parrot are uncopyrightable.  I may disagree with this assessment, but nonetheless this is the consensus.
+
+So in principle (though as you will see, with some caveats), what Y did, in terms of writing a drop-in replacement for ~chardet~ was something that they could do. Doing it with Claude is not the worst idea, as from my experience this is the one AI that doesn't feel pathologically stupid /all the time/, but rather just /some of the time/. 
+
+** Trade Mark
+
+The final question is of protecting the trademark.  The same person who was behind the same library is produce a newer version, which in addition to technical changes, retains the API compatibility and simply takes a more restrictive licence, and replaces it with a broader one.  
+
+Trademark law doesn't apply here, although IANAL, here are some reasons why I think it wouldn't apply: 
+1. X was aware of the usage and continued maintenance of ~chardet~ and up until recently was happy with it. Did not contribute, but observed. 
+2. The entity producing the old product is producing the newer product. 
+3. The trademarks, if any, must be registered *before* said infringement takes place. 
+
+So technically, I have no reason why I should get involved. This is all reasonable, and withing boundaries of law. 
+
+Which begs the question of why I decided to get involved in this in the first place. 
+
+* The Problem I have with it
+
+** Motivational Discrepancies
+
+The declared goals are indicative of Y being both stupid and disingenuous.
+
+Their declared goal for the rewrite (which according to themselves, was something that was on their mind for a very long time), was to attract more corporate attention, encourage more contributions, and to potentially be included in the Python standard library. 
+
+Let's go over them one by one:
+
+*** Attract more corporate developers
+
+The main difference between Expat and LGPL aside from certain liability disclaimers, is that code that derives from an LGPL code base cannot be taken private.  You are free to use it in your proprietary system as is, and if you needed to make modifications, you are *legally required* to provide access to the source code. 
+
+I know that AI has probably many people's ability to think criticially, but let me explain why Y's statement of the goal is borderline moronic!  There were not enough contributions to the project, when people were allowed to use it, and were *legally required to contribute code from their private forks back*.  
+
+How does removing the legal requirement, makes the code more attractive to the people that didn't feel that it was worth contributing their modificaitons back, when it had zero functional drawback and was a legal requirement? 
+
+On the internet we are desensitised to the word "moron", to the point to which such blatant stupidity can be stated in plain sight, and it will be accepted.  I'll be honest, this makes the story about the emperor's new clothes make much more sense to me.  We are *that* inured. 
+
+*** Encourage more contributions
+
+The mis-handling of the situation has attracted a great deal of attention.  The only people who could have (or would have) considered contributing to the project, now have a massive indicator of the community's response.
+
+The project is basically untouchable. Which would have been fine, in isolation, but it goes against the stated goal.  As we have seen demonstrated repeatedly, withing the Python ecosystem, the community is willing to adopt new and improved versions of older libraries: ~polars~ versus ~pandas~, ~ruff~ versus ~autopep8~, these are just examples from *recent* memory.  Had Y had more braincells than Claude, they will have considered a more refined approach that would not attract the ire of X, and achieve the stated goals. 
+
+Technically they have done nothing wrong.  Technically grooming doesn't quite violate the laws, and if you have good legal counsel, you can groom your students without breaking any laws. Does not make it morally OK.  Incidentally, if you wondered how the comparison to a sex offender came about, this metaphor is the centerpiece.  Having spent 12 years as the caretaker of the thing being groomed suddenly sounds less appealing.  It sounds even less appealing once you recognise that the person that did this, also did so only as soon as the technological means meant that they didn't have to spend *as much* time as it could have taken them ordinarily to do the grooming. 
+
+Now imagine the effect of this. The only people who *would have* contributed to the project, myself, the Monadic Sheep collective, the people who are using ~chardet~, the people who have had no idea that the maintenance was in such dire straits, now have virtually no reason to contribute to the project.  The 7-th version bears no resemblance to the original, and sports laughable accuracy, performance and coverage guarantees.  The only advantage that it has over the original, is the ability for me to take and give nothing back.  If I had something that I thought could have been done differently, what reason do I have to open a pull request, interact with Y, and get the work merged, when I can just fork the code, slap my choice of proprietary on it, and forget about Y?  What reason do I have as a free software enthusiast not to do the equivalent? 
+
+*** Python Standard Library Inclusion
+
+This is the part that I find the most technically interesting.  It is the one stated goal that I don't think is immediately self-defeating, but largely due to ignorance of the internal processes.  
+
+Inclusion in a language's standard library is a great honour. It is often a process which requires a great deal of selection, a great deal of forethought, and a wide net of people for whom it is of great utility.  The inclusion of formatlib into the C++ standard library was such a success story, right up until Jason Turner, in a video, explained why they still use ~std::cout~.  
+
+I had struggled to find another example, because in Rust's case, there are notable packages whose inclusion would greatly reduce compilation time, which are notably out-of-tree: ~proc-macro2~, ~syn~ and ~quote~ feel like packages that should be vendored with the toolchain.  Yet this turned out to be quite an important illustration. 
+
+Firstly, to those that don't know, many complex traits require verbose, but not necessarily complex implementations.  So simple in fact, that the generation of ~serde~ implementations can be automated via procedural macros.  These macros, require a necessarily complex task of parsing Rust source code as input.  The output must also be Rust source code, but with some considerations towards the usage of the library.  It is thus /completely reasonable/ to use a library to automate some of the work, given that it is extremely repetitious.  Given that this work largely duplicates aspects of the language front-end that is written in Rust, having ~syn~, ~quote~ and ~proc-macro2~ be merged into the prelude that is available in the procedural macro translation units (essentially executables) would greatly simplify the compilation graph and cut down on compilation times greatly too. 
+
+There are many reasons why this doesn't happen.  David Tolnay, the author of many of these packages is a controversial fiture, not because of an objectively immoral thing that had preventable ripple effects, but because of a genuine philosophical disagreement on reflection.  His pacakges have a much higher chance of being adopted than ~chardet~ and I can only speculate why they still haven't been upstreamed, or made redundant by a language feature. 
+
+If you think that after the shitstorm that was 
+a. Predictable
+b. Easily avoidable
+c. a /fait accompli/
+
+anyone would even remotely consider adopting such a package into the standard library, you adequately estimate the critical thinking faculties of the Python people.  But there are other reasons why this might already be (and have alwasy been) a pipe dream. 
+
+1. There wasn't enough interest on either the side of the maintainer (Y) or the standard library folks to do a clean room reimplementation of ~chardet~. 
+2. There wasn't enough interest to maintain the package when it was outside the Python standard library.  If I were in the shoes of the PythonLang stdlib maintainers, I'd reject the project on this basis alone.  It is a massive liability that the standard library would have to shoulder.  
+3. The package itself is rather niche.  I used Python all the time when I was writing ~supernest~ and ~analgesic~. I never directly or transitively needed ~chardet~.  My workflow was *very* typical of a large swathe of applications.  You don't include everything and the kitchen sink into the standard library.
+
+This is all *not* to say that the package couldn't be included, or that it wouldn't be.  Stupid things happen all the time, and Python's standard library has a great many things that ought to belong there that don't, and a great many things that shouldn't that do. 
+
+*** The off-ramp
+
+As I tend to avoid Python programs altogether, it is of no consequence to me personally.  It could have been, had Y accepted my offer to take over the maintainershp of the project; in that I'd have to take time out of my day, to maintain a package that I don't use, in a language that I hate, and people had quite reasonable doubts as to whether it was a good faith offer. 
+
+And I'd be lying if I said that it was 100% that; I have enough of a maintenance burden as it is.  I contribute to multiple projects, maintain ~org-rs~ (which is what I use to write this article in, by the way), have historically had /extremely demanding/ jobs, and I /fucking pay for my *FREE SOFTWARE*/.  Furthermore, my failed attempts at maintaining Hyperledger Ursa, given that everyone involved wanted the project to be sunset, left a rather sour aftertaste, having a months' worth of work being completely thrown out. 
+
+{{< notice note >}}
+
+I was paying a salary to ~tarsius~ on GitHub, just because I felt that I was benefitting from ~magit~ to such an extreme degree that it was genuinely making my life better, and I only stopped because I was running out of money, because I was laid off! 
+
+{{< /notice >}}
+
+For all I care, the situation is what it is.  I cannot affect it, merely propose solutions.  
+
+One solution would be for Y to step down. They wouldn't have to do that, had Monadic Sheep taken over some responsibility over the project (read me, and me alone), because the narrative would have been that "Y developer got fed up with the apathy, did something radical, community stepped in, fixed the problem, now they're happy". Yeah, just as naive as it sounds.  But it was something that could have happened. 
+
+If Y steps down, there is a vacuum, but also an opportunity.  Someone will take over the development.  Completely dead projects get revived.  This is a project that has a solid niche, and not as many security requirements.  It is sad to see someone not maintain a project anymore, but it happens left and right.  To remain true to my word, had Y stepped down, I would *have* to take it over.  Furthermore, I wouldn't be able to cop out by using Claude to do my thinking for me, because unlike Poettering, I have integrity requirements to uphold. 
+
+So the "walk away" and "ask for help" are not options that they knew about before doing the deed.  How about options that they could entertain?
+
+I can see one way this whole debacle could have been avoided entirely.  If I were in Y's position, and had their delusions, that the only way to attract more contributions was to impose a less useful licence, here's how I would have done it. 
+
+I would have created a completely new repository that contains an API-compatible reimplementation.
+
+I would have used Claude to generate the missing bits, instead of instructing it to create new code as a head of a branch containing the old ~chardet~ and "asking it nicely" to not produce a derivative work, I would have assuaged the very real complaint about Claude *not in fact following instructions*, which I as a /fellow user of Claude can attest to it doing/, by simply not having ~chardet~ anywhere near the worktree. In fact, I would have avoided even calling it a ~chardet~-derivative name, because Claude figured out my preferences with respect to the text editor from its name: NeoEmacs. 
+
+Thirdly, I would have created independently, a benchmark that compares multiple implementations of the same bundle of functions, to use this as a springboard to introduce the new version.  It would have been completely new, under a completely new name, with the advertised performance and accuracy improvements. 
+
+{{< notice note >}}
+This would have been far more equitable to other programmers, as they would be competing with ~chardet~ fair and square.  I don't think highly of Y's mental faculties.  I have seen an implementation of ~chardet~ generated with PyO3 in a fraction of the time, having all of the same accuracy and performance improvements claimed.  The only reason not to use the PyO3 alternative is because it has a much less memorable name. But that can be fixed.
+{{< /notice >}}
+
+That would have been comparable in effort, but much more elegant.  It would have avoided the massive Streisand effect and would have avoided the well-warranted sex-offender comparisons by avoiding the sex-offence equivalent. 
+
+The best way not to get caught is not to commit the morally objectionable. 
+
+Sadly, and to my knowledge, very deliberately, this is a corporate sponsored hostile take-over.  I don't believe that it is necessarily an accident that a big dick from Sonar showed up, being condescending to X.
+
+* Implications
+
+The ~chardet~ story was testing the waters.  It was an attempt to gauge the public backlash.  I think the result is apparent.
+
+I do think that we would find more situations where a free software project that is unpalatable to corporate sponsors (/i.e./ the GPL is doing its job), be laundered with advanced obfuscated plagiarism and information synthesis mechanisms, such as LLMs.  This happening in public, though, and being largely legally in the clear has some positive implications too. 
+
+One interesting corrollary, is that this paves the way to laundering closed source software *just as much* as copyleft.  While I will vehemently defend the standard of Copyleft, there being a "laws for thee, but not for me" is a strong argument to question and eventually tear down the legitimacy of today's lawmakers.  Simply put, this being ruled in favour of laundering, means that a bug-compatible reimplementation of Microslop Windows can no longer be simply morally qualified as theft.  It is much more likely that there will be sneaky changes and bugs introduced by LLMs that we can identify and filter out; and there is still the monopoly over LLMs that one has to worry about. Still, this event may precipitate a chain that can lead to repealing the DMCA.  If this means the death of CopyLeft, I will take it.

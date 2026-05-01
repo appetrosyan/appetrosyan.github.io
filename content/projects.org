@@ -1,0 +1,358 @@
++++
+title = "Projects"
+date = 2026-05-01T00:00:00+04:00
+draft = false
+
+[[employers]]
+name = "Proof"
+period = "2025–present"
+role = "Lead Backend Engineer"
+icon = "fa-solid fa-server"
+logo = "proof.png"
+description = "A subsidiary of Drift."
+url = "https://proof.trade/"
+urlLabel = "proof.trade"
+
+  [[employers.projects]]
+  name = "Trading Infrastructure"
+  tagline = "Low-latency order execution and routing"
+  icon = "fa-solid fa-arrow-trend-up"
+  description = """
+Building and maintaining the core trading infrastructure, including order routing, execution strategies, and real-time risk management systems. Focused on reliability and performance across multiple venues.
+"""
+
+  [[employers.projects]]
+  name = "Historical Indexing"
+  tagline = "Comprehensive market data pipeline"
+  icon = "fa-solid fa-database"
+  description = """
+Designing and operating the historical data indexing system that powers backtesting, analytics, and quantitative research. Handles ingestion, normalization, and storage of large-scale market data across multiple chains.
+"""
+
+[[employers]]
+name = "Monadic Sheep"
+period = "2023–present"
+role = "Founder"
+icon = "fa-solid fa-code"
+logo = "monadic-sheep.png"
+description = "\"Programs must be written for people to read, and only incidentally for machines to execute.\""
+url = "https://www.monadicsheep.org/"
+urlLabel = "monadicsheep.org"
+
+  [[employers.projects]]
+  name = "Gond"
+  tagline = "Voice input for the modern age"
+  icon = "fa-solid fa-microphone"
+  description = """
+A Rust-based project providing modern voice input capabilities, designed to integrate seamlessly with applications like Emacs.
+"""
+  url = "https://codeberg.org/MonadicSheep/Gond"
+  urlLabel = "Codeberg"
+
+  [[employers.projects]]
+  name = "disposable-key"
+  tagline = "Ephemeral key bindings for Emacs"
+  icon = "fa-solid fa-key"
+  description = """
+A minor mode that turns yelling at the user into something useful by creating ephemeral key bindings for uncommonly used functions. Replaces the annoying beep with practical functionality.
+"""
+  url = "https://codeberg.org/MonadicSheep/disposable-key"
+  urlLabel = "Codeberg"
+
+  [[employers.projects]]
+  name = "app-monochrome"
+  tagline = "Almost monochromatic theme for Emacs"
+  icon = "fa-solid fa-palette"
+  description = """
+An almost monochromatic theme for Emacs (and other editors) that takes highlighting away from colours and into font shapes and weights. Designed for accessibility, particularly for users with colour blindness or sensitivity to high-contrast palettes.
+"""
+  url = "https://codeberg.org/MonadicSheep/app-monochrome"
+  urlLabel = "Codeberg"
+
+  [[employers.projects]]
+  name = "Emacs Canvas Patch"
+  tagline = "Native high-resolution rendering for modern Emacs"
+  icon = "fa-solid fa-display"
+  image = "emacs.png"
+  description = """
+An ongoing patch set for GNU Emacs that adds native capabilities for rendering high-resolution, high-framerate content directly within the editor. Enables rich visual applications, animations, and interactive displays without relying on external processes.
+"""
+  url = "https://codeberg.org/MonadicSheep/emacs"
+  urlLabel = "Codeberg"
+
+  [[employers.projects]]
+  name = "pale"
+  tagline = "Picture and Animation Library for Emacs"
+  icon = "fa-solid fa-image"
+  description = """
+A C library providing picture and animation capabilities for Emacs, enabling rich visual content rendering within the editor.
+"""
+  url = "https://codeberg.org/MonadicSheep/pale"
+  urlLabel = "Codeberg"
+
+[[employers]]
+name = "Eclipse Labs"
+period = "2023–2024"
+role = "Performance Team Leader"
+icon = "fa-solid fa-gauge-high"
+logo = "eclipse.svg"
+description = ""
+url = "https://www.eclipse.xyz/"
+urlLabel = "eclipse.xyz"
+
+  [[employers.projects]]
+  name = "Syzygy"
+  tagline = "Canonical bridge between Ethereum and Solana"
+  icon = "fa-solid fa-link"
+  description = """
+Researched modular blockchains and guided development of the canonical bridge "syzygy" between Ethereum and Solana. Oversaw deployment of the Eclipse test network.
+"""
+
+  [[employers.projects]]
+  name = "Solar Eclipse"
+  tagline = "Internal Solana-based validator with Celestia DA integration"
+  icon = "fa-solid fa-sun"
+  image = "solana.svg"
+  description = """
+Built an internal validator based on Solana with extensions for Celestia Data Availability integration. Maintained virtually zero downtime and never suffered a security breach during operation.
+"""
+
+  [[employers.projects]]
+  name = "Eclipse Performance Thesis"
+  tagline = "Technical analysis of blockchain performance trade-offs"
+  icon = "fa-solid fa-file-lines"
+  image = "gsvm-performance-thesis.png"
+  expandedImage = "gsvm-expanded.png"
+  description = """
+Authored a comprehensive performance thesis examining the technical trade-offs in blockchain execution environments and validator design.
+"""
+  url = "https://github.com/Eclipse-Laboratories-Inc/docs/blob/main/Eclipse_Performance_Thesis_v_0.9.pdf"
+  urlLabel = "Read the thesis"
+
+  [[employers.projects]]
+  name = "GSVM"
+  tagline = "High-performance RISC-V-based Solana client"
+  icon = "fa-solid fa-microchip"
+  image = "gsvm-performance-thesis.png"
+  description = """
+Developed a Rust-based Solana client built around a RISC-V virtual machine and an optimised hybrid concurrency scheduler. Designed to rival Firedancer in terms of performance.
+"""
+
+  [[employers.projects]]
+  name = "Eclipse Crypto"
+  tagline = "World's fastest batch-optimised ed25519 signature verification"
+  icon = "fa-solid fa-shield-halved"
+  image = "eclipse-crypto-icon.png"
+  expandedImage = "eclipse-crypto-expanded.png"
+  description = """
+Cryptographic library offering the world's fastest (at the time) batch-optimised ed25519 signature verification, enabling line-speed performance exceeding 10 million TPS through hardware-software co-design.
+"""
+  url = "https://www.eclipselabs.io/blogs/breaking-10-million-tps"
+  urlLabel = "Read the blog post"
+
+  [[employers.projects]]
+  name = "AlDBaran"
+  tagline = "World's fastest authenticated database for optimistic rollups"
+  icon = "fa-solid fa-database"
+  image = "aldbaran-icon.png"
+  expandedImage = "aldbaran.png"
+  description = """
+Designed and implemented the world's fastest authenticated database for optimistic rollups.
+
+Authored the accompanying [research paper](https://arxiv.org/abs/2508.10493). Key results:
+
+- Eliminates disk I/O from the critical path, implementing prefetching strategies and refining Merkle tree updates
+- Achieves ~48 million state updates per second on AWS hardware (~16M TPS assuming 3 updates per transaction)
+- Handles 50 Gbps network throughput, surpassing any empirically documented blockchain throughput
+- On consumer hardware: ~8M updates/s in-memory, ~5M updates/s with sub-second snapshot intervals
+- At least 10× faster than QMDB on identical machine configurations, with only 3 external dependencies vs. QMDB's 21
+- Supports historical state proofs, enabling light client functionality and rollups for chains that lack native state commitments
+"""
+  url = "/tags/aldbaran/"
+  urlLabel = "Read the blog series"
+
+[[employers]]
+name = "YZ.Social"
+period = "2025–April 2026"
+role = "Consultant"
+icon = "fa-solid fa-comments"
+description = ""
+url = "https://yz.social/"
+urlLabel = "yz.social"
+
+  [[employers.projects]]
+  name = "The Braided Blockchain"
+  tagline = "Co-author of the YZ.Social whitepaper"
+  icon = "fa-solid fa-file-alt"
+  description = """
+Co-authored the foundational whitepaper introducing a novel sharded blockchain architecture. Key contributions include the Concordance Engine — a deterministic replicated-state machine replacing BFT consensus with rapid fault detection and replay-based recovery — and the Braid of Trust, a decentralised audit graph using peer-shard notarisation receipts for cross-shard integrity. The design achieves sub-second local finality and near-linear throughput scaling.
+"""
+
+  [[employers.projects]]
+  name = "Elerian"
+  tagline = "AAA-style multiplayer fantasy game concept"
+  icon = "fa-solid fa-gamepad"
+  description = """
+Originated the concept for Elerian, a multiplayer fantasy game blending single-player narrative depth with persistent shared worlds. Designed the core mechanic of faction warfare where creature players battle under the tactical direction of wizard players, with AI fallback for disconnected participants and a reincarnation system for dead entities.
+"""
+
+  [[employers.projects]]
+  name = "SYZl.it"
+  tagline = "Neural-network-inspired social curation platform"
+  icon = "fa-solid fa-brain"
+  description = """
+Contributed to the design of SYZl, a crowd-sourced curation platform that connects users through shared taste preferences, functioning like a neural network where human users are the neurons. Designed the compensated attention model that distributes micropayments across curators and content creators, enabling universal supplementary income based on network contribution.
+"""
+
+[[employers]]
+name = "Greybeard Consulting"
+period = "Retired from external"
+role = "Founder"
+icon = "fa-solid fa-briefcase"
+logo = "greybeard.png"
+description = "Now focused entirely on internal projects."
+url = "https://greybeard.consulting/"
+urlLabel = "greybeard.consulting"
+
+  [[employers.projects]]
+  name = "Multisynq"
+  tagline = "Croquet blockchain tokenomic model"
+  icon = "fa-solid fa-coins"
+  description = """
+Developed the tokenomic model for Multisynq, a Croquet-based collaborative virtual world leveraging blockchain for persistent shared state and economic incentives.
+"""
+
+  [[employers.projects]]
+  name = "Helium-based PoC"
+  tagline = "Solana proof-of-concept demo"
+  icon = "fa-solid fa-satellite-dish"
+  description = """
+Built a proof-of-concept demo on Solana using the Helium Program Library, demonstrating decentralized wireless network infrastructure concepts.
+"""
+
+  [[employers.projects]]
+  name = "Grey-Lang"
+  tagline = "Constraint-first systems programming language"
+  icon = "fa-solid fa-language"
+  description = """
+A novel systems-level programming language that eschews traditional machine-based type systems in favour of monadic and explicit constraint propagation. By inverting the Church-Turing thesis, it creates an environment where programming and proving theorems are one and the same.
+"""
+  url = "https://github.com/Greybeard-Entertainment/constraint-typed-language"
+  urlLabel = "GitHub"
+
+  [[employers.projects]]
+  name = "Rust in 2X"
+  tagline = "Rapid Rust programming guide for experienced developers"
+  icon = "fa-solid fa-book"
+  description = """
+A book designed to quickly bring specialists from other programming languages and disciplines up to speed on Rust. Covers core concepts, ownership, and idiomatic patterns for developers already experienced in software engineering.
+"""
+  url = "https://github.com/Greybeard-Entertainment/rust-in-2x"
+  urlLabel = "GitHub"
+
+  [[employers.projects]]
+  name = "The Map of Ageing"
+  tagline = "Evidence-based ageing theories and compensation mechanisms"
+  icon = "fa-solid fa-map"
+  description = """
+A collection of evidence-based theories of ageing with potential compensation mechanisms.
+"""
+
+  [[employers.projects]]
+  name = "App Monochrome"
+  tagline = "Monochromatic Emacs theme designed for accessibility"
+  icon = "fa-solid fa-palette"
+  description = """
+An almost monochromatic theme for Emacs and other editors that shifts highlighting away from colour dependence and into font shapes and weights. This design is specifically useful for visually impaired users — including those with colour blindness, low vision, or sensitivity to high-contrast palettes — who struggle with traditional colour-heavy themes. By relying on typographic distinctions rather than hue-based cues, the theme ensures that syntax highlighting remains meaningful regardless of the user's colour perception.
+"""
+  url = "https://github.com/Greybeard-Entertainment/app-monochrome"
+  urlLabel = "GitHub"
+
+[[employers]]
+name = "Hyperledger / Soramitsu"
+period = "2022–2023"
+role = "Tech Lead & Product Owner"
+icon = "fa-solid fa-cubes"
+logo = "soramitsu.png"
+description = ""
+url = "https://iroha.tech/"
+urlLabel = "iroha.tech"
+
+  [[employers.projects]]
+  name = "Iroha v2"
+  tagline = "Enterprise-grade blockchain framework"
+  icon = "fa-solid fa-chain"
+  image = "iroha.png"
+  description = """
+Assembled the core development team and delivered the first long-term support release candidate. Designed the trigger system with WASM support and the smart contract system. Integrated Iroha v2 with Hyperledger Cactus and improved consensus throughput from 10 TPS to 30,000 TPS.
+"""
+
+  [[employers.projects]]
+  name = "ADB CSD-RTGS Linkages"
+  tagline = "Cross-border DvP implementation — 1st place, 2023"
+  icon = "fa-solid fa-building-columns"
+  image = "adb.png"
+  description = """
+Planned and designed the cross-border Delivery-Versus-Payment linkages proof-of-concept with the Asian Development Bank, based on the Iroha v2 virtual machine. Results were presented at the Asia Impact Webinar 2023 (Project Tridecagon), demonstrating how distributed ledger technology can connect central banks' real-time gross settlement systems and central securities depositories across ASEAN+3 economies. The project won 1st place in the CSD/RTGS linkages PoC competition.
+"""
+  url = "https://www.adb.org/news/videos/asian-impact-webinar-64-project-tridecagon-technology-link-financial-markets-asean3"
+  urlLabel = "Watch the webinar"
+
+  [[employers.projects]]
+  name = "Sora v3 Integration"
+  tagline = "Substrate-based architecture integration"
+  icon = "fa-solid fa-network-wired"
+  image = "sora.png"
+  description = """
+Roadmapped and co-designed Iroha to fit the existing Substrate-based architecture of the SORA network. Set up internal security standards and best practices working groups. Conducted internal audits of Sora and Kagome projects.
+"""
+
+  [[employers.projects]]
+  name = "Iroha v1 Maintenance"
+  tagline = "Legacy C++ ledger support"
+  icon = "fa-solid fa-tools"
+  image = "iroha-v1.png"
+  description = """
+Maintained the Iroha v1 C++ end-of-life ledger used by clients in ASEAN jurisdictions.
+"""
+
+  [[employers.projects]]
+  name = "Hyperledger Ursa"
+  tagline = "Cross-project cryptographic library"
+  icon = "fa-solid fa-shield-halved"
+  image = "ursa.png"
+  description = """
+Maintained the sole cryptographic library used across all Hyperledger projects until its end-of-life. Modernised the codebase to contemporary Rust standards and implemented the BLS12-381 curve for advanced cryptographic operations.
+"""
+  url = "https://github.com/hyperledger/ursa"
+  urlLabel = "GitHub"
+
+  [[employers.projects]]
+  name = "Fraud Intelligence Blockchain"
+  tagline = "Security vulnerability designation system with Orillion"
+  icon = "fa-solid fa-user-shield"
+  image = "fraud-intel.png"
+  description = """
+Co-designed the Iroha v2 ledger architecture to support the deployment of a fraud and security vulnerability designation system, developed in collaboration with Orillion under Soramitsu.
+"""
+
+[[employers]]
+name = "Independent / Community"
+period = "Ongoing"
+role = "Contributor"
+icon = "fa-solid fa-users"
+description = ""
+
+  [[employers.projects]]
+  name = "GNU Emacs"
+  tagline = "Active contributor and package author"
+  icon = "fa-brands fa-gnu"
+  image = "emacs.png"
+  description = """
+Contributor to GNU Emacs with a focus on the widget system and GUI improvements. Author of several packages aimed at improving the editing experience.
+
+Previously an associate member of the Free Software Foundation.
+"""
+  url = "https://www.gnu.org/software/emacs/"
+  urlLabel = "gnu.org/software/emacs"
++++

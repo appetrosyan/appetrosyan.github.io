@@ -1,0 +1,137 @@
+#+TITLE: The Problem of Evil
+#+DRAFT
+
+In this post I'd like to address my own view on a question that was asked of the late Christopher Hitchens.
+
+How does one create a Kant-like system of morality without assuming that there is god.
+
+The simplest answer is the problem of evil, and the self-evident conclusion that such a system is inherently flawed.  I will expand on this in the following lines, but the bird's-eye-overview is the following line of questioning.
+
+How do we define what is moral.  Does evil exist conceptually within that moral system, and if so what is its definition.  Unless that definition explicitly makes an exception for god, I postulate, and assume it is provable, that for any such system, god is necessarily the greatest evil.
+
+* Why god is evil
+A sketch of this proof is easy to understand for Christianity.  The list of things that the biblical God has done canonically includes things that we, for any human ruler or would classify as the most heinous crimes.
+
+The biblical god endorses slavery and is a-OK with women being chattel.  This is the god that threw a tantrum and literally flushed their own flawed creation down the drain, and came up with a convenient excuse for humans to be exiled from heaven: free will (more on that later), which if you assume god exists, you cannot possibly have (more on that later).  There are /many/ *many* more unpalatable examples of god's direct behaviour in the bible.
+
+True to the word of the bible, "god has created man in his own image" and while the image that typically manifests of that part of god is usually of creativity: perhaps an artist creating a world of their own, or a musician coming up with these patterns, or even more abstractly a mathematician working on higher dimension topological spaces; truth is, Adolf you-know-who is a more accurate analogue.  A bible scholar might be able to enumerate them better.
+
+But that is not the thesis of this article.  This is not a specific flaw of christianity.  With all its faults, for the time, it was a rather progressive religion.  Every single conception of an all-powerful being that either manifests the rules, or has merely created them, must necessarily have a specific exception in the moral code.
+
+It's easy to understand when considering that being [[https://en.wikipedia.org/wiki/Watchmaker_analogy][the watchmaker]] entails a lot of responsibility.  Think of every bit of suffering that was caused by a natural disaster, every single human that died of old age, and the grief that /that/ entailed for their families.  Not one, nor two; all of them, from big bang to heat death; every single instance is the teleological god's responsibility.
+
+* Free will
+
+** Absurdity of Evil as Punishment
+
+Christian apologists would often cite free will as the reason why one must suffer.  Of course, this model is difficult to defend.  Stephen Fry's favourite example is Leukemia in children.  One may project the sins of the parents, and with superficial scrutiny, when christian mythology is considered, we all have at least /the apple/ to atone for, and /probably/ something else too.
+
+If such is the method of dispensing justice, it is rather non-uniform in the severity of its application.  One can vaguely gesture in abstract directions of "sin" to justify the horrible suffering inflicted on those that have not really had an opportunity to have "sinned".  However we can make statistical arguments that this does not generalise to some very specific visible examples, which according to Christian morality should have "sinned" more.
+
+Think of the billionaire class: those who indulge in habitual gluttony, lust, greed (obviously), [[https://en.wikipedia.org/wiki/Trickle-down_economics][whose envy is law]], whose dejection [[https://studyfinds.org/rich-people-tend-act-more-unethical-why/][is directly proportional to their wealth]], and to protect their sloth they would invent concepts such as intellectual property.  [[https://www.youtube.com/shorts/vdMintt03D0][They are boastful, and vainglorious to the point where it is hard to differentiate from pride]].  I was going to say that they are perhaps [[https://www.youtube.com/watch?v=U_M_uvDChJQ][less wrathful]], until I recognised that it is in their nature [[https://apnews.com/article/donald-trump-misses-out-on-nobel-peace-prize-729973788d8953da9af1cbc136232e96][to be better at hiding it]]. This class is predisposed to what we conisder immoral behaviour.  Horrible diseases should be over-represented in this population, if the natural suffering were punishment.
+
+Of course, this is not a proof.  We have demonstrated that the christian moral system does not seem to correspond to punishment, but perhaps some other deontological /ab deo/ system would.  To prove the impossibility it is insufficient to disprove the property for one instance.  One has to find how a collection of properties leads to a contradiction.
+
+
+{{< notice note >}}
+It is important to point out that a much bigger challenge for this thesis would be my own view of morality.  Like Kant, I believe that there is an absolute correct moral.  Kant's own work on this seems to be a good approximation of that morality, but it is not itself that.
+
+I  ascribe to that system  that it must take the circumstances into account.  Every action must be considered with its consequences, not in isolation.  In this /utilitarianism/ is a good heuristic and can sometimes be a better approximation.
+
+This system must also take into account one's psychology.  It should make concessions for one's mental state.  In this, /contractarianism/ offers a reasonable heuristic, but it also approximates the ground true moral.
+
+The flaws that I find in these three systems are well-documented: Kant's rigid morality does not make exceptions, and as such leads to counter-intuitive situations.  The best example is Lord Eddard Stark in G.  R.  R.  Martin's "A Song of Ice and Fire".  Utilitarianism requires one to fix a utility function, and infinite foreknowledge.  The former is a problem, because one can over-fit the utility function to their current behaviour, the latter is a problem, because one's decisions in the trolley problem are only morally justifiable if they have complete knowledge of the current state, and also if they can perfectly predict the consequences of their actions.  Finally, contractarianism makes morality itself a social construct.  It is undeniable that our /current/ moral systems are social contracts, but I believe that a successor species to humanity might not itself *necessarily* be social.
+
+It is rather unsatisfying to state that I believe that there's a strict moral code, that should be derivable from first principles, and we have not found it yet.  Unfortunately, this brushes up against the fundamental philosophical questions: is existence in general preferable to non-existence, are higher entropy states prefered to lower entropy ones, and are
+{{</ notice >}}
+
+Christians believe that
+1. God is all powerful, and is /the/ teleological deity.  It also takes an active role in the universe: can, has and will interfere in certain circumstances (c.f.  miracles).
+2. God is a moral entity, that is benevolent, and the opposite of evil.
+3. The moral system that is described in Christian mythology, which includes the bible with specific interpretation, is a dictate of God.
+4. Humans are to follow these dictates, but may in practice fail to do so as a matter of /choice/ and /free will/, for which God reserves the right (but is not obligated to) punish.
+
+These beliefs are often converted into a belief system that entails that God, is according to their own moral standards, a benevolent being, which I believe is incorrect.  It is a thesis that when added to the four above leads to a contradiction.
+
+The fourth point itself, is also malformed, which we shall examine more closely.
+
+Free will can be clearly ascribed to humans.  It is less clear whether animals have it too, scientifically we have no reason to believe otherwise, but can perhaps hold those animals that possess sentience to a higher standard.  Whether or not other things, such as stars, planets, electrons, the electron field, the universal wavefunction or the Cosmological Horizon have free will, is rather unclear.
+
+However, whether or not your consciousness can exert a supernatural effect on the world is a trivial scientific question.  Much like a bachelor is necessarily unmarried, your choices in this world are limited by the laws of this world.  If the laws of this world are even somewhat statistically deterministic, so are your choices.
+
+** God Plays Tic-Tac-Toe
+
+The best way to picture this, is to imagine a game of tic-tac-toe played against a computer.  Your legal moves are restricted by the rules of the game.  You have free will, but it can only manifest once per turn, and has barely three bits of entropy throughout the game.  You, as a human player, are unlikely to know all ends, although given sufficient time, one can exhaustively search the 255168 total possible games, most that play do not, and have not.  The computer has.
+
+In this analogy, living a moral life is akin to winning a game against the computer.  God knows all ends (at least) and enforces the rules, and also has a significant headstart.  With perfect play on both ends, the game is likely a draw.   The more likely game is the computer utterly demolishing the human player.
+
+Christian doctrine argues that God wants to teach us how to play the game, so will allow for some mistakes on their end to allow us to win.  The constraints under which we operate, however, indicate the opposite: we are not given the requisite time to prepare, human lifespan is rather short, and we're on the clock the entire game.  Furthermore, the game is only played once.  Furthermore, afterlife, being a pagan concept that migrated into Christianity, the punishment for getting the game wrong is eternal damnation.
+
+Every instance of the game being won, /i.e./  the human leading a moral life, is less a consequence of the human's play, but rather of the computer allowing the human to win.  In this hypothetical, we can only see our board, and some moves made by some players.  We might infer whether those moves were good, or whether the computer made that specific player lucky from the moves, but we do not see the full board for anyone other than ourselves.
+
+The goal cannot be "to teach us how to play" alone.  Additional constraints apply.  Being shoved in the deep end, with most of the board already populated, few choices, and a strict time limit is not conducive to learning. It'd be much more efficient to allow the player the time to exhaustively search the discrete configuration space.
+
+So let us come back from this analogy to map the findings to our view of the situation. One can lead a moral life if the physical laws allow it.  Most likely if one does not, this is a consequence of the game being adversarial, with a profound asymmetry of the knowledge, not the fault of the human.  It is possible that one was given an opportunity which they failed to capitalise on.  We often lack context, and fail to predict all ends, as such these opportunities may be illusory.
+
+This, in abstract, is a sketch of an argument, that should be quite general.  One's free will is largely irrelevant.  The major deciding factors are the initial conditions, and the opportunities presented to the human.  It is possible to do everything right, and still lose.
+
+** Causal Distance
+
+A moral system can allow some form of leeway in terms of causal distance.  There are moral systems where if you order someone to be killed you might not be responsible for it.  In such a system, there is a concentration of guilt, you can contribute to the outcome, but not be guilty.  There are moral systems, where your butterfly flapping its wings is responsible for all the destruction wrought by the tornado that it caused.  Both extremes bode unwell for the deity.
+
+In the latter case, where we apportion guilt and take into account the full determinism, *every* single instance of any evil will have a great deal of /god/'s portion of guilt.  If someone murdered someone else, the sheer fact that *that* someone else existed in the first place, is a contributing factor.
+
+In the former case, the problem is a bit more subtle.  Set aside that such a system would be silly.  It takes away agency from god.  Because causality itself is a thing that was set up by god.  Say what you will, but a person shoved from a high-rise is more proximally killed by gravity, than the person that shoved them.  So if god is necessarily the watchmaker, they are responsible for the rule that enabled the evil.  But furthermore, they are not responsible for a fraction of it, that in aggregate results in them being accidentally the greatest evil.  No action is possible without the enabling of the watchmaker.  him giving you the free will to do the atrocity is itself an atrocity.
+
+This is subtly different from the previous case, because a not-all-powerful god, specifically one that fucked off after the moment of creation, is still technically not evil.  They created the universe, they are not responsible for what happens in it afterwards.   This loophole, for the longest time, to me appeared to be the only viable way forward.  The subtle mistake, however, is that by construction such a god is an exception.  Not because there is an explicit exception for them, but that the fact that they don't interfere afterwards and the causal distance has a cut-off point comprise an implicit exception.
+
+** Agency
+
+Now let us complicate things a little.  Consider an agentic torture scenario.  I don't mean Claude taking away your job, I mean a setup more similar to the torture scene in early Game of Thrones.  A bucket with a rat is placed against the victim's abdomen, and heat is applied.  Who exactly is responsible for the damage?
+
+Under the short-range interpretation, we can have arbitrary cut-offs.  The rat may have part or all of the blame, even though what it does, as anyone who held their hand to an open flame, is easily justifiable.  Our modern day moral systems are more likely to completely absolve the rat, and put the blame squarely on the torturer's shoulders.  Some would go further and beg the question of whether the torturer themselves are in the same position as the rat.  Whether proverbial heat in the form of peer pressure is significant enough to remove even part of the blame.  Outside of niche political groups however, the blame would not extend further to the person who allows torture, or rather doesn't prevent it.  This is an inconsistency in the moral system.
+
+Most moral systems are flawed.  Most horrendously so.  They are workable, and use crutches or heuristics to simplify jurisprudence and align with it somewhat.  God's edicts, the ten commandments, the updated requirements are such heuristics.  The seven deadly sins are also that.  And on that note, these
+
+heuristics are inconsistent with each other under the strictest scrutiny: lust indirectly leads to human life.  Excluding it would most likely lead to fewer births, which is considered preferable.  However, eliminating said children after they are born (and in some cases before, but after conception), is considered a great evil.  Thou shalt not kill.
+
+And the definitions of what those heuristics must operate on are rather vague too.  Gluttony is a deadly sin.  We have starving people.  Every single point in history we had enough food for everyone.  It was /always/ a distribution problem.  Yet we valued personal property more than the lives of those that had died as a consequence.
+
+A murderer undoubtedly caused suffering, at least to their victim.  But the fact that they were in a position to do so; that their instincts allowed for them to do the deed, lacking any psychological barrier for example and that they happened to be in physical proximity;  the fact that their actions proved effective; the very fact that murder is possible...  all of these are natural consequences of the way life is set up.  If there was a "the murderer decided to kill some one", the role that their free will played in the event is infinitesimal.
+
+** Conclusion
+
+Free will is not a useful escape hatch.  Moral systems must draw a line between natural phenomena: forced mistakes, and unforced mistakes where one chose to do the immoral thing.  Unfortunately, if the natural phenomena are considered an agent in this picture, then the force behind them /must/ necessarily accept a great deal of responsibility.  If it has free will, it chose to set up rules such that every other evil is possible.
+
+But what about the role of religion as a whole?  Can a moral system be consistent with a religion?  This depends on the specifics of both the religion and the moral system.
+
+For example, the concept of reincarnation, lends more credibility to the view that life is a learning opportunity.  In such a system, morality may well be what is to be learned, and one is given multiple perspectives, with multiple initial conditions.  It makes the proverbial game of tic-tac-toe more bearable and perhaps more useful.   Immortality of the soul of any kind, in fact, reduces the time pressure to identify moral choices.  This is important, because in that case, one can posit that every non-zombie is reasonably expected to eventually learn a moral state of being.  The end of one's natural life is thus a mechanism to "wipe the slate clean".
+
+These do not address the central problem, however.  Within the religious system, morality that stems from god, should not be applied to god.  There are multiple ways around this.
+
+One can have a religion with an evil deity.  Historically such religions were the majority.  The God of the old testament was a tempermental deity, that had prescriptions that he himself did not follow.  The exception was explicit.  While it would be tempting to extricate the Christian God as a preferable alternative, all this would do is make the deity non-hipocritical with respect to its own rules.  That would not make those rules just.
+
+{{< notice note >}}
+To me the conception of Christian god is rather a problematic one.
+
+I'm writing this while nursing my 2.5 year old dog with a large inoperable tumour in its leg.  An anthropomorphic entity responsible for this much suffering is irredeemable in my opinion.
+
+God had better be dead.
+
+{{< /notice >}}
+
+One can have a non-Kantian, specifically non-rigid moral code.  As such the moral thing to do for a human is determined by their society, not by god.  Societies change, and the moral thing to do changes with them and is a function of the environment in which each individual finds themselves.  The god is outside such a moral system by construction, but is also an indirect source of the morals, as the physical rules synthesise into moral and psychological ones.
+
+The most elegant of such systems is perhaps the Hegelian dialectic system.  Within that system, every choice may have a label of evil-ness attached to it, but that label is meaningless.  The evil is the dialectic counterpart to the good.  There cannot be good without evil, and as such all beings, be they good /or/ evil, play a role.  Within this system god must necessarily play both sides.  This system is explicitly universally amoral.  One's choices, whatever they are, serve one goal.
+
+It is, of course, perfectly reasonable to remove religion from the equation.  There is no purpose to existence.  No ulterior motive.  We simply /are/.  Morality is a convenient heuristic for survival.  It may still derive from first principles, and we may still only be able to approximate it, but only because we have limited foresight.  The rules by which we exist may, to borrow Kant's terminology, are an /a priori/, and do not have a creator.  The shape of the rules is a mathematical necessity.  Non-existence is not possible, for the same reason why $1+1=2$.  You may choose to call those rules god, or /logos/, but they are nothing more than universal truths.  Suffering is something that we as entities that can experience it try to avoid, but that is in no way different to us being alive and having preferences.
+
+
+
+* Answer
+
+So coming back to the headline question.  How can we build a moral system without god?  It is not some innate understanding of good versus evil, as Hitchens posited.
+
+It is rather a subtle contradiction between the constructions that we operate on.  It is not possible to have an all-powerful creator, a consistent moral code, evil of any kind defined in any way, and the moral code apply to the creator.  To stem /from/ the creator is a stronger statement, that makes the proposition further more precarious.
+
+I do not blame Hitches for not coming up with this answer on the spot...  even the sun has spots.
