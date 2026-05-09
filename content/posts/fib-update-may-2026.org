@@ -1,6 +1,9 @@
 #+TITLE: Merging the Visual Novel Canvas
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2026-05-09
+#+TAGS: Fib
+#+TAGS: Tooling
+#+TAGS: Emacs
 
 A weekly update on the state and progress in maintaining and developing the Fib editor.
 
