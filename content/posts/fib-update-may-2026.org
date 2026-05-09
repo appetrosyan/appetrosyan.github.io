@@ -1,0 +1,116 @@
+#+TITLE: Merging the Visual Novel Canvas
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-05-09
+
+A weekly update on the state and progress in maintaining and developing the Fib editor.
+
+Last week I posted about making Fib a real project that I want to work on full-time.  The outstanding work was to merge the script canvas, a patch from the community.  That work is now merged, though not complete. 
+
+What follows is a description of how, on a technical level, the Script Canvas is implemented, and what is missing. 
+
+* Systems
+** Linkage
+
+The Script Canvas, is a typical extension that would ordinarily live in its own repository and be linked at runtime.  There are a few good reasons to bring it in as a statically linked component: 
+
+
+1. It is general.  We call it a visual novel, but the basic idea of visuals and logic flowing one after the other applies also to presentations, tutorials, code walk-throughs, flashcards and many other things that one would ordinarily bring an entire browser for displaying.  
+
+A script canvas on its own, if it allows one to display the contents of an image, or video, is a major capability for the graphical moldable environment that Fib is meant to be. 
+
+2. It is performance-sensitive.  The script canvas is the single most demanding component for optimisation.  And while I cannot even in principle say that I have done all that I need to do for making it fast, the most important aspect of making it acceptably fast, is by keeping it as a core component that is part of testing and benchmarking. 
+
+3. Function.  The component is arguably a centerpiece.  It is the most important part of the toolkit.  Not shipping it by default is tantamount to not including a dictionary or a dynamic array in your standard library.  The editor needs to come batteries included, meaning that it is usable without any external modification.  
+
+As a consequence of the fact that many replace with Emacs their presentation software, it is wise to at least consider making the default distribution /include/ at least the script canvas and some supporting guile code. 
+
+
+** Protocol
+
+For the message passing archtiecture to *work*, the components need to be as isolated as they can.  For the protocols to be *useful*, the components' capabilities must be known.  This naturally leads us to assert that components need to have a handshake process. 
+
+At the moment, the way it works is by allowing components to declare ahead of time what and how they can do.  Since the visual novel canvas is a static components, let's talk specifically about the static protocols.  There is an enumeration (a tagged union carrying data), that comprises a packed representation of a capability.  One capability, for example is being able to fill the canvas with a uniform colour.  This enumeration is added to the protocol registry; at compile time that registry's capabilities are forwarded to the components that uses them.  But, to avoid unnecessary binary pollution and a monolith, the way that /that/ is done only carries the message and the semantics of its interpretation are up to the components that process them. 
+
+Why?  For the moment, Fib is designed specifically to work as a graphical application and toolkit.  It can do rendering almost as, if not faster than GPUI (benchmarks coming as soon as the editor is feature-complete).  But there are instances where that is not acceptable or possible.  You might run it in a web browser, or inside the terminal.  You might run it inside Wayland with software rendering, becuase you have no hardware acceleration with functional drivers (ahem... nvidia... ahem).  You cannot know whether the canvas operations get applied accurately, or approximately, or cause a run-time failure, forwarding the error message back to the component it came from. 
+
+And for the vast majority of cases, it is enough to just use the built-in ~CavnasOp~ primitives, and not worry. 
+
+So currently, the ~ScriptCanvas~ protocol entails the ability to fill the background with an image, an assortion of coloured and rounded rectangles, and text.   Other shapes and components require a more involved system that I felt would drag out the merge request too far.  However it is important to note that this is all retained mode. 
+
+** Handles
+
+One of the main reasons I chosen Guile in the first place and stuck with it, is its near-native support of foreign objects and types.  This means that you can have a lisp variable that represents and carries data about a completely foreign object.  You can compose functions with respect to these types from within lisp.
+
+It's amazingly powerful.  With this, what the canvas can show is no longer determined by the protocol's specific data-carrying variants.  It can be a dynamic component, such as a code buffer, a button, or a menu.  And this does not only mean a built-in component either; a fancy component that you downloaded in some other package fits the canvas operations just as well.  At least in theory.  The problem is, as it always is, the question of declaring capabilities, and coming up with a working set of primitive components.  And these components, with the exception of the menu bar, as of now, cannot be constructed purely from Guile.   
+
+This is a limitation I am intent on removing. 
+
+** How this all works
+
+{{< notice warn >}}
+
+Firstly, I should preface this section by saying specifically that I do not include code snippets because the API is in flux; I do not want you to find this article years later as the tutorial and wonder why things that work today stopped. 
+
+{{< /notice >}}
+
+In a guile file you import the support library. Not because you need it, mind you, but because it provides more convenient UI for the procotol and message-passing machinery.  This lets you create the canvas, with a size specified.  This is done in absolute units for now, mainly because a more sophisticated anchor system requires more components than those that exist today. 
+
+Then you place a few rectangles, enable some music playing from the main window... attach some sound effects, and create an ephemeral sparse keymap for a prompt. 
+
+This is raising a number of questions: how do you handle allocation/de-allocation: manually for now, but ideally, if the handle gets GC'd that should reduce its reference count and de-allocate the underlying object.  But this has non-trivial interactions with situations such as the menu bar.
+
+Another good question would be whether you need to do all primitive operations manually? For the moment the answer is yes; and specifically because the message passing system slots in as an instruction set, and is kept minimal.  Instead of writing assembly by hand, you want a higher-level library that leverages those primitives and does the sensible thing... that's why you have the convenience libraries. 
+
+Finally, there's the question of performance.  For the moment, it is solved by caching the results of the computation, thus creating a retained-mode canvas that is suitable for long-running sessions, such as reading the visual novel's dialogue, without wasting too many GPU cycles.  Much work has gone into making this reliable, although I am still not satisfied with the end result.   On my machine it is as smooth as butter, but I may need to run more tests on a diverse set of hardware. 
+
+
+** What is this useful for
+
+Interactive presentations as part one.  If the entire editor can be compiled down to WASM, and run in a browser, you can also hypothetically get the boilerplate part of the Google Docs killer out of the way.  Having attended the office hours for Spritely institute (shoutout to the wonderfully clever people working there), the next step warrants more discussion in a later post, but keep in mind that being able to create a synchronised view of a rich vector graphics object is something that to this day is largely unavailable outside of proprietary ecosystems. 
+
+So you can do presentations, ideally with a sky-is-the-limit level of interactivity, which unlike /e.g./ powerpoint that has only a limited, but wide range of available components, is fully programmable, meaning that you can create presentation and animation templates that do not require a YouTube short plus manual intervention to implement. 
+
+The obvious next step is trying to use the canvas as a What-you-see-is-what-you-get vector graphis program.  Indeed, that is possible to do, but requires a bit more work.  You see, Vello allows almost direct 1-to-1 mapping of SVG with cheap rendering.  Think of Emacs' SVG pipeline, but on steroids and with native concurrency and GPU acceleration.   But to be quite honest, manipulating SVG from Guile is not the most ergonomic.  It may be worthwhile expoloring a different representation of the same underlying concepts, that can be rendered directly.  After all, this is assumed to be a modular graphical toolkit, and being able to do vector graphics neatly is part of the problem space. 
+
+** Tutorials
+
+This is perhaps the next major feature that I plan to implement.  Whether or not you plan to live in Fib the way some people (and not myself) live in Emacs, you will need to be shown the ropes.  Most people don't know the default keybindigns, don't care to try them, and don't care for the basic customisation system.  People want something that "just works", which deprives them of an artistic and extremely rewarding world of honing the tool to their craft. 
+
+Emacs lacks an interactive tutorial system.  One is shown the basics of movement, even so, without adjustment to what was customised.  This led to a friend of mine struggling to use the editor, mainly because the tutorial was asking them to use bindings that I rebound in my distribution.  Furthermore, Emacs lacks a "Mastering Emacs" in interactive tutorial form.  
+
+Finally, while Emacs provides some documentation, it confuses description with explanation.  One of the key weaknesses of the official Emacs lisp manual is that it is downright impenetrable for a novice, and extremely overly verbose for an expert.  What it needs is a simulacra of "Structure and Interpretation of Computer Programs", which in our case is going to apply directly, because Guile is a Scheme, and an interactive programming tutorial that shows the ropes with respect to how programming is done. 
+
+What do I mean by the latter?  When you are just learning Emacs, and this is a bad habit that I've detailed in many a blog post, you are tempted to just copy and paste someone else's confifugration files, and use them directly.  This is excellent for getting from Point A, which is the default, to Point B which is someone else's local optimum.  Both of these have the educational value of precisely zero, and lead to rote repetition of quote, usage of ~setq~ instead of ~custom-set-variable~ and no concept of using the built-in tools to identify the specific aspect of the editor that needs to be customised.  One is not taught or conditioned to use the built-in help, because the experts do not lean on those systems all that much, and novices do not care to document their progress. 
+
+This leaves a major gaping hole in the users' ability to utilise the program.  Consequently to them, even a simple task such as removing an annoying behaviour becomes a demanding sidequest.  This leads most people to either using Emacs as an inferior version of VSCode, or to copy-and-pasting someone's configuration, without understanding.  The latter, of course, demands there to be a large number of famous users, and those users to be making decisions less appropriate for personal configurations, and more acceptable as a distribution of sorts.  
+
+* What's next
+
+** Undo
+
+The work on the script canvas needs to continue, but it is no longer the top priority.  There is a number of major dealbreakers in the editor's current make-up that I seek to address. 
+
+First and foremost, and this is something I was working on before the script canvas system was in place, is the undo system.  The components are there, and given the modern computation budgets, there's room to create a majorly superior version to that of Emacs'. 
+
+There is a number of things that are better defaults for a major prorgram such as mine. One key improvement is allowing a tree-based undo with visualisation out of the box, with intuitive and sensible key bindings.  
+
+** Software rendering
+
+One of the key findings as a consequence of trying the editor inside Guile was that it requires a functioning graphics driver with Vulkan support.  I could, of course, say that having Vulkan is a requirement and call it a day.  Unfortunately, this is impractical.  It is specifically impractical for people that have nVidia hardware.
+
+There are, fortunately, many things that I could do to address this issue.  One of which is allowing software as well as GPU-accelerated rendering.  This will require a fundamental change of the ~GraphicalEnvironmentDisplay~ component that I've spent so much time building.  It may necessitate that I forego web-GPU, in lieu of a more complete toolkit, such as ~skia~. 
+
+One other worrying concern is that even on my machine, while the editor renders with pretty much impeccable frame times, it also considerably loads the GPU.  Having the editor open can easily bring a 7900xt's GPU memory temperature into the high 80's and this usuall indicates a fundamental inefficiency in the rendering pipeline.  
+
+I expect to find that inefficiency as soon as I add the CPU-based renderer.  Many users of Emacs, and those dissatisfied with VSCode would rather have an acceptably, decently performant software renderer, rather than a battery hog that loads their GPU. 
+** Keybinds
+
+Next up was a unified key-binding system.  This would let me extract the defaults away from the major modes that define them, and into the bootstrap file.  
+
+This will unblock the following major missing features: 
+- Sequential keybinds, like C-x C-f
+- Live key remapping, like running ~(global-set-key '(#<sequence>) #'function)~ in the guile eval channel, 
+- the interactive function calling system
+
+
+That latter warrants a longer explanation, but its time will come. 
