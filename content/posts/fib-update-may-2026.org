@@ -50,7 +50,7 @@ This is a limitation I am intent on removing.
 
 ** How this all works
 
-{{< notice warn >}}
+{{< notice warning >}}
 
 Firstly, I should preface this section by saying specifically that I do not include code snippets because the API is in flux; I do not want you to find this article years later as the tutorial and wonder why things that work today stopped. 
 
