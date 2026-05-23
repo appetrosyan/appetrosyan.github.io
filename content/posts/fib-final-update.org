@@ -1,0 +1,66 @@
+#+TITLE: Final update
+#+DATE: 2026-05-23
+#+AUTHOR: Aleksandr Petrosyan
+#+TAGS: Fib
+#+TAGS: Tooling
+
+This is a note explaining my reasoning for retiring Fib.  If you were following this project, and were wondering what happened, here's a brief rundown.
+
+I'm grieving the loss of my 3-year-old Griffon-Husky mix named Sirius.  This could mean that I'm making a rash, hot-headed decision that I had no business making as a knee-jerk reaction.  That reading is inaccurate.
+
+It would be more accurate to say that grief, the sheer extent of it, made me reevaluate my priorities.
+* What Fib was
+
+Fib was a useless pet project that I had done out of obligation to the thankless emotionless judgemental void that is the free software community.  I had said that I could build a better Emacs, and that I could do so by addressing the fundamental architectural limitations thereof.  I did.
+
+The final build can play videos better than any of the alternative vibe-coded apps.  The final build can play doom.  The final build can scroll through PDFs faster than Emacs reader.  The final build could render Org documents faster than you can blink and render them with gradients.  It had neovide style animations for most graphical components.  It also had no trouble font shaping.  It had a message-passing architecture with full process and per-component isolation, meaning that if you froze one piece, the rest could continue.
+
+Where can you find it?  Nowhere.  You are too late.  I don't even get a passing mention.  I was overshadowed by a sloppily made fork of Emacs with 95% Claude slop mixed in 5% bad decisions.  So much so that when I asked the author to rename their project, which emerged far later, I was basically told to go fuck myself.
+
+With the exception of one person seeing genuine interest was difficult.  Even so, rather than becoming a long-time contributor, they have their own economic situation to worry about and I cannot blame /them/ for choosing not to work on this.  The people in my "community" showed what I thought to be genuine interest.  As I have come to discover, that was inadequate to pursue it as a long-term project.
+
+I hadn't nuked the project because of an emotional outburst.  I had a final straw, but it was not the reason I decided that it was sunken cost fallacy.  Instead, the main reason is and will continue to be the genuine lack of interest.
+
+Over the past six months, the proeject has had one contribution from one person.  That contribution was accepted despite violating the letter of the monadic sheep contributing guidelines, it was wholly generated with an LLM (Claude to be precise) necessitating a full-on-rewrite from me to merge the contribution. 
+
+Of the 75 people that are regular members of the monadic sheep community, I had demoed the code to 5, and got contributions from exactly zero.  I cannot ask for a grant to pay these people for their time, and I could not in good conscience have them work on a code base that had accumulated a massive amount of technical debt. 
+
+The project is basically unsalvageable at this point.  I had pushed back working on it for so long that by the time I had something to show my audience, the focus was on Neomacs, Lem, Schemacs, Liquid, and a number of other alternative implementations.  Despite being technologically superior and technically not having many LLM-generated code contributions beyond March... it doesn't even have the dubious honour of being considered one of the vibe-coded emacs forks. 
+
+It is a dime-a-dozen bargain bin junk project that I used to distract myself from my dying dog.  The dog is dead now, I don't need a distraction.
+
+* My options
+
+I could work on a number of projects in the meantime.  I felt the need to do so based on the initial positive feedback from the Emacs china community, and words of encouragement.  This is a bad motivation to do anything, and if you feel that there is a project that you are doing out of obligation, I suggest you reconsider. 
+
+What I could do instead at this point is far more important. 
+
+1. I could just grieve for the loss of Sirius.  And if you are saying "he was just a dog, get over it", please ping me when one of the hairless apes that you call relatives die, so I could reciprocate. 
+
+
+2. I could write a paper in computer science.  Small, self-contained, publishable, building up a corpus of work that /might/ be worth publishing eventually. 
+
+3. I could write a paper in Physics.  The one reason I couldn't before, was because of sick relatives, and constant obligations that I cannot weasel out of.  Now I can.  Prof. Zaccone has done more for me than even my direct relatives and parents... don't know if he would like to collaborate.  But it certainly would be a better use of my time if he were. 
+
+4. I could continue my work on Nested Sampling.  I could vibe-code a new sampler, and test it against the state-of-the-art implementations.  Is it science? No.  What I did before wasn't either.  I got lucky, and then not so lucky.  Worth a shot. 
+
+5. I could polish up a good PhD application and do a PhD, leaving my perpetually-on-the-brink-of-destruction place that.... according to the people on the street... would rather I didn't stay here.  This country has done a lot for me, and I will do the best thing that I can do for it. 
+
+6. I could get myself back into good physical shape.  I am type 2 diabetic.  That's not good for you long term.  Thanks to a bunch of people using it to fit into their clothes, not as a matter of price, but general availablility, semaglutide is not available to me, so I need to fix this problem the old-fashioned-way, despite being the target demographic. 
+
+7. I could attempt to get a driver's licence.
+
+8. I could work with people that care about what I do a bit more; to the point where being paid was less of a pipe dream, but actual reality.  Decently I must add. 
+
+9. I could build a game.  You know a real one.  I haven't done this since I was 18, and I don't imagine that gamedev has become more pleasant, but perhaps just building a game for my own sake could be therapeutic. 
+
+
+10. Build an actually useful coding agent that is local first, and is tailored to operating efficiently. 
+
+Of all of these options I chose the one that had the potential to impact the least number of people's lives.  People who use emacs would /continue/ to use Emacs.  Richard Stallmann, the man I risked my career protecting doesn't seem fit to dignify my email with a response.  I cannot hope to obtain any funding, because realistically all projects are struggling today, but specifically, because it is a meritocracy that does not, has not and will never value technological advances above "community building".
+
+* What am I doin now
+
+Fib is wiped for good.  I eliminated all backups.  Too bad if you wanted me to work on this.
+
+I have a day job; I have things that I'm good at; I have things that I need to do.

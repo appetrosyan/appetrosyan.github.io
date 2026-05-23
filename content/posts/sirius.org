@@ -1,0 +1,159 @@
+#+TITLE: Grief
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-05-20
+#+TAGS: Small Update
+#+TAGS: Sirius
+
+This post is not meant for wider consumption.  It is something that I need to get out of my head, and while the people closest to me may find it insightful, this is meant for my closest friends.
+
+On the one side, direct messaging would be more respectful for those people.  On the other, the nature of communication precludes the kind of long-form insight, as well as allows me to tame the emotional response long enough to process the events.  For the public, if you ever wondered why I had become increasingly erratic, misanthropic, why the fraction of swearing in my vocabulary increased to the point of displacing English...  well, this gives you a relatively good insight.
+
+To those that may be going through (right now, or in the future) the same problems as I and Sirius did, this may serve as a little insight.
+* The Objective Reality
+
+My close friend, that happens to be a different species than human is no longer with me.  I still expect the front door to open, my wife leash-in-hand, with the dog automatically going to the bathroom to wash his paws.  This is something that was plausible yesterday, and was a regular occurrence last week, but is no longer possible.  I do not know if this is habit, reflex or denial that prevents me from feeling that Sirius Barbas might stroll in, and give me a fond greeting.  This sentiment is shared by my wife, that messaged me saying that "/we/ are coming home".
+
+I have not fully committed the history to "paper", as such I do not wish to reference cryptic blog posts, from a time when I thought that none of this would get published.  Instead, the rough history follows in-line.
+** Synopsis
+
+In December of 2025, my dog developed a lump on his leg.  I didn't think much of it, assuming it would go away on its own.  It did not.  As any reasonable person we took the dog to the vet, that failed to diagnose the issue, primarily because X-Rays can only show that something's wrong, not  what exactly that wrong something is.  Getting a CT scan required travelling to a nearby country.  Because of ...  you guessed it...  large animals (40 kg), being considered a liability by every insurance company, any form of transportation short of owning your own vehicle was out of question.  This meant traversing a dangerous terrain during a blizzard with slippery roads, with my wife, an exemplary driver, but only with one full years' worth of driving experience.
+
+The CT scan results were inconclusive.  We knew something was wrong already, it could have been a number of things, up to and including cancer, autoimmune disease, an antibiotic-resistant infection, amongst a few others.  The CT showed masses that pretty much overtook the poor pup's leg (I should remind you that Sirius never lived to his 3-rd birthday).  Amputation was a certainty, but the disease was not.  A chest X-ray revealed no visible metastasis, which we took, as any sane person would, to mean that there was no metastasis altogether.  During this time the apparently pain-free lump developed into a painful leg with regular spasms.  The poor dog went through a week of torture before the amputation, which itself resulted in a long and painful rehabilitation.  Something which I had hoped would be the end of our ordeal.
+
+What followed were three months of what I would consider healthy recovery.  The dog wasn't 100% problem-free during this time, but it wasn't above his background level of malaise.  He was back to normal.  He started playing again.  He learnt to do a handstand to lift his remaining hind leg for making a mark.  The single biggest source of irritation during this time were onlookers, that couldn't fathom the concept of minding their own business, and proposing, out loud, hypotheses as to why my dog was short-changed one leg.
+
+Then the histology report came in.  Aggressive.  Low differentiation.  Prognosis --- 1 month without intervention, guarded with.  I distinctly remember asking an LLM to do a Bayesian analysis to give me a probability and weighted most likely time of survival.  As AI is naturally stupid, its prediction suggested 95% survival at the end of 9 months.  I had every reason to doubt this result rationally, but emotionally I reasoned that if my pup was to take six rounds of one chemo drug, two of another, and had to be monitored with a chest CT every six months, then it is plausible that the dog may survive for that long on average.  Clean margins suggested that chemotherapy was a prophylactic measure.
+
+What followed was one round of chemo; it was tolerated well and with the exception of a small dot that developed into a lump, there was nothing to be concerned over.  The dog had a better-than-before appetite, was active, and while the safety precautions around dogs receiving chemo restricted him from his favourite places to lie down, all seemed to be going well...  Well, except for the lumps.  But we asked the vet, he said this wasn't something to be concerned about right now, not something to excise, because chemo affects recovery and he doesn't need extra sores on his back.  Round two please!
+
+** The Final Week
+
+This time around the chemo was less-well-tolerated.  The effects were more pronounced[fn:1].  Dogs generally tolerate chemotherapy better than humans, but that does not mean without side effects.  It felt off, but going roughly according to plan.
+
+The third day after the second round of chemo is Monday 11-th May.  This day is significant, because it is a cut-off point for inherent toxicity of the dog's bodily fluids[fn:1], reducing to acceptable levels.  This is normally the point where Sirius would be "back to normal", except he became visibly emaciated.
+
+It is at this point that me and my wife had started noticing (and ignoring) the signs that Sirius is unwell.  He had a reduced appetite, although not significant enough to cause alarm: he didn't stop eating, he just left things on the plate, but ate them later[fn:2].  He was relatively active, he did run and pull as he did before; his activity level outside was the same, even though inside he slept more than usual.
+
+At around Thursday, though concerned, I chose to give Sirius a bath[fn:4].  I had a busy day, so making everything click required a bit more effort than normal.  I gave him a bath, and dried him[fn:3], albeit to a "good enough" standard, because dogs fear the blow drier.
+
+The intention was to have Sirius spend some time with my extended family who also love him very much.  My Mum being the first to point out that his spine is palpable as are his ribs.  I dismiss these as effects of the chemotherapy, not of progressing disease.
+
+Friday evening, the first problem appeared in that he stopped eating the meat.  I gave him chicken instead, chalked it up to "meat might be unpalatable".  He ate a bit, but didn't finish the full bowl.  We gave him some mutton, he refused that too.
+
+On Saturday, I compiled a list of symptoms: reduced temperature, reduced appetite, reduced fat, potentially alongside reduced muscle.  We are told to visit a nearby vet.  We go there, along the way, he has some diarrhoea.  I notice some laboured breathing, but not on top of the list right now.  He gets some glucose and anti-emetics.
+
+Sunday, we get together with the Monadic sheep and the dog appears to eat a little of the boiled liver that my mum cooked for him.  I breathe a sigh of relief, but notice that there's some extra vibration in his side when he breathes in.
+
+Monday, breathing worsens.  We take him for a chest X-Ray...  and the nurse starts crying.  Metastasis occupying more than half the volume of the lungs.  We take him to his primary vet for a consultation.  I asked if we had one week.  The answer was a solid "possibly".  I am told to inject some antibiotics, and use prednisone to relieve some of the symptoms.  But this week is strictly to say our goodbyes.
+
+I stay up all night.  Monitor.  Sirius seems to be weak, but able to move.  My oldest friend keeps me company via voice call that lasts approximately 9 hours.  We go for a walk.  I go to sleep at around 9am and sleep until 12am.
+
+Tuesday, today, I wake up to check up on Sirius.  He seems to be active, but disoriented.  We go for another walk, he comes back, and seems to be fine.  I call his vet, saying that we ought to "push back" Euthanasia to at least Thursday rather than Wednesday, because the pup seems to be doing much better on prednisone.  I give him a few more tablets, give him the two injections, and assume I can start the work day.
+
+Sirius tries to lie down on a pile of his toys, and can't find a good position to settle in.  Lots of stuff in his chest getting in the way of breathing, but I want to believe that reducing the inflammation can buy us a day or two.  He has eaten the day before, he seems to have been active during the walk, so maybe, just maybe, this is a temporary problem.  But it doesn't go away.
+
+He hides away.  I find him.  I notice that he's now panting with his tongue out.  That's when I call the vet and tell people I was supposed to work with today that I would be out for the day.  We bring him in.
+
+No pleural effusion.  The choice is either artificial ventillation, which can only help somewhat due to the tumour volume, or facing the inevitable.  Feeling that I have selfishly prolonged his life to the point of suffering, I keep him in my hands until his heart stops beating.
+
+* The Emotions
+
+** The calculus of survival
+
+
+It is customary to state this fact with standard, near boilerplate statements such as "after a long battle with cancer".  It is distasteful.
+
+For one, it didn't feel like a battle.  The one thing that resulted in even a marginal change was the amputation.  We weren't fighting, we were retreating.
+
+Secondly, we did not know what type of cancer we were "fighting" for 80% of Sirius' final third of his life.  It was a combination of him being a decade too young, that specific form of spindle-cell sarcoma being hard to detect, and this specific subtype being rare.  To quote his oncologist "You guys must be cursed, it's the first time I saw a disease like that, much less in a puppy".  I cannot think of someone who would curse my dog specifically, so I offer a generalised curse in return "may you exist for a long time, and never be forgotten".
+
+Furthermore, this so-called battle was lost on day one.  A cancer diagnosis with an early onset alone suggests a profound dysfunction.  Recurrence would be a matter of time.  Assuming it is possible to treat the primary tumour in his leg, that the primary tumour was the only site, that the primary tumour had not managed to metastasise, it is still a question of whether what caused him to develop the primary site would cause another tumour later down the line.
+
+So the mindset shifts away from odds of being back to normal, with a healthy dog, to quality of life multiplied by life expectancy.
+
+The worst case, one that we ruled out early was osteosarcoma: it would have been lethal regardless, excising the primary tumour would have improved quality-of-life, but survival odds beyond six months after diagnosis, which mind you is December, means that the dog would die by now.  On average.  Just like he did.
+
+Hmm...  that doesn't seem to add up, does it?
+
+Turns out that worst case implies plausibly likely, despite there being
+1. Unknown types of tumours;
+2. Unknown subtypes of known tumours;
+3. Known but unlikely types of tumours, controlled for risk factors, the main one being age;
+4. Known likely tumours not responding to standard-of-care treatment.
+
+
+But to indulge the idea of calculus of survival, consider the situation at each point in the diagnosis.
+
+When the lump first appeared, due to Sirius being a large dog, the most probable problem was a torn sinew.  Trivial fix, some post-op recovery and back to normal.  Lipoma?  Same thing, even less invasive.
+
+Then, the horizon included cancers, the most plausible being a soft-tissue sarcoma.  If when we amputated the leg, the histology came back as low-grade, we could have plausibly been cancer free /for the time being/.  The median time to recurrence can be estimated from the fact that you got one in the first place, so if it took my dog two years from birth to get it, it would take him another two to develop another one.  Of course with monitoring, you could catch the new tumours early, so the recurrences would not as radically impact quality of life.
+But let's, for the sake of argument, say that we reduced quality of life by a third.  Life expectancy is then roughly six years.  A dog that lives to eight is not bad.
+
+Then we include the more aggressive kinds.  The protocol in that case is to have six rounds of aggressive chemo: doxorubicin, two rounds of follow-up endoxan, and monitoring every six months with a chest CT.  A recurrence in that case is lethal.  So you need to consider options.
+
+Your tumour could be an outlier, caught early, excised with clean margins.  Chemo in this case mostly shortens the lifespan, and the next primary tumour site can be both cleanly excised, but also plausibly lethal.  If you had no metastasis, this gives you three years of survival.  Not great, but hey, lives to five.
+
+Your tumour could be excised with clear margins, but already metastasised.  In that case, median survival rate looks more like the clinical data: and in most cases we're talking months with chemo and weeks without.
+
+Of course, we happen to have a shrinking time horizon, because the metastasis seems to grow despite chemo.  In that case, the plausible timeline looks guarded.
+
+
+** The emotional impact
+
+One key ingredient of the emotional impact that this had was that every single time me and my wife breathed a sigh of relief, thinking that the interpretation is far from the worst, we were rudely returned to the most pessimistic prognosis.
+
+I was sat in the back of the van, saying that I was happy that they said "torn sinew".  The day after we ran a battery of tests on Sirius, I breathed a sigh of relief saying "there was no metastasis".  I breathed a sigh of relief when Sirius' operating surgeon, said that they had "clear margins" and that their "gut feeling" was that we were "in the clear".  I breathed a sigh of relief when what I suspected were subcutaneous metastasis were "atheromas".  I breathed a FUCKING SIGH OF RELIEF, when Sirius' erratic gasps for air from yesterday were replaced with regular deep breaths.
+
+The time horizon shrunk from 15 years (I took good care of him), to 6 to 1 year and kept shrinking all the way until I was bargaining for two more days: until coming Thursday.  I blame myself not for optimism; it did not guide me down the wrong path; it did not cause me to miss symptoms.  I blame myself for having an outward message of optimism, while retaining a pessimistic core.  I have shied away from the doom and gloom, despite that being a healthy response to what is happening.  Because it is what the moronic society dictates.  Because it is what the "strong stoic protagonist does".  Except Hollywood's idea is almost always a deontological inconsistent mess that would make both a Kantian and Utilitarian retch.
+
+** The lessons
+
+I drew some lessons from this ordeal, some of which may be useful to those that are in a similar situation.
+
+*** What to ask
+
+If you notice something flag it.  Patients' stupidity costs just as many lives as doctors' mistakes.  If you notice anything out of the ordinary, it is tempting to fall in with societal norms and "not bother" the medical professional.  The crucial problem is that you don't even know what's important, and can misjudge or mis-characterise a crucial detail.
+
+The question of whether there was redness on Sirius' lumps, was what gave us the false hope, not the doctor misjudging the lumps, but synthesising incomplete or incorrect information.
+
+It is also important to be attentive.  Finding the lump early may not have changed Sirius' fate, but there are cases where it would make a huge difference.  Sirius was very fluffy, so finding small skin lumps required a systematic comb-through of the dog.  Him wheezing during his breath required having a good reference of how he breathed before.
+
+Finally, do not accept everything that is said to you uncritically.  We were told that the reason why Sirius was digging with his hind leg was psychological.  Had we known better, we may have achieved the effect of the amputation while keeping the leg, even if his overall fate would have still been an early death, we may have had more time.
+
+*** When to ask
+
+The sad reality is that I /knew/ going in, that I would eventually have to say goodbye to Sirius.  I had hoped that it would happen later.  But one does not have control over these things.
+
+I remember asking myself how I would handle his death when he was just a few months old.  I had made some decisions based on the answer to that question.  I had not denied Sirius the small pleasures of life, and I had exerted effort to, despite being burnt out, to be present with Sirius.  To illustrate both points, when four days ago my furry friend walked into my bedroom, I had invited him to take my half of the bed, put away the electronics, and just gave him a nice belly rub.  As an added bonus, this was the moment I noticed the wheezing.
+
+This seems very obvious, which is why the key deciding factor is honesty.  Are you /really/ present.  I had mistaken being around, for being with.  These were mistakes, but not regrets, nothing stood out as a particular time when my mind was on something irrelevant when Sirius wanted attention.
+
+For someone with ADHD, it is perhaps the most difficult advice to follow; ask the hard questions at key decision points.  You'll know when it's time, believe me.  When you're pulling an all-nighter writing up a report for something that doesn't matter beyond the deadline, because you may get laid off, you won't remember the relative importance of the report, but you will remember the cutesy puppy that was cuddling next to you.  It's the message of most Hollywood movies, so one might be suspicious, but the framing is different.  Sometimes you have to do your job.  Sometimes the answer is neither a "yes", nor a "no", but rather a "yes, when I finish this".
+
+I did not have exclusive purview of walkies.  I was not present during all of them.  But I was present today, and on a few very important occasions before.  I do not beat myself up over not remembering what the walk was like on the first Thursday of March.  But I can almost feel the texture of Sirius' fur during today's walk.  I can still see his face in front of mine.  I still remember what his breath felt like moments before propofol made him unconscious, and moments later I remember staring into his open eye.
+
+Why would someone choose to be present during such a painful moment?  For me the quote "The one who passes the sentence should swing the sword" encodes part of the principle.  Sirius had spent all but the first two months and three one-week stints with me.  Two years, and eight months to be precise.  Were I not present physically would be a betrayal, an abandonment.  I could have delegated this to my wife, or I could have agreed to artificial ventilation, allowing the doctors to take over.  Sirius would know that I was not there for him.
+
+Not being there mentally would have been a more subtle betrayal, but far more sinister.  For some, and a demographic that is over-represented where I live, a canine companion is a lifestyle attribute.  It is more a signal than a living being.  It is a burden to be relieved of, not a sentient organism.  They do not have wants, they do not have a will, they are functionally equivalent to robots.  For one to mentally check out at the point when the life of their companion is about to end is an easy way to avoid pain.  And pain is the essence of attachment.
+
+The way I saw it, I asked myself the question "If I /could/ check out during Sirius' euthanasia, had I really loved him"?  What exactly did I mean when I re-asserted those words time and time again, to him, to those that knew me, and errantly to the indifferent universe?
+
+The hard question I asked myself when deciding on whether to go with the amputation was whether Sirius would get depressed.  I could not know for certain, but I would need to have a serious basis to assert one way or another.
+
+The hard question I asked myself before the second round of chemo, and before being falsely reassured about the lack of metastasis, was if we had two weeks' worth of time left together, what could I do for him?  We went to his favourite places more.  I gave him more of the food that I knew he liked.  I'm happy to say that Sirius' last meal was boiled liver mixed with some canine crunchies.
+
+The hard question I asked myself today, was whether I was keeping him alive for his sake, or for mine.
+
+I bid thee to ask these questions.
+
+-----
+
+(to be continued)
+* Footnotes
+[fn:4]To remove doxorubicin residue.
+
+[fn:3]As you /must/ do, because even in hot climates, even well-coated dogs are susceptible to pneumonia.
+
+[fn:2]It is worth pointing out, that this is a common behaviour for Sirius.  He doesn't tolerate heat well, and it manifests with a reduced appetite during the light hours of the day.
+
+[fn:1]Specifically, Sirius vomited on a plant that was growing in the balcony.  The plant died almost immediately.  The bodily fluids of anything receiving chemotherapy are contaminated and inherently carcinogenous.
