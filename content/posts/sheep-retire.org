@@ -1,0 +1,64 @@
+#+TITLE: Retiring Monadic Sheep
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-06-14
+#+TAGS: personal
+#+TAGS: rant
+
+This is a /brief/ update on why I'm retiring the Monadic Sheep telegram channel. 
+
+I have been stabbed in the back one too many times.  I will not say by whom, and unless you are alredy in the know, I doubt you'd care.
+
+This /was/ someone who was near and dear to me, and unfortunately, rather than severing the connection when it was obvious that they did not have my best interests in mind, and were rather more interested in making a name for themselves, I humoured that relationship.
+
+The person whom I found the time to speak to on the last days of my dog's life, someone who knows perfectly well how I feel about their choice of projects to contribute to, has not seen it necessary to adjust to what they clearly know I'm going through.  Not their fault.  People under no obligation to accommodate your grief, and they are neither required to spend time helping you with your projects.  Them caring little for you *only hurts* those that had delusions in the first place.
+
+When my dog died, what happened, was something triggered a re-evaluation of my surroundings.  Things I spent a whole lot of time on, things which caused me to become miserable.  I had pushed back on a paper promise to help with a project.  I had gotten angry enough to throw away my work, when instead I should have gotten angry enough to do what I did today: purge that hypocrite out of my life.  
+
+* Collateral damage
+
+Pushing them out would not have been easy without simultaneously removing the entire XMPP wing of the Monadic Sheep.  I had tried to avoid it, and that is partly why previous similar encounters have not resulted in a "power trip".
+
+Unfortunately, and this has to be spelled out, my patience is not infinite.  I had *had* my fill of hypocritical complaining, lack of tact, and lack of nuance.  I had confronted one such instance with somewhat impatient, but well-argued critique; I had not had any hopes of actually convincing my opponent that they are wrong (when has that /ever/ worked with anyone), I was simply provoking my opponent to provoke me: to put me into an emotional state that would result in me cutting out of my life a part of it that has resulted in *every fucking weekend* being spent trying to fix a piece of software of one or other denomination.  
+
+I have had it.  If you know me, and you are in my DMs, you have done nothing wrong.
+
+{{< notice warning >}}
+If you know me, and I have chosen not to spend time trying to seek your contact details out, I would recommend that you take the hint, and leave me be.  Failure to do so risks hearing exactly what I think of you.
+
+And while you might be tempted to think that there is something you can do about it, it is much too late.  Interactions with you have been rather one-sided and transactional in nature, and if you are on this list, I have come to the conclusion that I am no longer a beneficiary of said transaction (was I ever).  
+{{< /notice >}}
+
+* Moving forwards
+
+I need time to recover.  I also need to manage difficult things this year, and I do not have any spare capacity.  
+
+The corporations have largely been beneficiaries of naive idiots like myself, that thought it be wise to give away our work for free, ask almost nothing in return, and do this filling my free time.
+
+You may nod in agreement to this statement, and say "well I'm not like that, I help free software, I care about it, I contribute to the FSF" blah... blah... blah... I have a personal note of FUCK YOU.   You and people like you are exactly the problem.
+
+You would not lift a finger to help someone's grassroots movement, instead prioritising your own clout and your own fame.  You are basking in the very same feedback mechanisms that you dislike about corporations, and happily contribute to the misplaced incentives, not so much by helping the enemy directly, but by ensuring that there is exactly one small set of ivory-tower dumbfucks that have anything to counter-pose to the big tech.  You have created a corporation,  whose sole purpose is to ensure that the alternatives to corporate software have to compete at rock bottom prices.
+
+Can I sell an archiver?  Can I sell a compiler?  Can I sell an office suite?  You might be tempted to say that this is the consequence of Microsoft weeding out its competition... turns out that this is impossible because Free as in Free Beer Software Foundation does not want to recognise that it has wrecked the smaller businesses, and made it impossible for me to work on what I /want/ to work on.  I have to choose between conforming and being paid peanuts, or conforming and doing unethical stuff for a corporation.  By giving away your stuff for free, you have scorched earth-ed everyone who *can* uproot the unethical monsters.  And guess what?  You still think that you are /the rebel/ that you are "fighting the power". 
+
+Having gotten the middle finger to the so-called "free-as-in-freedom" software out of the way, here's what I am planning on doing.  I want to get ~org-rs~ into a mergeable state.  Note I didn't say getting it merged.  It'd be nice, but I have a limited amount of shits to give about free software.  This barely qualifies.  If you wanna use it, use it.  Don't?  Well, I have done my part.
+
+I don't know what I want to do about Fib.  Technically taking it private means I'm violating the GPL.  In that case, I am more than happy to completely remove the GPLv3 components, and make it a fully commercial product.  Guile gives me no advantage, and is the single largest source of complexity.  Kinda moot if I stop working on it, and since the toxic freeloaders that I've been "trying to impress", are no longer part of my circle the pressure to spend more time on it is practically gone.  
+
+{{< notice note >}}
+To the Guile community that was kind of hoping that this would be your ticket out of Emacs: you knew what I was going through.  You knew what a person in those circumstances needs.  You chose poorly.
+{{< /notice >}}
+
+* Conclusion
+
+I am not a particularly stable person right now.  I'm going through a lot of grief, and instead of having people actually help, I was taken advantage of.  
+
+If this makes you think that I behave erratically, good for you.
+
+
+{{< notice warning >}}
+If you are a prospective employer and use this to evaluate whether I'd be a good employee... well... this is my lowest point.  I'm in grief, instead of accommodating this, I'm actually crunching for my current employer, not just not being late on any deliverables, but actually being proactive about what work I tackle.
+
+Furthermore, instead of ... you know... giving up on my main job, and focusing on the side-projects, I've cut out a leech, to better focus on the stuff that's actually paying my bills.  Instead of going with my "passion", I'm cutting it out.  
+
+And if you still think that I handled this situation poorly, then I guess I dodged a bullet.
+{{< /notice >}}
