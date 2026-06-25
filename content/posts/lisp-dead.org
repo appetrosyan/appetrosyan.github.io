@@ -1,0 +1,209 @@
+#+TITLE: Lisp is dead
+#+AUTHOR: Aleksandr Petrosyan	
+#+DATE: 2026-06-25
+#+TAGS: Rant
+#+TAGS: Tooling
+Lisp is a dead idea.  
+
+Of course you as any reasonable computer science graduate would beg to differ.  You might counter as a proffessor.  You might even write a pettily worded article such as "Worse is better", or some such saying that the fact that nobody uses your language despite its great feature X, or feature Y is a problem of society.  I have a bridge to sell you because these technical problems are the least of society's blunders, and lisp has historically had a leg up, and the fact that it practically disappeared is indicative of its fundamental flaws. 
+
+Do I think that people who know lisp and are working on a lisp project are wasting their time?  Am I doing this because I got burned by a lisp-centric community?  Am I doing this to spite the people that have perceived wronged me?  No. 
+
+But there are things that I have learned, and things that have changed in my understanding of software.  I don't fundamentally take some claims at face value.  I also don't take offence at ideas that differ from mine.
+
+So let me address some of the things that you might think I'd say. 
+
+* The perceived problems of Lisp
+
+*** Lisp and parens make things hard to read
+
+Maybe initially.  The truth of the matter is that this is a secondary if not to say tertiary problem.  
+Algol is hard to read until you get used to it.  C++ has so many adverse conventions, that you will eventually get used to it.  Truth be told languages designed to be unreadable, such as malbolge and brainfuck are something you can get used to eventually.
+
+It is a problem for newcomers, but most newcomers have historically had a gentle introduction to these languages.  Lisp isn't some kind of esoteric small-scale language that nobody uses.  It has been taught as the introductory programming language at MIT.  The structure and interpretation of computer programs is intended to be consumed in a dialect of lisp.
+
+It is no more readable or unreadable than something like Python.
+
+*** Lisp is too slow
+
+In the software drag racing done by one David Plummer, SBCL implementations of the prime sieve have consistently competed against, and won against heavy hitter languages such as C, C++, D, Rust, and some of the Zig implementations.  It is not necessarily indicative of the fact that there aren't inherent architectural mismatches between /e.g./ the register based parallel super-scalar CPUs and the Lisp's stack model. 
+
+News flash, C is emulated too.  You actually have to engage in a sort of a double speak so that LLVM actually sees what you /want to say/ rather than what you did say.  Your modern day CPU has as much in common with a lisp machine as it does with a PDP-11. So saying that lisp is slow, is a bit of a cop-out.  Certain kinds of lisp are slow.  But others aren't.  Some architectural decisions in /e.g./ Emacs lisp are fundamentally designed for and around performance, at a loss to readability and being able to reason about the code.  It's the year 2026, and lexical binding is a strongly encouraged, but not required mode of operation.
+
+*** Lisp has a small target community
+
+No. 
+
+*** Lisp doesn't support OOP
+
+It does so in some ways better than C++ and Java.  I'd argue that it chooses the incorrect sub-set of OOP to die on the hill of, but ... we'll see. 
+
+
+* What I actually think is wrong with Lisp
+
+** Lisp is all you need
+
+This is a pervasive anatomical problem that most lisp communities will pretend is a feature. 
+
+Who needs JSON, you have S-expressions. 
+
+Who needs a dedicated OOP language, you have Goops. 
+
+Who needs a separate video player, let's just add one to the editor that also happens to run in a REPL. 
+
+Oh and why would you need a window manager. Emacs can do that for you.
+
+-----
+
+In principle these are not fundamentally wrong ideas per se.  The problem is that they consolidate the ecosystem around bottlenecks.  If you want to work with org mode, you have to install Emacs.  And comparatively this is not any different from having to install ~npm~ or ~python~ to do the same with Markdown. 
+
+Except for the fact that Emacs' documentation is horrible and to get anything done you'd have to wade through horrible amounts of human slop.  There are two problems here.  
+
+One, is that in order to understand anything, you'd need to decode the information that is provided in the documentation.  This is the same as learning to read ~man~ pages, or source code. 
+
+The second and biggger problem is that the documentation rarely if ever has enough information on its own.  This is because writing documentation strings in Emacs is and well-documented code looks ugly.  Apropos, the verbiage is not dissimilar to obfuscation. 
+
+I don't use Emacs' built-in documentation. If I want to figure out what a function does, I look at its source code.  The problem with that is the /fucking advice system/ but we will talk about that later. 
+
+The problem with Emacs as the bottleneck is that it is not well designed, and something that handles so many responsibilities cannot be.  It is /out of control/, and resembles more a jungle than a well-organised source tree.
+
+This is fine for a programming language, but not fine for programs.  And the problem is that Emacs doesn't draw a clean boundary.   Furthermore, you pay for things that you cannot possibly use.  In order to run an Emacs script in batch mode you need to explicitly tell it to use ~use-package~ and also explcitly disable the graphical UI, most of your config, and a bunch of other things. Can it be done? Sure. Should it be done this way? Probably not.
+
+** Lisp isn't special anymore
+
+It used to be. 
+
+But almost everything that used to make Lisp special is now, with the benefit of hindsight absorbed into every big language there is. 
+
+For example, let's take the /everything is a cell/ principle.  Python does duck typing.  Everything is a pointer to a value on the heap.  You know how much to allocate, so your functions can in principle accept everything that they want.  Python eventually backtracked this.  It has types now.  But if you wanted to write a function that just accepts two values, it seems to do that too. Typescript is another example of non-typing being a problem.  In lisp something like this could be possible, though unlikely. 
+
+Lambdas were the centerpiece of Scheme. They are present in Rust, C++, and if one really wants to squint, something like this is possible to emulate in C, even though it is not ... shall we say... very safe.  Lambdas are not how these laguages accomplish OOP, and that means that the rules of said OOP are different and enforceable.  For example, Rust doesn't have any form of inheritance.  If its model of OOP were based on Lambdas, inheritance would be structurally permissible, and the only question would be the syntax on the front end (which Guile doens't need to provide).  
+
+Garbage collection is a wide-spread phenomenon too.  Your functional languages all come with a GC as a standard.  This doesn't necessarily mean that it's a good idea, but even more low-level (read verbose) languages such as Java and D come with a GC.  Go has a largely earned its reputation as a language that is a nicer C, because you have a GC as a standard. 
+
+The homoiconicity angle is also interesting. Julia is fully homoiconic.  It looks nothing like Lisp and is the go-to choice for scientific computation.  Python can walk its own syntax.  It's not homoiconic, but it doesn't prevent certain annotations from taking complex information into account when generating code.  Zig is probably the closest in terms of power granted to the user: you get access not only to explicit information that can be obtained directly, but also to context.  This is powerful tool, but also an incredibly problematic footgun.  You can make a mistake  such that you cannot trust the results of the compilation.  Rust takes a middle ground.  Rare cases where a DSL indeed saves a great deal of churn and boilerplate, are properly handled via procedural macros.  You are also given a milder and more annoying version of macros, known as ~macro_rules!~ which are more appropriately named ~macro_sucks!~, for ad-hoc cases.  But it would be rather inadequate to state that lisp has a monopoly on compile-time generated DSLs.
+
+-----
+
+Every feature that is used to describe lisp is already hoisted up into another language.  There aren't /that/ many things that make it unique anymore.  In fact, most modern languages provide these specific features as a standard.  You'd be hard-pressed to find a modern language that doesn't have lambdas for example, and even with C, you can techinically remember Apple's block extensions or GCC extensions for that matter that effectively provide you with lambdas.
+
+And lisp isn't particularly tailored to solving any specific problem. 
+
+If you want to write a parser-generator, well... bison exists.  High performance low-level programming? C++/Zig/Rust/C/Hare/Odin all exist and provide a much better performance for similar readability. 
+
+** What made it special is not good
+
+Lisp isn't the king of embeddable mini languages and for a number of reasons.  When I was integrating Guile into Fib I was quite pleasantly surprised by the ease with which something like this could be accomplished.  For most if not all Guile functions, you have a C equivalent that you can call directly, link against directly and call.  It is amazingly good at what it does...  I would say that it is almost as good as Lua.
+
+But why not better?  Well simply put because Lisp's features don't come for free.  No typing, means that you have to do a conversion round-trip to figure out if something is an integer or not. You could assume that they are, but you are not guaranteed.  The GC is part of the reason why your Emacs window feels sluggish, although I would actually argue that the fact that it is a Read-Eval-Print-loop has more to do with it.  This fact is not lost on people in the Emacs community, in fact they themselves corrected me when I presumed that the GC was causing most of the disruptions.
+
+The fact that in Fib, the Guile thread had to be kept at arms' length was a consequence of the difference in how Lisp's values work and how that is different from /e.g./ Lua.  I could not bind a function to a keystroke, because unlike what Guile would say on its front page, it is not functional.  Things have context, that context is expensive to bring into focus, so synchronous processing of functions is not going to work. 
+
+This is fine for an editor, where a bi-directional hop from the UI thread into the eval thread and back is an acceptable delay, not causing any discomfort (as I type, if anything, Fib feels too smooth), but it is a problem if say your NPC logic is a Guile function.  Backpressure is a thing.  As is load balancing.
+
+A problem which I found very annoying with Emacs lisp was the fact that any package can do whatever it wants with the global state.  Not modifying the behaviours of functions via advice in the core of emacs is a convention, not the rule.  Hook points, advice, the tenuous relationship between ~redisplay~ and graphical code, all make it harder to figure out what your code is doing statically.  Sure, you /should/ use a debugger that shows you exactly what's happening.  Debuggers are not very wide-spread in modern programming, though for a number of reasons.  People don't know how to use them.  People don't expect problems to arise.  And debuggers aren't very good at telling you why something is slow or has a non-deterministic occasional slowdown that locks you out of writing code for a few minutes.  And saying that there is a tool that fixes a problem introduced by the code, simply hot-potatoes the poor design onto someone else. 
+
+Yes in lisp you need a repl, to see what's happening.  Most of the time, the code that you are dealing with is so complex that this approach won't scale.  Advice is solving a problem that all other languages solve with
+1. Inheritance
+2. Redefining a function
+3. Composing functions
+4. Attaching purpose-built extension points, so that common behaviour can be preserved, and customisations are strictly confined, 
+5. Generic programming 
+6. Interfaces
+7. Lambdas
+8. Attaching a different function to the same event
+
+If I had to rank all of these, Advice would be pretty low on the list. The simplest explanation is that advice solves the problem, potentially breaking every other assumption.  There is a reason that this specific mechanism is prohibited from use in the Emacs source code, and that reason is because advice has non-trivial consequences.  Every weapon can be used to shoot oneself in the foot.  Advice seems to have a crosshair shaped like the Gnome foundation logo and seems to be most ergonomic when pointed down.  
+
+** Some values are more equal than others
+
+The behaviours of the built-in functions can be similarly problematic.  From a purely mathematical standpoint, identity based equality is the only kind of equality that one needs.  That's why technically speaking ~eq~ isn't /as much/ of a problem.  In Emacs lisp specifically, this leads to some surprising results: 
+
+#+BEGIN_SRC elisp 
+(eq 3.14 3.14) ; nil
+(= 3.14 3.14)  ; t 
+#+END_SRC
+
+And in this case, the cop-out answer of "you can't compare floats for equality" doesn't work, because the fucking language provides you a structural equality anyway.
+
+#+BEGIN_SRC elisp
+(eq "hello" "hello") ; nil
+(equal "hello" "hello") ; t
+#+END_SRC
+
+The language has a number of specialised equality mechanisms: 
+
+~eq~  for pointer comparison, which for some reason isn't spelled ~pointer-eq~ which would have settled all problems.  ~eql~ for number and pointer comparison.  Again, terrible name
+
+~equal~ for recursive stuctural equality. You can't control it, like you could in Java, for example, by only having some fields participate in equality.  It has to be full structural equality.  Because it's a graphical editor lisp, we can forgive something like ~equal-including-properties~, although I would very specifically say ~text~ properties.  Naming things in Lisp should be easy, because you can do symbols as names!  Why are so many of the ambiguities resolved by naming things better? 
+
+~=~ is automatically type coercing.  There are many people that will complain about JavaScript and call it Jumble-Script and if you ask them for substantiation the consequences of type coercions would be their number one complaint!  If those people do not simultaneously have a problem with Elisp, I have no idea what the words consistency even mean.
+
+~char-equal~, and ~string=~ as well as ~string-equal~ exist because Elisp did not have a mechanism for providing type-level informed generic equality. And I can forgive Elisp, because it only has to deal with characters, strings and objects all the time, owing to the fact that it is a text editor.  Common Lisp and Scheme have some of these same problems by the way. 
+
+-----
+
+It would not be fair to complain about Lisp, without actually seeing how this is done in other languages. 
+
+The apparently weakest would be C.  It has ~==~ which surprisingly, is a lot more similar to lisp, but owing to the fact that it is used infix, is a lot easier to parse.  It is the most direct analogue of CL's ~eql~, with differences (of course).  It falls in line with C's philosophy that something like string comparison would be a function, that is by the way part of the C standard library.  It has some weird quirks, like the fact that ~strcmp("hello", "hello")~ evaluates to ~0~, which is /typically/ used to represent /false/, and in-keeping with lisp, this is solved by a better naming convention, calling it ~strdiff~ solves the problem. 
+
+Java has an equality interface.  There are guidelines on how classes should implement equality, but in general, there is only one way to implement it, and that one way is controlled by the implementor of the class.  This is useful if your class has a bunch of junk data that shouldn't participate in equality testing.  Semantically Java's ~==~ is the same pointer equality test, and if you want structural (deep equality) you really should do ~thing.equals(other_thing)~, which is not obvious for a beginner, but with time becomes more and more natural.  In fact, the primitive types are the only ones using the primtive operations.  It is by no means better, but it is not worse: the way you compare strings is no different to the way you compare client records. 
+
+C++ allows you to override any operator on any type.  Coercions are opt-in and opt-out according to some rather inconsistent rules.  But equality comparison is often usually just ~==~. 
+
+Rust has (predictably) a better system, where equality is trait-wise.  You almost always glimpse at the underlying structure; where it is located, and how things are allocated is irrelevant.  A value is /always/ compared by value.  You might call this a weakness, but ponder what you /expect/ ~(eq 5 (+ 2 3 ))~ to evaluate to, versus its behaviour.  For this accident to behave so consistently, there has to be much unnecessary machinery going into Elisp.  Comaprison of strings is also taking place structurally.  You don't really need pointer-wise comparison if a pointer is a native value that you are expected to manipulate, just structural comparison is enough.  And for things that can fail to compare for equality, there is a distinction between a complete equivalence class and ~PartialEq~, so you are forewarned of a few types, rather than having to be paranoid about every type.
+
+Haskell similarly compares things by value.  In a functional language anything else would be counter-productive (part of the reason why I would never call Scheme a functional language).  You could, if you really wanted to optimise code to use ~reallyUnsafePtrEquality#~ which is a GHC-only extension, and as the name suggests, is a footgun.
+
+My favourite in terms of design, is of course StandardML.  No ceremony.  Just ~=~.  Interning becomes less of a problem too, so ~"hello" = "hello"~ is always true.  SML for all its faults even handles pointer-based arithmetic well, because ~ref Int~ is not the same as an ~Int~. And you can compare the references, or the value behind them, and you always need to de-reference. 
+
+** Serious work in Lisps
+
+Lisps have no shortage of big projects using them.  And as a consistent pattern, these are languages where lisp is given a narrow, extremely limited scope of work that it needs to handle. 
+
+The one browser that is written in CL, doesn't actually have its own engine.  Rust, C, C++, Zig and Swift are all languages in which writing and maintaining a browser /engine/ is easy.  Nyxt has as much right to be called a CL browser as Brave to be called a JavaScript-written browser. 
+
+It is true that most JPL and NASA projects in the 80's and 90's used Lisp widely.  They also use Debian.  Argument to authority is weak, particularly when said authority is mostly a standout.  Using what they use is about as smart as copying a bodybuilder's training regimen.
+
+The most successful top-of-the-line project for the lisp ecosystem is Emacs.  And that is mostly a badly written lips interpreter, with tons of C code for everything important, and lisp relegated to packages and extensions.  Emacs survives not because of Elisp, but despite it.  The vast majority of people use Elisp as a way to copy-and-paste someone's configuration.  You can have a surprisingly big personal configuration without knowing the basics of Elisp at all.  Quoting is something you can parrot, because it's a binary; you can brute force all problems.  The up-front complexity of not even being able to lean on even your school arithmetic, coupled with some questionable ergonomics decisions result in an editor that is prone to breakage, and every fix thereof being largely a computer science side-quest. 
+
+Nano, a very much Emacs heritage editor is widely respected.  It is simple, reliable and has no moving parts that could break. 
+Neovim and Vim manage to get a similar level of customisation (often greater) without having to resort to Lisp's /everything is mutable/ paradigm.  Elisp, while being much older than Python, loses to it in every conceivable respect.  If anything, MIT no longer teaches Scheme, and now teaches Python owing to the latter's marginally easier learning curve.  
+
+There isn't a single area in which Lisp has a unique dominance.
+
+** Non-ecosystems
+
+*** Scientific computing
+
+There isn't a way to do scientific computing as easily in Common lisp as it can be done in Python, Julia, Rust, C++ and Fortran.  It is used somewhat in those areas, but it is fragmentary.  There isn't a cohesive ecosystem.  There are few machine learning libraries, so people working on AI are better served, ironically, by Python. 
+
+*** Guix
+
+Guix managed to surprise me as one of the few package managers in which I had been able to run Acme.  But it is not alone, Nix also exists and has a wider, broader and deeper coverage of packages.  Leaving ArchLinux for NixOS is something that can conceivably be done.  Leaving ArchLinux for Guix, even if I didn't have the proprietary firmware problem, would be a little nightmare.  Why? 
+
+Guix has a less wide coverage of software.  Part of it is the insistence on the bootstrap-ability of some programs.  Fine goal, if you control the entire software stack.  Curating away programs that have irrelevant conceptual flaws, is exactly like evaluating a writer's ability to produce prose based on their ability to do do a handstand.  Yes, technically speaking being able to bootstrap a program is good.  These conceptual warm and fuzzies don't compensate for the fact that each development session has to conform to arbitrary restrictions.  
+
+Fib needed portable SIMD.  To package for Guix I needed to use an old and non-nightly version of Rust. 
+
+I need Slack for work.  The source for it is available, you can compile it and make some modifications to the client.  Not even in nonguix is it available.  VSCodium?  Element?  
+
+The problem is that the core team behind packaging software for Guix, seems to believe that coming up with an elaborate excuse as to why your inferior architecture is in fact superior, compensates for the problems.  The practical implications are that while GUIX respects my freedom about as much as Microslop, instead of the control being taken away simply for profit, people with the engineering talent of wooden table wax philosophical about hypotheticals and how JavaScript is bad, and how Node.JS is hard to package in their immaculate model. If your calculator struggles with negative numbers, it is very much the fault of the calculator's design.  A package manager has a well-defined problem space, and your choices are either not to call Guix a package manager, or to acknowledge that it struggles with reasonable asks.  I would in general find this less frustrating if the people behind the project had at least provided command-line alternatives to these.
+
+You can't take a high ground against Flatpak, and simultaneously tell people to use a Flatpak.  And Flatpak for all its faults and issues, is taking a simple idea and executing it simply.  I would have thought that having a powerful programming language that can do in-depth semantic analysis would allow you to go further than an ad-hoc, not particularly ergonomic functional language like ~nix~.  Unfortunately, Guix struggles with even that, because Guile has about as much claim to being functional as it has claim to be high-performance.  And I'll be honest, ~nix~ is fairly readable. 
+
+*** Nyxt
+
+The browser has many features that I would rank rather highly.  Being able to use it primarily with the keyboard is a useful highlight.  There are buffers instead of tabs.  A great idea that isn't necessarily attached to lisp, but I will give credit, because Emacs is the primary source for that sort of thing.  Tree-based history.  Most browsers flatten.  It has a build-in ad-blocker.   All of these things I respect and find fascinating how they managed to blunder the rest. 
+
+As I mentioned, they don't have a custom engine.  WebkitGTK is a poorly optimised, poorly maintained bundle of problems that they used, probably because their fancy Common Lisp couldn't link against any other engine, such as /e.g./ Firefox's.  Electron you say?  Nothing tells me that your browser is a technological powerhouse like rewriting it in JavaScript.  
+
+A complete dealbreaker for me is lack of WebRTC.  Again, could be chalked up to WebKitGTK not supporting it, but then why not use something that does?  It being harder to use those things tells me something about the non-power of Common Lisp.  Because Zen Browser can do those things.  Electron?  OK, I guess this is only slightly worse than taking Chromium and adding a Common Lisp layer on top of it.  
+
+The funny thing is that even within the Emacs community it is rather niche.  Much easier to find something like QuteBrowser. 
+
+* Conclusion
+
+Lisp is a dead end. 
+
+I wish I had spent less time integrating Fib with Scheme.  I wish I had spent less time learning Emacs lisp.  All I got for my troubles is an unwarranted sense of superiority.
