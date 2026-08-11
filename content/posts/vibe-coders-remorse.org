@@ -2,6 +2,9 @@
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 11-08-2026
 
+#+TAGS: Tooling
+#+TAGS: AI 
+
 Understand, reader, I would use this technology from a desire to do good... but through me, it would wield a power too great and terrible to imagine. 
 
 From December 31-st to yesterday --- August 10-th, I ran an experiment that was enlightening, terrifying and a great source of shame, that I would wish to wash away.  I was vibe-coding.  There were a number of working hypotheses that the experiment dissolved. 
