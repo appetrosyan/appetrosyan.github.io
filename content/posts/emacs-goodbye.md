@@ -1,7 +1,7 @@
 +++
 date = 2026-06-15
 title = 'Goodbye Emacs'
-tags = "tooling", "Emacs", "life"
+tags = ["tooling", "Emacs", "life"]
 +++
 
 # End of a long journey
