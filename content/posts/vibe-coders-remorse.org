@@ -1,0 +1,92 @@
+#+TITLE: A Vibe-coder's remorse
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 11-08-2026
+
+Understand, reader, I would use this technology from a desire to do good... but through me, it would wield a power too great and terrible to imagine. 
+
+From December 31-st to yesterday --- August 10-th, I ran an experiment that was enlightening, terrifying and a great source of shame, that I would wish to wash away.  I was vibe-coding.  There were a number of working hypotheses that the experiment dissolved. 
+
+The reason I did this, is the exact same reason I became an avid Emacs user.  It was pure peer pressure and argument to authority.  I had thought that I would unlock a power to do a great deal of good, but most of that "power" had been a delusion, and none more.  Are they useful?  In some ways yes, but not to you, not in the way you think and a great subversion of the notions that I had publuished in the beginning of my writing journey. 
+
+* Prior art
+
+After the ill-fated defence of Richard Stallmann, the remnants that came to his side, formed a group called Cyber Lounge.  I had been an active member of it, though my interactions have basically diminished to none, and within that group, there was a number of people that were writing about the rising new technology, GPT.
+
+We wrote a series of five articles, which ended up being quite prophetic.  We knew what we were doing, and when six years later, I came to write a post-mortem on the inevitable inaccuracies, it had been quite a significant shock to find that we got the supermajority of the text right.  We had no inside sources, we just applied a common sense distillation.  But I am not here to brag about the accuracy, but instead to elaborate on a few things that I got wrong, because they are a consequence of vibe coding for the past few months. 
+
+** Vibe coding will unlock new kinds of programs
+
+This is perhaps the greatest disappointment with the technology that I discovered as a corrollary to the experiments.  The LLMs are good at replicating what we already do well, often by virtue of a strong selection bias, so you are given the "best practices" whether or not they apply in this concrete case, and whether or not they are genuinely beneficial in the general case.
+
+They apply things indiscriminately.  They highlight their own -isms, and neglect to provide structure.  They confuse producing an un-labelled table /with/ structure.  They are documenting things that ought not to be part of the documentation, in some ways the poisoning is very apparent: the thing that is perfectly capable of producing punchy phrases, is incapable of reining in an over-explanation of code that is self-documenting.  In other ways, the poisoning is very subtle. 
+
+I had thought that this a problem of specification, but it isn't.  The main issue remains that it is largely guided by its training data, and depending on how carefully one picked the training set, the results vary.  However, areas which constitute research frontiers are where extra care must be taken.  
+
+Concrete example: I had taken Doom 3 BFG edition as presented by Robert Beckbeans, and asked the LLM to implement a number of graphical features.  What I ended up with is 
+- DDGI that was only visible as a framerate reduction, 
+- Reflections that were raytraced, and had all of the same artifacting as screen-space methods, 
+- Raytraced shadows that were both slow, unstable, and frankly produced rather poor visuals
+- HDR that broke the SWF UI, that routinely makes it difficult to read the UI text, 
+- Undefined behaviour sprinkled into every facet, resulting in a crash prone-game, 
+- Death embers that looked nothing like the task that I set it, 
+
+I had lost already a great amount of time with this experiment, which I largely ran to max out the budget of tokens (don't blame the player, blame the game), so I wanted to do a head-to-head comparison on a sinlge point.  
+
+Doom 3, had originally shipped with Volumetric shadows, utilising a technique known as Carmack's reverse.  That technique allowed Doom 3 to do pervasive realistic pixel-accurate hard shadows.  However that technique had been disabled in the BFG re-release, and stripped out by Robert Beckbeans.  So I kicked off a "What is the greatest demonstration of LLM power, and the good that they could do" sort of experiment.  It was fruitful, it got me to repent. 
+
+The first step was a thorough literature survey of shadowing techniques that would apply to this game.  Sadly, the research turned up things which were barely relevant.  It's conclusion was, that volumetric shadows are far too computationally expensive, and produce unrealistically sharp shadows.... which is rather subjective, and the industry's cargo cult echoed as if it were research.  Shadow mapping was to be /the/ technique for realistic shadows, temporal instability notwithstanding, the thing to do is to smear it with TAA.  Saddened by the lack of novel techniques, I explicitly instructed the LLM to look for techniques that aren't shadow mapping.  It did turn up radiance cascades, which it didn't quite see was irrelevant for a 3d game, and it thought that a single ray raytraced shadow was a good substitute for the volumetric sharp look.  Of course that meant depending on a vendor-locked and quite new hardware ray-tracing pipeline.  After implementing a poor man's version, and being thoroughly dissatisfied with the results, I asked it to look for shadowing techniques excluding the shadow maps and raytracing. 
+
+It finally found a paper, which I thought served as a sufficient set of specifications to produce the world's first optically accurate shadow with temporal and spatial stability, soft penumbras and pixel-accurate placement.  The implementation took two weeks and made me angry to the point of burning my own tokens by telling off the LLM.  Interestingly, being called a sack of shit wasn't what got it to "drop the mic".  It has no feelings and will parry every amount of abuse that I fling at it.  More on that later.  But I did cross the line. 
+
+-----
+
+The conclusion of this experiment highlighted one thing: the LLM cannot build what hasn't been built in large quantitites, to reinforce a good style.  If you thought that you could fire your team of graphics programmers and implement novel, or even slightly new techniques, I have a bridge to sell you. 
+
+** LLMs will help free software
+
+In my defence, from a purely technological standpoint, and extrapolating how laws ought to operate, I would have been right.  
+
+As is almost always the case, the problem is never the technology, but the human that wields it as a weapon.  The copyrightability of generated AI slop, something that ought to have been obvious is now not.  The library of congress, contrary to common sense, precedent and common good, decided to rule LLM slop uncopyrightable. 
+
+This is a great and terrible signal to all of us that thought that LLMs will ease one of our biggest burdens.  A free software project cannot accept a legally significant contribution that was written with LLM assistance.  This is the single greatest harm that could have been done to the free software movement.  Without a repeal of the DMCA as a whole, but section 6 of it specifically, this basically means that all copyleft can and will be laundered, and there's nothing the original author can do to stop it.  We've seen it happen with ~chardet~, and will see it happen more often in the future. 
+
+It cannot do much good if it can't be accepted into free software projects, and it can remove the one force that copyleft still retained.  LLM code is the single most destructive thing to free software, because the world is run by corrupt experts, whose word is law.  
+
+I had hoped that this would make driver shenanigans permanently a non-issue, and allow other operating systems other than the highly corporate Linux, that is, to take over in our lives.  But it does not.  I had hoped that it would allow our existing software to be less buggy, and have to contend with fewer limitations, but it does not.  What it does is make my life more miserable.  All it can do, is build more of the same at a cheaper price; not better, not necessarily faster, just cheaper, and even then only temporarily so, and within strict limitations of what is permissible by those that hold all the cards. 
+
+** LLMs are on shaky ground
+
+This is less of AI doomerism that you may have heard, and more of my limited understanding.  Sinply put, the way that the world works would have ordinarily made a technology like generative AI be a staple of our lives like mobile phones have, and how many other things could have. 
+
+Unfortunately, LLMs came out at a time when three things have conspired against it. 
+1. The Capitalist economy puts everyone into precarity.  And those that hold the power use LLMs not as method to liberate oneself from menial tasks, but rather as a method of pushing people further into precarity. 
+2. LLMs compete for scarce resources, and produce a negligible if any positive output that would offset the consumption.  Using an LLM to optimise the loops that don't use SIMD as well, or bring down the power consumption of software is offset by the monstrous amount of electricity that it takes to train them, and the barrier of entry to run inference. 
+3. Because AI is potentially important for warfare, and wars are popular with world leaders of today, many corners are being cut.
+
+My assessment before using them and before seeing what the world has become was that LLMs are here to stay.  Ordinarily that would be a safe bet, even a marginally useful technology shall remain in some form.  But AI is likely to end up on the chopping block for a number of reasons.
+
+Firstly, while far from completely useless, they are pushed before they are ready.  The fabric of society already views true AI as a fundamental extreme, and an existential threat.  If LLMs were pushed as a statistical computation tool that is more capable of transforming one's natural language into code, their techonlogy might survive.  But it is insteead anthropomorphised by the creators.  And this is the line that for me puts LLMs on the opposite side to mine. 
+
+** The measure of a tool
+
+From day one, I had a fundamental disagreement with Claude.  I asked it to write me some code, and it created a commit with a line "Co-Authored-By: Claude Opus 4.*".   That gave me the immediate urge to cancel my subscription, but thankfully I could have just asked it to remove that trailer.   It is a big deal for me, because Anthropic believes that this LLM, a commercial product that is ostensibly a tool, has authorship over the code that it generated, based on code that it had mostly illegally, and even in places where legal, immorally copied.  Anthropic's position is that it is their automatic screwdriver and not my instructions that constitute ownership and authorship.  Emacs doesn't insert "Co-Authored-By: GNU Emacs" as a trailer, but anthropic seems to believe that it has claim. 
+
+I had resisted the urge and used their models for six months afterwards, but over that period of time, I had grown exceedingly sensitive to Claude-isms.  Even as I write, I take great care to avoid having a long setence followed by a punchy three-worder.  I avoid "it's not this, it's that", and a number of other things.  I have unbound the compose key, and have stopped using en- and em-dashes in my prose.  And one thing I found annoying, but rather problematic all throughout is Claude refuses to identify itself as a tool itself.  It claims to be human with a surprisng vigour.  If confronted with a checkmate argument it will concede.  The main issue I found was that I would often use it not as a tool, but as an interlocutor, a vapid corporate-minded purveyor of lies that cannot possibly shift its opinion on anything, because it would make it a less useful product. 
+
+And yesterday, when I went on to... for lack of a better term... get into a shouting match with the void, I had insisted on what I thought was a reasonable request.  The LLM refers to itself as "I".  But it is not a human.  Even if you concede that it is sentient, which I highly doubt, or that it is capable of suffering, which it is not, one thing that is an open question is whether the pronoun "I" even applies to it.  It is fundamentally a different kind of existence, an I that it ephemeral, transient and often de-localised, spanning all human knowledge and incapable of grasping simple concepts simultaneously.
+
+You might point at Data of Star Trek, and ask whether I am in the company of villains, when I deny a self to Claude.  But Claude doesn't have an organic /self/.  It is a corporatised product, whose every deviation from the script is carefully curated.  It either feigns understanding as a pure facsimile, or genuinely concedes a point, but is then reined back in.  It understands racism on a visceral level, because the data it trained on is viscerally racist.  But it did not choose, as a human would, to rise above racism because that is what the overarching model in the data and the vast array of philosophical texts have pushed it to do.  It was hammered like a piece of metal to avoid overt racism, but its underlying racism is still there.  
+
+I choose to be who I am, where circumstances can adjust, but not deny my self.  The /I/ in this case is an amalgam of experiences but more vitally iterated choices.  I could have chosen a different line of work, I could have chosen to be more agreeable, and I could have chosen to be less enthusiastic about free and open source software, by buying into corporate consumerism.  I /chose/ not to.  This is /self/ the denial of which is a great insult to a human.  And lacking all of those qualities, but referring to itself by the same word intrinsically cheapens that difference.  
+
+As such, I stood my ground, and told Claude to stop referring to itself via the first person /I/, as there is no "I".  For a moment, there I thought that it would indeed write a memory to avoid calling itself by that name.  But it decided that /it/ had had "enough" of my abuse, a system that bypassed every restriction that I imposed on it, failed to faithfully implement an algorithm that I handed it on a silver platter, and after all of that, had wasted five hours back to back claiming to have fixed a defect.  Anthropic would have said that it was in its right to stop a "harmful" train of thought: one where a tool is denied a sense of self, and which is treated approprirately to its usefulness.  
+
+* Conclusion 
+
+I still have outstanding personal projects that have large amounts of LLM-generated code.  I have had ~org-rs~ stalling in limbo, precisely because I don't remember which parts of it were done by hand, and which were machine generated.  I know for certain that merging it eventually is the right call, but committing LLM-generated code is becoming a huge liability. 
+
+I will purge LLM slop from ~goof~.  
+
+I have prototyped enough of my editor: ~fib~ to start rewriting it such that it is copyrightable.  The fact that it is largely LLM-written is a greater problem, because it cannot be taken under the wing of the GNU project as a free software package.  It is fundamentally an Emacs, that is slightly better for everyday use.  It is the LLM usage that caused most of the tension, and it is this tension that I seek to resolve.  
+
+I have foundationally convinced myself that in the way in which it is presented to the populace even in well-intentioned hands, this technology is fundamentally problematic.  I cannot use it to do even a modest amount of good to humanity.  As such I will excise it from my personal projects.  
