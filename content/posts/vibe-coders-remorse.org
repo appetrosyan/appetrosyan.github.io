@@ -1,6 +1,6 @@
 #+TITLE: A Vibe-coder's remorse
 #+AUTHOR: Aleksandr Petrosyan
-#+DATE: 11-08-2026
+#+DATE: 2026-08-11
 
 #+TAGS: Tooling
 #+TAGS: AI 
