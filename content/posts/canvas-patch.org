@@ -1,31 +1,5 @@
 #+TITLE: The canvas patch got merged
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2026-08-17
-#+TAG: Personal
-#+TAG: Rant
 
-Today, the thing I thought could take years, happened.  The canvas patch got merged.
-
-I'm happy for those that had a lot riding on it, and in a vacuum I would have celebrated it as a victory.  I had half a heart to congratulate some of the people personally, until I received what I can only describe as passive aggression write large.
-
-No hello, no "Dear Alex", or "hey, how have you been", no just straight to business gloating over the fact that I mentioned that the canvas patch is at best a curiosity.
-
-Now that the canvas patch is merged, I'm in the unfortunate position of moving the goalpost, or so they would prefer to think, to clarify why the canvas patch is a waste of time.  I won't.  Time will tell, I had my doubts about whether or not there would be permanent stalling and that it would take at least another year to get merged.  I was wrong, and there is nothing shameful in accepting that.
-
-However, the tone and the subject of the email had after a fashion, forced my hand.
-
-The email starts with an excerpt from my blog (what you're reading now), where I don't even bother fixing typos, but where I have half-heartedly pointed out that the canvas patch if it were merged that day, would still be months behind my work, and at the time of its merge would be hopelessly behind the current state of my work[fn:1].
-
-The person in question did not message me in the interim.  The person whom I'd spent time with, instead of my dying dog, didn't feel the need to message me until it was time to gloat.  When they did, they didn't feel the need to even "to whom it may concern".
-
-They of course, begin with a quote by professional retroactive justifier Augustin "the great", a chrtistian "philosopher".  Even the way in which it is presented is to lend gravitas to this ostensibly unnecessary gesture: it is a Latin phrase writ with his full name, and the centuries listed.  I suppose I should be thankful that the phrase wasn't translated below.
-
-What follows is three lines that I can only describe as lying through one's teeth.  They wanted me to know, that when I told them that it was a fool's errand that it has resulted in them wanting to give up.  To cover their bases that it was not their intention to be vengeful (this warrants an explanation), it just happens to be phrased like one of the letters you see in literature, right before the protagonist /shows their quality/.
-
-It concludes in a similar fashion,  saying that they never got to say a proper goodbye.
-
-I do not wish to unpack more than I already have.  I will say though, that them leaving my life had a direct positive effect on my life.  I stopped pushing fib, the editor hard, because I no longer need to compete for my "friend"'s attention, and give them something to work off.  I no longer dedicate as much time to a venerable time-sink that is Emacs, and instead get things done.  I had rediscovered my passion for games, in so far as Line Feed Entertainment's first release is imminent.  And I have made considerable progress in investigating the feasibility of analytical volumetric penumbras for real time graphics.  I can breathe, for once.
-
-* Footnotes
-
-[fn:1]Rather than argue, I'll release fib when it is ready.
+The canvas patch got merged.
