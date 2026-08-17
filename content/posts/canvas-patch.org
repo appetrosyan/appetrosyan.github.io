@@ -1,6 +1,8 @@
 #+TITLE: The canvas patch got merged
 #+AUTHOR: Aleksandr Petrosyan
 #+DATE: 2026-08-17
+#+TAG: Personal
+#+TAG: Rant
 
 Today, the thing I thought could take years, happened.  The canvas patch got merged.
 
