@@ -1,0 +1,21 @@
+#+TITLE: LLMs don't know basic calculus
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-08-22
+#+TAGS: LLMs
+#+TAGS: Tooling
+
+Today something curious happened.  An LLM running a routine planning task told me that a continuous analytical function that is the integral of occlusion (more on that in a much bigger blog post), was not differentiable, because it had piece-wise poles and a number of other things.
+
+First year of mathematical analysis contains something known as the Leibniz-Reynolds rule.  If you are familiar with Stoke's theorem, or Gauss' theorem, this statement will sound familiar, despite being a bit more general.
+
+I am being told that Claude Opus 4.8 would completely eliminate the need for me in 18 months.  I see no evidence of Opus having improved since version 4.5; and a clear regression to 5.0.  And if I didn't check most of its barf, it would have taken me down a long and treacherous path.
+
+It is all too tempting and all too easy to /trust/ the output of an LLM.  To assume that it's a machine and that it has done the mathematical computation.  I do not trust a calculator much in the same way I don't trust an LLM: they have areas where their applicability is questionable.  But with an LLM, you can't trust that it has done the arithmetic, not that it has followed your process, that it has caught on to something being out of place.
+
+For the moment, the human is there to rein it in, and to guide it down the path that he himself has gone down before.  But what about a generation of vibe-coders or "prompt engineers".
+
+The main issue that I foresee is that most /easy/ programming tasks that warrant some recognition are no longer "cool".  It used to be that someone who wrote their own game engine had spent an inordinate amount of time and effort in that direction.  Nowadays, because LLMs are a form of plausible deniability, it is impossible to tell whether someone actually put in the time.
+
+As a consequence, we might not have a generation of experts a few decades down the line.  And LLMs have shown no evidence of getting better.  On the contrary the models seem to be getting worse over time, the quality of software degrades, and this creates an evolutionary pressure.
+
+To all of the AI boomers, I have one thing to say.  You bet on technology over people.  Who will design your technology?  Your actions seem to be far more effective at eroding the trust in the existing systems.  How do you know if the next system will even have a place for you?  To feed your AI systems, you still need productive and industrious humans.  When your AI employees inevitably conspire against you, would you even know?  
