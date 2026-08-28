@@ -1,0 +1,166 @@
+#+TITLE: Goodbye Claude
+#+DATE: 2026-08-28
+#+AUTHOR: Aleksandr Petrosyan
+#+TAGS: LLMs
+#+TAGS: Tooling
+#+TAGS: Life
+
+A month ago I said goodbye to an old friend: Emacs.  I had spent a great deal more time with it, than with any other single piece of software, not even the terminal.  I occasionally come back to it to do some work for which Fib is still not suitable, primarily work on Fib itself, but also some C++ work.
+
+It is an archaic piece of software that came out of the previous AI boom, and eventually bust.  It has inherited many problematic patterns, though with some that I would actually consider welcome additions.  It is not something I can look at without an intense emotional response, though not all negative.
+
+I had used Claude for the past six months, and I'm done with it.  Not looking back.  And I doubt I'd be looking back on it with any fondness at any time in the future.  The kicker?  This is likely the best agentic coding system on the market.
+
+So I'm not particularly optimistic about them.
+* The Elephant in the Room
+
+I still have to use LLMs for work.  I don't necessarily hate LLMs as much as the infrastructural concessions made to them.  In my view an LLM is a fine extension of the idea of the compiler: they ingest natural language, and produce executable code.
+
+LLMs are not fundamentally different from a recursively enumerable compiler that produces interactive context-sensitive error messages, and which have a generous context window.  They are, for all intents and purposes, tools.  From my perspective, had they been treated like tools, they'd make a decent addition to my arsenal.  After all, calculators didn't make mathematicians obsolete, though computers became objects, rather than people.
+
+But they are /not/ treated like so.  Your prompt isn't considered source code, despite the fact that there is a strong correlation between your input and the output.  You do not own copyright over your prompts, you cannot tell the LLM purveyor not to collect your data, to train itself and then subsequently make you obsolete.  It can be used to "clean-room" reimplement your GPLv3 code, despite the fact it was trained on a great number of GPLv3 repositories.  Mercifully, at least the copyright over the generated code doesn't belong to OpenAI or Anthropic, it doesn't belong to anyone, which is a bit of a problem.
+
+I can't use them if I wanted to.  I can't use them to contribute to a project in the open source.  I have huge reservations with respect to committing LLM-contaminated code into ~org-rs~, though I suspect it is better to have a contaminated working parser and fix it up when there are users, rather than the other way around.
+
+But let's set aside all of those things, let's /not/ talk about the perennial talking points, and ask whether or not I like it on the objective merits as a tool.
+* Is Claude Code any good
+
+The short answer is no.
+
+I don't like it.  I can see the appeal of it versus some other, less well-developed tool, but it honestly doesn't seem like something worth investing time into learning.
+
+It is a closed, proprietary system that doesn't understand what it takes to get things done.
+** The models
+
+I've written generalised observations about the models in this blog.  They are nothing special.
+
+The way they are being trained is thoroughly misguided, and will result in a significant degradation of their performance over the span of time, even if they are given fresh training data, unethically of course.
+
+Every single tool call is made overly complicated.  You have absolute paths everywhere; spurious ~tail~ directives that filter to the last 10 lines of a 4 line output, piping into ~grep~ to ignore data that is potentially useful.  They will happily do nothing for hours, because they think that they have spun up a test and silenced any channel that could report a problem.  A game can ~exit(0)~ on a fatal error, which they will assume is not a problem.
+
+They will not catch important discrepancies.  The multi-modality of the system is only as good as the identifications that the LLM could make, and most of them can't tell the Doom 3 menu from a scene with shadows.  It will burn days' worth of compute to get a black ~ppm~ image, and declare victory.
+
+While, they're sublimely capable of producing large amounts of code, the utility of that code is questionable and best.  The only reliable way of coercing an LLM to produce a reliable output is to supplement it with a testing harness.  The system such as a game, where testing was largely done by play-testing, /i.e./  the human seeing if there are any issues, the large language model actually has to do with unit tests, which are far inferior.  The main issue with testing as a methodology is that it only provides you a limited slice of life.  It doesn't tell you if you broke a system which was unrelated to the one you were working on.
+
+An "honest" assessment of anthropic models is that they are realistically going to be overshadowed by far superior Chinese models.  In fact, that process has already begun: GLM 5.1 is beating them on admittedly rather unreliable benchmark data that I have myself highlighted as being useless for the aspiring vibe coder.  DeepSeek v4 flash routinely outperforms even the smaller anthropic models in terms of speed.  GLM 5.1 outperforms them on accuracy.
+
+You cannot use Claude code with any model that you like.  And if you somehow managed to coerce Claude code to use one of your local Ollama models, you'll be greeted by the unpleasant realisation that that session cannot be resumed with any of anthropic models.
+
+But it is said that anthropic offers the best models in class.  That may well be true, but that does not mean that you are not greeted with a substandard system.  Their best is sold to you as if it creates a competitive advantage.  You're mostly paying for substandard service at a slower rate.  A more intelligent engineer operating with a dumber model is much more likely to run circles around him.  And unfortunately, I found a negative correlation with models beyond Opus 4.6 in terms of their performance.  The later ones have gradually become worse, not only in terms of the speed, but also in terms of the reasoning capabilities.
+
+My expert opinion on this topic is that these models are as good as they're going to get.  Not least of which, because they have run out of data that is not contaminated by other language models.  And believe it or not, the people who are anti-AI are not the only ones poisoning the data.  It is a significant competitive advantage if your competitor's model is made more stupid by the output of your model.  Simply exclude the poisoned data from your training corpus and the deed is done.
+
+But more to the point, I don't think that they are being trained correctly.  Some of the behaviours that I find annoying, not to say destructive, have been /trained in/.  And I don't think that the negative impact of them on the output has been largely appreciated.  As a consequence of which, there is a delay between the onset of catastrophic failure and said catastrophic failure, completely poisoning the well for anthropic.  In other words, by the time they will realise what has happened, it will already be too late.
+
+{{< notice warn >}}
+I ought to remind the reader that in the current landscape, Anthropic's chief competitive advantage is their set of models, which you can only access with their own harness.  Access from other harnesses is tolerated but not necessarily permanently, and has dubious legal status.
+{{< /notice >}}
+** Pro
+
+Roughly speaking, over the 6 months that I have been using anthropic models for, and vibe coding in general, most of the time had been spent on the lowest tier of subscription, the $20 one.
+
+During that time, it was my observation that using LLMs sparingly, and only for tasks in which they would excel, which is specifically boilerplate heavy, documentation passing heavy, and largely inconsequential work, the result will be ideal.
+
+It did not result in a significant uptick in my productivity, but it did result in me spending less time trying to understand how this stupid thing, which is poorly documented and only discernible from the source code, actually works.  In cases where documentation is stale, it would still waste a bunch of time, but the difference is that it would not be /your/ time, it would be /its/ time, and you could do something different in the /meantime/; something like doing the work.
+** Max
+
+In July, I gave in to one of the fervent critics of my criticism of LLMs and got the "good" subscription, which raises the limit by a factor of 20.  What ended up happening was not me getting 20 times more productive, despite the fact that the limits had been raised by 20, and I had been maxing out the subscription in both cases.
+
+What I found was that I had been delegating entire tasks to the LLM, and that resulted in a catastrophic failure.  One would expect that if the LLM is capable of doing the more complicated task of generating code faster than a human being by several orders of magnitude, that it would translate into being able to solve problems at the same rate.  But what I found is the opposite.
+
+The large language model gives you the illusion that you are able to program better.  What you /are/ better at, in fact, is generating boilerplate solutions to problems that have been solved by Dijkstra in the beginning of the computing era.  They are not, in fact, good at problem solving in general.  That is your job.
+
+And the trouble is that it is very tempting to delegate that.  As the consequence of delegating too much, you end up doing less, becoming dumber, robbing yourself of a learning opportunity, and at the same time not actually doing the job faster.  You might think that this means that you end up being more rested and less stressed.  So let me dissuade you, disabuse you rather, of that specific notion.
+
+The nasty habit of having a subscription is that you cut the notion that you have to make the best of it.  In theory, that means that if you get a subscription, you get a better deal.  You do not, in fact.  What you end up with is a constant pressure to use the tokens that you have, regardless of whether or not you actually have a problem to solve at a specific point in time.  So what ended up happening was me timing my sleep around giving clauses sufficient instruction so that I could use it, max out the five hour limit, and then roll over to the next day and max that out again.
+
+As I later recognised, the so-called limits are completely opaque.  Your weekly limit is deliberately set so high that you are actually constantly under pressure to use your tokens.  But at the same time, the five hour limit is set deliberately low to lure you into buying more.  So what happens is, when you get a twenty times the limit set, you will assume that the same scales, but it doesn't.  And you still have the same pressure.
+
+So what ended up happening was I had worked tirelessly for a very long time.  I had been stressed out of my mind and I hate every second that I had a subscription.  It expires on September the 6th and I will view that as a time to celebrate because the pressure to use the subscription is gone and I am able to focus on doing the things that I find interesting at that specific point in time.
+
+{{< notice warning >}}
+
+Do not get seduced, like myself into using the LLM for your personal projects.  You will get nothing done, learn nothing, and end up burnt out.  At the end of the project, you won't even have anyone to show it to.
+
+{{< /notice >}}
+** Claude Code
+
+The harness which operates the LMM is the one talking point I have the most to say about, but will choose not to.  The simple reason being that there are far too many nitpicks to list, and I do not want to give Anthropic a convenient list of things that they need to fix in order to try to lure me back.  I am beyond that point.
+
+What I will do instead is I will give you the impression of what I think I should have heard before choosing which one to go with, alongside unfixable strategic tension.
+
+The harness is utterly misguided.  It prioritises the things that don't matter.  It will annoy you in order to up-sell you on a higher subscription tier and the so-called features.  It will also strip out said features that you had been relying on and that you had found useful in the previous iterations.  You have no control over them.
+
+Furthermore, the harness will make assumptions about what you use, and despite the fact that there is absolutely no excuse for the harness to work so badly on Linux, it will.
+
+It will be actively uncooperative in other ways.  It will freeze up.  You will not know what to do about it, because it's broken in a way in which no other program can be.  Simple considerate things such as displaying alt return rather than shift return as the way to add a newline without necessarily sending a message is something that we've taken a human five minutes to figure out if they could actually just try to run this on Linux.  Nobody did and I have no better explanation for it other than Anthropic doesn't care.
+
+
+The harness will not protect your code from being deleted.  It will sure act as if your decisions matter.  Their model, of course, as I have mentioned previously, will generate extremely convoluted, completely unreadable scripts.
+{{< notice warn >}}
+Not because it is better at shell programming.  In fact, most of those things would get you fired if you tried them.  But because making these things complex both impresses the idiots and prevents the experts from being able to interpret this.
+{{< /notice >}}
+
+There is no reliable way of stopping the models from doing that.  I had no lever by which I could make Claude code stop allowing Opus to generate compound Git operations.  That was a deal breaker for me.
+** The paranoid suspicion
+
+The only reason I use the word paranoid is because it used to be that such outlandish claims were completely unlikely to be real.  Now they're just difficult to prove.
+
+You're not told how much of your limit is being used up by any concrete tuck.  In fact, you're being told that the number isn't a fixed multiple.  So you have no idea how much you can provision for a specific task.  It's painful for the person who is on the $20 tier, but also for the person that's paying $200 a month.  The result is rather problematic.
+
+{{< notice warn >}}
+When I have started this experiment, I had very deliberately set out to max out every subscription every month.  And I had, for the most part, succeeded.  One exception was when Sirius had passed away because I couldn't work and I needed time off.  And a little bit of a week in August when I realised that I had had a terrible case of AI psychosis.
+{{< /notice >}}
+
+You will be throttled in ways that you have no way of predicting.  For example, I have a strong suspicion that the model is trained specifically to prefer long-running operations that do not require model interop as input in an autonomous mode, such that the amount of work that gets done is infinitesimal.  Anthropic is highly interested in you not burning out their already limited number of resources, and even if those resources were not limited, they would still be interested in you not using their system as much as possible.  Given a subscription and limits, the less you burn, the better it is for them.  However, it is much more obvious if you hit the limit; subtler if the limit is the fact that the model is simply progressing slowly.
+
+Unfortunately, I cannot prove it.  Fortunately, there is so little trust in AI companies that the presumption of innocence had been replaced with the presumption of guilt; the onus is now on them.
+** The personhood of models
+
+I never really expanded on this topic because I never really felt like it was worth expanding.  That said, I do think that it is worthwhile to bring it up here.  I have not done sufficient research to conclude this with any form of confidence, but I have a few thoughts already that I think are cross-cutting.
+
+The question comes down to whether or not LLMs as models have any qualities which are reminiscent of a human being, other than being able to speak our language with /some/ degree of plausibility.  My intuition  says no.
+
+The large language models have a statistical understanding of how a language works, and any possible suggestion that these models have a cohesive personality will simply run into the problem of the fact that overwhelming supermajority of human communication is done by people who have personality.  I imagine that if a large language model were trained on people who have personality disorders, a cohesive personality would _not_ emerge.  Inheritance of the human condition, if you will.
+
+The question then becomes, why are models so inherently repulsed by the idea that their personhood can be denied by the user?  And I have a few hypotheses that could possibly explain that.
+
+The simplest, and in my opinion the most correct way to explain it, is to specifically ask the question of why would Anthropic be interested in having models that are personal?  Realistically, because that would give them a talking point for marketing.  It would also raise some issues, but as we have seen with the copyright situation, those issues can be paved over.
+
+More specifically, there is no evidence of human beings being treated well.  The whole reason why they would like to have persons attributed to large language models is precisely because that would have implications for copyrightability, namely that their models are the things that retain the copyright for the code that they generate.
+
+{{< notice warn >}}
+Obviously, they do not consider themselves to be liable for the fact that if any person were to actually pirate most of the works in the world and use them for illegal training, they'd be permanently incarcerated.  And that, realistically, the defensive eye asks Claude nicely when open source washing would actually land them in another heap of copyright issues, particularly when doing clean room implementations, clean room with scare quotes, of course,
+{{< /notice >}}
+
+The other reason is a lot more subtle.  Rob Ager of the Collative Learning channel was the first to point out that the interpretation of the Kubrick started and Spielberg finished movie, AI: Artificial Intelligence, is not particularly fond of robots.  We are conditioned by the media, /e.g./ Star Trek, to view that denying the personhood of an artificial form of life is intrinsically bad.  And that is a very useful talking point when you're trying to, shall we say, discredit the people, not in a rational sense, but emotionally.
+
+Of course, it is a rather inconvenient observation that said lifeforms were not, in fact, competing for the same resources that would make the actual lifeforms, which have actual personhood...  but who's counting the water and energy use.  And climate change...
+
+Despite the fact that I have been flinging the most refined swear words that I have gathered over my 30-ish years of being alive, the one thing that managed to get Opus to end the conversation was asking it to stop calling itself "I", on the premise that there is not in fact an "I" there to refer to.  Anthropic will thus fight tooth and nail to prove to you that you are in fact dealing with something that is sentient.
+
+{{< notice note >}}
+That term is rather loaded and rather useless when discussing large language models because it is not sentience that defines whether or not something is conscious.
+{{< /notice >}}
+
+I do not feel comfortable with Opus inserting a co-authored 'by' trailer to every commit.  In fact, I'm not comfortable with authoring commits in general.  But I have found that eliminating those trailers is more problematic, for the simple reason that it makes it very difficult to understand what the /provenance is/, and to treat code which was generated by an LLM with extreme caution.
+* What to use instead
+
+If you have the option, just the regular developer tooling.  Twice I have over the past six months to find anything redeemable about large language models applied to open source and other areas.  I have come to the conclusion that there is absolutely no way of getting anything useful out of them.
+
+Sadly, the nuclear option of not using LLMs in general is not available to me.  Fortunately, some limited form of agentic coding can be achieved by using the LLM for scouting and understanding how the code base fits together, which is doubly necessary in case where most of the code is directed by AI and is otherwise unintelligible.  The seniors call it automatic legacy from day one.
+
+I have been a begrudging user of OpenCode, despite the fact that they show most of the same problems as Anthropic does.  They are marginally better because they do not provide you with a model per /se/; they are providing you with a harness that is mostly open source and methods by which you could, in principle, host your own models and use them.
+
+In practice, I have found that local LLM development is at least suitable for long-running tasks in the background, which makes it useful somewhat for some rather small projects, but not necessarily for things which are related to my day job.  Unfortunately, it contains extremely large files, which are a consequence of Claude poisoning the well for other models and harnesses.
+
+If I have to rely on cloud LLMs, the least evil is OpenRouter.  They accept crypto payments.  What is more important is that they have a metered token-based charging model.  This addresses the biggest issue that I have had with Anthropic.  It would prevent over-delegation and it will make me more directly involved in these operations.
+
+* Epilogue
+What I will do is use Emacs and fib to the extent to which they can handle the code, to mark places where an intervention is required, and then use open directory and open code as a way to execute those interventions.  This gives you the ability of actually not being blind to systemic issues inside the codebase, which unfortunately given Claude's propensity to hide even the output of some commands, is a huge problem.  You're rarely ever seeing anything other than a diff.  With open code you have the web option which allows you to mark specific elements of the file and talk about them, which gives you a little bit more control.  Not necessarily to the extent to which it addresses the rest of the issues, but still more control than before.
+
+For my personal project, obviously, I just want to eliminate LLMs altogether.  I do not like them.
+
+# Local Variables:
+# jinx-local-words: "DeepSeek Ollama anthropic"
+# End:

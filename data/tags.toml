@@ -10,10 +10,16 @@ gradient = "linear-gradient(90deg, #5f5fbf, #777703)"
 [Tooling]
 color = "#777703"
 
+[Rant]
+color = "#ff0000"
+
 [Work]
 gradient = "linear-gradient(90deg, #777703, #889933)"
 
 [LLM]
+gradient = "linear-gradient(0deg, #8fa900, #866020)"
+
+[LLMs]
 gradient = "linear-gradient(0deg, #8fa900, #866020)"
 
 [Personal]
@@ -27,6 +33,9 @@ gradient = "linear-gradient(45deg,  #00ffaa, #aa0990)"
 
 [Sirius]
 color = "#0077ff"
+
+[Fib]
+gradient = "linear-gradient(90deg, #00aaff, #aa44ff)"
 
 [Rants]
 color = "#ff0000"
