@@ -1,0 +1,103 @@
+#+TITLE: Fib, a new chapter
+#+AUTHOR: Aleksandr Petrosyan
+#+DATE: 2026-10-07
+#+TAGS: Tooling
+#+TAGS: Emacs
+#+TAGS: Fib
+* Hiatus
+Fib is on hiatus since June.  I needed a break from it.  I still do.
+
+The reason I needed a break is simple: LLMs made my relationship to Fib rather abusive.  I had been spending an inordinate amount of time, despite having a day job working on the project, and chasing design dead-ends: Emacs' anti-patterns.
+
+The hiatus was spent productively.  I wrote a research proposal.  I implemented a shadowing algorithm that is both better than raytracing in terms of visual quality as well as running at comparable performance without requiring specialised hardware and machine learning in the loop.
+
+I needed and still need to start from an almost blank page.
+
+** Competing with Emacs
+
+There are a number of projects that /aspire/ to be the better Emacs.  The emphasis, is of course, to highlight that in many ways those projects do a great many things *far* better than Emacs and have done so despite having only a fraction of the resources.
+
+NeoMacs, is trying to add modern features to Emacs.  The author has done a great job at building a community.  Much better job than I did.  It had been upfront about the usage of LLMs to develop and design it, had never held back the floodgates.  The response had been either positive, or neutral.  By contrast, there had been /no/ response if any to Fib.  The project is a direct upgrade to Emacs, you can use it instead of Emacs, and quite often find yourself preferring it.
+
+A much older project, Lem (Lisp Editor Macros), is creating an Emacs-like experience while being wholly written in Common Lisp and avoiding the architectural pitfalls of both Emacs and imitators.  It is a great project developing quite a community.  It is avoiding many of the unnecessary complications of other projects, it chooses to pragmatically delegate text rendering to a browser engine, instead, focusing on the power of Common Lisp when applied to the package management.
+
+Gypsum, now Schemacs is attempting to do the same, this time focusing on the much more minimal Scheme language.
+
+There is no shortage of Emacs imitators.  Yet Emacs is still largely the centre of the conversation.  My project is so heavily differentiated from the others, that it was not even dignified with being counted among the many imitators in any list.  The only places where I had /any/ feedback positive or negative was the Emacs China forum which was mostly interested in this project when it was focused on brining an SDL rendering backend to Emacs... and the Monadic Sheep members, the less said about that the better.
+
+The project would have been dead on arrival, largely because I have not done a good (or any) job advertising it to a sufficient degree.  I could not get funding from an Libre-associated foundation on account of the sheer volume of code written by LLMs.  I could not point to any co-maintainers, because over the span of six months only one person produced one patch, and one person decided to star the project.
+
+** Mistakes
+
+*And at the end of the day, I have only myself to blame for the state of the project*.
+
+I had been inconsistent.
+
+I had dedicated not enough time to it, to make any significant progress.
+
+I had not committed to either doing the project at high velocity with /LLMs/, or to take it slow, and rely on human co-maintainers.
+
+I had not done, as I wanted to long before starting it, a number of rounds of fundraising to allow a team of people to work on it full time.
+
+I had not, as I should have, reached out to relevant people in the GNU foundation to make it a GNU project from the start.
+
+And as a final point, I had not built it to be a good architecture from day one.  I had neither the components, nor the vision for the end product to be radically better than anything else in the same vein.  It had been missing a number of rounds of polish that would have really made the package appealing to some audiences.
+
+It had also lacked sufficient focus.
+- Fib was not a great Guile environment, because why not build the entire editor in Guile.
+- The hardware acceleration that I chose ran either poorly or not at all on the Libre kernel, for anyone who did not have a Vulkan driver.
+- It had had an actor model that was compensating for a deficiency in Emacs lisp, which I did not have.
+
+** Restarting development
+
+Leaving the editor unfinished is not an option.  I tried.
+
+A friend from the ancient times of CyberLounge is likely going to help, and I will need that for a number of reasons.
+
+*** LLM-purge
+
+Despite the radical elements of Sheep primarily arguing against the usage of LLMs being expelled, generative stat models are poison, and need to be removed on their own merits.   This means slowing down the pace of development.  
+
+And that slowdown will be needed. The editor has significant bugs that would prevent it from being used as is, which is also why I never really released it.
+
+I am, however, going to be pragmatic about how this is done.  Replace with existing libraries if I can.  Strip out chunks of code so that a large portion of the LLM code is at least not hosted with the editor; it will still be LLM-written, much like many of my upstream dependencies.  
+
+Is this somewhat dishonest?  Yes.  But it is also defensible, and would allow me to reach a point where the majority of the code for the editor is copyrightable.  This is necessary for the next steps. 
+
+*** Flatpak
+
+Installing any kind of Emacs clone is harder than it needs to be.  Packaging is something that is overlooked quite often.  
+
+My initial instinct was to try and package a Guile-based editor into GNU Guix.  What I found was that the packaging system is both more developed than I thought and simultaneously not developed enough to support that.  This is a Rust project that primarily pins its dependencies.   Packaging for Guix ought to be trivial.   It is not.  And while I intend to package for Guix, it is not near the top of the list.
+
+*** Community building
+
+THe main mistake was not building a community.  Monadic sheep was an unrelated set of people with differing interests.  I need to build a dedicated community to this specific project that might comprise some people from other communities.
+
+I had not done that. 
+
+Why?  Free Software is inteneded to be about people.  The software was always intended to be the medium of exchange.  So it would stand to reason that this software needs to be advertised. 
+
+I hate advertising.  Everyone does.  It has to be done.  More on that in a later post.
+
+*** Technical changes
+
+I will need to correct some mistakes made at an early architectural stage. 
+
+The actor model was fixing a problem with Elisp.  Trouble is, I don't have Elisp.
+
+What I do have is Guile.  It is a decent language, but it has a number of issues.  Rather than turn this into a technical listicle, let me just say that I need to consider making the editor extensible in other languages. 
+
+*** Development pace
+
+I have a number of things to do outside of the editor.  I have a rather demanding day job, thanks to LLMs producing a large amount of vulnerabilities. 
+
+I have a PhD proposal in the works; wish me luck. 
+
+I also have a number of components that I want to finish first: 
+- ~org-rs~ is still in limbo, because I want the co-maintainers to sign-off on at least some of the code there.  And that code had been contaminated by LLMs.  Fixable, but takes time. 
+- ~asted~, which is how I want the refactoring to work in both Fib and Emacs.  Basically it's a program that takes a well-formed CLI, and runs a specific code routine.  This is useful, if you want, for example, to extract a number of lines into a function.  Think of it like LSP, but specifically designed for a completely different usage style. 
+- ~ged~, which is the widget system.  It was designed into the editor a little too much and needs a boundary.
+- ~parley~, which is technically an upstream component but one that has already caused me a number of headaches. 
+
+
